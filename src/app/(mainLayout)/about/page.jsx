@@ -18,38 +18,30 @@ import {
   LuGraduationCap,
   LuTrendingUp,
   LuShield,
-  LuStar,
-  LuGlobe
+  LuGlobe,
+  LuAward
 } from "react-icons/lu";
-import { HiOutlineSparkles } from "react-icons/hi2";
 import Lenis from 'lenis';
 
-// Floating Element Component
-const FloatingElement = ({ children, delay = 0, duration = 3, className = "" }) => (
-  <motion.div
-    initial={{ y: 0 }}
-    animate={{ y: [-8, 8, -8] }}
-    transition={{ duration, repeat: Infinity, delay, ease: "easeInOut" }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
-// Stats Counter Component
+// Stats Counter Component with new design
 const StatCard = ({ number, label, icon: Icon, delay = 0 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.5 }}
-    className="group text-center"
+    className="relative p-6 bg-white dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(230,45,38,0.1)] transition-all group"
   >
-    <div className="relative inline-flex items-center justify-center w-12 h-12 mb-2 bg-gradient-to-br from-[#E62D26]/10 to-[#F79952]/10 rounded-xl group-hover:scale-110 transition-transform">
-      <Icon className="w-5 h-5 text-[#E62D26]" />
+    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+      <Icon className="w-16 h-16 text-[#E62D26]" />
     </div>
-    <h3 className="text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit">{number}</h3>
-    <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{label}</p>
+    <div className="relative z-10">
+      <div className="w-12 h-12 mb-4 rounded-full bg-[#E62D26]/5 flex items-center justify-center group-hover:bg-[#E62D26] transition-colors duration-300">
+        <Icon className="w-6 h-6 text-[#E62D26] group-hover:text-white transition-colors duration-300" />
+      </div>
+      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{number}</h3>
+      <p className="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">{label}</p>
+    </div>
   </motion.div>
 );
 
@@ -81,438 +73,263 @@ const AboutPage = () => {
       name: "Shohel Rana",
       role: language === 'bn' ? t("aboutPage.founder.designation") : "Founder & CEO",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
-      quote: language === 'bn' ? t("aboutPage.founder.quote1") : "Education should be accessible to everyone."
+      quote: language === 'bn' ? t("aboutPage.founder.quote1") : "Education for everyone."
     },
     {
-      name: language === 'bn' ? t("aboutPage.team.fatimaName") : "Fatima Ahmed",
-      role: language === 'bn' ? t("aboutPage.team.fatimaDesignation") : "Head of Education",
+      name: "Fatima Ahmed",
+      role: "Head of Education",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-      quote: language === 'bn' ? t("aboutPage.team.fatimaQuote") : "Learning never stops."
+      quote: "Learning never stops."
     },
     {
-      name: language === 'bn' ? t("aboutPage.team.karimName") : "Karim Hassan",
-      role: language === 'bn' ? t("aboutPage.team.karimDesignation") : "Tech Lead",
+      name: "Karim Hassan",
+      role: "Tech Lead",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      quote: language === 'bn' ? t("aboutPage.team.karimQuote") : "Technology empowers learning."
+      quote: "Tech empowers future."
     },
-  ];
-
-  const values = [
-    {
-      icon: LuHeart,
-      title: language === 'bn' ? t("aboutPage.values.studentFirst") : 'Student First',
-      description: language === 'bn' ? t("aboutPage.values.studentFirstDesc") : 'Every decision we make is centered around student success.'
-    },
-    {
-      icon: LuShield,
-      title: language === 'bn' ? t("aboutPage.values.qualityContent") : 'Quality Content',
-      description: language === 'bn' ? t("aboutPage.values.qualityContentDesc") : 'We ensure all courses meet our high standards.'
-    },
-    {
-      icon: LuGlobe,
-      title: language === 'bn' ? t("aboutPage.values.accessibility") : 'Accessibility',
-      description: language === 'bn' ? t("aboutPage.values.accessibilityDesc") : 'Making quality education accessible to everyone.'
-    },
-    {
-      icon: LuRocket,
-      title: language === 'bn' ? t("aboutPage.values.innovation") : 'Innovation',
-      description: language === 'bn' ? t("aboutPage.values.innovationDesc") : 'Constantly evolving with cutting-edge technology.'
-    },
-  ];
-
-  const milestones = [
-    { year: "2020", title: language === 'bn' ? t("aboutPage.history.items.2020.title") : 'HiictPark Founded', description: language === 'bn' ? t("aboutPage.history.items.2020.desc") : 'Started with a vision' },
-    { year: "2021", title: language === 'bn' ? t("aboutPage.history.items.2021.title") : '1000+ Students', description: language === 'bn' ? t("aboutPage.history.items.2021.desc") : 'Reached first milestone' },
-    { year: "2022", title: language === 'bn' ? t("aboutPage.history.items.2022.title") : '50+ Courses', description: language === 'bn' ? t("aboutPage.history.items.2022.desc") : 'Expanded catalog' },
-    { year: "2023", title: language === 'bn' ? t("aboutPage.history.items.2023.title") : 'Global Reach', description: language === 'bn' ? t("aboutPage.history.items.2023.desc") : '20+ countries' },
-    { year: "2024", title: language === 'bn' ? t("aboutPage.history.items.2024.title") : 'Industry Partnership', description: language === 'bn' ? t("aboutPage.history.items.2024.desc") : 'Tech partnerships' },
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a]">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-12 lg:py-16 bg-gradient-to-b from-slate-50 to-white dark:from-[#0a0a0a] dark:to-[#0d0d0d]">
-        {/* Background Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-gradient-to-br from-[#E62D26]/10 to-transparent rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-gradient-to-br from-[#F79952]/10 to-transparent rounded-full blur-3xl" />
+    <div className="min-h-screen bg-white dark:bg-black font-sans">
 
-          {/* Floating Elements */}
-          <FloatingElement delay={0} className="absolute top-16 left-[10%] hidden lg:block">
-            <div className="w-8 h-8 bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-lg shadow-lg flex items-center justify-center">
-              <span className="text-base">🎓</span>
-            </div>
-          </FloatingElement>
-          <FloatingElement delay={0.5} duration={4} className="absolute top-24 right-[15%] hidden lg:block">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#E62D26] to-[#F79952] rounded-xl shadow-lg flex items-center justify-center rotate-12">
-              <LuSparkles className="text-white text-base" />
-            </div>
-          </FloatingElement>
-          <FloatingElement delay={1} className="absolute bottom-24 left-[20%] hidden lg:block">
-            <div className="w-6 h-6 bg-amber-400 rounded-full shadow-lg" />
-          </FloatingElement>
-        </div>
+      {/* 1. Hero Section - Redesigned like Reference */}
+      <section className="relative pt-20 pb-20 lg:pt-28 lg:pb-28 overflow-hidden bg-[#fafafa] dark:bg-[#050505]">
+        {/* Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
 
         <div className="container mx-auto px-4 lg:px-16 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-[#E62D26]/20 rounded-full shadow-sm mb-4"
-            >
-              <span className="flex h-1.5 w-1.5 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E62D26] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#E62D26]"></span>
-              </span>
-              <span className={`text-[10px] font-medium text-slate-700 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.badge") : 'About HiictPark'}
-              </span>
-            </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
 
-            {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className={`text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-white mb-3 outfit leading-tight ${bengaliClass}`}
-            >
-              {language === 'bn' ? t("aboutPage.title1") : 'Empowering Minds,'}
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E62D26] to-[#F79952]">
-                {language === 'bn' ? t("aboutPage.title2") : 'Shaping Futures'}
-              </span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className={`text-slate-500 dark:text-slate-400 text-xs lg:text-sm max-w-xl mx-auto mb-8 leading-relaxed ${bengaliClass}`}
-            >
-              {language === 'bn'
-                ? t("aboutPage.subtitle")
-                : 'HiictPark is Bangladesh\'s leading e-learning platform dedicated to providing quality education accessible to everyone.'}
-            </motion.p>
-
-            {/* Stats Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 max-w-2xl mx-auto"
-            >
-              <StatCard number={language === 'bn' ? t("aboutPage.stats.studentsVal") : "5000+"} label={language === 'bn' ? t("aboutPage.stats.students") : 'Students'} icon={LuUsers} delay={0.4} />
-              <StatCard number={language === 'bn' ? t("aboutPage.stats.coursesVal") : "50+"} label={language === 'bn' ? t("aboutPage.stats.courses") : 'Courses'} icon={LuBookOpen} delay={0.5} />
-              <StatCard number={language === 'bn' ? t("aboutPage.stats.expertsVal") : "20+"} label={language === 'bn' ? t("aboutPage.stats.experts") : 'Instructors'} icon={LuGraduationCap} delay={0.6} />
-              <StatCard number={language === 'bn' ? t("aboutPage.stats.successRateVal") : "95%"} label={language === 'bn' ? t("aboutPage.stats.successRate") : 'Success Rate'} icon={LuTrendingUp} delay={0.7} />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision Section */}
-      <section className="py-12 lg:py-16 bg-white dark:bg-[#0a0a0a]">
-        <div className="container mx-auto px-4 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left - Image/Visual */}
+            {/* Left Image Grid - Flexbox Implementation for Perfect Alignment */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex gap-4 h-[400px] lg:h-[536px] w-full"
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none">
+              {/* Large Left Image - Takes 50% width and full height */}
+              <div className="relative w-1/2 h-full rounded-2xl overflow-hidden shadow-lg group">
                 <Image
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
-                  alt="Students learning together"
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+                  alt="Team Group Photo"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                {/* Floating Card */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-[#E62D26] to-[#F79952] rounded-lg flex items-center justify-center">
-                      <LuPlay className="text-white ml-0.5 text-sm" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-800 dark:text-white">Watch Our Story</p>
-                      <p className="text-[10px] text-slate-500">2 min video</p>
-                    </div>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
 
-              {/* Decorative Elements */}
-              <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-[#E62D26]/20 to-[#F79952]/20 rounded-xl -z-10" />
-              <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full -z-10" />
+              {/* Right Column - Takes 50% width and contains 2 stacked images */}
+              <div className="w-1/2 flex flex-col gap-4 h-full">
+                {/* Top Right Image - Flexible height */}
+                <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80"
+                    alt="Classroom Session"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Bottom Right Image - Flexible height */}
+                <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+                    alt="Student Learning"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </div>
             </motion.div>
 
-            {/* Right - Content */}
+            {/* Right Content - Fixed Height with Centered Content */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col justify-center gap-6 h-[400px] lg:h-[536px] py-2"
             >
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#E62D26]/10 rounded-md mb-3">
-                <LuTarget className="text-[#E62D26] text-xs" />
-                <span className={`text-[10px] font-medium text-[#E62D26] ${bengaliClass}`}>
-                  {language === 'bn' ? t("aboutPage.mission.cards.mission") : 'Our Mission'}
-                </span>
-              </div>
-
-              <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white mb-3 outfit ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.vision.title") : 'Making Quality Education Accessible'}
-              </h2>
-
-              <p className={`text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4 ${bengaliClass}`}>
-                {language === 'bn'
-                  ? t("aboutPage.vision.desc")
-                  : 'We are committed to democratizing education by providing high-quality, affordable courses in technology, design, and business skills.'}
-              </p>
-
-              <div className="space-y-2 mb-6">
-                {(Array.isArray(language === 'bn' ? t("aboutPage.vision.list") : []) ? (language === 'bn' ? t("aboutPage.vision.list") : [
-                  'Industry-relevant curriculum',
-                  'Expert instructors',
-                  'Hands-on projects',
-                  'Career support',
-                ]) : [
-                  'Industry-relevant curriculum',
-                  'Expert instructors',
-                  'Hands-on projects',
-                  'Career support',
-                ]).map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-emerald-100 dark:bg-emerald-500/20 rounded-full flex items-center justify-center">
-                      <LuCheck className="text-emerald-500 text-[10px]" />
-                    </div>
-                    <span className={`text-xs text-slate-600 dark:text-slate-300 ${bengaliClass}`}>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/courses"
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#E62D26] hover:from-[#c41e18] hover:to-[#d42520] text-white text-xs font-semibold rounded-lg shadow-md shadow-[#E62D26]/20 hover:shadow-lg transition-all"
-              >
-                {language === 'bn' ? t("aboutPage.cta.browse") : 'Explore Courses'}
-                <LuArrowRight className="text-sm" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-12 lg:py-16 bg-slate-50 dark:bg-[#0d0d0d]">
-        <div className="container mx-auto px-4 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md mb-3">
-              <HiOutlineSparkles className="text-[#F79952] text-xs" />
-              <span className={`text-[10px] font-medium text-slate-600 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.values.badge") : 'Our Values'}
-              </span>
-            </div>
-            <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
-              {language === 'bn' ? t("aboutPage.values.title") : 'What We Stand For'}
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group bg-white dark:bg-white/5 rounded-xl p-5 border border-slate-100 dark:border-white/10 hover:border-[#E62D26]/30 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 bg-gradient-to-br from-[#E62D26]/10 to-[#F79952]/10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <value.icon className="text-[#E62D26] text-lg" />
+              <div>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white dark:bg-white/5 border border-orange-100 dark:border-white/10 rounded-full shadow-sm w-fit mb-6">
+                  <LuSparkles className="text-orange-500 text-xs" />
+                  <span className={`text-xs font-bold text-slate-600 dark:text-slate-300 ${bengaliClass}`}>
+                    {language === 'bn' ? 'আমাদের সম্পর্কে' : 'Who We Are'}
+                  </span>
                 </div>
-                <h3 className={`text-sm font-bold text-slate-800 dark:text-white mb-1.5 ${bengaliClass}`}>
-                  {value.title}
+
+                {/* Title */}
+                <h1 className={`text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight ${bengaliClass}`}>
+                  {language === 'bn' ? 'দক্ষতা বুনন,' : 'Building Skills,'} <span className="text-[#E62D26]">{language === 'bn' ? 'ভবিষ্যৎ গঠন' : 'Shaping Futures'}</span>
+                </h1>
+
+                {/* Subtitle */}
+                <h3 className={`text-lg font-bold text-orange-500 mb-6 ${bengaliClass}`}>
+                  {language === 'bn'
+                    ? 'আপনার ডিজিটাল শ্রেষ্ঠত্বের প্রবেশদ্বার। আমরা সম্ভাবনাকে পেশাদার সাফল্যে রূপান্তর করি।'
+                    : 'Your gateway to digital excellence. We turn potential into professional success across Bangladesh.'}
                 </h3>
-                <p className={`text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed ${bengaliClass}`}>
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
+
+                {/* Description - Updated Text */}
+                <div className={`space-y-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 ${bengaliClass}`}>
+                  <p>
+                    {language === 'bn'
+                      ? 'আমরা ওয়েb ডেভেলপমেন্ট, অ্যাপ তৈরি, সাইবার সিকিউরিটি এবং ডিজিটাল মার্কেটিং সহ একটি বিস্তৃত পাঠ্যক্রম অফার করি—যা বিশ্বব্যাপী শিল্পের মান পূরণের জন্য ডিজাইন করা হয়েছে।'
+                      : 'We offer a comprehensive curriculum spanning Web Development, App Creation, Cyber Security, and Digital Marketing—designed to meet and exceed global industry standards.'}
+                  </p>
+                  <p>
+                    {language === 'bn'
+                      ? 'হাইসিটি পার্কে, আমরা হাতে-কলমে অভিজ্ঞতা এবং মেন্টরশিপের উপর ফোকাস করি। আমরা শুধু কোড শেখাই না; আমরা উদ্ভাবকদের একটি সম্প্রদায় গড়ে তুলি যারা পরবর্তী ডিজিটাল বিপ্লবের নেতৃত্ব দিতে প্রস্তুত।'
+                      : 'At HiictPark, we focus on hands-on experience and real-world mentorship. We don\'t just teach code; we foster a community of innovators ready to lead the next digital revolution.'}
+                  </p>
+                </div>
+
+                {/* Button Moved Up */}
+                <div className="mt-2">
+                  <Link href="/courses">
+                    <button className="px-8 py-3.5 bg-[#E62D26] hover:bg-[#c41e18] text-white rounded-lg font-bold shadow-lg shadow-[#E62D26]/20 hover:shadow-[#E62D26]/30 transition-all flex items-center gap-2">
+                      {language === 'bn' ? 'কোর্সগুলো দেখুন' : 'Disover Courses'}
+                      <LuArrowRight />
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-12 lg:py-16 bg-white dark:bg-[#0a0a0a]">
+      {/* 2. Stats Section - Floating Overlap */}
+      <section className="relative -mt-20 z-20 px-4">
         <div className="container mx-auto px-4 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#E62D26]/10 rounded-md mb-3">
-              <LuUsers className="text-[#E62D26] text-xs" />
-              <span className={`text-[10px] font-medium text-[#E62D26] ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.team.badge") : 'Our Team'}
-              </span>
-            </div>
-            <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit mb-2 ${bengaliClass}`}>
-              {language === 'bn' ? t("aboutPage.team.title") : 'Meet the Team'}
-            </h2>
-            <p className={`text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto ${bengaliClass}`}>
-              {language === 'bn'
-                ? t("aboutPage.team.subtitle")
-                : 'Passionate educators and tech enthusiasts dedicated to transforming lives.'}
-            </p>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <StatCard number="50k+" label="Active Students" icon={LuUsers} delay={0.1} />
+            <StatCard number="120+" label="Expert Mentors" icon={LuGraduationCap} delay={0.2} />
+            <StatCard number="500+" label="Premium Courses" icon={LuBookOpen} delay={0.3} />
+            <StatCard number="4.9" label="Average Rating" icon={LuAward} delay={0.4} />
+          </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-5 max-w-3xl mx-auto">
-            {teamMembers.map((member, index) => (
+      {/* 3. Story / Mission Section */}
+      <section className="py-20 lg:py-32 bg-white dark:bg-black">
+        <div className="container mx-auto px-4 lg:px-16">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="w-full lg:w-1/2 relative">
               <motion.div
-                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative rounded-2xl overflow-hidden shadow-2xl"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop"
+                  alt="Our Mission"
+                  width={800}
+                  height={600}
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+                  <p className="text-white font-medium text-lg italic">"Education is the most powerful weapon which you can use to change the world."</p>
+                </div>
+              </motion.div>
+              {/* Decorative squares */}
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#E62D26]/10 rounded-3xl -z-10" />
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#F79952]/10 rounded-full -z-10" />
+            </div>
+
+            <div className="w-full lg:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-[#E62D26] font-bold tracking-wider uppercase text-sm mb-2 block">Our Story</span>
+                <h2 className={`text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 ${bengaliClass}`}>
+                  {language === 'bn' ? 'আমাদের লক্ষ্য ও উদ্দেশ্য' : 'Driven by Purpose, Fueled by Passion'}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6">
+                  Founded in 2020, HiictPark started with a simple idea: quality education should be accessible to everyone, everywhere. What began as a small coding bootcamp has grown into a global learning community.
+                </p>
+                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+                  We believe in the transformative power of education. Our platform connects ambitious learners with industry experts, creating an ecosystem where knowledge flows freely and careers are built.
+                </p>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                      <LuTarget className="text-green-600 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 dark:text-white">Our Mission</h4>
+                      <p className="text-sm text-gray-500">To democratize tech education globally.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
+                      <LuGlobe className="text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 dark:text-white">Our Vision</h4>
+                      <p className="text-sm text-gray-500">A world where anyone can build their dream career.</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Values Section - Grid */}
+      <section className="py-20 bg-gray-50 dark:bg-[#050505]">
+        <div className="container mx-auto px-4 lg:px-16">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#E62D26] font-bold tracking-wider uppercase text-sm mb-2 block">Core Values</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">What Defines Us</h2>
+            <p className="text-gray-600 dark:text-gray-400">Our core values guide every decision we make and every course we create.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: LuHeart, title: "Student Success", desc: "We don't just teach; we mentor. Your success is our ultimate KPI." },
+              { icon: LuShield, title: "Quality First", desc: "We never compromise on content quality. Expert-led, industry-vetted." },
+              { icon: LuRocket, title: "Innovation", desc: "We constantly evolve our curriculum to match the fast-paced tech world." }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group text-center"
+                transition={{ delay: i * 0.1 }}
+                className="bg-white dark:bg-[#111] p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-[#E62D26]/30 transition-colors group"
               >
-                <div className="relative w-24 h-24 mx-auto mb-3">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#E62D26] to-[#F79952] rounded-full opacity-0 group-hover:opacity-100 transition-opacity blur-lg" />
-                  <div className="relative w-full h-full rounded-full overflow-hidden border-3 border-white dark:border-slate-800 shadow-md">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
+                <div className="w-14 h-14 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#E62D26] transition-colors">
+                  <item.icon className="w-7 h-7 text-gray-600 dark:text-gray-300 group-hover:text-white" />
                 </div>
-                <h3 className={`text-sm font-bold text-slate-800 dark:text-white ${bengaliClass}`}>{member.name}</h3>
-                <p className="text-[10px] text-[#E62D26] font-medium mb-1">{member.role}</p>
-                <p className={`text-[10px] text-slate-500 dark:text-slate-400 italic ${bengaliClass}`}>&ldquo;{member.quote}&rdquo;</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{item.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-12 lg:py-16 bg-slate-50 dark:bg-[#0d0d0d]">
-        <div className="container mx-auto px-4 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md mb-3">
-              <LuRocket className="text-[#E62D26] text-xs" />
-              <span className={`text-[10px] font-medium text-slate-600 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.history.badge") : 'Our Journey'}
-              </span>
-            </div>
-            <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
-              {language === 'bn' ? t("aboutPage.history.title") : 'Milestones Achieved'}
-            </h2>
-          </motion.div>
-
-          <div className="max-w-2xl mx-auto">
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#E62D26] via-[#F79952] to-[#E62D26] md:-translate-x-1/2" />
-
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`relative flex items-center gap-4 mb-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-3 md:left-1/2 w-2.5 h-2.5 bg-[#E62D26] rounded-full md:-translate-x-1/2 z-10 ring-3 ring-white dark:ring-[#0d0d0d]" />
-
-                  {/* Content */}
-                  <div className={`ml-10 md:ml-0 md:w-[calc(50%-1.5rem)] ${index % 2 === 0 ? 'md:pr-6 md:text-right' : 'md:pl-6'}`}>
-                    <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-slate-100 dark:border-white/10 shadow-sm">
-                      <span className="inline-block px-1.5 py-0.5 bg-[#E62D26]/10 text-[#E62D26] text-[10px] font-bold rounded mb-1">
-                        {milestone.year}
-                      </span>
-                      <h3 className={`text-xs font-bold text-slate-800 dark:text-white mb-0.5 ${bengaliClass}`}>
-                        {milestone.title}
-                      </h3>
-                      <p className={`text-[10px] text-slate-500 dark:text-slate-400 ${bengaliClass}`}>
-                        {milestone.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+      {/* 5. CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-[#E62D26] to-[#F79952] text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Ready to Start Your Journey?</h2>
+          <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">Join thousands of students who are building their careers with HiictPark today.</p>
+          <Link href="/courses">
+            <button className="px-10 py-4 bg-white text-[#E62D26] rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+              Get Started For Free
+            </button>
+          </Link>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 lg:py-16 bg-gradient-to-br from-[#E62D26] to-[#F79952] relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-36 h-36 bg-white rounded-full translate-y-1/2 -translate-x-1/2" />
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-16 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-              <LuStar className="text-white text-xs" />
-              <span className={`text-[10px] font-medium text-white ${bengaliClass}`}>
-                {language === 'bn' ? t("aboutPage.cta.badge") : 'Join Us Today'}
-              </span>
-            </div>
-
-            <h2 className={`text-xl lg:text-2xl font-bold text-white mb-3 outfit ${bengaliClass}`}>
-              {language === 'bn' ? t("aboutPage.cta.title") : 'Ready to Start Your Learning Journey?'}
-            </h2>
-            <p className={`text-white/80 text-xs mb-6 ${bengaliClass}`}>
-              {language === 'bn'
-                ? t("aboutPage.cta.desc")
-                : 'Join thousands of learners who have transformed their careers with HiictPark.'}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href="/courses"
-                className="px-6 py-2.5 bg-white text-[#E62D26] text-xs font-bold rounded-lg hover:bg-white/90 transition-all shadow-md"
-              >
-                {language === 'bn' ? t("aboutPage.cta.browse") : 'Browse Courses'}
-              </Link>
-              <Link
-                href="/register"
-                className="px-6 py-2.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg border border-white/30 hover:bg-white/30 transition-all"
-              >
-                {language === 'bn' ? t("aboutPage.cta.signUp") : 'Sign Up Free'}
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 };

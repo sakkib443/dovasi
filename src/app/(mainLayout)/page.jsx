@@ -61,8 +61,7 @@ const HomePage = () => {
           <Hero />
         </section>
 
-        {/* Features Bar */}
-        <FeaturesBar />
+
 
         {/* Top Categories */}
         <TopCategories />

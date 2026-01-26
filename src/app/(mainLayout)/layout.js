@@ -6,7 +6,7 @@ import TopHeader from '@/components/sheard/TopHeader';
 import ScrollToTop from '@/components/sheard/ScrollToTop';
 import FloatingSeminarButton from '@/components/sheard/FloatingSeminarButton';
 import FloatingLanguageButton from '@/components/sheard/FloatingLanguageButton';
-import AdminEditToggle from '@/components/shared/AdminEditToggle';
+import FloatingWhatsAppButton from '@/components/sheard/FloatingWhatsAppButton';
 import { AdminEditProvider } from '@/providers/AdminEditProvider';
 import React from 'react';
 
@@ -20,8 +20,7 @@ const MainLayout = ({ children }) => {
                 <Footer />
                 <ScrollToTop />
                 <FloatingSeminarButton />
-                <FloatingLanguageButton />
-                <AdminEditToggle />
+                <FloatingWhatsAppButton />
             </div>
         </AdminEditProvider>
     );

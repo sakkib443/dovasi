@@ -104,11 +104,11 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass, t }) => {
   const activeCategory = categories.find(cat => cat._id === activeParent);
 
   return (
-    <div className="flex">
+    <div className="flex h-[400px]">
       {/* Left Side - Parent Categories */}
-      <div className="w-[220px] bg-gray-50 dark:bg-gray-900 p-3 border-r border-gray-100 dark:border-gray-700/50">
-        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 px-3">
-          {language === 'bn' ? '?????????' : 'Categories'}
+      <div className="w-[240px] bg-white dark:bg-gray-900/50 p-2 border-r border-gray-100 dark:border-gray-800 overflow-y-auto custom-scrollbar">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 px-3 mt-2">
+          {language === 'bn' ? 'ক্যাটাগরি' : 'Categories'}
         </p>
         <div className="space-y-1">
           {categories.map((category) => {
@@ -119,24 +119,19 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass, t }) => {
                 key={category._id}
                 onMouseEnter={() => setActiveParent(category._id)}
                 onClick={() => handleCategoryClick(category.slug, category.type)}
-                className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl transition-all ${isActive
-                  ? 'bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-gray-800/50'
+                className={`w-full flex items-center justify-between gap-3 px-3 py-3 rounded-xl transition-all ${isActive
+                  ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-semibold'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isActive
-                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/30'
-                    : 'bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400'
-                    }`}>
-                    <Icon size={16} />
-                  </div>
-                  <span className={`text-[13px] font-semibold ${bengaliClass}`}>
+                  <Icon size={18} className={isActive ? 'text-red-500' : 'text-gray-400'} />
+                  <span className={`text-[13px] ${bengaliClass}`}>
                     {language === 'bn' && category.nameBn ? category.nameBn : category.name}
                   </span>
                 </div>
                 {category.children && category.children.length > 0 && (
-                  <LuChevronRight size={14} className={`transition-transform ${isActive ? 'translate-x-1' : ''}`} />
+                  <LuChevronRight size={14} className={`transition-transform opacity-50 ${isActive ? 'translate-x-1 opacity-100' : ''}`} />
                 )}
               </button>
             );
@@ -145,60 +140,60 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass, t }) => {
       </div>
 
       {/* Right Side - Child Categories */}
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-6 overflow-y-auto bg-gray-50/50 dark:bg-black/20">
         {activeCategory && (
-          <>
+          <div className="h-full flex flex-col">
             {/* Active Parent Header */}
-            <div className="flex items-center gap-3 pb-3 mb-3 border-b border-gray-100 dark:border-gray-700/50">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20">
+            <div className="flex items-center gap-4 pb-6 mb-2">
+              <div className="w-12 h-12 rounded-2xl bg-white dark:bg-gray-800 flex items-center justify-center text-red-500 shadow-sm border border-gray-100 dark:border-gray-700">
                 {(() => {
                   const Icon = getIcon(activeCategory.slug);
-                  return <Icon size={20} />;
+                  return <Icon size={24} />;
                 })()}
               </div>
               <div>
-                <h4 className={`text-base font-bold text-gray-900 dark:text-white ${bengaliClass}`}>
+                <h4 className={`text-lg font-bold text-gray-900 dark:text-white ${bengaliClass}`}>
                   {language === 'bn' && activeCategory.nameBn ? activeCategory.nameBn : activeCategory.name}
                 </h4>
                 <p className={`text-xs text-gray-500 dark:text-gray-400 ${bengaliClass}`}>
-                  {activeCategory.children?.length || 0} {language === 'bn' ? '?? ???-?????????' : 'subcategories'}
+                  {activeCategory.children?.length || 0} {language === 'bn' ? 'টি সাব-ক্যাটাগরি' : 'subcategories'}
                 </p>
               </div>
             </div>
 
             {/* Child Categories Grid */}
             {activeCategory.children && activeCategory.children.length > 0 ? (
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3 content-start">
                 {activeCategory.children.map((child) => (
                   <button
                     key={child._id}
                     onClick={() => handleCategoryClick(child.slug, child.type)}
-                    className="flex items-center gap-3 p-3 rounded-xl text-left hover:bg-red-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-red-200 dark:hover:border-red-500/30 hover:shadow-md transition-all group text-left"
                   >
-                    <div className="w-2 h-2 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></div>
-                    <span className={`text-[13px] font-medium text-gray-600 dark:text-gray-300 group-hover:text-red-700 dark:group-hover:text-red-400 ${bengaliClass}`}>
+                    <div className="w-8 h-8 rounded-lg bg-gray-50 dark:bg-gray-700 flex items-center justify-center group-hover:bg-red-50 dark:group-hover:bg-red-500/20 transition-colors">
+                      <div className="w-2 h-2 rounded-full bg-gray-400 group-hover:bg-red-500 transition-colors"></div>
+                    </div>
+                    <span className={`text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-red-600 dark:group-hover:text-red-400 ${bengaliClass}`}>
                       {language === 'bn' && child.nameBn ? child.nameBn : child.name}
                     </span>
                   </button>
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center py-8 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
-                  <LuLayers className="text-gray-400" size={24} />
-                </div>
+              <div className="flex flex-col items-center justify-center flex-1 text-center opacity-60">
+                <LuLayers className="text-gray-400 mb-3" size={32} />
                 <p className={`text-sm text-gray-500 dark:text-gray-400 ${bengaliClass}`}>
-                  {language === 'bn' ? '?? ??????????? ???? ???-????????? ???' : 'No subcategories in this category'}
+                  {language === 'bn' ? 'কোনো সাব-ক্যাটাগরি নেই' : 'No subcategories available'}
                 </p>
                 <button
                   onClick={() => handleCategoryClick(activeCategory.slug, activeCategory.type)}
-                  className={`mt-3 text-sm font-semibold text-red-600 dark:text-red-400 hover:underline ${bengaliClass}`}
+                  className={`mt-4 px-4 py-2 bg-red-50 text-red-600 text-xs font-bold rounded-lg ${bengaliClass}`}
                 >
-                  {language === 'bn' ? '?? ????? ?' : 'View all ?'}
+                  {language === 'bn' ? 'সব দেখুন' : 'View All'}
                 </button>
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>
@@ -283,7 +278,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 20);
+      setIsSticky(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -302,17 +297,6 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
-
-  const courseTypes = [
-    { key: "Online", label: t("navbar.onlineCourse"), icon: "??" },
-    { key: "Offline", label: t("navbar.offlineCourse"), icon: "??" },
-    { key: "Recorded", label: t("navbar.recordedCourse"), icon: "??" },
-  ];
-
-  const handleCourseTypeClick = (courseType) => {
-    closeMobileMenu();
-    router.push(`/courses?type=${courseType}`);
-  };
 
   // Design Template submenu items
   const designTemplateSubmenu = [
@@ -342,7 +326,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMobileMenu}
-              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60] lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
             />
 
             {/* Mobile Menu Panel */}
@@ -350,80 +334,66 @@ const Navbar = () => {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed lg:hidden top-0 left-0 w-[85%] max-w-[360px] h-full bg-white z-[70] shadow-2xl flex flex-col"
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed lg:hidden top-0 left-0 w-[85%] max-w-[320px] h-full bg-white dark:bg-[#0f0f0f] z-[70] shadow-2xl flex flex-col border-r border-gray-100 dark:border-gray-800"
             >
               {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-50">
+              <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800">
                 <Link href="/" onClick={closeMobileMenu}>
-                  <img className="w-40" src="/images/ejobsitlogo.png" alt="eJobsIT" />
+                  <img className="w-32" src="/images/ejobsitlogo.png" alt="eJobsIT" />
                 </Link>
                 <button
                   onClick={closeMobileMenu}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors"
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:text-red-500 transition-colors"
                 >
-                  <BiX className="text-2xl" />
+                  <BiX className="text-xl" />
                 </button>
               </div>
 
               {/* Mobile Scroll Content */}
-              <div className="flex-1 overflow-y-auto p-6 space-y-8">
-                {/* Language for Mobile */}
-                <div className="bg-gray-50 rounded-2xl p-4">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 px-2">Select Language</p>
-                  <LanguageSwitcher variant="compact" />
-                </div>
-
-                {/* Dark Mode Toggle for Mobile */}
-                <div className="bg-gray-50 rounded-2xl p-4">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 px-2">Theme</p>
+              <div className="flex-1 overflow-y-auto p-5 scrollbar-hide">
+                {/* Mobile settings row */}
+                <div className="flex gap-3 mb-6">
+                  {/* Language */}
+                  <div className="flex-1 bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 border border-gray-100 dark:border-gray-800">
+                    <p className="text-[10px] uppercase font-bold text-gray-400 mb-2">Language</p>
+                    <LanguageSwitcher variant="compact" />
+                  </div>
+                  {/* Theme */}
                   <button
                     onClick={toggleDarkMode}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white hover:bg-gray-100 transition-all"
+                    className="flex-1 bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 border border-gray-100 dark:border-gray-800 flex flex-col items-start"
                   >
-                    <div className="flex items-center gap-3">
-                      {isDarkMode ? (
-                        <LuMoon size={20} className="text-amber-400" />
-                      ) : (
-                        <LuSun size={20} className="text-amber-500" />
-                      )}
-                      <span className="text-sm font-semibold text-gray-700">
-                        {isDarkMode ? "Dark Mode" : "Light Mode"}
-                      </span>
-                    </div>
-                    <div className={`w-12 h-6 rounded-full transition-all ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} relative`}>
-                      <motion.div
-                        animate={{ x: isDarkMode ? 24 : 2 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                        className={`absolute top-1 w-4 h-4 rounded-full ${isDarkMode ? 'bg-amber-400' : 'bg-white shadow-sm'}`}
-                      />
+                    <p className="text-[10px] uppercase font-bold text-gray-400 mb-2">Theme</p>
+                    <div className="flex items-center gap-2">
+                      {isDarkMode ? <LuMoon className="text-amber-400" /> : <LuSun className="text-amber-500" />}
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{isDarkMode ? 'Dark' : 'Light'}</span>
                     </div>
                   </button>
                 </div>
 
                 {/* Main Navigation */}
                 <nav className="space-y-1">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 px-2">Main Menu</p>
-                  {menu.map(({ href, label, hasSubmenu, submenu }, index) => (
+                  {menu.map(({ href, label, hasSubmenu, submenu }) => (
                     hasSubmenu ? (
                       <div key={label} className="space-y-1">
-                        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl text-gray-600">
-                          <span className={`text-base font-medium ${bengaliClass}`}>{label}</span>
-                          <LuChevronDown size={16} className="text-gray-400" />
+                        <div className="flex items-center justify-between px-3 py-3 rounded-lg text-gray-800 dark:text-gray-200 font-medium">
+                          <span className={bengaliClass}>{label}</span>
+                          <LuChevronDown size={14} className="text-gray-400" />
                         </div>
-                        <div className="ml-4 space-y-1">
+                        <div className="pl-4 space-y-1 border-l-2 border-gray-100 dark:border-gray-800 ml-3">
                           {submenu.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
                               onClick={closeMobileMenu}
-                              className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${pathname === item.href
-                                ? "bg-red-50 text-red-700 font-medium"
-                                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${pathname === item.href
+                                ? "text-red-600 bg-red-50 dark:bg-red-500/10 font-medium"
+                                : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                 }`}
                             >
-                              <item.icon size={18} />
-                              <span className={`text-sm ${bengaliClass}`}>{item.label}</span>
+                              <item.icon size={16} />
+                              <span className={bengaliClass}>{item.label}</span>
                             </Link>
                           ))}
                         </div>
@@ -433,66 +403,39 @@ const Navbar = () => {
                         key={href}
                         href={href}
                         onClick={closeMobileMenu}
-                        className={`group flex items-center justify-between px-4 py-3.5 rounded-xl transition-all ${pathname === href
-                          ? "bg-red-50 text-red-700 font-medium"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        className={`flex items-center justify-between px-3 py-3 rounded-lg transition-all ${pathname === href
+                          ? "bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 font-medium"
+                          : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                           }`}
                       >
-                        <span className={`text-base ${bengaliClass}`}>{label}</span>
-                        <LuArrowRight className={`text-red-500 transition-all ${pathname === href ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"}`} />
+                        <span className={`text-[15px] ${bengaliClass}`}>{label}</span>
                       </Link>
                     )
                   ))}
                 </nav>
+              </div>
 
-                {/* User Section Mobile */}
-                <div className="pt-6 border-t border-gray-100">
-                  {user ? (
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-red-500/10 to-amber-500/5">
-                        <div className="w-14 h-14 rounded-full border-2 border-white shadow-md overflow-hidden bg-[#E62D26]">
-                          {user.image ? (
-                            <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center text-white font-bold text-xl">
-                              {(user.name || user.gmail || "U").charAt(0).toUpperCase()}
-                            </div>
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900">{user.name || user.gmail?.split('@')[0]}</p>
-                          <p className="text-xs text-red-600 font-medium uppercase tracking-tighter">{user.role || 'Member'}</p>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <Link
-                          href={user.role === 'admin' ? "/dashboard/admin" : user.role === 'mentor' ? "/dashboard/mentor" : "/dashboard/user"}
-                          onClick={closeMobileMenu}
-                          className="flex flex-col items-center gap-2 py-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-700"
-                        >
-                          <LuLayoutDashboard size={20} />
-                          <span className="text-[11px] font-bold uppercase">Dashboard</span>
-                        </Link>
-                        <button
-                          onClick={handleLogout}
-                          className="flex flex-col items-center gap-2 py-4 rounded-2xl bg-rose-50 border border-rose-100 text-rose-600"
-                        >
-                          <LuLogOut size={20} />
-                          <span className="text-[11px] font-bold uppercase">Logout</span>
-                        </button>
-                      </div>
+              {/* Mobile Auth Footer */}
+              <div className="p-5 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900">
+                {user ? (
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-lg overflow-hidden border-2 border-white shadow-md">
+                      {user.image ? <img src={user.image} alt={user.name} className="w-full h-full object-cover" /> : (user.name?.charAt(0) || "U")}
                     </div>
-                  ) : (
-                    <div className="space-y-3">
-                      <Link href="/login" onClick={closeMobileMenu} className="block w-full text-center py-4 rounded-2xl bg-gray-900 text-white font-bold shadow-xl shadow-gray-200">
-                        Sign In
-                      </Link>
-                      <Link href="/register" onClick={closeMobileMenu} className="block w-full text-center py-4 rounded-2xl bg-red-500 text-white font-bold shadow-xl shadow-red-100">
-                        Join Platform
-                      </Link>
+                    <div className="flex-1">
+                      <p className="text-sm font-bold text-gray-900 dark:text-white truncate">{user.name}</p>
+                      <button onClick={handleLogout} className="text-xs text-red-500 font-medium hover:underline">Sign Out</button>
                     </div>
-                  )}
-                </div>
+                    <Link href="/dashboard/user" onClick={closeMobileMenu} className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500">
+                      <LuLayoutDashboard />
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <Link href="/login" onClick={closeMobileMenu} className="py-3 text-center rounded-xl border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold text-sm hover:bg-white transition-all">Sign In</Link>
+                    <Link href="/register" onClick={closeMobileMenu} className="py-3 text-center rounded-xl bg-red-500 text-white font-semibold text-sm shadow-lg shadow-red-500/20 hover:bg-red-600 transition-all">Register</Link>
+                  </div>
+                )}
               </div>
             </motion.div>
           </>
@@ -500,19 +443,19 @@ const Navbar = () => {
       </AnimatePresence>
 
       <nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${isSticky
-          ? "bg-white/90 dark:bg-[#1E293B] backdrop-blur-xl shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] py-2"
-          : "bg-white dark:bg-[#1E293B] py-4"
+        className={`sticky top-0 z-50 transition-all duration-300 border-b ${isSticky
+          ? "bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border-gray-200/50 dark:border-gray-800 py-3 shadow-sm"
+          : "bg-white dark:bg-black border-transparent py-5"
           }`}
       >
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="flex items-center justify-between gap-4">
+        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
+          <div className="flex items-center justify-between gap-6">
 
             {/* Left: Logo & Categories */}
-            <div className="flex items-center gap-8 xl:gap-12">
+            <div className="flex items-center gap-10">
               <Link href="/" className="relative flex-shrink-0">
                 <img
-                  className={`transition-all duration-300 ${isSticky ? "w-40" : "w-44 lg:w-48"}`}
+                  className={`transition-all duration-300 ${isSticky ? "w-32 lg:w-36" : "w-36 lg:w-40"}`}
                   src="/images/ejobsitlogo.png"
                   alt="eJobsIT"
                 />
@@ -520,57 +463,53 @@ const Navbar = () => {
 
               {/* Category Dropdown - Desktop */}
               <div className="hidden lg:block relative group">
-                <button className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-gray-50/70 dark:bg-[#1E293B] border border-gray-100 dark:border-gray-600/50 text-gray-700 dark:text-gray-100 hover:bg-white dark:hover:bg-[#334155] transition-all duration-300">
-                  <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20">
-                    <BiCategory size={18} />
-                  </div>
-                  <span className={`text-[14px] font-bold tracking-tight ${language === 'bn' ? 'hind-siliguri' : ''}`}>
+                <button className="flex items-center gap-2 text-[14px] font-semibold text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors">
+                  <span className={`tracking-wide ${language === 'bn' ? 'hind-siliguri' : ''}`}>
                     {t("navbar.category")}
                   </span>
-                  <LuChevronDown className="text-gray-400 dark:text-gray-500 group-hover:rotate-180 transition-transform duration-300" />
+                  <LuChevronDown className="text-gray-400 group-hover:rotate-180 transition-transform duration-300" size={16} />
                 </button>
 
                 {/* Categories Mega Menu */}
-                <div className="absolute top-full left-0 mt-4 w-[600px] bg-white dark:bg-[#1E293B] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-100 dark:border-gray-600/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-4 transition-all duration-500 z-50 overflow-hidden">
+                <div className="absolute top-full left-0 mt-6 w-[700px] bg-white dark:bg-[#151515] rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-black/50 border border-gray-100 dark:border-gray-800/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-4 transition-all duration-300 z-50 overflow-hidden">
                   <CategoryMegaMenu closeMobileMenu={closeMobileMenu} language={language} bengaliClass={bengaliClass} t={t} />
                 </div>
               </div>
             </div>
 
             {/* Center: Navigation Links - Desktop */}
-            <div className="hidden xl:flex items-center bg-gray-50/70 dark:bg-[#1E293B] p-1.5 rounded-full border border-gray-100 dark:border-gray-600/50">
+            <div className="hidden xl:flex items-center gap-1">
               {menu.map(({ href, label, hasSubmenu, submenu }) => (
                 hasSubmenu ? (
-                  <div key={label} className="relative group">
+                  <div key={label} className="relative group px-3 py-2">
                     <button
-                      className={`flex items-center gap-1 px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold ${language === 'bn' ? 'hind-siliguri' : ''}`}
+                      className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors duration-200 ${pathname.includes(href) ? "text-red-600 dark:text-red-400" : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        } ${language === 'bn' ? 'hind-siliguri' : ''}`}
                     >
                       {label}
-                      <LuChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                      <LuChevronDown size={12} className="opacity-50 group-hover:rotate-180 transition-transform" />
                     </button>
                     {/* Dropdown */}
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#1E293B] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-600/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
-                      <div className="p-2">
-                        {submenu.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 transition-all ${pathname === item.href ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400' : ''} ${language === 'bn' ? 'hind-siliguri' : ''}`}
-                          >
-                            <item.icon size={18} />
-                            <span className="text-sm font-semibold">{item.label}</span>
-                          </Link>
-                        ))}
-                      </div>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white dark:bg-[#151515] rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50 p-2">
+                      {submenu.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all hover:bg-gray-50 dark:hover:bg-white/5 ${pathname === item.href ? 'text-red-600 font-medium bg-red-50 dark:bg-white/5' : 'text-gray-600 dark:text-gray-400'} ${language === 'bn' ? 'hind-siliguri' : ''}`}
+                        >
+                          <item.icon size={16} />
+                          <span>{item.label}</span>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 ) : (
                   <Link
                     key={href}
                     href={href}
-                    className={`px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 ${pathname === href
-                      ? "bg-white dark:bg-[#334155] text-red-600 dark:text-white shadow-sm font-bold"
-                      : "text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold"
+                    className={`px-4 py-2 text-[15px] font-medium transition-colors duration-200 ${pathname === href
+                      ? "text-red-600 dark:text-red-400"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                       } ${language === 'bn' ? 'hind-siliguri' : ''}`}
                   >
                     {label}
@@ -580,51 +519,39 @@ const Navbar = () => {
             </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center gap-2 lg:gap-3">
-              {/* 1. Dark Mode Toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className="hidden lg:flex w-10 h-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-[#1E293B] dark:hover:bg-[#334155] transition-all duration-300 group"
-                aria-label="Toggle dark mode"
-              >
-                {mounted && (
-                  <motion.div
-                    animate={{ rotate: isDarkMode ? 180 : 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="relative"
-                  >
-                    {isDarkMode ? (
-                      <LuMoon size={18} className="text-amber-400" />
-                    ) : (
-                      <LuSun size={18} className="text-amber-500 group-hover:rotate-12 transition-transform" />
-                    )}
-                  </motion.div>
-                )}
-              </button>
+            <div className="flex items-center gap-3 lg:gap-5">
 
-              {/* 2. Language Switcher */}
+              {/* Language Switcher */}
               <div className="hidden lg:block">
                 <LanguageSwitcher />
               </div>
 
-              {/* 3. Cart */}
-              <Link href="/cart" className="relative w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-[#334155] hover:text-red-600 transition-all group">
-                <LuShoppingCart size={20} className="group-hover:scale-110 transition-transform" />
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="hidden lg:flex w-9 h-9 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-white/10 transition-all"
+              >
+                {isDarkMode ? <LuMoon size={18} /> : <LuSun size={18} />}
+              </button>
+
+              {/* Cart */}
+              <Link href="/cart" className="relative w-9 h-9 flex items-center justify-center rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all">
+                <LuShoppingCart size={20} />
                 {mounted && items.length > 0 && (
-                  <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-amber-500 text-white text-[9px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-md">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-black">
                     {items.length}
                   </span>
                 )}
               </Link>
 
-              {/* 4. Profile with Name & Dropdown */}
+              {/* Profile / Auth */}
               {mounted && user ? (
                 <div className="profile-dropdown-container relative hidden sm:block">
                   <button
                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 dark:bg-[#1E293B] hover:bg-gray-100 dark:hover:bg-[#334155] border border-gray-100 dark:border-gray-600/50 transition-all"
+                    className="flex items-center gap-3 pl-1 pr-1 py-1 rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-all"
                   >
-                    <div className="w-8 h-8 rounded-full border-2 border-red-500/30 overflow-hidden">
+                    <div className="w-9 h-9 rounded-full border border-gray-200 dark:border-gray-700 overflow-hidden">
                       {user.image ? (
                         <img src={user.image} alt="User" className="w-full h-full object-cover" />
                       ) : (
@@ -633,60 +560,39 @@ const Navbar = () => {
                         </div>
                       )}
                     </div>
-                    <span className={`text-sm font-semibold text-gray-700 dark:text-gray-200 max-w-[100px] truncate ${bengaliClass}`}>
-                      {user.name || user.gmail?.split('@')[0] || 'User'}
-                    </span>
-                    <LuChevronDown className={`text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} size={16} />
                   </button>
 
                   {/* Profile Dropdown */}
                   <AnimatePresence>
                     {isProfileDropdownOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 10, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-600/50 overflow-hidden z-50"
+                        exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute top-full right-0 mt-3 w-64 bg-white dark:bg-[#151515] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden z-50"
                       >
-                        {/* User Info Header */}
-                        <div className="p-4 bg-gradient-to-br from-red-500/10 to-amber-500/5 border-b border-gray-100 dark:border-gray-600/50">
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-full border-2 border-white shadow-md overflow-hidden bg-red-500">
-                              {user.image ? (
-                                <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
-                              ) : (
-                                <div className="w-full h-full flex items-center justify-center text-white font-bold text-lg">
-                                  {(user.name || "U").charAt(0).toUpperCase()}
-                                </div>
-                              )}
-                            </div>
-                            <div>
-                              <p className={`font-bold text-gray-900 dark:text-white text-sm ${bengaliClass}`}>{user.name || user.gmail?.split('@')[0]}</p>
-                              <p className="text-[10px] text-red-600 font-semibold uppercase tracking-wide">{user.role || 'Member'}</p>
-                            </div>
-                          </div>
+                        <div className="p-5 border-b border-gray-100 dark:border-gray-800">
+                          <p className="font-bold text-gray-900 dark:text-white truncate">{user.name}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">{user.email || user.gmail}</p>
                         </div>
-
-                        {/* Menu Items */}
                         <div className="p-2">
-                          <Link
-                            href={user.role === 'admin' ? "/dashboard/admin" : user.role === 'mentor' ? "/dashboard/mentor" : "/dashboard/user"}
+                          <Link href={user.role === 'admin' ? "/dashboard/admin" : user.role === 'mentor' ? "/dashboard/mentor" : "/dashboard/user"}
                             onClick={() => setIsProfileDropdownOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-700 dark:hover:text-red-400 transition-all group"
+                            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                           >
-                            <LuLayoutDashboard size={18} className="text-gray-400 group-hover:text-red-600" />
-                            <span className={`text-sm font-semibold ${bengaliClass}`}>Dashboard</span>
+                            <LuLayoutDashboard size={16} />
+                            <span>Dashboard</span>
                           </Link>
                           <button
                             onClick={() => {
                               setIsProfileDropdownOpen(false);
                               handleLogout();
                             }}
-                            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all group"
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
                           >
-                            <LuLogOut size={18} className="text-rose-400 group-hover:text-rose-600" />
-                            <span className="text-sm font-semibold">Logout</span>
+                            <LuLogOut size={16} />
+                            <span>Log Out</span>
                           </button>
                         </div>
                       </motion.div>
@@ -694,28 +600,51 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               ) : mounted ? (
-                <Link href="/login" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold text-sm transition-all shadow-md shadow-red-500/20">
-                  <LuUser size={16} />
-                  <span>Login</span>
+                <Link href="/login" className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-[14px] font-semibold transition-all shadow-lg shadow-red-500/20">
+                  <span>Sign In</span>
+                  <LuArrowRight size={16} />
                 </Link>
-              ) : null}
+              ) : (
+                <div className="w-24 h-9 bg-gray-100 dark:bg-gray-800 rounded-full animate-pulse hidden sm:block"></div>
+              )}
 
               {/* Mobile Toggle */}
               <button
-                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 border border-gray-100 transition-all"
+                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white transition-all"
                 onClick={toggleMobileMenu}
               >
-                <BiMenu size={22} className="text-gray-700" />
+                <BiMenu size={24} />
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Adding custom animation styles */}
+      {/* Global Styles for Fonts */}
       <style jsx global>{`
         .outfit { font-family: 'Outfit', sans-serif; }
         .hind-siliguri { font-family: 'Hind Siliguri', sans-serif; }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Custom Scrollbar for Mega Menu */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(156, 163, 175, 0.3);
+          border-radius: 20px;
+        }
       `}</style>
     </>
   );

@@ -60,12 +60,12 @@ const TopHeader = () => {
           <div className="flex items-center gap-2">
             <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${isDark ? 'bg-red-500/30 text-red-400' : 'bg-white/20 text-white'
               }`}>
-              ?? Hot
+              🔥 Hot
             </span>
             <span className={`hidden sm:inline ${isDark ? 'text-white/70' : 'text-white/90'} ${bengaliClass}`}>
               {language === 'bn'
-                ? <>?? ?????? ??% ???? � ???: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
-                : <>Get 20% OFF on all courses � Use code: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
+                ? <>🔥 সকল কোর্সে ২০% ছাড় | কোড: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
+                : <>Get 20% OFF on all courses | Use code: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
               }
             </span>
           </div>
@@ -82,7 +82,7 @@ const TopHeader = () => {
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
             </a>
             <span className="w-px h-3 bg-white/30 hidden sm:block"></span>
-            <span className={`hidden sm:inline ${isDark ? 'text-white/40' : 'text-white/70'}`}>???? Bangladesh</span>
+            <span className={`hidden sm:inline ${isDark ? 'text-white/40' : 'text-white/70'}`}>🇧🇩 Bangladesh</span>
           </div>
         </div>
       </div>

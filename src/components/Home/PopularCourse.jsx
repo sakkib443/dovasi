@@ -1,117 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Link from "next/link";
-import Image from "next/image";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuChevronDown, LuFilter, LuArrowUpDown } from "react-icons/lu";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import SharedCourseCard from "@/components/sheard/CourseCard";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
-
-// Course Card Component matching reference design
-const CourseCard = ({ course }) => {
-  const { language, t } = useLanguage();
-  const bengaliClass = language === "bn" ? "hind-siliguri" : "";
-
-  const hasDiscount = course.discountPrice && course.discountPrice < course.price;
-  const discountPercent = hasDiscount
-    ? Math.round(((course.price - course.discountPrice) / course.price) * 100)
-    : 0;
-  const isFree = course.price === 0 || course.isFree;
-  const isFeatured = course.isFeatured;
-
-  // Level badge colors
-  const getLevelStyle = (level) => {
-    switch (level?.toLowerCase()) {
-      case 'beginner':
-        return { bg: 'bg-green-100', text: 'text-green-600', label: language === 'bn' ? t("home_sections.beginner") : 'Beginner' };
-      case 'intermediate':
-        return { bg: 'bg-blue-100', text: 'text-blue-600', label: language === 'bn' ? t("home_sections.intermediate") : 'Intermediate' };
-      case 'advanced':
-      case 'expert':
-        return { bg: 'bg-red-100', text: 'text-red-600', label: language === 'bn' ? t("home_sections.expert") : 'Expert' };
-      default:
-        return { bg: 'bg-gray-100', text: 'text-gray-600', label: level || 'All Levels' };
-    }
-  };
-
-  const levelStyle = getLevelStyle(course.level);
-
-  return (
-    <Link href={`/courses/${course.slug || course._id}`} className="block group">
-      <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
-        {/* Image Container */}
-        <div className="relative aspect-[4/3] overflow-hidden">
-          <Image
-            src={course.thumbnail || '/images/course-placeholder.jpg'}
-            alt={course.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex gap-2">
-            {isFeatured && (
-              <span className="px-2.5 py-1 bg-red-500 text-white text-xs font-bold rounded uppercase">
-                Featured
-              </span>
-            )}
-            {hasDiscount && (
-              <span className="px-2.5 py-1 bg-red-500 text-white text-xs font-bold rounded">
-                -{discountPercent}%
-              </span>
-            )}
-            {isFree && (
-              <span className="px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded uppercase">
-                Free
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          {/* Level Badge */}
-          <span className={`inline-block px-3 py-1 ${levelStyle.bg} ${levelStyle.text} text-xs font-semibold rounded mb-3 ${bengaliClass}`}>
-            {levelStyle.label}
-          </span>
-
-          {/* Title */}
-          <h3 className={`font-semibold text-gray-800 dark:text-white text-base leading-snug mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors ${bengaliClass}`}>
-            {course.title}
-          </h3>
-
-          {/* Instructor */}
-          <p className={`text-sm text-gray-500 dark:text-gray-400 mb-3 ${bengaliClass}`}>
-            {course.instructor?.name || course.instructorName || 'Instructor'}
-          </p>
-
-          {/* Price */}
-          <div className="flex items-center gap-2">
-            {isFree ? (
-              <span className={`text-lg font-bold text-green-600 ${bengaliClass}`}>
-                {language === 'bn' ? t("home_sections.free") : 'Free'}
-              </span>
-            ) : (
-              <>
-                <span className="text-lg font-bold text-gray-900 dark:text-white">
-                  ${hasDiscount ? course.discountPrice : course.price}
-                </span>
-                {hasDiscount && (
-                  <span className="text-sm text-gray-400 line-through">
-                    ${course.price}
-                  </span>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-};
 
 // Loading Skeleton
 const CourseCardSkeleton = () => (
@@ -129,47 +25,68 @@ const CourseCardSkeleton = () => (
 );
 
 const PopularCourse = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeSort, setActiveSort] = useState('popularity');
   const [startIndex, setStartIndex] = useState(0);
+  const [openDropdown, setOpenDropdown] = useState(null); // 'category' | 'sort' | null
   const { language, t } = useLanguage();
   const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
   const { items: categories = [] } = useSelector((state) => state.categories);
   const { courses = [], loading } = useSelector((state) => state.courses);
 
-  const visibleItems = 5;
+  const visibleItems = 6;
 
-  const filters = [
-    { id: 'all', label: language === 'bn' ? t("home_sections.all") : 'All' },
-    { id: 'trending', label: language === 'bn' ? t("home_sections.trending") : 'Trending' },
-    { id: 'popularity', label: language === 'bn' ? t("home_sections.popularity") : 'Popularity' },
-    { id: 'featured', label: language === 'bn' ? t("home_sections.featured") : 'Featured' },
-    ...(categories.slice(0, 2).map(cat => ({
+  // Prepare Dropdown Options
+  const categoryOptions = [
+    { id: 'all', label: language === 'bn' ? t("home_sections.all") : 'All Categories' },
+    ...categories.map(cat => ({
       id: cat._id,
       label: language === 'bn' ? cat.nameBn || cat.name : cat.name
-    })))
+    }))
   ];
 
-  // Filter courses based on active filter
-  const getFilteredCourses = () => {
-    switch (activeFilter) {
-      case 'all':
-        return courses;
-      case 'trending':
-        return courses.filter(c => c.totalEnrollments > 10);
-      case 'popularity':
-        return [...courses].sort((a, b) => (b.totalEnrollments || 0) - (a.totalEnrollments || 0));
-      case 'featured':
-        return courses.filter(c => c.isFeatured);
-      default:
-        return courses.filter(c => {
-          const catId = c.category?._id || c.category;
-          return catId === activeFilter;
-        });
+  const sortOptions = [
+    { id: 'popularity', label: language === 'bn' ? t("home_sections.popularity") : 'Most Popular' },
+    { id: 'trending', label: language === 'bn' ? t("home_sections.trending") : 'Trending' },
+    { id: 'featured', label: language === 'bn' ? t("home_sections.featured") : 'Featured' },
+    { id: 'rating', label: language === 'bn' ? 'রেটিং' : 'Top Rated' },
+  ];
+
+  // Combined Parsing Logic
+  const getProcessedCourses = () => {
+    let result = [...courses];
+
+    // 1. Apply Category Filter
+    if (activeCategory !== 'all') {
+      result = result.filter(c => {
+        const catId = c.category?._id || c.category;
+        return catId === activeCategory;
+      });
     }
+
+    // 2. Apply Sort/Filter Logic
+    switch (activeSort) {
+      case 'trending':
+        // Filter for trending (> 5 enrollments) and then sort by enrollments
+        result = result.filter(c => (c.totalEnrollments || 0) > 5).sort((a, b) => (b.totalEnrollments || 0) - (a.totalEnrollments || 0));
+        break;
+      case 'featured':
+        result = result.filter(c => c.isFeatured);
+        break;
+      case 'rating':
+        result.sort((a, b) => (b.averageRating || 0) - (a.averageRating || 0));
+        break;
+      case 'popularity':
+      default:
+        result.sort((a, b) => (b.totalEnrollments || 0) - (a.totalEnrollments || 0));
+        break;
+    }
+
+    return result;
   };
 
-  const filteredCourses = getFilteredCourses();
+  const filteredCourses = getProcessedCourses();
   const visibleCourses = filteredCourses.slice(startIndex, startIndex + visibleItems);
 
   const handlePrev = () => {
@@ -180,53 +97,136 @@ const PopularCourse = () => {
     setStartIndex(prev => prev + visibleItems < filteredCourses.length ? prev + 1 : 0);
   };
 
-  const handleFilterChange = (filterId) => {
-    setActiveFilter(filterId);
-    setStartIndex(0);
+  const toggleDropdown = (name) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
+
+  const getActiveLabel = (type) => {
+    if (type === 'category') {
+      const active = categoryOptions.find(c => c.id === activeCategory);
+      return active ? active.label : 'All Categories';
+    }
+    if (type === 'sort') {
+      const active = sortOptions.find(s => s.id === activeSort);
+      return active ? active.label : 'Most Popular';
+    }
+    return '';
   };
 
   return (
     <section className="py-12 lg:py-16 bg-white dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-4 lg:px-16">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
-          {/* Title */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white ${bengaliClass}`}>
-              {language === 'bn' ? t("home_sections.activeStudents") : 'Students are '}
-              <span className="relative inline-block">
-                {language === 'bn' ? t("home_sections.viewing") : 'Viewing'}
-                <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-400 rounded-full"></span>
-              </span>
-            </h2>
-          </motion.div>
+        {/* Header - Redesigned Left Align with Dropdown */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 relative z-10">
+          <div className="text-left space-y-2">
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase rounded-md border border-primary/20"
+            >
+              {language === 'bn' ? 'জনপ্রিয় কোর্স' : 'Popular Courses'}
+            </motion.span>
 
-          {/* Filter Tabs */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-1 flex-wrap"
-          >
-            {filters.map((filter) => (
+            <motion.h2
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className={`text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight ${bengaliClass}`}
+            >
+              {language === 'bn' ? 'শিক্ষার্থীরা যা দেখছে' : 'Students are Viewing'}
+            </motion.h2>
+          </div>
+
+          {/* Two Dropdowns - Right Aligned Side by Side */}
+          <div className="flex flex-col sm:flex-row gap-3 min-w-[300px] z-20">
+
+            {/* Category Dropdown */}
+            <div className="relative flex-1">
               <button
-                key={filter.id}
-                onClick={() => handleFilterChange(filter.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${bengaliClass} ${activeFilter === filter.id
-                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
+                onClick={() => toggleDropdown('category')}
+                className="w-full flex items-center justify-between px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:border-primary/50 transition-all   whitespace-nowrap gap-4"
               >
-                {filter.label}
+                <div className="flex items-center gap-2">
+                  <LuFilter className="text-gray-400" size={14} />
+                  <span className={`truncate ${bengaliClass}`}>{getActiveLabel('category')}</span>
+                </div>
+                <LuChevronDown className={`text-gray-400 transition-transform duration-300 ${openDropdown === 'category' ? 'rotate-180' : ''}`} size={16} />
               </button>
-            ))}
-          </motion.div>
+
+              <AnimatePresence>
+                {openDropdown === 'category' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full right-0 mt-2 w-full sm:w-56 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-xl overflow-hidden max-h-64 overflow-y-auto"
+                  >
+                    {categoryOptions.map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => {
+                          setActiveCategory(opt.id);
+                          setOpenDropdown(null);
+                          setStartIndex(0);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-50 dark:border-gray-700/50 last:border-0 ${activeCategory === opt.id
+                            ? 'text-primary bg-primary/5'
+                            : 'text-gray-600 dark:text-gray-400'
+                          } ${bengaliClass}`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="relative flex-1">
+              <button
+                onClick={() => toggleDropdown('sort')}
+                className="w-full flex items-center justify-between px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:border-primary/50 transition-all whitespace-nowrap gap-4"
+              >
+                <div className="flex items-center gap-2">
+                  <LuArrowUpDown className="text-gray-400" size={14} />
+                  <span className={`truncate ${bengaliClass}`}>{getActiveLabel('sort')}</span>
+                </div>
+                <LuChevronDown className={`text-gray-400 transition-transform duration-300 ${openDropdown === 'sort' ? 'rotate-180' : ''}`} size={16} />
+              </button>
+
+              <AnimatePresence>
+                {openDropdown === 'sort' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full right-0 mt-2 w-full sm:w-48 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-xl overflow-hidden"
+                  >
+                    {sortOptions.map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => {
+                          setActiveSort(opt.id);
+                          setOpenDropdown(null);
+                          setStartIndex(0);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-50 dark:border-gray-700/50 last:border-0 ${activeSort === opt.id
+                            ? 'text-primary bg-primary/5'
+                            : 'text-gray-600 dark:text-gray-400'
+                          } ${bengaliClass}`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+          </div>
         </div>
 
         {/* Courses Carousel */}
@@ -251,19 +251,19 @@ const PopularCourse = () => {
 
           {/* Course Cards Grid */}
           {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
-              {[1, 2, 3, 4, 5].map(i => <CourseCardSkeleton key={i} />)}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {[1, 2, 3, 4, 5, 6].map(i => <CourseCardSkeleton key={i} />)}
             </div>
           ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
             >
               {visibleCourses.length > 0 ? (
                 visibleCourses.map((course) => (
-                  <CourseCard key={course._id} course={course} />
+                  <SharedCourseCard key={course._id} course={course} />
                 ))
               ) : (
                 <div className="col-span-full text-center py-12">
