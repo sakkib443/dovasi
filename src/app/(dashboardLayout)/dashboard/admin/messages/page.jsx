@@ -35,7 +35,7 @@ export default function AdminMessagesPage() {
             <div className={`${cardClass} p-6`}>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white shadow-lg">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white shadow-lg">
                             <FiMail size={28} />
                         </div>
                         <div>
@@ -45,7 +45,7 @@ export default function AdminMessagesPage() {
                             </p>
                         </div>
                     </div>
-                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#41bfb8] to-[#2dd4bf] text-white rounded-xl font-bold hover:shadow-lg transition-all">
+                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#c41e18] text-white rounded-xl font-bold hover:shadow-lg transition-all">
                         <FiEdit size={16} />
                         Compose
                     </button>
@@ -67,7 +67,7 @@ export default function AdminMessagesPage() {
                                     key={f.id}
                                     onClick={() => setFilter(f.id)}
                                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filter === f.id
-                                        ? 'bg-[#41bfb8] text-white'
+                                        ? 'bg-[#E62D26] text-white'
                                         : isDark ? 'bg-slate-700 text-slate-400 hover:bg-slate-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                         }`}
                                 >
@@ -85,13 +85,13 @@ export default function AdminMessagesPage() {
                                 key={msg.id}
                                 onClick={() => setSelectedMessage(msg)}
                                 className={`p-4 cursor-pointer transition-all ${selectedMessage?.id === msg.id
-                                    ? isDark ? 'bg-[#41bfb8]/10' : 'bg-[#41bfb8]/5'
+                                    ? isDark ? 'bg-[#E62D26]/10' : 'bg-[#E62D26]/5'
                                     : isDark ? 'hover:bg-slate-700/50' : 'hover:bg-gray-50'
                                     } ${msg.unread ? 'font-semibold' : ''}`}
                             >
                                 <div className="flex items-start gap-3">
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white text-sm font-bold ${msg.unread
-                                        ? 'bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf]'
+                                        ? 'bg-gradient-to-br from-[#E62D26] to-[#c41e18]'
                                         : isDark ? 'bg-slate-600' : 'bg-gray-300'
                                         }`}>
                                         {msg.from[0]}
@@ -156,10 +156,10 @@ export default function AdminMessagesPage() {
                                     className={`w-full p-4 rounded-xl border resize-none ${isDark
                                         ? 'bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500'
                                         : 'bg-gray-50 border-gray-200 text-gray-800'
-                                        } focus:border-[#41bfb8] outline-none`}
+                                        } focus:border-[#E62D26] outline-none`}
                                 />
                                 <div className="flex justify-end mt-3">
-                                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#41bfb8] to-[#2dd4bf] text-white rounded-xl font-bold hover:shadow-lg transition-all">
+                                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#c41e18] text-white rounded-xl font-bold hover:shadow-lg transition-all">
                                         <FiSend size={16} />
                                         Send Reply
                                     </button>

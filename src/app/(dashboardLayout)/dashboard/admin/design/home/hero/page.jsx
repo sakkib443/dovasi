@@ -124,7 +124,7 @@ const HeroDesignPage = () => {
         return (
             <div className="flex items-center justify-center min-h-[60vh]">
                 <div className="text-center">
-                    <div className="w-12 h-12 border-4 border-teal-500/30 border-t-teal-500 rounded-full animate-spin mx-auto"></div>
+                    <div className="w-12 h-12 border-4 border-red-500/30 border-t-red-500 rounded-full animate-spin mx-auto"></div>
                     <p className="mt-4 text-gray-500">Loading hero design...</p>
                 </div>
             </div>
@@ -162,7 +162,7 @@ const HeroDesignPage = () => {
                     <button
                         onClick={handleSave}
                         disabled={saving}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-xl font-semibold shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/30 transition-all disabled:opacity-50"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-emerald-500 text-white rounded-xl font-semibold shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30 transition-all disabled:opacity-50"
                     >
                         <LuSave size={18} />
                         {saving ? 'Saving...' : 'Save Changes'}
@@ -174,7 +174,7 @@ const HeroDesignPage = () => {
                 {/* Badge Section */}
                 <div className={`p-6 rounded-2xl ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-white border border-gray-200'}`}>
                     <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-emerald-500 rounded-xl flex items-center justify-center">
                             <LuImage className="text-white" size={20} />
                         </div>
                         <h3 className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Badge</h3>
@@ -186,18 +186,18 @@ const HeroDesignPage = () => {
                                 type="text"
                                 value={heroContent.badge?.text || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, badge: { ...prev.badge, text: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                                 placeholder="e.g., Premium Learning Platform"
                             />
                         </div>
                         <div>
-                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Badge Text (বাংলা)</label>
+                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Badge Text (?????)</label>
                             <input
                                 type="text"
                                 value={heroContent.badge?.textBn || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, badge: { ...prev.badge, textBn: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent hind-siliguri`}
-                                placeholder="যেমন: প্রিমিয়াম লার্নিং প্ল্যাটফর্ম"
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent hind-siliguri`}
+                                placeholder="????: ?????????? ??????? ???????????"
                             />
                         </div>
                         <div className="flex items-center gap-3">
@@ -205,7 +205,7 @@ const HeroDesignPage = () => {
                                 type="checkbox"
                                 checked={heroContent.badge?.showNew || false}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, badge: { ...prev.badge, showNew: e.target.checked } }))}
-                                className="w-5 h-5 rounded-lg text-teal-500 focus:ring-teal-500"
+                                className="w-5 h-5 rounded-lg text-red-500 focus:ring-red-500"
                             />
                             <label className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Show "NEW" badge</label>
                         </div>
@@ -227,18 +227,18 @@ const HeroDesignPage = () => {
                                 type="text"
                                 value={heroContent.heading?.line1 || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, heading: { ...prev.heading, line1: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent text-lg font-semibold`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg font-semibold`}
                                 placeholder="e.g., Elevate Your Digital Success"
                             />
                         </div>
                         <div>
-                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Main Heading (বাংলা) - Big</label>
+                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Main Heading (?????) - Big</label>
                             <input
                                 type="text"
                                 value={heroContent.heading?.line1Bn || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, heading: { ...prev.heading, line1Bn: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent text-lg font-semibold hind-siliguri`}
-                                placeholder="যেমন: আপনার ভবিষ্যৎ গড়ুন"
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg font-semibold hind-siliguri`}
+                                placeholder="????: ????? ??????? ?????"
                             />
                         </div>
                         <hr className={`my-2 ${isDark ? 'border-slate-600' : 'border-gray-200'}`} />
@@ -248,19 +248,19 @@ const HeroDesignPage = () => {
                                 type="text"
                                 value={heroContent.heading?.line2 || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, heading: { ...prev.heading, line2: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                                 placeholder="e.g., Learn"
                             />
                             <p className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>This text appears before the typing animation</p>
                         </div>
                         <div>
-                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Text Before Typing (বাংলা) - Smaller</label>
+                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Text Before Typing (?????) - Smaller</label>
                             <input
                                 type="text"
                                 value={heroContent.heading?.line2Bn || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, heading: { ...prev.heading, line2Bn: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent hind-siliguri`}
-                                placeholder="যেমন: শিখুন"
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent hind-siliguri`}
+                                placeholder="????: ?????"
                             />
                         </div>
                     </div>
@@ -277,7 +277,7 @@ const HeroDesignPage = () => {
                         </div>
                         <button
                             onClick={() => addDynamicText('en')}
-                            className="flex items-center gap-1 px-3 py-1.5 bg-teal-500/10 text-teal-600 rounded-lg text-sm font-medium hover:bg-teal-500/20 transition-colors"
+                            className="flex items-center gap-1 px-3 py-1.5 bg-red-500/10 text-red-600 rounded-lg text-sm font-medium hover:bg-red-500/20 transition-colors"
                         >
                             <LuPlus size={16} /> Add
                         </button>
@@ -289,7 +289,7 @@ const HeroDesignPage = () => {
                                     type="text"
                                     value={text}
                                     onChange={(e) => updateDynamicText(index, e.target.value, 'en')}
-                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                                     placeholder={`Text ${index + 1}`}
                                 />
                                 {heroContent.dynamicTexts.length > 1 && (
@@ -312,11 +312,11 @@ const HeroDesignPage = () => {
                             <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
                                 <LuList className="text-white" size={20} />
                             </div>
-                            <h3 className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Typing Animation (বাংলা)</h3>
+                            <h3 className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Typing Animation (?????)</h3>
                         </div>
                         <button
                             onClick={() => addDynamicText('bn')}
-                            className="flex items-center gap-1 px-3 py-1.5 bg-teal-500/10 text-teal-600 rounded-lg text-sm font-medium hover:bg-teal-500/20 transition-colors"
+                            className="flex items-center gap-1 px-3 py-1.5 bg-red-500/10 text-red-600 rounded-lg text-sm font-medium hover:bg-red-500/20 transition-colors"
                         >
                             <LuPlus size={16} /> Add
                         </button>
@@ -328,8 +328,8 @@ const HeroDesignPage = () => {
                                     type="text"
                                     value={text}
                                     onChange={(e) => updateDynamicText(index, e.target.value, 'bn')}
-                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent hind-siliguri`}
-                                    placeholder={`টেক্সট ${index + 1}`}
+                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent hind-siliguri`}
+                                    placeholder={`?????? ${index + 1}`}
                                 />
                                 {heroContent.dynamicTextsBn.length > 1 && (
                                     <button
@@ -359,18 +359,18 @@ const HeroDesignPage = () => {
                                 value={heroContent.description?.text || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, description: { ...prev.description, text: e.target.value } }))}
                                 rows={3}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                                 placeholder="Enter description..."
                             />
                         </div>
                         <div>
-                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Description (বাংলা)</label>
+                            <label className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Description (?????)</label>
                             <textarea
                                 value={heroContent.description?.textBn || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, description: { ...prev.description, textBn: e.target.value } }))}
                                 rows={3}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent hind-siliguri`}
-                                placeholder="বর্ণনা লিখুন..."
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent hind-siliguri`}
+                                placeholder="?????? ?????..."
                             />
                         </div>
                         <div>
@@ -379,7 +379,7 @@ const HeroDesignPage = () => {
                                 type="text"
                                 value={heroContent.description?.brandName || ''}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, description: { ...prev.description, brandName: e.target.value } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent font-bold text-teal-600`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent font-bold text-red-600`}
                                 placeholder="e.g., eJobsIT"
                             />
                         </div>
@@ -401,7 +401,7 @@ const HeroDesignPage = () => {
                                 type="number"
                                 value={heroContent.stats?.activeUsers || 0}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, stats: { ...prev.stats, activeUsers: parseInt(e.target.value) || 0 } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                             />
                         </div>
                         <div>
@@ -410,7 +410,7 @@ const HeroDesignPage = () => {
                                 type="number"
                                 value={heroContent.stats?.downloads || 0}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, stats: { ...prev.stats, downloads: parseInt(e.target.value) || 0 } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                             />
                         </div>
                         <div>
@@ -422,7 +422,7 @@ const HeroDesignPage = () => {
                                 max="5"
                                 value={heroContent.stats?.avgRating || 0}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, stats: { ...prev.stats, avgRating: parseFloat(e.target.value) || 0 } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                             />
                         </div>
                         <div>
@@ -431,7 +431,7 @@ const HeroDesignPage = () => {
                                 type="number"
                                 value={heroContent.stats?.totalProducts || 0}
                                 onChange={(e) => setHeroContent(prev => ({ ...prev, stats: { ...prev.stats, totalProducts: parseInt(e.target.value) || 0 } }))}
-                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                className={`w-full mt-1 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                             />
                         </div>
                     </div>
@@ -448,7 +448,7 @@ const HeroDesignPage = () => {
                         </div>
                         <button
                             onClick={addFeature}
-                            className="flex items-center gap-1 px-3 py-1.5 bg-teal-500/10 text-teal-600 rounded-lg text-sm font-medium hover:bg-teal-500/20 transition-colors"
+                            className="flex items-center gap-1 px-3 py-1.5 bg-red-500/10 text-red-600 rounded-lg text-sm font-medium hover:bg-red-500/20 transition-colors"
                         >
                             <LuPlus size={16} /> Add Feature
                         </button>
@@ -460,15 +460,15 @@ const HeroDesignPage = () => {
                                     type="text"
                                     value={feature.text}
                                     onChange={(e) => updateFeature(index, 'text', e.target.value)}
-                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent`}
+                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent`}
                                     placeholder="English text"
                                 />
                                 <input
                                     type="text"
                                     value={feature.textBn}
                                     onChange={(e) => updateFeature(index, 'textBn', e.target.value)}
-                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-teal-500 focus:border-transparent hind-siliguri`}
-                                    placeholder="বাংলা টেক্সট"
+                                    className={`flex-1 px-4 py-2.5 rounded-lg ${isDark ? 'bg-slate-700 text-white border-slate-600' : 'bg-gray-50 text-gray-900 border-gray-200'} border focus:ring-2 focus:ring-red-500 focus:border-transparent hind-siliguri`}
+                                    placeholder="????? ??????"
                                 />
                                 {heroContent.features.length > 1 && (
                                     <button

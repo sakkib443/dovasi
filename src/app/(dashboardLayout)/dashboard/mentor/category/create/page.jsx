@@ -68,7 +68,7 @@ const MentorCreateCategory = () => {
             const result = await response.json();
 
             if (response.ok) {
-                alert('Category created successfully! ✅');
+                alert('Category created successfully! ?');
                 router.push('/dashboard/mentor/category');
             } else {
                 alert(result.message || 'Failed to create category');
@@ -83,7 +83,7 @@ const MentorCreateCategory = () => {
     const getTypeColor = (type) => {
         switch (type) {
             case 'course': return 'from-indigo-500 to-purple-500';
-            case 'website': return 'from-emerald-500 to-teal-500';
+            case 'website': return 'from-emerald-500 to-red-500';
             case 'software': return 'from-violet-500 to-purple-600';
             default: return 'from-slate-500 to-slate-600';
         }

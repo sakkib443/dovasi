@@ -30,7 +30,7 @@ const AboutHero = () => {
                 </motion.div>
 
                 {/* Clean Geometric Accents */}
-                <div className="absolute top-1/4 right-10 w-[400px] h-[400px] bg-teal-500/5 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute top-1/4 right-10 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] animate-pulse" />
                 <div className="absolute bottom-1/4 left-10 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[100px]" />
 
                 {/* Subtle Grid */}
@@ -46,9 +46,9 @@ const AboutHero = () => {
                         transition={{ duration: 0.6 }}
                         className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-gray-900/5 dark:bg-white/5 border border-gray-200 dark:border-white/10 mb-6 backdrop-blur-md"
                     >
-                        <LuZap className="text-teal-500 animate-bounce" size={14} />
+                        <LuZap className="text-red-500 animate-bounce" size={14} />
                         <span className={`text-[10px] font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400 ${bengaliClass}`}>
-                            {language === 'bn' ? 'আমরা শ্রেষ্ঠত্বের কারিগর' : 'THE STANDARD OF EXCELLENCE'}
+                            {language === 'bn' ? '???? ???????????? ??????' : 'THE STANDARD OF EXCELLENCE'}
                         </span>
                     </motion.div>
 
@@ -60,12 +60,12 @@ const AboutHero = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="text-5xl sm:text-7xl lg:text-[80px] font-black leading-[0.85] tracking-tight text-gray-900 dark:text-white"
                         >
-                            {language === 'bn' ? <span className="text-[#F79952]">ডিজিটাল</span> : <span className="text-[#F79952]">BEYOND</span>} <br />
-                            <span className="text-teal-500 italic font-serif inline-flex items-center gap-4">
-                                {language === 'bn' ? 'শিক্ষার' : 'ORDINARY'}
+                            {language === 'bn' ? <span className="text-[#F79952]">???????</span> : <span className="text-[#F79952]">BEYOND</span>} <br />
+                            <span className="text-red-500 italic font-serif inline-flex items-center gap-4">
+                                {language === 'bn' ? '???????' : 'ORDINARY'}
                                 <span className="h-[3px] w-16 lg:w-32 bg-gray-900 dark:bg-white inline-block rounded-full" />
                             </span> <br />
-                            {language === 'bn' ? 'ভবিষ্যৎ' : 'EDUCATION'}
+                            {language === 'bn' ? '???????' : 'EDUCATION'}
                         </motion.h1>
                     </div>
 
@@ -77,7 +77,7 @@ const AboutHero = () => {
                         >
                             <p className={`text-base lg:text-lg text-gray-500 dark:text-gray-500 leading-relaxed mb-8 font-normal ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? 'আমরা শুধু দক্ষতা শেখাই না, আমরা আপনার ক্যারিয়ারের ভিত্তি তৈরি করি। ইজবস আইটি—যেখানে স্বপ্ন বাস্তবায়িত হয়।'
+                                    ? '???? ???? ?????? ????? ??, ???? ????? ??????????? ?????? ???? ???? ???? ????�?????? ?????? ?????????? ???'
                                     : 'We don\'t just teach skills; we build the architectural foundation of your professional career. ejobs it: Where ambition meets elite training.'
                                 }
                             </p>
@@ -85,10 +85,10 @@ const AboutHero = () => {
                             <div className="flex flex-wrap items-center gap-6">
                                 <Link
                                     href="/courses"
-                                    className="group relative px-10 py-5 bg-teal-500 text-white rounded-2xl font-black text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-teal-500/20"
+                                    className="group relative px-10 py-5 bg-red-500 text-white rounded-2xl font-black text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
                                 >
                                     <span className={`relative z-10 flex items-center gap-3 ${headingFont}`}>
-                                        {language === 'bn' ? 'কোর্সগুলো দেখুন' : 'EXPLORE COURSES'}
+                                        {language === 'bn' ? '????????? ?????' : 'EXPLORE COURSES'}
                                         <LuArrowRight className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </Link>
@@ -112,7 +112,7 @@ const AboutHero = () => {
                             className="hidden lg:grid grid-cols-2 gap-6"
                         >
                             {[
-                                { icon: LuSmile, value: '10K+', label: 'Happy Students', color: 'text-teal-500' },
+                                { icon: LuSmile, value: '10K+', label: 'Happy Students', color: 'text-red-500' },
                                 { icon: LuTrophy, value: '50+', label: 'Awards Won', color: 'text-[#F79952]' },
                             ].map((item, i) => (
                                 <div key={i} className="p-8 rounded-[40px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 backdrop-blur-sm">
@@ -134,8 +134,8 @@ const AboutHero = () => {
                             <div key={i} className="flex items-center gap-16 px-8">
                                 {[
                                     { text: 'EJOBSIT', icon: LuZap, iconColor: 'text-[#F79952]' },
-                                    { text: 'Innovation', icon: LuTrophy, iconColor: 'text-teal-500' },
-                                    { text: 'Excellence', icon: LuSmile, iconColor: 'text-teal-500' },
+                                    { text: 'Innovation', icon: LuTrophy, iconColor: 'text-red-500' },
+                                    { text: 'Excellence', icon: LuSmile, iconColor: 'text-red-500' },
                                     { text: 'Elite Training', icon: LuZap, iconColor: 'text-[#F79952]' }
                                 ].map((item, idx) => (
                                     <div key={idx} className="flex items-center gap-16 group">

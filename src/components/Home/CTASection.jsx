@@ -25,19 +25,19 @@ const CTASection = () => {
                         {/* Text Content */}
                         <div className="flex-1 z-10 text-center md:text-left">
                             <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4 ${bengaliClass}`}>
-                                {language === 'bn' ? 'ইন্সট্রাক্টর হয়ে যান' : 'Become An Instructor'}
+                                {language === 'bn' ? '???????????? ???? ???' : 'Become An Instructor'}
                             </h3>
                             <p className={`text-gray-600 dark:text-gray-400 text-sm lg:text-base mb-8 leading-relaxed ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? 'বিশ্বের শীর্ষ ইন্সট্রাক্টররা HiictPark-এ লক্ষ লক্ষ শিক্ষার্থীদের শেখান।'
+                                    ? '??????? ????? ?????????????? HiictPark-? ???? ???? ????????????? ??????'
                                     : 'Top instructors from around the world teach millions of students on HiictPark.'
                                 }
                             </p>
                             <Link
                                 href="/become-instructor"
-                                className={`inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
+                                className={`inline-flex items-center px-8 py-4 bg-[#E62D26] hover:bg-[#c41e18] text-white font-bold rounded-xl transition-all shadow-lg shadow-red-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
                             >
-                                {language === 'bn' ? 'আজই শেখানো শুরু করুন' : 'Start teaching today'}
+                                {language === 'bn' ? '??? ?????? ???? ????' : 'Start teaching today'}
                             </Link>
                         </div>
 
@@ -84,19 +84,19 @@ const CTASection = () => {
                         {/* Text Content */}
                         <div className="flex-1 z-10 text-center md:text-left">
                             <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4 ${bengaliClass}`}>
-                                {language === 'bn' ? 'শিক্ষায় অ্যাক্সেস রূপান্তর করুন' : 'Transform Access To Education'}
+                                {language === 'bn' ? '???????? ????????? ???????? ????' : 'Transform Access To Education'}
                             </h3>
                             <p className={`text-gray-600 dark:text-gray-400 text-sm lg:text-base mb-8 leading-relaxed ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? 'আমাদের নিউজলেটার, কোর্স সুপারিশ এবং প্রমোশন পেতে একটি অ্যাকাউন্ট তৈরি করুন।'
+                                    ? '?????? ?????????, ????? ??????? ??? ??????? ???? ???? ?????????? ???? ?????'
                                     : 'Create an account to receive our newsletter, course recommendations and promotions.'
                                 }
                             </p>
                             <Link
                                 href="/register"
-                                className={`inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
+                                className={`inline-flex items-center px-8 py-4 bg-[#E62D26] hover:bg-[#c41e18] text-white font-bold rounded-xl transition-all shadow-lg shadow-red-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
                             >
-                                {language === 'bn' ? 'বিনামূল্যে রেজিস্টার করুন' : 'Register for free'}
+                                {language === 'bn' ? '?????????? ????????? ????' : 'Register for free'}
                             </Link>
                         </div>
 

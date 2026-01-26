@@ -31,7 +31,7 @@ const iconMap = {
 
 // Gradient colors for each page
 const pageGradients = {
-    home: 'from-teal-500 to-emerald-500',
+    home: 'from-red-500 to-emerald-500',
     about: 'from-indigo-500 to-purple-500',
     contact: 'from-amber-500 to-orange-500',
     training: 'from-blue-500 to-cyan-500',
@@ -74,7 +74,7 @@ const PageContentDashboard = () => {
         return (
             <div className="flex items-center justify-center min-h-[60vh]">
                 <div className="text-center">
-                    <FiLoader className="w-12 h-12 text-teal-500 animate-spin mx-auto" />
+                    <FiLoader className="w-12 h-12 text-red-500 animate-spin mx-auto" />
                     <p className="mt-4 text-gray-500">Loading page content...</p>
                 </div>
             </div>
@@ -87,7 +87,7 @@ const PageContentDashboard = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                        📄 Page Content Manager
+                        ?? Page Content Manager
                     </h1>
                     <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                         Manage dynamic content for all website pages
@@ -103,9 +103,9 @@ const PageContentDashboard = () => {
             </div>
 
             {/* Quick Info */}
-            <div className={`p-5 rounded-2xl ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100'}`}>
+            <div className={`p-5 rounded-2xl ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-gradient-to-r from-red-50 to-emerald-50 border border-red-100'}`}>
                 <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-emerald-500 rounded-xl flex items-center justify-center shrink-0">
                         <FiSettings className="text-white" size={24} />
                     </div>
                     <div>
@@ -150,7 +150,7 @@ const PageContentDashboard = () => {
                                         <Icon className="text-white" size={28} />
                                     </div>
                                     <FiChevronRight
-                                        className={`${isDark ? 'text-gray-600' : 'text-gray-300'} group-hover:text-teal-500 group-hover:translate-x-1 transition-all`}
+                                        className={`${isDark ? 'text-gray-600' : 'text-gray-300'} group-hover:text-red-500 group-hover:translate-x-1 transition-all`}
                                         size={24}
                                     />
                                 </div>
@@ -192,7 +192,7 @@ const PageContentDashboard = () => {
                                         ? 'bg-slate-700 text-gray-300'
                                         : 'bg-gray-100 text-gray-600'
                                         }`}>
-                                        <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                                         {page.route}
                                     </div>
                                 )}

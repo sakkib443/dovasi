@@ -197,7 +197,7 @@ export default function CreateSoftwarePage() {
             });
 
             if (response.ok) {
-                alert(isEditMode ? 'Software updated successfully! ✅' : 'Software successfully published! 🚀');
+                alert(isEditMode ? 'Software updated successfully! ?' : 'Software successfully published! ??');
                 router.push('/dashboard/admin/software');
             } else {
                 const err = await response.json();
@@ -238,7 +238,7 @@ export default function CreateSoftwarePage() {
                             </h1>
                             {isEditMode && (
                                 <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-lg text-xs font-bold">
-                                    ✏️ Edit Mode
+                                    ?? Edit Mode
                                 </span>
                             )}
                         </div>
@@ -456,11 +456,11 @@ export default function CreateSoftwarePage() {
                                 </select>
                             </div>
                             <div>
-                                <label className={labelClass}>Price (৳) *</label>
+                                <label className={labelClass}>Price (?) *</label>
                                 <input type="number" {...register('price')} className={inputClass} />
                             </div>
                             <div>
-                                <label className={labelClass}>Offer Price (৳)</label>
+                                <label className={labelClass}>Offer Price (?)</label>
                                 <input type="number" {...register('offerPrice')} className={inputClass} placeholder="Sale price" />
                             </div>
                             <div>
@@ -471,11 +471,11 @@ export default function CreateSoftwarePage() {
                                 </select>
                             </div>
                             <div>
-                                <label className={labelClass}>Regular License Price (৳)</label>
+                                <label className={labelClass}>Regular License Price (?)</label>
                                 <input type="number" {...register('regularLicensePrice')} className={inputClass} />
                             </div>
                             <div>
-                                <label className={labelClass}>Extended License Price (৳)</label>
+                                <label className={labelClass}>Extended License Price (?)</label>
                                 <input type="number" {...register('extendedLicensePrice')} className={inputClass} placeholder="Optional" />
                             </div>
                         </div>

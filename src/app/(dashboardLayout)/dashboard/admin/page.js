@@ -59,7 +59,7 @@ const StatsCard = ({ title, value, change, changeType, icon: Icon, gradient, loa
               {loading ? (
                 <span className={`inline-block w-24 h-9 animate-pulse rounded-lg ${isDark ? 'bg-slate-700' : 'bg-gradient-to-r from-slate-200 to-slate-100'}`} />
               ) : (
-                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
+                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '?' : ''} />
               )}
             </p>
             {subtitle && <p className="text-xs text-slate-400 mb-2">{subtitle}</p>}
@@ -442,7 +442,7 @@ export default function AdminDashboard() {
       change: '+8.5%',
       changeType: 'up',
       icon: FiDollarSign,
-      gradient: 'from-emerald-500 to-teal-500',
+      gradient: 'from-emerald-500 to-red-500',
     },
     {
       title: 'This Month Revenue',
@@ -467,7 +467,7 @@ export default function AdminDashboard() {
   // Product stats for cards
   const productStats = [
     { title: 'All Courses', value: dashboardData.totalCourses, icon: FiBook, gradient: 'from-indigo-500 to-purple-500', href: '/dashboard/admin/course' },
-    { title: 'All Softwares', value: dashboardData.totalSoftware, icon: FiCode, gradient: 'from-cyan-500 to-teal-500', href: '/dashboard/admin/software' },
+    { title: 'All Softwares', value: dashboardData.totalSoftware, icon: FiCode, gradient: 'from-cyan-500 to-red-500', href: '/dashboard/admin/software' },
     { title: 'All Websites', value: dashboardData.totalWebsites, icon: FiGlobe, gradient: 'from-pink-500 to-rose-500', href: '/dashboard/admin/website' },
     { title: 'All Categories', value: dashboardData.categories, icon: FiLayers, gradient: 'from-amber-500 to-orange-500', href: '/dashboard/admin/category' },
   ];
@@ -475,7 +475,7 @@ export default function AdminDashboard() {
   const quickActions = [
     { title: 'Add Course', href: '/dashboard/admin/course/create', icon: FiBook, gradient: 'from-amber-500 to-orange-500' },
     { title: 'Add Website', href: '/dashboard/admin/website/create', icon: FiGlobe, gradient: 'from-pink-500 to-rose-500' },
-    { title: 'Add Software', href: '/dashboard/admin/software/create', icon: FiCode, gradient: 'from-cyan-500 to-teal-500' },
+    { title: 'Add Software', href: '/dashboard/admin/software/create', icon: FiCode, gradient: 'from-cyan-500 to-red-500' },
     { title: 'Add Category', href: '/dashboard/admin/category/create', icon: FiLayers, gradient: 'from-violet-500 to-purple-500' },
   ];
 
@@ -490,7 +490,7 @@ export default function AdminDashboard() {
 
   const getStatusStyle = (status) => {
     switch (status) {
-      case 'completed': return 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white';
+      case 'completed': return 'bg-gradient-to-r from-emerald-500 to-red-500 text-white';
       case 'pending': return 'bg-gradient-to-r from-amber-500 to-orange-500 text-white';
       case 'processing': return 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white';
       default: return 'bg-slate-100 text-slate-700';
@@ -582,16 +582,16 @@ export default function AdminDashboard() {
               <div className="flex items-center gap-6">
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Revenue</span>
-                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.totalRevenue.toLocaleString()}</span>
+                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.totalRevenue.toLocaleString()}</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">This Month</span>
-                  <span className="text-sm font-bold text-emerald-600">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
+                  <span className="text-sm font-bold text-emerald-600">?{dashboardData.monthlyRevenue.toLocaleString()}</span>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Today</p>
-                <p className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.todayRevenue.toLocaleString()}</p>
+                <p className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.todayRevenue.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -727,7 +727,7 @@ export default function AdminDashboard() {
             ) : (
               topCourses.slice(0, 4).map((course, idx) => (
                 <div key={course._id || idx} className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${['from-indigo-500 to-purple-500', 'from-amber-500 to-orange-500', 'from-emerald-500 to-teal-500', 'from-pink-500 to-rose-500'][idx % 4]
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${['from-indigo-500 to-purple-500', 'from-amber-500 to-orange-500', 'from-emerald-500 to-red-500', 'from-pink-500 to-rose-500'][idx % 4]
                     } flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
                     {idx + 1}
                   </div>
@@ -735,7 +735,7 @@ export default function AdminDashboard() {
                     <h3 className="text-sm font-semibold text-slate-800 truncate group-hover:text-indigo-600 transition-colors">{course.title}</h3>
                     <p className="text-xs text-slate-500">{course.salesCount || 0} sales</p>
                   </div>
-                  <span className="text-sm font-bold text-emerald-600">৳{course.price || 0}</span>
+                  <span className="text-sm font-bold text-emerald-600">?{course.price || 0}</span>
                 </div>
               ))
             )}
@@ -745,7 +745,7 @@ export default function AdminDashboard() {
         {/* Live Stats */}
         <div className="p-6 rounded-2xl border transition-all hover:shadow-lg bg-white border-slate-200 shadow-sm">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 bg-teal-500/10 text-teal-600 rounded-2xl flex items-center justify-center">
+            <div className="w-14 h-14 bg-red-500/10 text-red-600 rounded-2xl flex items-center justify-center">
               <FiActivity size={28} />
             </div>
             <div>
@@ -757,11 +757,11 @@ export default function AdminDashboard() {
           <div className="space-y-3">
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">Today's Revenue</span>
-              <span className="text-lg font-bold text-slate-800">৳{dashboardData.todayRevenue.toLocaleString()}</span>
+              <span className="text-lg font-bold text-slate-800">?{dashboardData.todayRevenue.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">This Month</span>
-              <span className="text-lg font-bold text-slate-800">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
+              <span className="text-lg font-bold text-slate-800">?{dashboardData.monthlyRevenue.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">New Users</span>
@@ -816,7 +816,7 @@ export default function AdminDashboard() {
                         </div>
                       </td>
                       <td className="p-4 text-sm text-slate-600 max-w-[200px] truncate">{order.product}</td>
-                      <td className="p-4 text-sm font-bold text-emerald-600">৳{order.amount?.toLocaleString()}</td>
+                      <td className="p-4 text-sm font-bold text-emerald-600">?{order.amount?.toLocaleString()}</td>
                       <td className="p-4">
                         <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusStyle(order.status)}`}>
                           {order.status}

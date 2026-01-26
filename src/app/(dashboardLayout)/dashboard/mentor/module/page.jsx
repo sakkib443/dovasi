@@ -253,7 +253,7 @@ export default function AllModulesPage() {
                         <p className="text-sm text-slate-600">
                             Modules are sections within a course. To create or edit modules, go to the specific course's
                             <strong className="text-indigo-600"> Modules </strong> page by clicking on the course name in the table above,
-                            or navigate to <strong>All Courses → Modules</strong> button.
+                            or navigate to <strong>All Courses ? Modules</strong> button.
                         </p>
                     </div>
                 </div>

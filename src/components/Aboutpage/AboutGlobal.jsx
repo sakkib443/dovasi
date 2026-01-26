@@ -22,25 +22,25 @@ const AboutGlobal = () => {
         {
             icon: LuCheck,
             title: 'Elite Quality',
-            description: language === 'bn' ? 'আমরা শুধুমাত্র সেরা কোয়ালিটির শিক্ষা প্রদান করি।' : 'Ensuring the highest industrial standards.',
+            description: language === 'bn' ? '???? ????????? ???? ????????? ?????? ?????? ????' : 'Ensuring the highest industrial standards.',
             color: 'teal'
         },
         {
             icon: LuUsers,
             title: '10K+ Community',
-            description: language === 'bn' ? 'বিশাল এবং সক্রিয় শিক্ষার্থী কমিউনিটি।' : 'Vibrant and supportive learner network.',
+            description: language === 'bn' ? '????? ??? ?????? ?????????? ?????????' : 'Vibrant and supportive learner network.',
             color: 'gray'
         },
         {
             icon: LuTrendingUp,
             title: 'Career Growth',
-            description: language === 'bn' ? 'সফল ক্যারিয়ার গড়ার সঠিক দিকনির্দেশনা।' : 'Direct pathway to professional success.',
+            description: language === 'bn' ? '??? ????????? ???? ???? ?????????????' : 'Direct pathway to professional success.',
             color: 'gray'
         },
         {
             icon: LuNetwork,
             title: 'Modern Reach',
-            description: language === 'bn' ? 'দেশজুড়ে ছড়িয়ে থাকা আমাদের সার্ভিস।' : 'Scalable digital education architecture.',
+            description: language === 'bn' ? '??????? ????? ???? ?????? ????????' : 'Scalable digital education architecture.',
             color: 'teal'
         }
     ];
@@ -51,10 +51,10 @@ const AboutGlobal = () => {
             <div className="absolute inset-0 pointer-events-none opacity-20 dark:opacity-40">
                 <motion.div
                     style={{ x: xMove }}
-                    className="absolute top-1/2 left-0 w-full h-[400px] border-y border-teal-500/10 -translate-y-1/2 flex items-center justify-around overflow-hidden"
+                    className="absolute top-1/2 left-0 w-full h-[400px] border-y border-red-500/10 -translate-y-1/2 flex items-center justify-around overflow-hidden"
                 >
                     {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <div key={i} className="w-[1px] h-full bg-gradient-to-b from-transparent via-teal-500/20 to-transparent" />
+                        <div key={i} className="w-[1px] h-full bg-gradient-to-b from-transparent via-red-500/20 to-transparent" />
                     ))}
                 </motion.div>
             </div>
@@ -70,23 +70,23 @@ const AboutGlobal = () => {
                             transition={{ duration: 0.8 }}
                         >
                             <div className="flex items-center gap-4 mb-8">
-                                <div className="p-3 bg-teal-500/10 rounded-2xl">
-                                    <LuNetwork className="text-teal-500" size={24} />
+                                <div className="p-3 bg-red-500/10 rounded-2xl">
+                                    <LuNetwork className="text-red-500" size={24} />
                                 </div>
-                                <span className={`text-sm font-black tracking-[0.3em] text-teal-600 dark:text-teal-400 uppercase ${headingFont}`}>
-                                    {language === 'bn' ? 'আমাদের নেটওয়ার্ক' : 'OUR ECOSYSTEM'}
+                                <span className={`text-sm font-black tracking-[0.3em] text-red-600 dark:text-red-400 uppercase ${headingFont}`}>
+                                    {language === 'bn' ? '?????? ?????????' : 'OUR ECOSYSTEM'}
                                 </span>
                             </div>
 
                             <h2 className={`${headingFont} text-6xl lg:text-7xl font-black text-gray-900 dark:text-white leading-[0.9] mb-10`}>
                                 BUILT FOR <br />
-                                <span className="text-teal-500 italic font-serif">PROFESSIONAL</span> <br />
+                                <span className="text-red-500 italic font-serif">PROFESSIONAL</span> <br />
                                 EXCELLENCE
                             </h2>
 
                             <p className={`text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal mb-12 max-w-xl ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? 'আমরা এমন একটি পরিবেশ তৈরি করেছি যেখানে প্রতিটি শিক্ষার্থী নিজের সেরা ভার্সনটি খুঁজে পায়। আমাদের লক্ষ্য—টেকসই ডিজিটাল শিক্ষা।'
+                                    ? '???? ??? ???? ?????? ???? ????? ?????? ??????? ?????????? ????? ???? ???????? ????? ???? ?????? ??????�????? ??????? ???????'
                                     : 'We have architected a professional ecosystem where students discover their peak potential. Our goal is to set the new standard for digital mastery.'
                                 }
                             </p>
@@ -94,7 +94,7 @@ const AboutGlobal = () => {
                             <div className="grid grid-cols-2 gap-6">
                                 {['Industry Leaders', 'Elite Support', 'Project Driven', 'Future Proof'].map((item, i) => (
                                     <div key={i} className="flex items-center gap-3">
-                                        <div className="w-2 h-2 rounded-full bg-teal-500" />
+                                        <div className="w-2 h-2 rounded-full bg-red-500" />
                                         <span className={`text-sm font-bold text-gray-900 dark:text-gray-300 ${headingFont}`}>{item}</span>
                                     </div>
                                 ))}
@@ -113,10 +113,10 @@ const AboutGlobal = () => {
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 className={`p-10 rounded-[50px] border transition-all duration-500 hover:-translate-y-3 ${card.color === 'teal'
                                     ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-transparent shadow-2xl'
-                                    : 'bg-white dark:bg-white/5 text-gray-900 dark:text-white border-gray-100 dark:border-white/10 hover:border-teal-500/30'
+                                    : 'bg-white dark:bg-white/5 text-gray-900 dark:text-white border-gray-100 dark:border-white/10 hover:border-red-500/30'
                                     }`}
                             >
-                                <card.icon className={`${card.color === 'teal' ? 'text-teal-400 dark:text-teal-600' : 'text-teal-500'} mb-8`} size={40} />
+                                <card.icon className={`${card.color === 'teal' ? 'text-red-400 dark:text-red-600' : 'text-red-500'} mb-8`} size={40} />
                                 <h3 className={`${headingFont} text-2xl font-black mb-4 tracking-tight`}>
                                     {card.title}
                                 </h3>

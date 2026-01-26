@@ -9,10 +9,10 @@ const AboutFeaturesDesignPage = () => {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [content, setContent] = useState({
-        badge: { text: 'Why Choose Us', textBn: 'কেন আমাদের বেছে নেবেন' },
-        heading: { text: 'Our Features', textBn: 'আমাদের বৈশিষ্ট্য' },
+        badge: { text: 'Why Choose Us', textBn: '??? ?????? ???? ?????' },
+        heading: { text: 'Our Features', textBn: '?????? ?????????' },
         features: [
-            { title: '', titleBn: '', description: '', descriptionBn: '', emoji: '🚀' }
+            { title: '', titleBn: '', description: '', descriptionBn: '', emoji: '??' }
         ]
     });
 
@@ -50,7 +50,7 @@ const AboutFeaturesDesignPage = () => {
         }
     };
 
-    const addFeature = () => setContent({ ...content, features: [...content.features, { title: '', titleBn: '', description: '', descriptionBn: '', emoji: '🎯' }] });
+    const addFeature = () => setContent({ ...content, features: [...content.features, { title: '', titleBn: '', description: '', descriptionBn: '', emoji: '??' }] });
     const removeFeature = (i) => setContent({ ...content, features: content.features.filter((_, idx) => idx !== i) });
     const updateFeature = (i, field, value) => {
         const updated = [...content.features];
@@ -58,7 +58,7 @@ const AboutFeaturesDesignPage = () => {
         setContent({ ...content, features: updated });
     };
 
-    if (loading) return <div className="flex items-center justify-center min-h-[60vh]"><FiRefreshCw className="w-12 h-12 text-teal-500 animate-spin" /></div>;
+    if (loading) return <div className="flex items-center justify-center min-h-[60vh]"><FiRefreshCw className="w-12 h-12 text-red-500 animate-spin" /></div>;
 
     return (
         <div className="p-6 max-w-4xl mx-auto">
@@ -69,7 +69,7 @@ const AboutFeaturesDesignPage = () => {
                 </div>
                 <div className="flex gap-3">
                     <button onClick={fetchContent} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700"><FiRefreshCw size={18} /></button>
-                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white disabled:opacity-50">
+                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white disabled:opacity-50">
                         <FiSave size={18} /> {saving ? 'Saving...' : 'Save'}
                     </button>
                 </div>
@@ -86,7 +86,7 @@ const AboutFeaturesDesignPage = () => {
             <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white">Features</h2>
-                    <button onClick={addFeature} className="flex items-center gap-2 px-4 py-2 bg-teal-500/10 text-teal-500 rounded-xl"><FiPlus /> Add Feature</button>
+                    <button onClick={addFeature} className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-500 rounded-xl"><FiPlus /> Add Feature</button>
                 </div>
                 {content.features?.map((feature, i) => (
                     <div key={i} className="p-4 border border-gray-200 dark:border-gray-700 rounded-xl mb-4">

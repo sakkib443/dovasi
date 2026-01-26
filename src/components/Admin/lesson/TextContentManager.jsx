@@ -8,7 +8,7 @@ import {
 
 /**
  * Text Content Manager Component
- * Rich text blocks যোগ এবং manage করার জন্য
+ * Rich text blocks ??? ??? manage ???? ????
  */
 export default function TextContentManager({ textBlocks = [], mainContent = '', mainContentBn = '', onChangeBlocks, onChangeMain }) {
     const [showForm, setShowForm] = useState(false);
@@ -90,17 +90,17 @@ export default function TextContentManager({ textBlocks = [], mainContent = '', 
                         />
                     </div>
                     <div>
-                        <label className="text-xs font-semibold text-slate-600 mb-1 block">Content (বাংলা)</label>
+                        <label className="text-xs font-semibold text-slate-600 mb-1 block">Content (?????)</label>
                         <textarea
                             value={mainContentBn}
                             onChange={(e) => onChangeMain('textContentBn', e.target.value)}
-                            placeholder="বাংলায় লেসন কন্টেন্ট লিখুন... (HTML সাপোর্ট করে)"
+                            placeholder="??????? ???? ???????? ?????... (HTML ??????? ???)"
                             rows={6}
                             className={`${inputClass} resize-none font-mono text-xs`}
                         />
                     </div>
                 </div>
-                <p className="text-[10px] text-slate-500">💡 Tip: You can use HTML tags like &lt;b&gt;, &lt;i&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;code&gt; for formatting</p>
+                <p className="text-[10px] text-slate-500">?? Tip: You can use HTML tags like &lt;b&gt;, &lt;i&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;code&gt; for formatting</p>
             </div>
 
             {/* Additional Text Blocks */}
@@ -196,12 +196,12 @@ export default function TextContentManager({ textBlocks = [], mainContent = '', 
                             />
                         </div>
                         <div>
-                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Title (বাংলা)</label>
+                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Title (?????)</label>
                             <input
                                 type="text"
                                 value={formData.titleBn}
                                 onChange={(e) => setFormData(prev => ({ ...prev, titleBn: e.target.value }))}
-                                placeholder="মূল ধারণাসমূহ"
+                                placeholder="??? ?????????"
                                 className={inputClass}
                             />
                         </div>
@@ -220,11 +220,11 @@ export default function TextContentManager({ textBlocks = [], mainContent = '', 
                             />
                         </div>
                         <div>
-                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Content (বাংলা)</label>
+                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Content (?????)</label>
                             <textarea
                                 value={formData.contentBn}
                                 onChange={(e) => setFormData(prev => ({ ...prev, contentBn: e.target.value }))}
-                                placeholder="বাংলায় কন্টেন্ট লিখুন..."
+                                placeholder="??????? ???????? ?????..."
                                 rows={8}
                                 className={`${inputClass} resize-none font-mono text-xs`}
                             />

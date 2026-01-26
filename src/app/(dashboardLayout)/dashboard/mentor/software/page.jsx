@@ -247,9 +247,9 @@ const MentorSoftwarePage = () => {
                                         <span className="text-lg font-black text-emerald-600">FREE</span>
                                     ) : (
                                         <div className="flex items-center gap-2">
-                                            <span className="text-lg font-black text-violet-600">৳{sw.offerPrice || sw.price}</span>
+                                            <span className="text-lg font-black text-violet-600">?{sw.offerPrice || sw.price}</span>
                                             {sw.offerPrice && sw.offerPrice < sw.price && (
-                                                <span className="text-xs text-slate-400 line-through">৳{sw.price}</span>
+                                                <span className="text-xs text-slate-400 line-through">?{sw.price}</span>
                                             )}
                                         </div>
                                     )}

@@ -19,7 +19,7 @@ export default function AdminEditToggle() {
             onClick={toggleEditMode}
             className={`fixed bottom-6 right-6 z-[100] flex items-center gap-2 px-4 py-3 rounded-full shadow-2xl transition-all duration-300 ${isEditMode
                     ? 'bg-[#F79952] text-white hover:bg-orange-500'
-                    : 'bg-[#41bfb8] text-white hover:bg-[#2dd4bf]'
+                    : 'bg-[#E62D26] text-white hover:bg-[#c41e18]'
                 }`}
             title={isEditMode ? 'Exit Edit Mode' : 'Enter Edit Mode'}
         >

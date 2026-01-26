@@ -72,7 +72,7 @@ export default function WebsiteAdminPage() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                         <FiGlobe className="text-white text-xl" />
                     </div>
                     <div>
@@ -90,7 +90,7 @@ export default function WebsiteAdminPage() {
                         Reload
                     </button>
                     <Link href="/dashboard/admin/website/create">
-                        <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-emerald-500/25 transition-all">
+                        <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-red-500 hover:from-emerald-600 hover:to-red-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-emerald-500/25 transition-all">
                             <FiPlus size={16} />
                             New Website
                         </button>
@@ -102,7 +102,7 @@ export default function WebsiteAdminPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {/* Total Templates */}
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative bg-white rounded-2xl border border-slate-200/60 p-6 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                         <div className="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-slate-700 to-slate-800 opacity-10 rounded-full blur-2xl" />
                         <div className="relative flex items-start justify-between">
@@ -120,16 +120,16 @@ export default function WebsiteAdminPage() {
 
                 {/* Published */}
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative bg-white rounded-2xl border border-slate-200/60 p-6 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                        <div className="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-emerald-500 to-teal-500 opacity-10 rounded-full blur-2xl" />
+                        <div className="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-emerald-500 to-red-500 opacity-10 rounded-full blur-2xl" />
                         <div className="relative flex items-start justify-between">
                             <div className="flex-1">
                                 <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">Published</p>
                                 <p className="text-3xl font-bold text-slate-800 mb-1">{stats.live}</p>
                                 <p className="text-xs text-slate-400 mb-2">Live templates</p>
                             </div>
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                                 <FiCheckCircle className="text-2xl text-white" />
                             </div>
                         </div>
@@ -280,11 +280,11 @@ export default function WebsiteAdminPage() {
                                     <div>
                                         {w.offerPrice && w.offerPrice > 0 ? (
                                             <>
-                                                <p className="text-lg font-bold text-emerald-600">৳{w.offerPrice?.toLocaleString()}</p>
-                                                <p className="text-xs text-slate-400 line-through">৳{w.price?.toLocaleString()}</p>
+                                                <p className="text-lg font-bold text-emerald-600">?{w.offerPrice?.toLocaleString()}</p>
+                                                <p className="text-xs text-slate-400 line-through">?{w.price?.toLocaleString()}</p>
                                             </>
                                         ) : (
-                                            <p className="text-lg font-bold text-slate-800">৳{w.price?.toLocaleString()}</p>
+                                            <p className="text-lg font-bold text-slate-800">?{w.price?.toLocaleString()}</p>
                                         )}
                                     </div>
                                     <button onClick={() => handleDelete(w._id)} className="p-2 bg-rose-50 hover:bg-rose-500 hover:text-white text-rose-400 rounded-lg transition-all">

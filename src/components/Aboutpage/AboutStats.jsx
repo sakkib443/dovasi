@@ -12,22 +12,22 @@ const AboutStats = () => {
         {
             key: 'students',
             target: '10,000+',
-            label: language === 'bn' ? 'সক্রিয় শিক্ষার্থী' : 'Active Students',
+            label: language === 'bn' ? '??????? ??????????' : 'Active Students',
         },
         {
             key: 'courses',
             target: '250+',
-            label: language === 'bn' ? 'প্রিমিয়াম কোর্স' : 'Premium Courses',
+            label: language === 'bn' ? '?????????? ?????' : 'Premium Courses',
         },
         {
             key: 'instructors',
             target: '325+',
-            label: language === 'bn' ? 'বিশেষজ্ঞ ইন্সট্রাক্টর' : 'Expert Instructors',
+            label: language === 'bn' ? '???????? ????????????' : 'Expert Instructors',
         },
         {
             key: 'countries',
             target: '415+',
-            label: language === 'bn' ? 'দেশ থেকে শিক্ষার্থী' : 'Worldwide Impact',
+            label: language === 'bn' ? '??? ???? ??????????' : 'Worldwide Impact',
         },
     ];
 
@@ -47,14 +47,14 @@ const AboutStats = () => {
                         className="max-w-xl"
                     >
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="h-[1px] w-8 bg-teal-500" />
-                            <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-teal-600 dark:text-teal-400 ${headingFont}`}>
-                                {language === 'bn' ? 'আমাদের অর্জন' : 'Impact Analytics'}
+                            <div className="h-[1px] w-8 bg-red-500" />
+                            <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>
+                                {language === 'bn' ? '?????? ?????' : 'Impact Analytics'}
                             </span>
                         </div>
                         <h2 className={`${headingFont} text-4xl lg:text-6xl font-black text-gray-900 dark:text-white leading-[0.95] tracking-tight`}>
                             THE STORY <br />
-                            IN <span className="text-teal-500 italic font-serif text-5xl lg:text-7xl">NUMBERS</span>
+                            IN <span className="text-red-500 italic font-serif text-5xl lg:text-7xl">NUMBERS</span>
                         </h2>
                     </motion.div>
 
@@ -66,7 +66,7 @@ const AboutStats = () => {
                         className={`text-gray-500 dark:text-gray-400 leading-relaxed font-normal ${bengaliClass} max-w-sm`}
                     >
                         {language === 'bn'
-                            ? 'বিগত কয়েক বছরে আমরা হাজারো শিক্ষার্থীর জীবন বদলে দিয়েছি এবং আমাদের এই যাত্রা অব্যাহত আছে।'
+                            ? '???? ???? ???? ???? ?????? ??????????? ???? ???? ?????? ??? ?????? ?? ?????? ??????? ????'
                             : 'We reflect growth through consistent impact and professional excellence, establishing a global standard for digital education.'
                         }
                     </motion.p>
@@ -83,9 +83,9 @@ const AboutStats = () => {
                             className={`p-10 lg:p-12 border-l border-b ${index % 2 === 1 ? 'border-r md:border-r-0' : ''} ${index >= 4 ? 'lg:border-b-0' : ''} lg:border-b-0 border-gray-100 dark:border-white/5 group relative overflow-hidden`}
                         >
                             {/* Sharp Hover Effect */}
-                            <div className="absolute top-0 left-0 w-full h-[2px] bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                            <div className="absolute top-0 left-0 w-full h-[2px] bg-red-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
 
-                            <h4 className={`${headingFont} text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter group-hover:text-teal-500 transition-colors duration-500`}>
+                            <h4 className={`${headingFont} text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter group-hover:text-red-500 transition-colors duration-500`}>
                                 {stat.target}
                             </h4>
                             <p className={`text-[10px] lg:text-[11px] font-black tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-500 ${bengaliClass}`}>
@@ -114,14 +114,14 @@ const AboutStats = () => {
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                             <motion.div
                                 whileHover={{ scale: 1.1 }}
-                                className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-teal-500/90 backdrop-blur-md flex items-center justify-center shadow-2xl relative mb-10 group/play cursor-pointer"
+                                className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-red-500/90 backdrop-blur-md flex items-center justify-center shadow-2xl relative mb-10 group/play cursor-pointer"
                             >
-                                <div className="absolute inset-0 rounded-full bg-teal-500 animate-ping opacity-20" />
+                                <div className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-20" />
                                 <div className="w-0 h-0 border-y-[15px] border-y-transparent border-l-[24px] border-l-black ml-2 relative z-10" />
                             </motion.div>
 
                             <h3 className={`${headingFont} text-2xl lg:text-4xl font-black text-white tracking-tight uppercase`}>
-                                Experience the <span className="text-teal-500">Journey</span>
+                                Experience the <span className="text-red-500">Journey</span>
                             </h3>
                         </div>
                     </motion.div>

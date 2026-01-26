@@ -59,7 +59,7 @@ const StatsCard = ({ title, value, change, changeType, icon: Icon, gradient, loa
                             {loading ? (
                                 <span className={`inline-block w-24 h-9 animate-pulse rounded-lg ${isDark ? 'bg-slate-700' : 'bg-gradient-to-r from-slate-200 to-slate-100'}`} />
                             ) : (
-                                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
+                                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '?' : ''} />
                             )}
                         </p>
                         {subtitle && <p className="text-xs text-slate-400 mb-2">{subtitle}</p>}
@@ -179,7 +179,7 @@ export default function MentorDashboard() {
             change: '+8.5%',
             changeType: 'up',
             icon: FiDollarSign,
-            gradient: 'from-emerald-500 to-teal-500',
+            gradient: 'from-emerald-500 to-red-500',
         },
         {
             title: 'This Month Revenue',
@@ -204,7 +204,7 @@ export default function MentorDashboard() {
     // Product stats for cards - Updated to mentor links
     const productStats = [
         { title: 'All Courses', value: dashboardData.totalCourses, icon: FiBook, gradient: 'from-indigo-500 to-purple-500', href: '/dashboard/mentor/course' },
-        { title: 'All Softwares', value: dashboardData.totalSoftware, icon: FiCode, gradient: 'from-cyan-500 to-teal-500', href: '/dashboard/mentor/software' },
+        { title: 'All Softwares', value: dashboardData.totalSoftware, icon: FiCode, gradient: 'from-cyan-500 to-red-500', href: '/dashboard/mentor/software' },
         { title: 'All Websites', value: dashboardData.totalWebsites, icon: FiGlobe, gradient: 'from-pink-500 to-rose-500', href: '/dashboard/mentor/website' },
         { title: 'All Categories', value: dashboardData.categories, icon: FiLayers, gradient: 'from-amber-500 to-orange-500', href: '/dashboard/mentor/category' },
     ];
@@ -213,7 +213,7 @@ export default function MentorDashboard() {
     const quickActions = [
         { title: 'Add Course', href: '/dashboard/mentor/course/create', icon: FiBook, gradient: 'from-amber-500 to-orange-500' },
         { title: 'Add Website', href: '/dashboard/mentor/website/create', icon: FiGlobe, gradient: 'from-pink-500 to-rose-500' },
-        { title: 'Add Software', href: '/dashboard/mentor/software/create', icon: FiCode, gradient: 'from-cyan-500 to-teal-500' },
+        { title: 'Add Software', href: '/dashboard/mentor/software/create', icon: FiCode, gradient: 'from-cyan-500 to-red-500' },
         { title: 'Add Category', href: '/dashboard/mentor/category/create', icon: FiLayers, gradient: 'from-violet-500 to-purple-500' },
     ];
 
@@ -337,7 +337,7 @@ export default function MentorDashboard() {
                     : 'bg-white border-slate-200 shadow-sm'
                     }`}>
                     <div className="flex items-center gap-4 mb-6">
-                        <div className="w-14 h-14 bg-teal-500/10 text-teal-600 rounded-2xl flex items-center justify-center">
+                        <div className="w-14 h-14 bg-red-500/10 text-red-600 rounded-2xl flex items-center justify-center">
                             <FiActivity size={28} />
                         </div>
                         <div>
@@ -352,14 +352,14 @@ export default function MentorDashboard() {
                             : 'bg-slate-50 border-slate-100'
                             }`}>
                             <span className="text-sm text-slate-500">Today's Revenue</span>
-                            <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.todayRevenue.toLocaleString()}</span>
+                            <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.todayRevenue.toLocaleString()}</span>
                         </div>
                         <div className={`flex justify-between items-center p-3 rounded-xl border ${isDark
                             ? 'bg-slate-900/50 border-slate-700'
                             : 'bg-slate-50 border-slate-100'
                             }`}>
                             <span className="text-sm text-slate-500">This Month</span>
-                            <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
+                            <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.monthlyRevenue.toLocaleString()}</span>
                         </div>
                         <div className={`flex justify-between items-center p-3 rounded-xl border ${isDark
                             ? 'bg-slate-900/50 border-slate-700'

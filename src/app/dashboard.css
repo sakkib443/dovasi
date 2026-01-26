@@ -367,7 +367,7 @@
     background-color: rgba(168, 85, 247, 0.15) !important;
 }
 
-.dark .dashboard-container [class*="bg-teal-500/10"] {
+.dark .dashboard-container [class*="bg-red-500/10"] {
     background-color: rgba(20, 184, 166, 0.15) !important;
 }
 

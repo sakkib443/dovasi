@@ -41,7 +41,7 @@ export default function MySoftwaresPage() {
     };
 
     const cardClass = `rounded-2xl border transition-all duration-300 ${isDark
-        ? 'bg-slate-800/50 border-white/5 hover:border-[#41bfb8]/20'
+        ? 'bg-slate-800/50 border-white/5 hover:border-[#E62D26]/20'
         : 'bg-white border-slate-200/60 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:shadow-md'
         }`;
 
@@ -139,11 +139,11 @@ export default function MySoftwaresPage() {
                                 {stats.active.toString().padStart(2, '0')}
                             </h3>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
                             <FiCheck size={20} />
                         </div>
                     </div>
-                    <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 group-hover:w-full w-0`} />
+                    <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald-500 to-red-500 transition-all duration-300 group-hover:w-full w-0`} />
                 </div>
 
                 <div className={`${cardClass} p-5 relative group overflow-hidden`}>
@@ -156,11 +156,11 @@ export default function MySoftwaresPage() {
                                 {stats.downloads.toString().padStart(2, '0')}
                             </h3>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
                             <FiDownload size={20} />
                         </div>
                     </div>
-                    <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#41bfb8] to-[#2dd4bf] transition-all duration-300 group-hover:w-full w-0`} />
+                    <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#E62D26] to-[#c41e18] transition-all duration-300 group-hover:w-full w-0`} />
                 </div>
             </div>
 
@@ -287,7 +287,7 @@ export default function MySoftwaresPage() {
                                         <span className={`uppercase tracking-widest flex items-center gap-1.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                                             <FiShield size={10} /> License
                                         </span>
-                                        <span className="text-[#41bfb8]">Universal</span>
+                                        <span className="text-[#E62D26]">Universal</span>
                                     </div>
                                 </div>
 

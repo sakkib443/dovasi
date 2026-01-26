@@ -46,7 +46,7 @@ const BlizzardBackground = () => {
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#eefcfc]"> {/* Very subtle ice tint base */}
 
             {/* Background Gradient for Depth (Ice Fog) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-100/50 via-teal-50/30 to-white/80 blur-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-100/50 via-red-50/30 to-white/80 blur-xl"></div>
 
             <style jsx>{`
         @keyframes blizzard-far {

@@ -87,7 +87,7 @@ const MentorCategoryPage = () => {
     const getTypeColor = (type) => {
         switch (type) {
             case 'course': return 'from-indigo-500 to-purple-500';
-            case 'website': return 'from-emerald-500 to-teal-500';
+            case 'website': return 'from-emerald-500 to-red-500';
             case 'software': return 'from-violet-500 to-purple-600';
             default: return 'from-slate-500 to-slate-600';
         }
@@ -168,7 +168,7 @@ const MentorCategoryPage = () => {
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <div className="flex items-center justify-between mb-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
                             <FiLayout className="text-white" size={18} />
                         </div>
                         <span className="text-2xl font-black text-slate-800">{stats.website}</span>

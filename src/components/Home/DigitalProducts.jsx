@@ -67,9 +67,9 @@ const DigitalProducts = () => {
     // Get dynamic text functions
     const getBadge = () => {
         if (content?.badge) {
-            return language === 'bn' ? (content.badge.textBn || 'ডিজিটাল পণ্য') : (content.badge.text || 'Digital Products');
+            return language === 'bn' ? (content.badge.textBn || '??????? ????') : (content.badge.text || 'Digital Products');
         }
-        return language === 'bn' ? 'ডিজিটাল পণ্য' : 'Digital Products';
+        return language === 'bn' ? '??????? ????' : 'Digital Products';
     };
 
     const getHeading = () => {
@@ -79,31 +79,31 @@ const DigitalProducts = () => {
             return { text1: text1 || '', highlight: highlight || '' };
         }
         return language === 'bn'
-            ? { text1: 'আমাদের ', highlight: 'প্রিমিয়াম ডিজিটাল পণ্য' }
+            ? { text1: '?????? ', highlight: '?????????? ??????? ????' }
             : { text1: 'Premium ', highlight: 'Digital Products' };
     };
 
     const getDescription = () => {
         if (content?.description) {
             return language === 'bn'
-                ? (content.description.textBn || 'আমাদের প্রিমিয়াম সফটওয়্যার এবং রেডিমেড ওয়েবসাইট কালেকশন আপনার ব্যবসা বাড়াতে সাহায্য করবে।')
+                ? (content.description.textBn || '?????? ?????????? ?????????? ??? ??????? ????????? ??????? ????? ?????? ??????? ??????? ?????')
                 : (content.description.text || 'Explore our collection of premium software and ready-made websites designed to scale your business.');
         }
-        return language === 'bn' ? 'আমাদের প্রিমিয়াম সফটওয়্যার এবং রেডিমেড ওয়েবসাইট কালেকশন আপনার ব্যবসা বাড়াতে সাহায্য করবে।' : 'Explore our collection of premium software and ready-made websites designed to scale your business.';
+        return language === 'bn' ? '?????? ?????????? ?????????? ??? ??????? ????????? ??????? ????? ?????? ??????? ??????? ?????' : 'Explore our collection of premium software and ready-made websites designed to scale your business.';
     };
 
     const getSoftwareTab = () => {
         if (content?.tabs) {
-            return language === 'bn' ? (content.tabs.softwareBn || 'সফটওয়্যার') : (content.tabs.software || 'Software');
+            return language === 'bn' ? (content.tabs.softwareBn || '??????????') : (content.tabs.software || 'Software');
         }
-        return language === 'bn' ? 'সফটওয়্যার' : 'Software';
+        return language === 'bn' ? '??????????' : 'Software';
     };
 
     const getWebsiteTab = () => {
         if (content?.tabs) {
-            return language === 'bn' ? (content.tabs.websiteBn || 'ওয়েবসাইট') : (content.tabs.website || 'Websites');
+            return language === 'bn' ? (content.tabs.websiteBn || '?????????') : (content.tabs.website || 'Websites');
         }
-        return language === 'bn' ? 'ওয়েবসাইট' : 'Websites';
+        return language === 'bn' ? '?????????' : 'Websites';
     };
 
     const heading = getHeading();
@@ -118,14 +118,14 @@ const DigitalProducts = () => {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Static Circles */}
                 <div className="absolute top-20 right-[10%] w-72 h-72 bg-gradient-to-br from-[#F79952]/10 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 left-[10%] w-80 h-80 bg-gradient-to-br from-[#41bfb8]/10 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[#F79952]/5 to-[#41bfb8]/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-20 left-[10%] w-80 h-80 bg-gradient-to-br from-[#E62D26]/10 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[#F79952]/5 to-[#E62D26]/5 rounded-full blur-3xl"></div>
 
                 {/* Static Geometric Shapes */}
                 <div className="absolute top-32 left-[15%] w-16 h-16 border-2 border-[#F79952]/20 rounded-xl"></div>
-                <div className="absolute top-1/4 right-[8%] w-12 h-12 border-2 border-[#41bfb8]/20 rounded-full"></div>
+                <div className="absolute top-1/4 right-[8%] w-12 h-12 border-2 border-[#E62D26]/20 rounded-full"></div>
                 <div className="absolute bottom-1/4 left-[8%] w-20 h-20 border-2 border-[#F79952]/15 rounded-2xl"></div>
-                <div className="absolute bottom-32 right-[20%] w-8 h-8 bg-[#41bfb8]/10 rounded-lg"></div>
+                <div className="absolute bottom-32 right-[20%] w-8 h-8 bg-[#E62D26]/10 rounded-lg"></div>
 
                 {/* Dots Pattern */}
                 <div className="absolute top-40 right-[5%] flex flex-col gap-2 opacity-30">
@@ -141,7 +141,7 @@ const DigitalProducts = () => {
                     {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex gap-2">
                             {[...Array(3)].map((_, j) => (
-                                <div key={j} className="w-1.5 h-1.5 bg-[#41bfb8] rounded-full"></div>
+                                <div key={j} className="w-1.5 h-1.5 bg-[#E62D26] rounded-full"></div>
                             ))}
                         </div>
                     ))}
@@ -203,14 +203,14 @@ const DigitalProducts = () => {
                         <button
                             onClick={() => setActiveType('software')}
                             className={`group relative flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${activeType === 'software'
-                                ? 'bg-[#41bfb8]/10 text-[#41bfb8]'
+                                ? 'bg-[#E62D26]/10 text-[#E62D26]'
                                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white'
                                 }`}
                         >
                             <LuCpu size={18} />
                             <span className={bengaliClass}>{getSoftwareTab()}</span>
                             {activeType === 'software' && (
-                                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#41bfb8] to-[#2dd4bf] rounded-b-xl"></div>
+                                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#E62D26] to-[#c41e18] rounded-b-xl"></div>
                             )}
                         </button>
                         <button
@@ -237,8 +237,8 @@ const DigitalProducts = () => {
                             ) : (
                                 <span>
                                     {displayList.length}+ {activeType === 'software'
-                                        ? (language === 'bn' ? 'রেডি স্ক্রিপ্ট' : 'Ready Scripts')
-                                        : (language === 'bn' ? 'প্রিমিয়াম টেমপ্লেট' : 'Premium Templates')}
+                                        ? (language === 'bn' ? '???? ?????????' : 'Ready Scripts')
+                                        : (language === 'bn' ? '?????????? ????????' : 'Premium Templates')}
                                 </span>
                             )}
                         </span>
@@ -276,7 +276,7 @@ const DigitalProducts = () => {
                         <div className="col-span-full py-20 text-center bg-white dark:bg-[#0d0d0d] rounded-[2rem] border border-dashed border-gray-200 dark:border-white/10">
                             <LuSparkles className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
                             <p className={`text-gray-400 font-medium ${bengaliClass}`}>
-                                {language === 'bn' ? 'এই ক্যাটাগরিতে এখনো কোনো প্রোডাক্ট নেই।' : 'No products found in this category yet.'}
+                                {language === 'bn' ? '?? ??????????? ???? ???? ????????? ????' : 'No products found in this category yet.'}
                             </p>
                         </div>
                     )}
@@ -292,15 +292,15 @@ const DigitalProducts = () => {
                 >
                     {/* Decorative Corner */}
                     <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-[#F79952] to-[#fb923c] opacity-10"></div>
-                    <div className="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] opacity-10"></div>
+                    <div className="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-gradient-to-br from-[#E62D26] to-[#c41e18] opacity-10"></div>
 
                     <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div className="text-center sm:text-left">
                             <h3 className={`text-xl lg:text-2xl font-black text-gray-900 dark:text-white mb-2 ${bengaliClass}`}>
-                                {language === 'bn' ? 'আপনার ব্যবসা শুরু করুন আজই' : 'Ready to Launch Your Business?'}
+                                {language === 'bn' ? '????? ?????? ???? ???? ???' : 'Ready to Launch Your Business?'}
                             </h3>
                             <p className={`text-gray-500 dark:text-gray-400 font-medium ${bengaliClass}`}>
-                                {language === 'bn' ? 'আমাদের সব ডিজিটাল প্রোডাক্ট এক্সপ্লোর করুন' : 'Discover all our digital assets in one place'}
+                                {language === 'bn' ? '?????? ?? ??????? ????????? ????????? ????' : 'Discover all our digital assets in one place'}
                             </p>
                         </div>
 
@@ -310,7 +310,7 @@ const DigitalProducts = () => {
                         >
                             <span className="font-bold text-gray-900 dark:text-white">
                                 {language === 'bn'
-                                    ? `সব ${activeType === 'software' ? 'সফটওয়্যার' : 'ওয়েবসাইট'} দেখুন`
+                                    ? `?? ${activeType === 'software' ? '??????????' : '?????????'} ?????`
                                     : `Explore All ${activeType === 'software' ? 'Software' : 'Websites'}`}
                             </span>
                             <div className="w-10 h-10 rounded-xl bg-[#F79952]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#F79952] group-hover:to-[#fb923c]">

@@ -101,7 +101,7 @@ export default function UserPaymentsPage() {
                 <div className={`${cardClass} p-6 relative overflow-hidden group`}>
                     <div className="relative z-10">
                         <p className={`text-[10px] font-black uppercase tracking-wider mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Cumulative Spent</p>
-                        <h3 className={`text-3xl font-black outfit ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{stats.totalSpent.toLocaleString()}</h3>
+                        <h3 className={`text-3xl font-black outfit ${isDark ? 'text-white' : 'text-slate-800'}`}>?{stats.totalSpent.toLocaleString()}</h3>
                         <div className="mt-4 flex items-center justify-between">
                             <span className="text-xs text-emerald-500 font-bold flex items-center gap-1">
                                 <FiCheckCircle /> Secured
@@ -201,7 +201,7 @@ export default function UserPaymentsPage() {
                                         </div>
                                     </td>
                                     <td className="px-6 py-5 text-right">
-                                        <p className={`text-sm font-black outfit ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>৳{p.amount.toLocaleString()}</p>
+                                        <p className={`text-sm font-black outfit ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>?{p.amount.toLocaleString()}</p>
                                     </td>
                                     <td className="px-6 py-5">
                                         <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${getStatusColor(p.status)}`}>

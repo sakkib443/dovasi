@@ -209,7 +209,7 @@ export default function CreateBlogPage() {
                     <button
                         onClick={() => setPreviewMode(!previewMode)}
                         className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all ${previewMode
-                            ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white'
+                            ? 'bg-gradient-to-r from-red-500 to-cyan-500 text-white'
                             : isDark ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                             }`}
                     >
@@ -228,7 +228,7 @@ export default function CreateBlogPage() {
                     <button
                         onClick={() => handleSubmit('published')}
                         disabled={loading}
-                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg shadow-teal-500/30 hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-semibold shadow-lg shadow-red-500/30 hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
                     >
                         {loading ? (
                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -255,20 +255,20 @@ export default function CreateBlogPage() {
                             onChange={handleChange}
                             placeholder="Enter your blog title..."
                             className={`w-full px-4 py-3 rounded-xl border text-lg font-medium transition-all ${isDark
-                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-teal-500'
-                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-teal-500'
-                                } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-red-500'
+                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-red-500'
+                                } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                         />
                         <input
                             type="text"
                             name="titleBn"
                             value={formData.titleBn}
                             onChange={handleChange}
-                            placeholder="বাংলা শিরোনাম (ঐচ্ছিক)"
+                            placeholder="????? ??????? (??????)"
                             className={`w-full mt-3 px-4 py-2.5 rounded-xl border transition-all ${isDark
-                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-teal-500'
-                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-teal-500'
-                                } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-red-500'
+                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-red-500'
+                                } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                         />
                     </div>
 
@@ -285,9 +285,9 @@ export default function CreateBlogPage() {
                             rows={3}
                             maxLength={500}
                             className={`w-full px-4 py-3 rounded-xl border transition-all resize-none ${isDark
-                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-teal-500'
-                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-teal-500'
-                                } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-red-500'
+                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-red-500'
+                                } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                         />
                         <p className={`text-xs mt-1 text-right ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                             {formData.excerpt.length}/500
@@ -384,12 +384,12 @@ export default function CreateBlogPage() {
                             </div>
                         ) : (
                             <label className={`flex flex-col items-center justify-center h-48 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${isDark
-                                ? 'border-slate-600 hover:border-teal-500 hover:bg-slate-700/50'
-                                : 'border-slate-300 hover:border-teal-500 hover:bg-slate-50'
+                                ? 'border-slate-600 hover:border-red-500 hover:bg-slate-700/50'
+                                : 'border-slate-300 hover:border-red-500 hover:bg-slate-50'
                                 }`}>
                                 <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                                 {uploading ? (
-                                    <div className="w-8 h-8 border-3 border-teal-500/30 border-t-teal-500 rounded-full animate-spin" />
+                                    <div className="w-8 h-8 border-3 border-red-500/30 border-t-red-500 rounded-full animate-spin" />
                                 ) : (
                                     <>
                                         <FiUpload className={`mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} size={24} />
@@ -412,7 +412,7 @@ export default function CreateBlogPage() {
                             className={`w-full px-4 py-2.5 rounded-xl border transition-all ${isDark
                                 ? 'bg-slate-700/50 border-slate-600 text-white'
                                 : 'bg-slate-50 border-slate-200 text-slate-900'
-                                } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                         >
                             <option value="">Select category</option>
                             {categories.map(cat => (
@@ -436,11 +436,11 @@ export default function CreateBlogPage() {
                                 className={`flex-1 px-3 py-2 rounded-lg border text-sm transition-all ${isDark
                                     ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500'
                                     : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400'
-                                    } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                    } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                             />
                             <button
                                 onClick={addTag}
-                                className="px-3 py-2 rounded-lg bg-teal-500 text-white hover:bg-teal-600 transition-colors"
+                                className="px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors"
                             >
                                 <FiTag size={16} />
                             </button>
@@ -450,8 +450,8 @@ export default function CreateBlogPage() {
                                 <span
                                     key={idx}
                                     className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs ${isDark
-                                        ? 'bg-teal-500/20 text-teal-400'
-                                        : 'bg-teal-50 text-teal-600'
+                                        ? 'bg-red-500/20 text-red-400'
+                                        : 'bg-red-50 text-red-600'
                                         }`}
                                 >
                                     #{tag}
@@ -479,7 +479,7 @@ export default function CreateBlogPage() {
                                 className={`w-full pl-10 pr-4 py-2.5 rounded-xl border transition-all ${isDark
                                     ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500'
                                     : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400'
-                                    } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                    } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                             />
                         </div>
                     </div>
@@ -494,7 +494,7 @@ export default function CreateBlogPage() {
                                     name="isFeatured"
                                     checked={formData.isFeatured}
                                     onChange={handleChange}
-                                    className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
+                                    className="w-4 h-4 rounded border-slate-300 text-red-500 focus:ring-red-500"
                                 />
                                 <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Featured Blog</span>
                             </label>
@@ -504,7 +504,7 @@ export default function CreateBlogPage() {
                                     name="isPopular"
                                     checked={formData.isPopular}
                                     onChange={handleChange}
-                                    className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
+                                    className="w-4 h-4 rounded border-slate-300 text-red-500 focus:ring-red-500"
                                 />
                                 <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Mark as Popular</span>
                             </label>
@@ -514,7 +514,7 @@ export default function CreateBlogPage() {
                                     name="allowComments"
                                     checked={formData.allowComments}
                                     onChange={handleChange}
-                                    className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
+                                    className="w-4 h-4 rounded border-slate-300 text-red-500 focus:ring-red-500"
                                 />
                                 <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Allow Comments</span>
                             </label>
@@ -535,7 +535,7 @@ export default function CreateBlogPage() {
                                 className={`w-full px-3 py-2 rounded-lg border text-sm transition-all ${isDark
                                     ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500'
                                     : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400'
-                                    } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                    } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                             />
                             <textarea
                                 name="metaDescription"
@@ -547,7 +547,7 @@ export default function CreateBlogPage() {
                                 className={`w-full px-3 py-2 rounded-lg border text-sm resize-none transition-all ${isDark
                                     ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500'
                                     : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400'
-                                    } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                    } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                             />
                         </div>
                     </div>

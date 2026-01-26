@@ -120,14 +120,14 @@ export default function MentorOrdersPage() {
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative bg-white rounded-2xl border border-slate-200/60 p-6 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-lg">
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center text-white shadow-lg">
                                 <FiDollarSign size={22} />
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-slate-800">৳{totalRevenue.toLocaleString()}</p>
+                                <p className="text-2xl font-bold text-slate-800">?{totalRevenue.toLocaleString()}</p>
                                 <p className="text-sm text-slate-500">Total Revenue</p>
                             </div>
                         </div>
@@ -248,7 +248,7 @@ export default function MentorOrdersPage() {
                                             <span className="text-sm text-slate-700">{order.items?.length || 0} item(s)</span>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <span className="font-bold text-emerald-600 text-lg">৳{order.totalAmount?.toLocaleString()}</span>
+                                            <span className="font-bold text-emerald-600 text-lg">?{order.totalAmount?.toLocaleString()}</span>
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold capitalize ${getPaymentStyle(order.paymentStatus)}`}>
@@ -409,7 +409,7 @@ export default function MentorOrdersPage() {
                                                     <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded capitalize">{item.productType}</span>
                                                 </div>
                                             </div>
-                                            <span className="text-xl font-bold text-emerald-600">৳{item.price?.toLocaleString()}</span>
+                                            <span className="text-xl font-bold text-emerald-600">?{item.price?.toLocaleString()}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -419,11 +419,11 @@ export default function MentorOrdersPage() {
                             <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl p-6 text-white">
                                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/20">
                                     <span className="text-indigo-100">Subtotal</span>
-                                    <span className="font-semibold">৳{selectedOrder.totalAmount?.toLocaleString()}</span>
+                                    <span className="font-semibold">?{selectedOrder.totalAmount?.toLocaleString()}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-lg font-semibold">Total Amount</span>
-                                    <span className="text-3xl font-bold">৳{selectedOrder.totalAmount?.toLocaleString()}</span>
+                                    <span className="text-3xl font-bold">?{selectedOrder.totalAmount?.toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>

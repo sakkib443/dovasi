@@ -134,16 +134,16 @@ export default function MentorCoursesPage() {
 
                 {/* Published */}
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative bg-white rounded-2xl border border-slate-200/60 p-6 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                        <div className="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-emerald-500 to-teal-500 opacity-10 rounded-full blur-2xl" />
+                        <div className="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-emerald-500 to-red-500 opacity-10 rounded-full blur-2xl" />
                         <div className="relative flex items-start justify-between">
                             <div className="flex-1">
                                 <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">Published</p>
                                 <p className="text-3xl font-bold text-slate-800 mb-1">{stats.published}</p>
                                 <p className="text-xs text-slate-400 mb-2">Live courses</p>
                             </div>
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                                 <FiCheckCircle className="text-2xl text-white" />
                             </div>
                         </div>
@@ -232,7 +232,7 @@ export default function MentorCoursesPage() {
                                     {course.courseType}
                                 </div>
                                 <div className="absolute bottom-3 right-3 px-2 py-1 bg-emerald-500 text-white text-xs font-bold rounded-lg shadow-lg">
-                                    ৳{(course.discountPrice || course.price).toLocaleString()}
+                                    ?{(course.discountPrice || course.price).toLocaleString()}
                                 </div>
                             </div>
 
@@ -289,7 +289,7 @@ export default function MentorCoursesPage() {
                                 </p>
                             </div>
                             <div className="text-right shrink-0">
-                                <p className="text-sm font-black text-slate-800">৳{course.price.toLocaleString()}</p>
+                                <p className="text-sm font-black text-slate-800">?{course.price.toLocaleString()}</p>
                                 <p className="text-[11px] text-slate-400">{course.totalEnrollments || 0} enrolled</p>
                             </div>
                             {/* Mentor Actions - NO DELETE BUTTON */}

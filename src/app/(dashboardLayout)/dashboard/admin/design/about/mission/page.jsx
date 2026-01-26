@@ -9,7 +9,7 @@ const AboutMissionDesignPage = () => {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [content, setContent] = useState({
-        badge: { text: 'Our Mission', textBn: 'আমাদের মিশন' },
+        badge: { text: 'Our Mission', textBn: '?????? ????' },
         mission: { title: '', titleBn: '', text: '', textBn: '' },
         vision: { title: '', titleBn: '', text: '', textBn: '' }
     });
@@ -64,7 +64,7 @@ const AboutMissionDesignPage = () => {
                     onChange={onChange}
                     placeholder={placeholder}
                     rows={3}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 transition-all"
                 />
             ) : (
                 <input
@@ -72,7 +72,7 @@ const AboutMissionDesignPage = () => {
                     value={value || ''}
                     onChange={onChange}
                     placeholder={placeholder}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 transition-all"
                 />
             )}
         </div>
@@ -81,7 +81,7 @@ const AboutMissionDesignPage = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center min-h-[60vh]">
-                <FiRefreshCw className="w-12 h-12 text-teal-500 animate-spin" />
+                <FiRefreshCw className="w-12 h-12 text-red-500 animate-spin" />
             </div>
         );
     }
@@ -97,7 +97,7 @@ const AboutMissionDesignPage = () => {
                     <button onClick={fetchContent} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
                         <FiRefreshCw size={18} /> Refresh
                     </button>
-                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white disabled:opacity-50">
+                    <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white disabled:opacity-50">
                         <FiSave size={18} /> {saving ? 'Saving...' : 'Save'}
                     </button>
                 </div>
@@ -107,9 +107,9 @@ const AboutMissionDesignPage = () => {
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Mission</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <InputField label="Title (English)" value={content.mission?.title} onChange={(e) => setContent({ ...content, mission: { ...content.mission, title: e.target.value } })} placeholder="Our Mission" />
-                    <InputField label="Title (Bengali)" value={content.mission?.titleBn} onChange={(e) => setContent({ ...content, mission: { ...content.mission, titleBn: e.target.value } })} placeholder="আমাদের মিশন" />
+                    <InputField label="Title (Bengali)" value={content.mission?.titleBn} onChange={(e) => setContent({ ...content, mission: { ...content.mission, titleBn: e.target.value } })} placeholder="?????? ????" />
                     <InputField label="Description (English)" value={content.mission?.text} onChange={(e) => setContent({ ...content, mission: { ...content.mission, text: e.target.value } })} textarea placeholder="Mission description..." />
-                    <InputField label="Description (Bengali)" value={content.mission?.textBn} onChange={(e) => setContent({ ...content, mission: { ...content.mission, textBn: e.target.value } })} textarea placeholder="মিশন বিবরণ..." />
+                    <InputField label="Description (Bengali)" value={content.mission?.textBn} onChange={(e) => setContent({ ...content, mission: { ...content.mission, textBn: e.target.value } })} textarea placeholder="???? ?????..." />
                 </div>
             </div>
 
@@ -117,9 +117,9 @@ const AboutMissionDesignPage = () => {
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Vision</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <InputField label="Title (English)" value={content.vision?.title} onChange={(e) => setContent({ ...content, vision: { ...content.vision, title: e.target.value } })} placeholder="Our Vision" />
-                    <InputField label="Title (Bengali)" value={content.vision?.titleBn} onChange={(e) => setContent({ ...content, vision: { ...content.vision, titleBn: e.target.value } })} placeholder="আমাদের ভিশন" />
+                    <InputField label="Title (Bengali)" value={content.vision?.titleBn} onChange={(e) => setContent({ ...content, vision: { ...content.vision, titleBn: e.target.value } })} placeholder="?????? ????" />
                     <InputField label="Description (English)" value={content.vision?.text} onChange={(e) => setContent({ ...content, vision: { ...content.vision, text: e.target.value } })} textarea placeholder="Vision description..." />
-                    <InputField label="Description (Bengali)" value={content.vision?.textBn} onChange={(e) => setContent({ ...content, vision: { ...content.vision, textBn: e.target.value } })} textarea placeholder="ভিশন বিবরণ..." />
+                    <InputField label="Description (Bengali)" value={content.vision?.textBn} onChange={(e) => setContent({ ...content, vision: { ...content.vision, textBn: e.target.value } })} textarea placeholder="???? ?????..." />
                 </div>
             </div>
         </div>

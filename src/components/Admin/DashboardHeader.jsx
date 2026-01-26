@@ -67,13 +67,13 @@ const DashboardHeader = () => {
               type="text"
               placeholder="Search courses, students, orders..."
               className={`w-full pl-11 pr-4 py-2.5 border-0 rounded-xl text-sm transition-all ${isDark
-                ? 'bg-slate-800/80 text-slate-200 placeholder:text-slate-500 focus:ring-[#41bfb8]/30 focus:bg-slate-800'
-                : 'bg-slate-100/80 text-slate-700 placeholder:text-slate-400 focus:ring-[#41bfb8]/20 focus:bg-white'
+                ? 'bg-slate-800/80 text-slate-200 placeholder:text-slate-500 focus:ring-[#E62D26]/30 focus:bg-slate-800'
+                : 'bg-slate-100/80 text-slate-700 placeholder:text-slate-400 focus:ring-[#E62D26]/20 focus:bg-white'
                 } focus:outline-none focus:ring-2`}
             />
             <kbd className={`absolute right-3 top-1/2 -translate-y-1/2 hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium ${isDark ? 'bg-slate-700 text-slate-400' : 'bg-slate-200/80 text-slate-500'
               }`}>
-              ⌘K
+              ?K
             </kbd>
           </div>
         </div>
@@ -84,7 +84,7 @@ const DashboardHeader = () => {
           <button
             onClick={toggleTheme}
             className={`relative p-2.5 rounded-xl transition-all duration-300 overflow-hidden group ${isDark
-              ? 'bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] text-white shadow-lg shadow-[#41bfb8]/30 hover:shadow-[#41bfb8]/50'
+              ? 'bg-gradient-to-br from-[#E62D26] to-[#c41e18] text-white shadow-lg shadow-[#E62D26]/30 hover:shadow-[#E62D26]/50'
               : 'bg-gradient-to-br from-[#F79952] to-orange-500 text-white shadow-lg shadow-[#F79952]/30 hover:shadow-[#F79952]/50'
               }`}
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
@@ -124,11 +124,11 @@ const DashboardHeader = () => {
                 setShowProfile(!showProfile);
               }}
               className={`flex items-center gap-3 pl-3 pr-2 py-1.5 rounded-xl transition-all ${isDark
-                ? 'bg-gradient-to-r from-[#41bfb8]/20 to-[#2dd4bf]/20 hover:from-[#41bfb8]/30 hover:to-[#2dd4bf]/30'
-                : 'bg-gradient-to-r from-[#41bfb8]/10 to-[#2dd4bf]/10 hover:from-[#41bfb8]/20 hover:to-[#2dd4bf]/20'
+                ? 'bg-gradient-to-r from-[#E62D26]/20 to-[#c41e18]/20 hover:from-[#E62D26]/30 hover:to-[#c41e18]/30'
+                : 'bg-gradient-to-r from-[#E62D26]/10 to-[#c41e18]/10 hover:from-[#E62D26]/20 hover:to-[#c41e18]/20'
                 }`}
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-[#41bfb8]/25">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-[#E62D26]/25">
                 {user?.firstName?.[0] || 'A'}
               </div>
               <div className="hidden md:block text-left">
@@ -149,11 +149,11 @@ const DashboardHeader = () => {
                 : 'bg-white border-slate-100 shadow-slate-200/50'
                 }`}>
                 <div className={`p-4 border-b ${isDark
-                  ? 'bg-gradient-to-r from-[#41bfb8]/10 to-[#2dd4bf]/10 border-slate-700'
-                  : 'bg-gradient-to-r from-[#41bfb8]/5 to-[#2dd4bf]/5 border-slate-100'
+                  ? 'bg-gradient-to-r from-[#E62D26]/10 to-[#c41e18]/10 border-slate-700'
+                  : 'bg-gradient-to-r from-[#E62D26]/5 to-[#c41e18]/5 border-slate-100'
                   }`}>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-[#41bfb8]/25">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-[#E62D26]/25">
                       {user?.firstName?.[0] || 'A'}
                     </div>
                     <div>

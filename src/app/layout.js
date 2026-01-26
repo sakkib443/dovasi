@@ -61,7 +61,7 @@ export const metadata = {
     default: "ejobs it | Home",
   },
   description:
-    "ejobs it — a leading IT training institute and digital solutions provider. We specialize in professional courses, ready-made software, and premium website templates to help you grow your skills and business.",
+    "ejobs it � a leading IT training institute and digital solutions provider. We specialize in professional courses, ready-made software, and premium website templates to help you grow your skills and business.",
   icons: {
     icon: "/images/ejobsitlogo.png",
     shortcut: "/images/ejobsitlogo.png",

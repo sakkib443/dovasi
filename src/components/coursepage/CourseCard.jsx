@@ -65,7 +65,7 @@ const CourseCard = ({ course }) => {
         <div className="flex justify-between gap-2 items-center mt-2 mb-2">
           <Link
             href={`/${id}`}
-            className="flex gap-2 text-xl items-center border bg-[#41bfb8] border-[#41bfb8] px-4 ml-2 py-2 rounded-md"
+            className="flex gap-2 text-xl items-center border bg-[#E62D26] border-[#E62D26] px-4 ml-2 py-2 rounded-md"
           >
             <LuBookOpenCheck className="text-md font-semibold text-white" />
             <p className="work tracking-tight text-[15px] text-white">
@@ -75,14 +75,14 @@ const CourseCard = ({ course }) => {
 
           <Link
             href={`https://wa.me/8801730481212?text=${encodeURIComponent(
-              `আমি "${title}" কোর্সটি করতে চাই।`
+              `??? "${title}" ??????? ???? ????`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className="flex gap-1 text-xl items-center border border-[#41bfb8] px-4 py-2 mr-6 rounded-md hover:bg-[#e0f7f5] cursor-pointer transition">
-              <FaWhatsapp className="text-xl text-[#41bfb8] font-medium" />
-              <p className="text-[#41bfb8] work text-[15px] tracking-tight">
+            <div className="flex gap-1 text-xl items-center border border-[#E62D26] px-4 py-2 mr-6 rounded-md hover:bg-[#e0f7f5] cursor-pointer transition">
+              <FaWhatsapp className="text-xl text-[#E62D26] font-medium" />
+              <p className="text-[#E62D26] work text-[15px] tracking-tight">
                 Get Course
               </p>
             </div>

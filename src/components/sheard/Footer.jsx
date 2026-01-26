@@ -45,13 +45,13 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(65,191,184,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(65,191,184,0.03)_1px,transparent_1px)] bg-[size:40px_40px] dark:opacity-30"></div>
 
       {/* Gradient Orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#41bfb8]/5 dark:bg-[#41bfb8]/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-[#E62D26]/5 dark:bg-[#E62D26]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#F79952]/5 dark:bg-[#F79952]/10 rounded-full blur-3xl"></div>
 
       {/* Top CTA Section */}
       <div className="relative border-b border-gray-200 dark:border-gray-700/50">
         <div className="container mx-auto px-4 lg:px-16 py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 bg-gradient-to-r from-[#41bfb8]/10 to-[#F79952]/10 dark:from-[#41bfb8]/20 dark:to-[#F79952]/20 rounded-md p-6 lg:p-8 border border-gray-200 dark:border-gray-700/50">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 bg-gradient-to-r from-[#E62D26]/10 to-[#F79952]/10 dark:from-[#E62D26]/20 dark:to-[#F79952]/20 rounded-md p-6 lg:p-8 border border-gray-200 dark:border-gray-700/50">
             <div className="text-center lg:text-left">
               <h3 className={`text-xl lg:text-2xl font-bold text-gray-800 dark:text-white outfit mb-2 ${bengaliClass}`}>
                 {t("footer.ctaHeading")}
@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
             <Link
               href="/courses"
-              className={`group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#41bfb8] to-[#38a89d] text-white rounded-md font-semibold work hover:shadow-lg hover:shadow-[#41bfb8]/30 transition-all duration-300 ${bengaliClass}`}
+              className={`group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#E62D26] to-[#38a89d] text-white rounded-md font-semibold work hover:shadow-lg hover:shadow-[#E62D26]/30 transition-all duration-300 ${bengaliClass}`}
             >
               <span>{t("footer.exploreCourses")}</span>
               <LuArrowUpRight className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -115,9 +115,9 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("footer.enterEmail")}
-                  className={`flex-1 px-4 py-2.5 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-gray-600/50 rounded-md text-gray-800 dark:text-gray-200 text-sm work placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-[#41bfb8] transition-colors ${bengaliClass}`}
+                  className={`flex-1 px-4 py-2.5 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-gray-600/50 rounded-md text-gray-800 dark:text-gray-200 text-sm work placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-[#E62D26] transition-colors ${bengaliClass}`}
                 />
-                <button className="px-4 py-2.5 bg-[#41bfb8] hover:bg-[#38a89d] text-white rounded-md transition-colors">
+                <button className="px-4 py-2.5 bg-[#E62D26] hover:bg-[#38a89d] text-white rounded-md transition-colors">
                   <LuSend className="text-lg" />
                 </button>
               </div>
@@ -127,7 +127,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className={`text-gray-800 dark:text-white font-semibold outfit mb-5 flex items-center gap-2 ${bengaliClass}`}>
-              <span className="w-2 h-2 bg-[#41bfb8] rounded-full"></span>
+              <span className="w-2 h-2 bg-[#E62D26] rounded-full"></span>
               {t("footer.quickLinks")}
             </h4>
             <ul className="space-y-3">
@@ -135,9 +135,9 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.to}
-                    className={`text-gray-600 dark:text-gray-400 hover:text-[#41bfb8] text-sm work transition-colors inline-flex items-center gap-2 group ${bengaliClass}`}
+                    className={`text-gray-600 dark:text-gray-400 hover:text-[#E62D26] text-sm work transition-colors inline-flex items-center gap-2 group ${bengaliClass}`}
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-[#41bfb8] transition-all duration-300"></span>
+                    <span className="w-0 group-hover:w-2 h-px bg-[#E62D26] transition-all duration-300"></span>
                     {link.label}
                   </Link>
                 </li>
@@ -169,18 +169,18 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className={`text-gray-800 dark:text-white font-semibold outfit mb-5 flex items-center gap-2 ${bengaliClass}`}>
-              <span className="w-2 h-2 bg-[#41bfb8] rounded-full"></span>
+              <span className="w-2 h-2 bg-[#E62D26] rounded-full"></span>
               {t("footer.contactUs")}
             </h4>
             <ul className="space-y-4">
               <li>
                 <a href="tel:+8801730481212" className="group flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-md bg-[#41bfb8]/10 dark:bg-[#41bfb8]/20 flex items-center justify-center shrink-0 group-hover:bg-[#41bfb8]/20 dark:group-hover:bg-[#41bfb8]/30 transition-colors">
-                    <IoCallOutline className="text-[#41bfb8]" />
+                  <div className="w-9 h-9 rounded-md bg-[#E62D26]/10 dark:bg-[#E62D26]/20 flex items-center justify-center shrink-0 group-hover:bg-[#E62D26]/20 dark:group-hover:bg-[#E62D26]/30 transition-colors">
+                    <IoCallOutline className="text-[#E62D26]" />
                   </div>
                   <div>
                     <p className={`text-xs text-gray-400 dark:text-gray-500 work ${bengaliClass}`}>{t("footer.phone")}</p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#41bfb8] transition-colors">+880 1730-481212</p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#E62D26] transition-colors">+880 1730-481212</p>
                   </div>
                 </a>
               </li>
@@ -197,8 +197,8 @@ const Footer = () => {
               </li>
               <li>
                 <div className="group flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-md bg-[#41bfb8]/10 dark:bg-[#41bfb8]/20 flex items-center justify-center shrink-0">
-                    <IoLocationOutline className="text-[#41bfb8]" />
+                  <div className="w-9 h-9 rounded-md bg-[#E62D26]/10 dark:bg-[#E62D26]/20 flex items-center justify-center shrink-0">
+                    <IoLocationOutline className="text-[#E62D26]" />
                   </div>
                   <div>
                     <p className={`text-xs text-gray-400 dark:text-gray-500 work ${bengaliClass}`}>{t("footer.address")}</p>

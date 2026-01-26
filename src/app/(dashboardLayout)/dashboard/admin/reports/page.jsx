@@ -77,7 +77,7 @@ const ReportsPage = () => {
         {
             id: 'revenue',
             title: 'Revenue Analysis',
-            titleBn: 'আয় বিশ্লেষণ',
+            titleBn: '??? ????????',
             description: 'Complete financial overview with revenue breakdown, monthly comparison and profit analysis.',
             icon: FiPieChart,
             color: 'from-indigo-500 to-purple-600',
@@ -86,16 +86,16 @@ const ReportsPage = () => {
         {
             id: 'orders',
             title: 'Sales & Orders',
-            titleBn: 'বিক্রয় ও অর্ডার',
+            titleBn: '??????? ? ??????',
             description: 'Detailed transaction history with customer info, payment status and order timeline.',
             icon: FiShoppingBag,
-            color: 'from-emerald-500 to-teal-600',
+            color: 'from-emerald-500 to-red-600',
             bgColor: 'bg-emerald-500'
         },
         {
             id: 'users',
             title: 'User Analytics',
-            titleBn: 'ব্যবহারকারী বিশ্লেষণ',
+            titleBn: '??????????? ????????',
             description: 'User growth metrics, enrollment statistics and student engagement data.',
             icon: FiUsers,
             color: 'from-blue-500 to-cyan-600',
@@ -104,7 +104,7 @@ const ReportsPage = () => {
         {
             id: 'inventory',
             title: 'Product Portfolio',
-            titleBn: 'প্রোডাক্ট পোর্টফোলিও',
+            titleBn: '????????? ??????????',
             description: 'Complete inventory of courses, websites and software with performance metrics.',
             icon: FiFileText,
             color: 'from-amber-500 to-orange-600',
@@ -511,7 +511,7 @@ const ReportsPage = () => {
             {/* Quick Summary */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                    { label: 'Total Revenue', value: `৳${stats?.summary?.totalRevenue?.toLocaleString() || '0'}`, icon: FiDollarSign, color: 'from-emerald-500 to-teal-600' },
+                    { label: 'Total Revenue', value: `?${stats?.summary?.totalRevenue?.toLocaleString() || '0'}`, icon: FiDollarSign, color: 'from-emerald-500 to-red-600' },
                     { label: 'Total Orders', value: stats?.summary?.totalOrdersCount || '0', icon: FiShoppingBag, color: 'from-blue-500 to-indigo-600' },
                     { label: 'Total Courses', value: stats?.summary?.totalCourses || '0', icon: FiBook, color: 'from-purple-500 to-pink-600' },
                     { label: 'Total Users', value: stats?.summary?.totalUsers || '0', icon: FiUsers, color: 'from-amber-500 to-orange-600' }

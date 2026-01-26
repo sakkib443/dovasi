@@ -258,7 +258,7 @@ const FavoritesRatingsPage = () => {
                                                     )}
                                                     <div>
                                                         <p className="font-semibold text-sm line-clamp-1">{fav.product?.title || "Unknown Product"}</p>
-                                                        <p className="text-xs text-slate-400">৳{fav.product?.price?.toLocaleString()}</p>
+                                                        <p className="text-xs text-slate-400">?{fav.product?.price?.toLocaleString()}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -348,7 +348,7 @@ const FavoritesRatingsPage = () => {
                                         <tr key={review._id} className="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
                                             <td className="p-4">
                                                 <div className="flex flex-col">
-                                                    <span className="uppercase text-[10px] text-teal-500 font-bold tracking-wider mb-0.5">{review.productType}</span>
+                                                    <span className="uppercase text-[10px] text-red-500 font-bold tracking-wider mb-0.5">{review.productType}</span>
                                                     <span className="font-semibold text-sm line-clamp-1 max-w-[180px]">
                                                         {review.productDetails?.title || "Unknown Product"}
                                                     </span>

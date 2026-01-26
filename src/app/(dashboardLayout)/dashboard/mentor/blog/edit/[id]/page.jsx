@@ -128,7 +128,7 @@ export default function MentorEditBlogPage() {
 
     if (loading) return (
         <div className="flex items-center justify-center min-h-[60vh]">
-            <FiLoader className="w-12 h-12 animate-spin text-teal-500" />
+            <FiLoader className="w-12 h-12 animate-spin text-red-500" />
         </div>
     );
 
@@ -146,13 +146,13 @@ export default function MentorEditBlogPage() {
                     </div>
                 </div>
                 <div className="flex gap-3">
-                    <button onClick={() => setPreviewMode(!previewMode)} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium ${previewMode ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white' : isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-600'}`}>
+                    <button onClick={() => setPreviewMode(!previewMode)} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium ${previewMode ? 'bg-gradient-to-r from-red-500 to-cyan-500 text-white' : isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-600'}`}>
                         {previewMode ? <FiEdit3 size={16} /> : <FiEye size={16} />} {previewMode ? 'Edit' : 'Preview'}
                     </button>
                     <button onClick={() => handleSubmit('draft')} disabled={saving} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl ${isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-600'}`}>
                         <FiSave size={16} /> Save Draft
                     </button>
-                    <button onClick={() => handleSubmit('published')} disabled={saving} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg disabled:opacity-50">
+                    <button onClick={() => handleSubmit('published')} disabled={saving} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-semibold shadow-lg disabled:opacity-50">
                         {saving ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <FiCheck size={16} />} Update
                     </button>
                 </div>
@@ -202,7 +202,7 @@ export default function MentorEditBlogPage() {
                         ) : (
                             <label className={`flex flex-col items-center justify-center h-48 border-2 border-dashed rounded-xl cursor-pointer ${isDark ? 'border-slate-600' : 'border-slate-300'}`}>
                                 <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-                                {uploading ? <div className="w-8 h-8 border-3 border-teal-500/30 border-t-teal-500 rounded-full animate-spin" /> : <FiUpload size={24} className={isDark ? 'text-slate-500' : 'text-slate-400'} />}
+                                {uploading ? <div className="w-8 h-8 border-3 border-red-500/30 border-t-red-500 rounded-full animate-spin" /> : <FiUpload size={24} className={isDark ? 'text-slate-500' : 'text-slate-400'} />}
                             </label>
                         )}
                     </div>
@@ -219,11 +219,11 @@ export default function MentorEditBlogPage() {
                         <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Tags *</label>
                         <div className="flex gap-2">
                             <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())} placeholder="Add tag" className={`flex-1 px-3 py-2 rounded-lg border text-sm ${isDark ? 'bg-slate-700/50 border-slate-600 text-white' : 'bg-slate-50 border-slate-200'}`} />
-                            <button onClick={addTag} className="px-3 py-2 rounded-lg bg-teal-500 text-white"><FiTag size={16} /></button>
+                            <button onClick={addTag} className="px-3 py-2 rounded-lg bg-red-500 text-white"><FiTag size={16} /></button>
                         </div>
                         <div className="flex flex-wrap gap-2 mt-3">
                             {formData.tags.map((tag, i) => (
-                                <span key={i} className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs ${isDark ? 'bg-teal-500/20 text-teal-400' : 'bg-teal-50 text-teal-600'}`}>
+                                <span key={i} className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs ${isDark ? 'bg-red-500/20 text-red-400' : 'bg-red-50 text-red-600'}`}>
                                     #{tag}<button onClick={() => removeTag(tag)}><FiX size={12} /></button>
                                 </span>
                             ))}

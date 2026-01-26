@@ -68,7 +68,7 @@ const FavoritesPage = () => {
     const getIcon = (type) => {
         switch (type) {
             case "website": return <LuGlobe className="text-blue-500" />;
-            case "software": return <LuCode className="text-teal-500" />;
+            case "software": return <LuCode className="text-red-500" />;
             case "course": return <LuBookOpen className="text-purple-500" />;
             default: return null;
         }
@@ -193,7 +193,7 @@ const FavoritesPage = () => {
                                         <div className="flex flex-col">
                                             <span className={`text-[10px] font-medium uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Price</span>
                                             <span className={`text-lg font-bold outfit ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                                                ৳{(item.product?.price || 0).toLocaleString()}
+                                                ?{(item.product?.price || 0).toLocaleString()}
                                             </span>
                                         </div>
 

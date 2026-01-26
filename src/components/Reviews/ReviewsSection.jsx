@@ -42,7 +42,7 @@ const ReviewsSection = ({ productId, productType }) => {
                 <div className="w-full md:w-auto">
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-gray-200"
+                        className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-gray-200"
                     >
                         <LuMessageSquarePlus size={18} />
                         Write a Review
@@ -72,7 +72,7 @@ const ReviewsSection = ({ productId, productType }) => {
                                     {review.user?.avatar ? (
                                         <img src={review.user.avatar} alt="User" className="w-10 h-10 rounded-full object-cover border border-gray-200" />
                                     ) : (
-                                        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
+                                        <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                                             <FaUserCircle size={24} />
                                         </div>
                                     )}
@@ -104,7 +104,7 @@ const ReviewsSection = ({ productId, productType }) => {
 
                                 <button
                                     onClick={() => handleHelpful(review._id)}
-                                    className="flex items-center gap-1.5 text-gray-400 hover:text-teal-600 text-xs font-medium transition-colors ml-auto"
+                                    className="flex items-center gap-1.5 text-gray-400 hover:text-red-600 text-xs font-medium transition-colors ml-auto"
                                 >
                                     <FaThumbsUp size={12} />
                                     Helpful ({review.helpfulCount || 0})

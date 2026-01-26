@@ -75,36 +75,36 @@ const HomeCategory = () => {
         {
             id: 'courses',
             icon: LuGraduationCap,
-            title: language === 'bn' ? 'কোর্স সমূহ' : 'Courses',
-            subtitle: language === 'bn' ? 'প্রফেশনাল স্কিল শিখুন' : 'Professional Skills',
-            itemLabel: language === 'bn' ? 'কোর্স' : 'Courses',
+            title: language === 'bn' ? '????? ????' : 'Courses',
+            subtitle: language === 'bn' ? '????????? ????? ?????' : 'Professional Skills',
+            itemLabel: language === 'bn' ? '?????' : 'Courses',
             color: 'teal',
             href: '/courses'
         },
         {
             id: 'software',
             icon: LuCode,
-            title: language === 'bn' ? 'সফটওয়্যার' : 'Software',
-            subtitle: language === 'bn' ? 'প্রিমিয়াম স্ক্রিপ্ট' : 'Premium Scripts',
-            itemLabel: language === 'bn' ? 'আইটেম' : 'Items',
+            title: language === 'bn' ? '??????????' : 'Software',
+            subtitle: language === 'bn' ? '?????????? ?????????' : 'Premium Scripts',
+            itemLabel: language === 'bn' ? '?????' : 'Items',
             color: 'orange',
             href: '/software'
         },
         {
             id: 'websites',
             icon: LuGlobe,
-            title: language === 'bn' ? 'ওয়েবসাইট' : 'Websites',
-            subtitle: language === 'bn' ? 'প্রিমিয়াম টেমপ্লেট' : 'Premium Templates',
-            itemLabel: language === 'bn' ? 'টেমপ্লেট' : 'Templates',
+            title: language === 'bn' ? '?????????' : 'Websites',
+            subtitle: language === 'bn' ? '?????????? ????????' : 'Premium Templates',
+            itemLabel: language === 'bn' ? '????????' : 'Templates',
             color: 'teal',
             href: '/website'
         },
         {
             id: 'tools',
             icon: LuWrench,
-            title: language === 'bn' ? 'টুলস' : 'Tools',
-            subtitle: language === 'bn' ? 'প্রোডাক্টিভিটি টুলস' : 'Productivity Tools',
-            itemLabel: language === 'bn' ? 'টুলস' : 'Tools',
+            title: language === 'bn' ? '????' : 'Tools',
+            subtitle: language === 'bn' ? '?????????????? ????' : 'Productivity Tools',
+            itemLabel: language === 'bn' ? '????' : 'Tools',
             color: 'orange',
             href: '/tools'
         }
@@ -113,11 +113,11 @@ const HomeCategory = () => {
     const getColorClasses = (color) => {
         if (color === 'teal') {
             return {
-                gradient: 'from-[#41bfb8] to-[#2dd4bf]',
-                light: 'bg-[#41bfb8]/5',
-                text: 'text-[#41bfb8]',
-                border: 'border-[#41bfb8]/15',
-                shadow: 'shadow-[#41bfb8]/10'
+                gradient: 'from-[#E62D26] to-[#c41e18]',
+                light: 'bg-[#E62D26]/5',
+                text: 'text-[#E62D26]',
+                border: 'border-[#E62D26]/15',
+                shadow: 'shadow-[#E62D26]/10'
             };
         }
         return {
@@ -135,14 +135,14 @@ const HomeCategory = () => {
             {/* Background Elements - Static */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Static Circles */}
-                <div className="absolute top-20 left-[10%] w-72 h-72 bg-gradient-to-br from-[#41bfb8]/5 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute top-20 left-[10%] w-72 h-72 bg-gradient-to-br from-[#E62D26]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="absolute bottom-20 right-[10%] w-80 h-80 bg-gradient-to-br from-[#F79952]/5 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[#41bfb8]/3 to-[#F79952]/3 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-[#E62D26]/3 to-[#F79952]/3 rounded-full blur-3xl"></div>
 
                 {/* Static Geometric Shapes */}
-                <div className="absolute top-32 right-[15%] w-16 h-16 border-2 border-[#41bfb8]/20 rounded-xl"></div>
+                <div className="absolute top-32 right-[15%] w-16 h-16 border-2 border-[#E62D26]/20 rounded-xl"></div>
                 <div className="absolute top-1/4 left-[8%] w-12 h-12 border-2 border-[#F79952]/20 rounded-full"></div>
-                <div className="absolute bottom-1/4 right-[8%] w-20 h-20 border-2 border-[#41bfb8]/15 rounded-2xl"></div>
+                <div className="absolute bottom-1/4 right-[8%] w-20 h-20 border-2 border-[#E62D26]/15 rounded-2xl"></div>
                 <div className="absolute bottom-32 left-[20%] w-8 h-8 bg-[#F79952]/10 rounded-lg"></div>
 
                 {/* Dots Pattern */}
@@ -150,7 +150,7 @@ const HomeCategory = () => {
                     {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex gap-2">
                             {[...Array(3)].map((_, j) => (
-                                <div key={j} className="w-1.5 h-1.5 bg-[#41bfb8] rounded-full"></div>
+                                <div key={j} className="w-1.5 h-1.5 bg-[#E62D26] rounded-full"></div>
                             ))}
                         </div>
                     ))}
@@ -177,17 +177,17 @@ const HomeCategory = () => {
                 >
                     {/* Badge */}
                     <motion.div
-                        className="inline-flex items-center gap-3 mb-5 px-5 py-2.5 rounded-full bg-white dark:bg-black/50 border border-teal-500/30 dark:border-teal-500/20 shadow-sm backdrop-blur-md"
+                        className="inline-flex items-center gap-3 mb-5 px-5 py-2.5 rounded-full bg-white dark:bg-black/50 border border-red-500/30 dark:border-red-500/20 shadow-sm backdrop-blur-md"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-                            <span className="w-2.5 h-2.5 bg-teal-500 rounded-full"></span>
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-red-500/20 to-cyan-500/20 flex items-center justify-center">
+                            <span className="w-2.5 h-2.5 bg-red-500 rounded-full"></span>
                         </div>
-                        <span className={`text-xs font-black text-teal-600 dark:text-teal-400 uppercase tracking-[0.2em] ${bengaliClass}`}>
-                            {language === 'bn' ? 'আমাদের প্রোডাক্ট' : 'Our Products'}
+                        <span className={`text-xs font-black text-red-600 dark:text-red-400 uppercase tracking-[0.2em] ${bengaliClass}`}>
+                            {language === 'bn' ? '?????? ?????????' : 'Our Products'}
                         </span>
                     </motion.div>
 
@@ -200,7 +200,7 @@ const HomeCategory = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {language === 'bn'
-                            ? <>ক্যাটাগরি <span className="text-primary">অনুযায়ী</span> খুঁজুন</>
+                            ? <>????????? <span className="text-primary">????????</span> ??????</>
                             : <>Browse by <span className="text-primary">Category</span></>}
                     </motion.h2>
 
@@ -212,7 +212,7 @@ const HomeCategory = () => {
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         {language === 'bn'
-                            ? 'আমাদের বিভিন্ন ক্যাটাগরি থেকে আপনার প্রয়োজনীয় প্রোডাক্ট খুঁজে নিন। কোর্স, সফটওয়্যার, ওয়েবসাইট টেমপ্লেট এবং প্রোডাক্টিভিটি টুলস - সবই এক জায়গায়।'
+                            ? '?????? ??????? ????????? ???? ????? ??????????? ????????? ????? ???? ?????, ??????????, ????????? ???????? ??? ?????????????? ???? - ??? ?? ?????????'
                             : 'Explore our diverse categories to find exactly what you need. Courses, software, website templates, and productivity tools - all in one place.'}
                     </motion.p>
                 </motion.div>

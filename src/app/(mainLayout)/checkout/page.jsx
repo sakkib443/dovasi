@@ -131,7 +131,7 @@ const CheckoutContent = () => {
                     discountValue: data.data.discountValue
                 });
                 setDiscountAmount(data.data.discount);
-                toast.success(`Coupon applied! You save ৳${data.data.discount}`);
+                toast.success(`Coupon applied! You save ?${data.data.discount}`);
             } else {
                 toast.error(data.message || 'Invalid coupon code');
             }
@@ -223,7 +223,7 @@ const CheckoutContent = () => {
                 const executeResult = await executeRes.json();
                 if (!executeRes.ok) throw new Error(executeResult.message || 'Payment execution failed');
 
-                toast.success('Payment successful! 🎉');
+                toast.success('Payment successful! ??');
                 setIsSuccess(true);
                 if (!courseId) dispatch(clearCart());
 
@@ -253,7 +253,7 @@ const CheckoutContent = () => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="flex flex-col items-center gap-4">
-                    <LuLoader className="animate-spin text-[#41bfb8]" size={40} />
+                    <LuLoader className="animate-spin text-[#E62D26]" size={40} />
                     <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Preparing Checkout...</p>
                 </div>
             </div>
@@ -276,7 +276,7 @@ const CheckoutContent = () => {
                 </p>
                 <button
                     onClick={() => router.push('/dashboard/user/courses')}
-                    className="px-8 py-4 bg-slate-900 text-white rounded-md font-black text-sm uppercase tracking-widest hover:bg-[#41bfb8] transition-all flex items-center gap-3"
+                    className="px-8 py-4 bg-slate-900 text-white rounded-md font-black text-sm uppercase tracking-widest hover:bg-[#E62D26] transition-all flex items-center gap-3"
                 >
                     Go to My Courses <LuArrowRight />
                 </button>
@@ -292,7 +292,7 @@ const CheckoutContent = () => {
                 </div>
                 <h2 className="text-2xl font-black text-slate-800 mb-4 outfit uppercase tracking-tight">Your cart is empty</h2>
                 <p className="text-slate-500 mb-8 max-w-sm">Looks like you haven't added any products to your cart yet.</p>
-                <button onClick={() => router.push('/courses')} className="px-8 py-4 bg-[#41bfb8] text-white rounded-md font-black text-sm uppercase tracking-widest hover:shadow-xl transition-all">
+                <button onClick={() => router.push('/courses')} className="px-8 py-4 bg-[#E62D26] text-white rounded-md font-black text-sm uppercase tracking-widest hover:shadow-xl transition-all">
                     Browse Courses
                 </button>
             </div>
@@ -307,7 +307,7 @@ const CheckoutContent = () => {
                     {/* Left: Billing Form */}
                     <div className="flex-1 space-y-8">
                         <div className="flex items-center gap-4">
-                            <button onClick={() => router.back()} className="w-12 h-12 flex items-center justify-center bg-white rounded-md shadow-sm border border-slate-100/50 text-slate-400 hover:text-[#41bfb8] hover:shadow-md transition-all">
+                            <button onClick={() => router.back()} className="w-12 h-12 flex items-center justify-center bg-white rounded-md shadow-sm border border-slate-100/50 text-slate-400 hover:text-[#E62D26] hover:shadow-md transition-all">
                                 <LuChevronLeft size={24} />
                             </button>
                             <div>
@@ -319,7 +319,7 @@ const CheckoutContent = () => {
                         {/* Billing Info */}
                         <div className="bg-white p-8 lg:p-10 rounded-md border border-slate-100/50 shadow-sm space-y-8">
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-[#41bfb8]/10 rounded-md flex items-center justify-center text-[#41bfb8] border border-[#41bfb8]/20">
+                                <div className="w-12 h-12 bg-[#E62D26]/10 rounded-md flex items-center justify-center text-[#E62D26] border border-[#E62D26]/20">
                                     <LuCreditCard size={24} />
                                 </div>
                                 <h2 className="text-xl font-bold text-slate-800 outfit">Personal Details</h2>
@@ -331,7 +331,7 @@ const CheckoutContent = () => {
                                     <input
                                         type="text" required name="fullName" value={formData.fullName} onChange={handleInputChange}
                                         placeholder="Enter your full name"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#41bfb8] focus:bg-white focus:ring-4 focus:ring-[#41bfb8]/10 outline-none transition-all font-bold text-slate-700"
+                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
                                     />
                                 </div>
                                 <div>
@@ -339,7 +339,7 @@ const CheckoutContent = () => {
                                     <input
                                         type="email" required name="email" value={formData.email} onChange={handleInputChange}
                                         placeholder="your@email.com"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#41bfb8] focus:bg-white focus:ring-4 focus:ring-[#41bfb8]/10 outline-none transition-all font-bold text-slate-700"
+                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
                                     />
                                 </div>
                                 <div>
@@ -347,7 +347,7 @@ const CheckoutContent = () => {
                                     <input
                                         type="text" required name="phone" value={formData.phone} onChange={handleInputChange}
                                         placeholder="+880 1XXX-XXXXXX"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#41bfb8] focus:bg-white focus:ring-4 focus:ring-[#41bfb8]/10 outline-none transition-all font-bold text-slate-700"
+                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
                                     />
                                 </div>
 
@@ -394,7 +394,7 @@ const CheckoutContent = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full py-5 bg-[#41bfb8] hover:bg-[#38a89d] disabled:bg-slate-300 text-white rounded-md font-black text-lg shadow-xl shadow-[#41bfb8]/20 transition-all active:scale-[0.98] flex items-center justify-center gap-4 group"
+                                        className="w-full py-5 bg-[#E62D26] hover:bg-[#38a89d] disabled:bg-slate-300 text-white rounded-md font-black text-lg shadow-xl shadow-[#E62D26]/20 transition-all active:scale-[0.98] flex items-center justify-center gap-4 group"
                                     >
                                         {loading ? (
                                             <>
@@ -428,7 +428,7 @@ const CheckoutContent = () => {
                                             <h4 className="text-sm font-black text-slate-800 leading-tight mb-1">{item.title}</h4>
                                             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{item.type}</span>
                                         </div>
-                                        <div className="text-slate-900 font-black outfit text-lg">৳{item.price?.toLocaleString()}</div>
+                                        <div className="text-slate-900 font-black outfit text-lg">?{item.price?.toLocaleString()}</div>
                                     </div>
                                 ))}
                             </div>
@@ -436,7 +436,7 @@ const CheckoutContent = () => {
                             <div className="pt-6 space-y-4 border-t border-slate-50">
                                 <div className="flex justify-between items-center text-slate-400 font-bold uppercase tracking-widest text-[10px]">
                                     <span>Subtotal</span>
-                                    <span className="text-slate-900 text-sm font-medium">৳{totalValue.toLocaleString()}</span>
+                                    <span className="text-slate-900 text-sm font-medium">?{totalValue.toLocaleString()}</span>
                                 </div>
 
                                 {/* Coupon Section */}
@@ -452,7 +452,7 @@ const CheckoutContent = () => {
                                                     <p className="text-[10px] text-emerald-600">
                                                         {appliedCoupon.discountType === 'percentage'
                                                             ? `${appliedCoupon.discountValue}% OFF`
-                                                            : `৳${appliedCoupon.discountValue} OFF`
+                                                            : `?${appliedCoupon.discountValue} OFF`
                                                         }
                                                     </p>
                                                 </div>
@@ -473,14 +473,14 @@ const CheckoutContent = () => {
                                                     placeholder="Enter coupon code"
                                                     value={couponCode}
                                                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                                                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-lg text-sm font-bold uppercase focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/10 outline-none"
+                                                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-lg text-sm font-bold uppercase focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/10 outline-none"
                                                 />
                                             </div>
                                             <button
                                                 type="button"
                                                 onClick={handleApplyCoupon}
                                                 disabled={couponApplying}
-                                                className="px-5 py-3 bg-slate-900 text-white font-bold text-sm rounded-lg hover:bg-[#41bfb8] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="px-5 py-3 bg-slate-900 text-white font-bold text-sm rounded-lg hover:bg-[#E62D26] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 {couponApplying ? <LuLoader className="animate-spin" size={18} /> : 'Apply'}
                                             </button>
@@ -491,27 +491,27 @@ const CheckoutContent = () => {
                                 {discountAmount > 0 && (
                                     <div className="flex justify-between items-center text-emerald-600 font-bold uppercase tracking-widest text-[10px]">
                                         <span>Discount</span>
-                                        <span className="text-emerald-600 text-sm">-৳{discountAmount.toLocaleString()}</span>
+                                        <span className="text-emerald-600 text-sm">-?{discountAmount.toLocaleString()}</span>
                                     </div>
                                 )}
 
                                 <div className="flex justify-between items-center text-slate-400 font-bold uppercase tracking-widest text-[10px]">
                                     <span>Instant Access Fee</span>
-                                    <span className="text-[#41bfb8] text-sm">FREE</span>
+                                    <span className="text-[#E62D26] text-sm">FREE</span>
                                 </div>
                                 <div className="pt-4 flex justify-between items-center border-t-2 border-dashed border-slate-100">
                                     <span className="text-slate-900 font-black text-lg">Total Amount</span>
                                     <div className="text-right">
                                         {discountAmount > 0 && (
-                                            <span className="text-sm text-slate-400 line-through mr-2">৳{totalValue.toLocaleString()}</span>
+                                            <span className="text-sm text-slate-400 line-through mr-2">?{totalValue.toLocaleString()}</span>
                                         )}
-                                        <span className="text-3xl font-black text-[#41bfb8] outfit">৳{finalAmount.toLocaleString()}</span>
+                                        <span className="text-3xl font-black text-[#E62D26] outfit">?{finalAmount.toLocaleString()}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-md border border-slate-100/50">
-                                <LuShieldCheck className="text-[#41bfb8] text-2xl shrink-0" />
+                                <LuShieldCheck className="text-[#E62D26] text-2xl shrink-0" />
                                 <p className="text-[10px] font-normal text-slate-500 uppercase tracking-loose leading-relaxed">
                                     Encrypted Transaction. Your payment data is handled securely via SSL protocol.
                                 </p>
@@ -530,7 +530,7 @@ const CheckoutPage = () => {
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="flex flex-col items-center gap-4">
-                    <LuLoader className="animate-spin text-[#41bfb8]" size={40} />
+                    <LuLoader className="animate-spin text-[#E62D26]" size={40} />
                     <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Loading Checkout...</p>
                 </div>
             </div>

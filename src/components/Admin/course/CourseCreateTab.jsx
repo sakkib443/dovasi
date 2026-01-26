@@ -141,7 +141,7 @@ const CourseCreateTab = ({ onSuccess }) => {
             const result = await response.json();
 
             if (response.ok) {
-                alert('Course Created Successfully! ✅ Now add modules to this course.');
+                alert('Course Created Successfully! ? Now add modules to this course.');
                 // Store newly created course ID for module creation
                 if (result.data?._id) {
                     localStorage.setItem('lastCreatedCourseId', result.data._id);
@@ -152,7 +152,7 @@ const CourseCreateTab = ({ onSuccess }) => {
                 const errorMsg = result.errorMessages
                     ? result.errorMessages.map(err => `${err.path.split('.').pop()}: ${err.message}`).join('\n')
                     : result.message;
-                alert(`Validation Error ❌\n\n${errorMsg}`);
+                alert(`Validation Error ?\n\n${errorMsg}`);
             }
         } catch (error) {
             alert('Network error!');
@@ -187,8 +187,8 @@ const CourseCreateTab = ({ onSuccess }) => {
                                 <FormField label="Course Title (English)" error={errors.title} required>
                                     <input {...register('title')} autoComplete="off" className={inputBase} placeholder="e.g. Complete Video Editing Masterclass" />
                                 </FormField>
-                                <FormField label="Course Title (বাংলা)" error={errors.titleBn}>
-                                    <input {...register('titleBn')} className={inputBase} placeholder="যেমনঃ প্রফেশনাল ভিডিও এডিটিং কোর্স" />
+                                <FormField label="Course Title (?????)" error={errors.titleBn}>
+                                    <input {...register('titleBn')} className={inputBase} placeholder="????? ????????? ????? ?????? ?????" />
                                 </FormField>
                             </div>
 
@@ -196,8 +196,8 @@ const CourseCreateTab = ({ onSuccess }) => {
                                 <FormField label="Short Description (English)" error={errors.shortDescription}>
                                     <textarea {...register('shortDescription')} rows={2} className={inputBase} placeholder="A brief one-liner summary..." />
                                 </FormField>
-                                <FormField label="Short Description (বাংলা)" error={errors.shortDescriptionBn}>
-                                    <textarea {...register('shortDescriptionBn')} rows={2} className={inputBase} placeholder="কোর্স সম্পর্কে ছোট একটি বাক্য..." />
+                                <FormField label="Short Description (?????)" error={errors.shortDescriptionBn}>
+                                    <textarea {...register('shortDescriptionBn')} rows={2} className={inputBase} placeholder="????? ???????? ??? ???? ?????..." />
                                 </FormField>
                             </div>
 
@@ -205,8 +205,8 @@ const CourseCreateTab = ({ onSuccess }) => {
                                 <FormField label="Full Description (English)" error={errors.description} required>
                                     <textarea {...register('description')} rows={5} className={inputBase} placeholder="Write detailed course description..." />
                                 </FormField>
-                                <FormField label="Full Description (বাংলা)" error={errors.descriptionBn}>
-                                    <textarea {...register('descriptionBn')} rows={5} className={inputBase} placeholder="কোর্সের বিস্তারিত তথ্য লিখুন..." />
+                                <FormField label="Full Description (?????)" error={errors.descriptionBn}>
+                                    <textarea {...register('descriptionBn')} rows={5} className={inputBase} placeholder="??????? ????????? ???? ?????..." />
                                 </FormField>
                             </div>
                         </div>
@@ -326,13 +326,13 @@ const CourseCreateTab = ({ onSuccess }) => {
                         <div className="space-y-4">
                             <FormField label="Regular Price (BDT)" required>
                                 <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">৳</span>
+                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">?</span>
                                     <input type="number" {...register('price')} className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white font-bold outline-none focus:border-indigo-500 transition-all" />
                                 </div>
                             </FormField>
                             <FormField label="Discount Price (Optional)">
                                 <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">৳</span>
+                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">?</span>
                                     <input type="number" {...register('discountPrice')} className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white font-bold outline-none focus:border-emerald-500 transition-all" />
                                 </div>
                             </FormField>

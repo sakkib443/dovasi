@@ -66,7 +66,7 @@ const PopularCourseDesignPage = () => {
                 value={value || ''}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
             />
         </div>
     );
@@ -75,7 +75,7 @@ const PopularCourseDesignPage = () => {
         return (
             <div className="flex items-center justify-center min-h-[60vh]">
                 <div className="text-center">
-                    <FiRefreshCw className="w-12 h-12 text-teal-500 animate-spin mx-auto" />
+                    <FiRefreshCw className="w-12 h-12 text-red-500 animate-spin mx-auto" />
                     <p className="mt-4 text-gray-500">Loading...</p>
                 </div>
             </div>
@@ -101,7 +101,7 @@ const PopularCourseDesignPage = () => {
                     <button
                         onClick={handleSave}
                         disabled={saving}
-                        className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-medium hover:shadow-lg transition-all disabled:opacity-50"
+                        className="flex items-center gap-2 px-6 py-2 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-medium hover:shadow-lg transition-all disabled:opacity-50"
                     >
                         <FiSave size={18} />
                         {saving ? 'Saving...' : 'Save Changes'}
@@ -123,7 +123,7 @@ const PopularCourseDesignPage = () => {
                         label="Badge Text (Bengali)"
                         value={content.badge?.textBn}
                         onChange={(e) => setContent({ ...content, badge: { ...content.badge, textBn: e.target.value } })}
-                        placeholder="জনপ্রিয় কোর্স"
+                        placeholder="???????? ?????"
                     />
                 </div>
             </div>
@@ -142,7 +142,7 @@ const PopularCourseDesignPage = () => {
                         label="Text Before Highlight (Bengali)"
                         value={content.heading?.text1Bn}
                         onChange={(e) => setContent({ ...content, heading: { ...content.heading, text1Bn: e.target.value } })}
-                        placeholder="আমাদের "
+                        placeholder="?????? "
                     />
                     <InputField
                         label="Highlighted Text (English)"
@@ -154,7 +154,7 @@ const PopularCourseDesignPage = () => {
                         label="Highlighted Text (Bengali)"
                         value={content.heading?.highlightBn}
                         onChange={(e) => setContent({ ...content, heading: { ...content.heading, highlightBn: e.target.value } })}
-                        placeholder="সেরা কোর্স"
+                        placeholder="???? ?????"
                     />
                     <InputField
                         label="Text After Highlight (English)"
@@ -166,7 +166,7 @@ const PopularCourseDesignPage = () => {
                         label="Text After Highlight (Bengali)"
                         value={content.heading?.text2Bn}
                         onChange={(e) => setContent({ ...content, heading: { ...content.heading, text2Bn: e.target.value } })}
-                        placeholder=" সমূহ"
+                        placeholder=" ????"
                     />
                 </div>
             </div>
@@ -185,7 +185,7 @@ const PopularCourseDesignPage = () => {
                         label="Description (Bengali)"
                         value={content.description?.textBn}
                         onChange={(e) => setContent({ ...content, description: { ...content.description, textBn: e.target.value } })}
-                        placeholder="বিশেষজ্ঞ মেন্টরদের দ্বারা তৈরি প্রিমিয়াম কোর্স।"
+                        placeholder="???????? ????????? ?????? ???? ?????????? ??????"
                     />
                 </div>
             </div>
@@ -204,7 +204,7 @@ const PopularCourseDesignPage = () => {
                         label="Button Text (Bengali)"
                         value={content.cta?.buttonTextBn}
                         onChange={(e) => setContent({ ...content, cta: { ...content.cta, buttonTextBn: e.target.value } })}
-                        placeholder="সব কোর্স দেখুন"
+                        placeholder="?? ????? ?????"
                     />
                     <InputField
                         label="Footer Text (English)"
@@ -216,7 +216,7 @@ const PopularCourseDesignPage = () => {
                         label="Footer Text (Bengali)"
                         value={content.cta?.footerTextBn}
                         onChange={(e) => setContent({ ...content, cta: { ...content.cta, footerTextBn: e.target.value } })}
-                        placeholder="হাজার হাজার শিক্ষার্থী যোগ দিয়েছেন"
+                        placeholder="????? ????? ?????????? ??? ????????"
                     />
                 </div>
             </div>

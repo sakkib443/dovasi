@@ -59,7 +59,7 @@ export default function MentorWebsitePage() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                         <FiGlobe className="text-white text-xl" />
                     </div>
                     <div>
@@ -82,7 +82,7 @@ export default function MentorWebsitePage() {
                         Reload
                     </button>
                     <Link href="/dashboard/mentor/website/create">
-                        <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-emerald-500/25 transition-all">
+                        <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-red-500 hover:from-emerald-600 hover:to-red-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-emerald-500/25 transition-all">
                             <FiPlus size={16} />
                             New Website
                         </button>
@@ -112,7 +112,7 @@ export default function MentorWebsitePage() {
                                 <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">Published</p>
                                 <p className="text-3xl font-bold text-slate-800">{stats.live}</p>
                             </div>
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg">
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg">
                                 <FiCheckCircle className="text-2xl text-white" />
                             </div>
                         </div>
@@ -253,11 +253,11 @@ export default function MentorWebsitePage() {
                                     <div>
                                         {w.offerPrice && w.offerPrice > 0 ? (
                                             <>
-                                                <p className="text-lg font-bold text-emerald-600">৳{w.offerPrice?.toLocaleString()}</p>
-                                                <p className="text-xs text-slate-400 line-through">৳{w.price?.toLocaleString()}</p>
+                                                <p className="text-lg font-bold text-emerald-600">?{w.offerPrice?.toLocaleString()}</p>
+                                                <p className="text-xs text-slate-400 line-through">?{w.price?.toLocaleString()}</p>
                                             </>
                                         ) : (
-                                            <p className="text-lg font-bold text-slate-800">৳{w.price?.toLocaleString()}</p>
+                                            <p className="text-lg font-bold text-slate-800">?{w.price?.toLocaleString()}</p>
                                         )}
                                     </div>
                                 </div>

@@ -23,64 +23,64 @@ const TopCategories = () => {
     const categories = [
         {
             icon: LuBrain,
-            title: language === 'bn' ? 'এআই এবং অটোমেশন' : 'AI and Automation',
-            subtitle: language === 'bn' ? 'ভবিষ্যত গড়ুন' : 'Shape the Future',
+            title: language === 'bn' ? '??? ??? ???????' : 'AI and Automation',
+            subtitle: language === 'bn' ? '??????? ?????' : 'Shape the Future',
             slug: 'ai-automation',
-            iconBg: 'bg-gradient-to-br from-teal-400 to-cyan-500',
-            borderColor: 'border-l-teal-400',
+            iconBg: 'bg-gradient-to-br from-red-400 to-cyan-500',
+            borderColor: 'border-l-red-400',
         },
         {
             icon: LuPalette,
-            title: language === 'bn' ? 'আর্ট এবং ডিজাইন' : 'Art & Design',
-            subtitle: language === 'bn' ? 'সৃজনশীলতার প্ল্যাটফর্ম' : 'Platform for Creativity',
+            title: language === 'bn' ? '???? ??? ??????' : 'Art & Design',
+            subtitle: language === 'bn' ? '?????????? ???????????' : 'Platform for Creativity',
             slug: 'art-design',
             iconBg: 'bg-gradient-to-br from-orange-400 to-amber-500',
             borderColor: 'border-l-orange-400',
         },
         {
             icon: LuCode,
-            title: language === 'bn' ? 'প্রোগ্রামিং' : 'Programming',
-            subtitle: language === 'bn' ? 'আত্মবিশ্বাসের সাথে কোড করুন' : 'Code with Confidence',
+            title: language === 'bn' ? '???????????' : 'Programming',
+            subtitle: language === 'bn' ? '????????????? ???? ??? ????' : 'Code with Confidence',
             slug: 'programming',
             iconBg: 'bg-gradient-to-br from-cyan-400 to-blue-500',
             borderColor: 'border-l-cyan-400',
         },
         {
             icon: LuMegaphone,
-            title: language === 'bn' ? 'ডিজিটাল মার্কেটিং' : 'Digital Marketing',
-            subtitle: language === 'bn' ? 'প্রভাবের শিল্প' : 'The Art of Influence',
+            title: language === 'bn' ? '??????? ?????????' : 'Digital Marketing',
+            subtitle: language === 'bn' ? '???????? ?????' : 'The Art of Influence',
             slug: 'digital-marketing',
             iconBg: 'bg-gradient-to-br from-orange-400 to-red-500',
             borderColor: 'border-l-orange-400',
         },
         {
             icon: LuFilm,
-            title: language === 'bn' ? 'মিডিয়া এবং ফিল্ম' : 'Media & Film',
-            subtitle: language === 'bn' ? 'গতির গল্প বলা' : 'Storytelling in Motion',
+            title: language === 'bn' ? '??????? ??? ?????' : 'Media & Film',
+            subtitle: language === 'bn' ? '???? ???? ???' : 'Storytelling in Motion',
             slug: 'media-film',
-            iconBg: 'bg-gradient-to-br from-teal-400 to-emerald-500',
-            borderColor: 'border-l-teal-400',
+            iconBg: 'bg-gradient-to-br from-red-400 to-emerald-500',
+            borderColor: 'border-l-red-400',
         },
         {
             icon: LuServer,
-            title: language === 'bn' ? 'নেটওয়ার্কিং এবং সার্ভার' : 'Networking & Server',
-            subtitle: language === 'bn' ? 'আইটি ইন্ডাস্ট্রির রক্ষক' : 'Protector of IT Industry',
+            title: language === 'bn' ? '???????????? ??? ???????' : 'Networking & Server',
+            subtitle: language === 'bn' ? '???? ???????????? ?????' : 'Protector of IT Industry',
             slug: 'networking-server',
             iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
             borderColor: 'border-l-amber-400',
         },
         {
             icon: LuUsers,
-            title: language === 'bn' ? 'ম্যানেজমেন্ট' : 'Management',
-            subtitle: language === 'bn' ? 'কৌশলের সাথে নেতৃত্ব' : 'Leading with Strategy',
+            title: language === 'bn' ? '????????????' : 'Management',
+            subtitle: language === 'bn' ? '?????? ???? ???????' : 'Leading with Strategy',
             slug: 'management',
             iconBg: 'bg-gradient-to-br from-blue-400 to-indigo-500',
             borderColor: 'border-l-blue-400',
         },
         {
             icon: LuGraduationCap,
-            title: language === 'bn' ? 'ডিপ্লোমা' : 'Diploma',
-            subtitle: language === 'bn' ? 'দক্ষ হন, আলাদা হন' : 'Skill Up, Stand Out',
+            title: language === 'bn' ? '????????' : 'Diploma',
+            subtitle: language === 'bn' ? '???? ??, ????? ??' : 'Skill Up, Stand Out',
             slug: 'diploma',
             iconBg: 'bg-gradient-to-br from-pink-400 to-purple-500',
             borderColor: 'border-l-pink-400',
@@ -132,13 +132,13 @@ const TopCategories = () => {
                                         href={`/courses?category=${category.slug}`}
                                         className={`text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors ${bengaliClass}`}
                                     >
-                                        {language === 'bn' ? 'কোর্স দেখুন' : 'Explore courses'}
+                                        {language === 'bn' ? '????? ?????' : 'Explore courses'}
                                     </Link>
                                     <Link
                                         href={`/courses?category=${category.slug}`}
                                         className={`text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors ${bengaliClass}`}
                                     >
-                                        {language === 'bn' ? 'সবগুলো দেখুন' : 'View All'}
+                                        {language === 'bn' ? '?????? ?????' : 'View All'}
                                     </Link>
                                 </div>
                             </div>

@@ -88,11 +88,11 @@ const SoftwarePage = () => {
 
     const getStatusIcon = (status) => {
         switch (status) {
-            case 'approved': return '✅';
-            case 'pending': return '⏳';
-            case 'draft': return '📝';
-            case 'rejected': return '❌';
-            default: return '❓';
+            case 'approved': return '?';
+            case 'pending': return '?';
+            case 'draft': return '??';
+            case 'rejected': return '?';
+            default: return '?';
         }
     };
 
@@ -369,9 +369,9 @@ const SoftwarePage = () => {
                                             <span className="text-lg font-black text-emerald-600">FREE</span>
                                         ) : (
                                             <div className="flex items-center gap-2">
-                                                <span className="text-lg font-black text-violet-600">৳{sw.offerPrice || sw.price}</span>
+                                                <span className="text-lg font-black text-violet-600">?{sw.offerPrice || sw.price}</span>
                                                 {sw.offerPrice && sw.offerPrice < sw.price && (
-                                                    <span className="text-xs text-slate-400 line-through">৳{sw.price}</span>
+                                                    <span className="text-xs text-slate-400 line-through">?{sw.price}</span>
                                                 )}
                                             </div>
                                         )}
@@ -426,7 +426,7 @@ const SoftwarePage = () => {
                                         {sw.accessType === 'free' ? (
                                             <span className="text-sm font-black text-emerald-600">FREE</span>
                                         ) : (
-                                            <span className="text-sm font-black text-slate-800">৳{sw.offerPrice || sw.price}</span>
+                                            <span className="text-sm font-black text-slate-800">?{sw.offerPrice || sw.price}</span>
                                         )}
                                     </td>
                                     <td className="px-6 py-4">

@@ -122,7 +122,7 @@ const AdminReviewsPage = () => {
                                     <tr key={review._id} className={`group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors`}>
                                         <td className="p-4 align-top">
                                             <div className="flex flex-col">
-                                                <span className="uppercase text-[10px] text-teal-500 font-bold tracking-wider mb-0.5">{review.productType}</span>
+                                                <span className="uppercase text-[10px] text-red-500 font-bold tracking-wider mb-0.5">{review.productType}</span>
                                                 <span className="font-semibold text-sm line-clamp-2 max-w-[180px] text-slate-700 dark:text-slate-200" title={review.productDetails?.title}>
                                                     {review.productDetails?.title || <span className="text-slate-400 italic">Unknown Product</span>}
                                                 </span>

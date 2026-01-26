@@ -63,7 +63,7 @@ export default function LessonDocuments({ documents = [] }) {
                                 )}
                                 <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
                                     <span className="uppercase font-bold">{doc.fileType}</span>
-                                    {doc.fileSize && <span>• {doc.fileSize}</span>}
+                                    {doc.fileSize && <span>� {doc.fileSize}</span>}
                                 </div>
                             </div>
 

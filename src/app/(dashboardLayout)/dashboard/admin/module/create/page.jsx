@@ -64,13 +64,13 @@ export default function CreateModulePage() {
             const result = await res.json();
 
             if (res.ok) {
-                alert('Module Created Successfully! ✅');
+                alert('Module Created Successfully! ?');
                 router.push('/dashboard/admin/module');
             } else {
                 const errorMsg = result.errorMessages
                     ? result.errorMessages.map(err => `${err.path}: ${err.message}`).join('\n')
                     : result.message;
-                alert(`Error ❌\n\n${errorMsg}`);
+                alert(`Error ?\n\n${errorMsg}`);
             }
         } catch (err) {
             console.error('Create error:', err);
@@ -147,13 +147,13 @@ export default function CreateModulePage() {
                         />
                     </div>
                     <div>
-                        <label className={labelClass}>Module Title (বাংলা)</label>
+                        <label className={labelClass}>Module Title (?????)</label>
                         <input
                             type="text"
                             name="titleBn"
                             value={formData.titleBn}
                             onChange={handleChange}
-                            placeholder="যেমনঃ শুরু করা যাক"
+                            placeholder="????? ???? ??? ???"
                             className={inputClass}
                         />
                     </div>

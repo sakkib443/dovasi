@@ -70,7 +70,7 @@ export default function UserSupportPage() {
 
     const handleSubmitTicket = (e) => {
         e.preventDefault();
-        alert('🔄 Support ticket system is processing. This feature will be available soon!');
+        alert('?? Support ticket system is processing. This feature will be available soon!');
     };
 
     const cardClass = `rounded-2xl border transition-all duration-300 ${isDark ? 'bg-slate-800/50 border-white/5 shadow-xl' : 'bg-white border-slate-200 shadow-sm'}`;

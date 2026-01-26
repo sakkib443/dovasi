@@ -19,10 +19,10 @@ const AboutMission = () => {
     const headingFont = "font-outfit";
 
     const cards = [
-        { icon: LuTarget, title: language === 'bn' ? 'আমাদের মিশন' : 'Mission', desc: language === 'bn' ? 'প্রতিটি শিক্ষার্থীকে বিশ্বমানের শিক্ষা প্রদান করা।' : 'Forging the definitive path for elite digital talent.', number: '01' },
-        { icon: LuEye, title: language === 'bn' ? 'আমাদের ভিশন' : 'Vision', desc: language === 'bn' ? 'সফল ডিজিটাল উদ্যোক্তা তৈরি করা।' : 'Redefining the standard of modern IT education.', number: '02' },
-        { icon: LuHeart, title: language === 'bn' ? 'মূল্যবোধ' : 'Values', desc: language === 'bn' ? 'সততা এবং উদ্ভাবনই আমাদের ভিত্তি।' : 'Radical transparency and industrial-scale innovation.', number: '03' },
-        { icon: LuStar, title: language === 'bn' ? 'বিশেষত্ব' : 'USP', desc: language === 'bn' ? 'প্র্যাক্টিক্যাল প্রজেক্ট এবং আজীবন সাপোর্ট।' : 'Hyper-practical training with 24/7 dedicated support.', number: '04' },
+        { icon: LuTarget, title: language === 'bn' ? '?????? ????' : 'Mission', desc: language === 'bn' ? '??????? ???????????? ?????????? ?????? ?????? ????' : 'Forging the definitive path for elite digital talent.', number: '01' },
+        { icon: LuEye, title: language === 'bn' ? '?????? ????' : 'Vision', desc: language === 'bn' ? '??? ??????? ????????? ???? ????' : 'Redefining the standard of modern IT education.', number: '02' },
+        { icon: LuHeart, title: language === 'bn' ? '????????' : 'Values', desc: language === 'bn' ? '???? ??? ???????? ?????? ???????' : 'Radical transparency and industrial-scale innovation.', number: '03' },
+        { icon: LuStar, title: language === 'bn' ? '????????' : 'USP', desc: language === 'bn' ? '??????????????? ???????? ??? ????? ????????' : 'Hyper-practical training with 24/7 dedicated support.', number: '04' },
     ];
 
     return (
@@ -46,20 +46,20 @@ const AboutMission = () => {
                             </div>
 
                             <h2 className={`${headingFont} text-6xl lg:text-7xl font-black text-gray-900 dark:text-white leading-[0.9] mb-10 tracking-tight`}>
-                                THE <span className="text-teal-500 italic font-serif">CORE</span> <br />
+                                THE <span className="text-red-500 italic font-serif">CORE</span> <br />
                                 PRINCIPLES <br />
                                 OF SUCCESS
                             </h2>
 
                             <p className={`text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-12 max-w-lg ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? 'আমরা শুধু শিক্ষা দিই না, আমরা আপনার ক্যারিয়ার গড়ার অংশীদার হিসেবে কাজ করি। আমাদের প্রতিটি পদক্ষেপই আপনার সাফল্যের জন্য।'
+                                    ? '???? ???? ?????? ??? ??, ???? ????? ????????? ???? ??????? ?????? ??? ???? ?????? ??????? ???????? ????? ???????? ?????'
                                     : 'We are architecting a future where skill meets strategy. ejobs it is more than an academy; it\'s your partner in professional evolution.'
                                 }
                             </p>
 
                             <div className="relative p-10 rounded-[40px] bg-gray-900 dark:bg-white text-white dark:text-black shadow-2xl overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-[40px] group-hover:scale-150 transition-transform duration-1000" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/20 rounded-full blur-[40px] group-hover:scale-150 transition-transform duration-1000" />
                                 <h4 className={`${headingFont} text-4xl font-black mb-4 relative z-10`}>5+ Years</h4>
                                 <p className={`text-sm font-bold opacity-60 uppercase tracking-widest relative z-10 ${headingFont}`}>Of Industrial Experience</p>
                             </div>
@@ -83,8 +83,8 @@ const AboutMission = () => {
                                         {card.number}
                                     </div>
                                     <div className="relative z-10">
-                                        <div className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center mb-8 group-hover:border-teal-500 transition-colors duration-500 shadow-sm">
-                                            <card.icon className="text-teal-500" size={28} />
+                                        <div className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 flex items-center justify-center mb-8 group-hover:border-red-500 transition-colors duration-500 shadow-sm">
+                                            <card.icon className="text-red-500" size={28} />
                                         </div>
                                         <h3 className={`${headingFont} text-2xl font-black mb-4 text-gray-900 dark:text-white tracking-tight`}>
                                             {card.title}

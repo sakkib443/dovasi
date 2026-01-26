@@ -88,7 +88,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center">
-        <div className="w-8 h-8 border-3 border-teal-500/30 border-t-teal-500 rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-3 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -96,7 +96,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
   if (categories.length === 0) {
     return (
       <div className="p-8 text-center text-gray-500">
-        <p className={bengaliClass}>{language === 'bn' ? 'কোনো ক্যাটাগরি পাওয়া যায়নি' : 'No categories found'}</p>
+        <p className={bengaliClass}>{language === 'bn' ? '???? ????????? ?????? ??????' : 'No categories found'}</p>
       </div>
     );
   }
@@ -108,7 +108,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
       {/* Left Side - Parent Categories */}
       <div className="w-[220px] bg-gray-50 dark:bg-gray-900 p-3 border-r border-gray-100 dark:border-gray-700/50">
         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 px-3">
-          {language === 'bn' ? 'ক্যাটাগরি' : 'Categories'}
+          {language === 'bn' ? '?????????' : 'Categories'}
         </p>
         <div className="space-y-1">
           {categories.map((category) => {
@@ -120,13 +120,13 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
                 onMouseEnter={() => setActiveParent(category._id)}
                 onClick={() => handleCategoryClick(category.slug, category.type)}
                 className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl transition-all ${isActive
-                  ? 'bg-white dark:bg-gray-800 text-teal-600 dark:text-teal-400 shadow-sm'
+                  ? 'bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 shadow-sm'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-gray-800/50'
                   }`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isActive
-                    ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30'
+                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/30'
                     : 'bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400'
                     }`}>
                     <Icon size={16} />
@@ -150,7 +150,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
           <>
             {/* Active Parent Header */}
             <div className="flex items-center gap-3 pb-3 mb-3 border-b border-gray-100 dark:border-gray-700/50">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-teal-500/20">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20">
                 {(() => {
                   const Icon = getIcon(activeCategory.slug);
                   return <Icon size={20} />;
@@ -161,7 +161,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
                   {language === 'bn' && activeCategory.nameBn ? activeCategory.nameBn : activeCategory.name}
                 </h4>
                 <p className={`text-xs text-gray-500 dark:text-gray-400 ${bengaliClass}`}>
-                  {activeCategory.children?.length || 0} {language === 'bn' ? 'টি সাব-ক্যাটাগরি' : 'subcategories'}
+                  {activeCategory.children?.length || 0} {language === 'bn' ? '?? ???-?????????' : 'subcategories'}
                 </p>
               </div>
             </div>
@@ -173,10 +173,10 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
                   <button
                     key={child._id}
                     onClick={() => handleCategoryClick(child.slug, child.type)}
-                    className="flex items-center gap-3 p-3 rounded-xl text-left hover:bg-teal-50 dark:hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 p-3 rounded-xl text-left hover:bg-red-50 dark:hover:bg-white/5 transition-all group"
                   >
-                    <div className="w-2 h-2 rounded-full bg-teal-500 group-hover:scale-125 transition-transform"></div>
-                    <span className={`text-[13px] font-medium text-gray-600 dark:text-gray-300 group-hover:text-teal-700 dark:group-hover:text-teal-400 ${bengaliClass}`}>
+                    <div className="w-2 h-2 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></div>
+                    <span className={`text-[13px] font-medium text-gray-600 dark:text-gray-300 group-hover:text-red-700 dark:group-hover:text-red-400 ${bengaliClass}`}>
                       {language === 'bn' && child.nameBn ? child.nameBn : child.name}
                     </span>
                   </button>
@@ -188,13 +188,13 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
                   <LuLayers className="text-gray-400" size={24} />
                 </div>
                 <p className={`text-sm text-gray-500 dark:text-gray-400 ${bengaliClass}`}>
-                  {language === 'bn' ? 'এই ক্যাটাগরিতে কোনো সাব-ক্যাটাগরি নেই' : 'No subcategories in this category'}
+                  {language === 'bn' ? '?? ??????????? ???? ???-????????? ???' : 'No subcategories in this category'}
                 </p>
                 <button
                   onClick={() => handleCategoryClick(activeCategory.slug, activeCategory.type)}
-                  className={`mt-3 text-sm font-semibold text-teal-600 dark:text-teal-400 hover:underline ${bengaliClass}`}
+                  className={`mt-3 text-sm font-semibold text-red-600 dark:text-red-400 hover:underline ${bengaliClass}`}
                 >
-                  {language === 'bn' ? 'সব দেখুন →' : 'View all →'}
+                  {language === 'bn' ? '?? ????? ?' : 'View all ?'}
                 </button>
               </div>
             )}
@@ -304,9 +304,9 @@ const Navbar = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const courseTypes = [
-    { key: "Online", label: t("navbar.onlineCourse"), icon: "🌐" },
-    { key: "Offline", label: t("navbar.offlineCourse"), icon: "🏫" },
-    { key: "Recorded", label: t("navbar.recordedCourse"), icon: "📹" },
+    { key: "Online", label: t("navbar.onlineCourse"), icon: "??" },
+    { key: "Offline", label: t("navbar.offlineCourse"), icon: "??" },
+    { key: "Recorded", label: t("navbar.recordedCourse"), icon: "??" },
   ];
 
   const handleCourseTypeClick = (courseType) => {
@@ -319,7 +319,7 @@ const Navbar = () => {
     { href: "/courses", label: t("navbar.courses") },
     { href: "/software", label: t("navbar.software") },
     { href: "/website", label: t("navbar.website") },
-    { href: "/blog", label: language === 'bn' ? "ব্লগ" : "Blog" },
+    { href: "/blog", label: language === 'bn' ? "????" : "Blog" },
     { href: "/about", label: t("navbar.about") },
     { href: "/contact", label: t("navbar.contact") },
   ];
@@ -351,7 +351,7 @@ const Navbar = () => {
               {/* Mobile Menu Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-50">
                 <Link href="/" onClick={closeMobileMenu}>
-                  <img className="w-32" src="/images/ejobsitlogo.png" alt="eJobsIT" />
+                  <img className="w-40" src="/images/ejobsitlogo.png" alt="eJobsIT" />
                 </Link>
                 <button
                   onClick={closeMobileMenu}
@@ -405,12 +405,12 @@ const Navbar = () => {
                       href={href}
                       onClick={closeMobileMenu}
                       className={`group flex items-center justify-between px-4 py-3.5 rounded-xl transition-all ${pathname === href
-                        ? "bg-teal-50 text-teal-700 font-medium"
+                        ? "bg-red-50 text-red-700 font-medium"
                         : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                         }`}
                     >
                       <span className={`text-base ${bengaliClass}`}>{label}</span>
-                      <LuArrowRight className={`text-teal-500 transition-all ${pathname === href ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"}`} />
+                      <LuArrowRight className={`text-red-500 transition-all ${pathname === href ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"}`} />
                     </Link>
                   ))}
                 </nav>
@@ -419,8 +419,8 @@ const Navbar = () => {
                 <div className="pt-6 border-t border-gray-100">
                   {user ? (
                     <div className="space-y-4">
-                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-teal-500/10 to-amber-500/5">
-                        <div className="w-14 h-14 rounded-full border-2 border-white shadow-md overflow-hidden bg-[#41bfb8]">
+                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-red-500/10 to-amber-500/5">
+                        <div className="w-14 h-14 rounded-full border-2 border-white shadow-md overflow-hidden bg-[#E62D26]">
                           {user.image ? (
                             <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
                           ) : (
@@ -431,7 +431,7 @@ const Navbar = () => {
                         </div>
                         <div>
                           <p className="font-bold text-gray-900">{user.name || user.gmail?.split('@')[0]}</p>
-                          <p className="text-xs text-teal-600 font-medium uppercase tracking-tighter">{user.role || 'Member'}</p>
+                          <p className="text-xs text-red-600 font-medium uppercase tracking-tighter">{user.role || 'Member'}</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
@@ -457,7 +457,7 @@ const Navbar = () => {
                       <Link href="/login" onClick={closeMobileMenu} className="block w-full text-center py-4 rounded-2xl bg-gray-900 text-white font-bold shadow-xl shadow-gray-200">
                         Sign In
                       </Link>
-                      <Link href="/register" onClick={closeMobileMenu} className="block w-full text-center py-4 rounded-2xl bg-teal-500 text-white font-bold shadow-xl shadow-teal-100">
+                      <Link href="/register" onClick={closeMobileMenu} className="block w-full text-center py-4 rounded-2xl bg-red-500 text-white font-bold shadow-xl shadow-red-100">
                         Join Platform
                       </Link>
                     </div>
@@ -482,7 +482,7 @@ const Navbar = () => {
             <div className="flex items-center gap-8 xl:gap-12">
               <Link href="/" className="relative flex-shrink-0">
                 <img
-                  className={`transition-all duration-300 ${isSticky ? "w-32" : "w-36 lg:w-30"}`}
+                  className={`transition-all duration-300 ${isSticky ? "w-40" : "w-44 lg:w-48"}`}
                   src="/images/ejobsitlogo.png"
                   alt="eJobsIT"
                 />
@@ -491,7 +491,7 @@ const Navbar = () => {
               {/* Category Dropdown - Desktop */}
               <div className="hidden lg:block relative group">
                 <button className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-gray-50/70 dark:bg-[#1E293B] border border-gray-100 dark:border-gray-600/50 text-gray-700 dark:text-gray-100 hover:bg-white dark:hover:bg-[#334155] transition-all duration-300">
-                  <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-white shadow-lg shadow-teal-500/20">
+                  <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20">
                     <BiCategory size={18} />
                   </div>
                   <span className={`text-[14px] font-bold tracking-tight ${language === 'bn' ? 'hind-siliguri' : ''}`}>
@@ -514,8 +514,8 @@ const Navbar = () => {
                   key={href}
                   href={href}
                   className={`px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 ${pathname === href
-                    ? "bg-white dark:bg-[#334155] text-teal-600 dark:text-white shadow-sm font-bold"
-                    : "text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-white font-semibold"
+                    ? "bg-white dark:bg-[#334155] text-red-600 dark:text-white shadow-sm font-bold"
+                    : "text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold"
                     } ${language === 'bn' ? 'hind-siliguri' : ''}`}
                 >
                   {label}
@@ -552,7 +552,7 @@ const Navbar = () => {
               </div>
 
               {/* 3. Cart */}
-              <Link href="/cart" className="relative w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-teal-50 dark:hover:bg-[#334155] hover:text-teal-600 transition-all group">
+              <Link href="/cart" className="relative w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-[#334155] hover:text-red-600 transition-all group">
                 <LuShoppingCart size={20} className="group-hover:scale-110 transition-transform" />
                 {mounted && items.length > 0 && (
                   <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-amber-500 text-white text-[9px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-md">
@@ -568,11 +568,11 @@ const Navbar = () => {
                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                     className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 dark:bg-[#1E293B] hover:bg-gray-100 dark:hover:bg-[#334155] border border-gray-100 dark:border-gray-600/50 transition-all"
                   >
-                    <div className="w-8 h-8 rounded-full border-2 border-teal-500/30 overflow-hidden">
+                    <div className="w-8 h-8 rounded-full border-2 border-red-500/30 overflow-hidden">
                       {user.image ? (
                         <img src={user.image} alt="User" className="w-full h-full object-cover" />
                       ) : (
-                        <div className="w-full h-full bg-teal-500 flex items-center justify-center text-white text-xs font-bold uppercase">
+                        <div className="w-full h-full bg-red-500 flex items-center justify-center text-white text-xs font-bold uppercase">
                           {(user.name || "U").charAt(0)}
                         </div>
                       )}
@@ -594,9 +594,9 @@ const Navbar = () => {
                         className="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-[#1E293B] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-600/50 overflow-hidden z-50"
                       >
                         {/* User Info Header */}
-                        <div className="p-4 bg-gradient-to-br from-teal-500/10 to-amber-500/5 border-b border-gray-100 dark:border-gray-600/50">
+                        <div className="p-4 bg-gradient-to-br from-red-500/10 to-amber-500/5 border-b border-gray-100 dark:border-gray-600/50">
                           <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-full border-2 border-white shadow-md overflow-hidden bg-teal-500">
+                            <div className="w-12 h-12 rounded-full border-2 border-white shadow-md overflow-hidden bg-red-500">
                               {user.image ? (
                                 <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
                               ) : (
@@ -607,7 +607,7 @@ const Navbar = () => {
                             </div>
                             <div>
                               <p className={`font-bold text-gray-900 dark:text-white text-sm ${bengaliClass}`}>{user.name || user.gmail?.split('@')[0]}</p>
-                              <p className="text-[10px] text-teal-600 font-semibold uppercase tracking-wide">{user.role || 'Member'}</p>
+                              <p className="text-[10px] text-red-600 font-semibold uppercase tracking-wide">{user.role || 'Member'}</p>
                             </div>
                           </div>
                         </div>
@@ -617,9 +617,9 @@ const Navbar = () => {
                           <Link
                             href={user.role === 'admin' ? "/dashboard/admin" : user.role === 'mentor' ? "/dashboard/mentor" : "/dashboard/user"}
                             onClick={() => setIsProfileDropdownOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-teal-50 dark:hover:bg-teal-500/10 hover:text-teal-700 dark:hover:text-teal-400 transition-all group"
+                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-700 dark:hover:text-red-400 transition-all group"
                           >
-                            <LuLayoutDashboard size={18} className="text-gray-400 group-hover:text-teal-600" />
+                            <LuLayoutDashboard size={18} className="text-gray-400 group-hover:text-red-600" />
                             <span className={`text-sm font-semibold ${bengaliClass}`}>Dashboard</span>
                           </Link>
                           <button
@@ -638,7 +638,7 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               ) : mounted ? (
-                <Link href="/login" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500 hover:bg-teal-600 text-white font-semibold text-sm transition-all shadow-md shadow-teal-500/20">
+                <Link href="/login" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold text-sm transition-all shadow-md shadow-red-500/20">
                   <LuUser size={16} />
                   <span>Login</span>
                 </Link>

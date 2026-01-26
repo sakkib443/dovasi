@@ -36,7 +36,7 @@ const AboutFounder = () => {
                                 className="relative w-full aspect-[4/5] max-w-[380px] group"
                             >
                                 {/* Multi-layered Ambient Glow */}
-                                <div className="absolute -inset-10 bg-teal-500/15 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                                <div className="absolute -inset-10 bg-red-500/15 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
                                 {/* Founder Image - Floating Professional Frame */}
                                 <div className="relative w-full h-full rounded-[35px] border-[5px] border-white dark:border-[#111] shadow-xl overflow-hidden">
@@ -66,9 +66,9 @@ const AboutFounder = () => {
                                     className="absolute -top-4 -right-4 px-6 py-4 bg-white dark:bg-[#111] rounded-2xl shadow-xl border border-gray-100 dark:border-white/10 z-20"
                                 >
                                     <div className="relative text-center">
-                                        <span className={`${headingFont} text-3xl font-black text-teal-500 block leading-none`}>15+</span>
+                                        <span className={`${headingFont} text-3xl font-black text-red-500 block leading-none`}>15+</span>
                                         <span className={`text-[8px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] mt-1.5 block ${bengaliClass}`}>
-                                            {language === 'bn' ? 'বছরের অভিজ্ঞতা' : 'Years Experience'}
+                                            {language === 'bn' ? '????? ????????' : 'Years Experience'}
                                         </span>
                                     </div>
                                 </motion.div>
@@ -96,8 +96,8 @@ const AboutFounder = () => {
                                     transition={{ duration: 0.6 }}
                                     className="inline-flex items-center gap-3 mb-6"
                                 >
-                                    <div className="h-[2px] w-10 bg-teal-500" />
-                                    <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-teal-600 dark:text-teal-400 ${headingFont}`}>Founder's Perspective</span>
+                                    <div className="h-[2px] w-10 bg-red-500" />
+                                    <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>Founder's Perspective</span>
                                 </motion.div>
 
                                 <motion.h3
@@ -108,7 +108,7 @@ const AboutFounder = () => {
                                     className={`${headingFont} text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-[1] mb-8 tracking-tight`}
                                 >
                                     EMPOWERING <br />
-                                    THE <span className="text-teal-500 italic font-serif">FUTURE</span> OF <br />
+                                    THE <span className="text-red-500 italic font-serif">FUTURE</span> OF <br />
                                     DIGITAL MASTERY
                                 </motion.h3>
 
@@ -121,8 +121,8 @@ const AboutFounder = () => {
                                         className={`text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-normal ${bengaliClass}`}
                                     >
                                         {language === 'bn'
-                                            ? '"আমাদের লক্ষ্য কোডিং শেখানো নয়, আমাদের লক্ষ্য হলো সমস্যা সমাধানের মানসিকতা তৈরি করা যা বিশ্ব জয় করবে।"'
-                                            : '"Our objective isn\'t just to teach code—it\'s to engineer a problem-solving mindset that dominates on a global scale."'
+                                            ? '"?????? ?????? ????? ?????? ??, ?????? ?????? ??? ?????? ???????? ???????? ???? ??? ?? ????? ?? ?????"'
+                                            : '"Our objective isn\'t just to teach code�it\'s to engineer a problem-solving mindset that dominates on a global scale."'
                                         }
                                     </motion.p>
                                     <motion.p
@@ -133,7 +133,7 @@ const AboutFounder = () => {
                                         className={`text-sm lg:text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-lg font-normal ${bengaliClass}`}
                                     >
                                         {language === 'bn'
-                                            ? 'আমরা বিশ্বাস করি প্রতিটি তরুণের মধ্যে অসীম সম্ভাবনা লুকিয়ে আছে। আমরা শুধু সেই সম্ভাবনা প্রকাশের মাধ্যম হিসেবে কাজ করছি।'
+                                            ? '???? ??????? ??? ??????? ?????? ????? ???? ???????? ?????? ???? ???? ???? ??? ???????? ???????? ?????? ?????? ??? ?????'
                                             : 'We believe that boundless potential lies within every individual. ejobs it exists to serve as the high-performance catalyst for that potential.'
                                         }
                                     </motion.p>
@@ -150,7 +150,7 @@ const AboutFounder = () => {
                                         <h4 className={`${headingFont} text-2xl font-black text-gray-900 dark:text-white`}>
                                             AHSANULLAH SHAON
                                         </h4>
-                                        <p className="text-teal-500 font-bold uppercase tracking-widest text-[9px] mt-1">Founder & CEO, Ejobs IT Ltd</p>
+                                        <p className="text-red-500 font-bold uppercase tracking-widest text-[9px] mt-1">Founder & CEO, Ejobs IT Ltd</p>
                                     </div>
                                     <div className="flex gap-4">
                                         {[LuLinkedin, LuTwitter, LuGlobe].map((Icon, i) => (
@@ -162,7 +162,7 @@ const AboutFounder = () => {
                                                 transition={{ duration: 0.5, delay: 0.5 + (i * 0.1) }}
                                                 whileHover={{ y: -5, scale: 1.1 }}
                                                 href="#"
-                                                className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 hover:text-teal-500 border border-gray-100 dark:border-white/10 transition-all shadow-sm"
+                                                className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 hover:text-red-500 border border-gray-100 dark:border-white/10 transition-all shadow-sm"
                                             >
                                                 <Icon size={18} />
                                             </motion.a>

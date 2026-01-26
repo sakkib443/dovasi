@@ -123,7 +123,7 @@ const SingleCourse = () => {
     return (
       <div className="flex items-center justify-center min-h-[60vh] bg-gradient-to-br from-gray-50 to-white dark:from-slate-950 dark:to-slate-900">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-gray-200 dark:border-slate-700 border-t-teal-500 rounded-full animate-spin mx-auto"></div>
+          <div className="w-12 h-12 border-3 border-gray-200 dark:border-slate-700 border-t-red-500 rounded-full animate-spin mx-auto"></div>
           <p className="mt-4 text-gray-400 dark:text-gray-500 text-sm font-medium tracking-wide poppins">Loading course...</p>
         </div>
       </div>
@@ -141,7 +141,7 @@ const SingleCourse = () => {
         <p className="text-gray-500 dark:text-gray-400 poppins text-sm mb-6 text-center max-w-sm">The course you're looking for doesn't exist or has been removed.</p>
         <button
           onClick={() => router.push('/courses')}
-          className="px-6 py-2.5 bg-gray-900 dark:bg-teal-500 text-white text-sm font-semibold rounded-md hover:bg-teal-600 transition-colors"
+          className="px-6 py-2.5 bg-gray-900 dark:bg-red-500 text-white text-sm font-semibold rounded-md hover:bg-red-600 transition-colors"
         >
           Browse Courses
         </button>
@@ -157,13 +157,13 @@ const SingleCourse = () => {
       {/* Hero Section - with Dark Mode Support */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#f0fffe] via-[#e8f9f8] to-[#f5f5ff] dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pt-12 pb-28 lg:pt-16 lg:pb-36">
         {/* Background Effects */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-400/10 dark:from-teal-500/5 to-transparent blur-3xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-red-400/10 dark:from-red-500/5 to-transparent blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-amber-400/8 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
         {/* Animated Shapes */}
-        <div className="absolute top-20 right-[15%] w-20 h-20 border-2 border-teal-500/20 rounded-2xl rotate-12 animate-float"></div>
+        <div className="absolute top-20 right-[15%] w-20 h-20 border-2 border-red-500/20 rounded-2xl rotate-12 animate-float"></div>
         <div className="absolute bottom-32 left-[10%] w-16 h-16 border-2 border-orange-500/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/3 right-[8%] w-12 h-12 bg-teal-500/10 rounded-xl rotate-45 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 right-[8%] w-12 h-12 bg-red-500/10 rounded-xl rotate-45 animate-float" style={{ animationDelay: '2s' }}></div>
 
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.015)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
@@ -176,9 +176,9 @@ const SingleCourse = () => {
               animate={{ opacity: 1 }}
               className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6 poppins"
             >
-              <Link href="/" className="hover:text-teal-600 transition-colors">Home</Link>
+              <Link href="/" className="hover:text-red-600 transition-colors">Home</Link>
               <span>/</span>
-              <Link href="/courses" className="hover:text-teal-600 transition-colors">Courses</Link>
+              <Link href="/courses" className="hover:text-red-600 transition-colors">Courses</Link>
               <span>/</span>
               <span className="text-gray-700 dark:text-white font-medium truncate max-w-[200px]">{currentCourse.title}</span>
             </motion.div>
@@ -189,7 +189,7 @@ const SingleCourse = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-wrap items-center gap-2 mb-5"
             >
-              <span className="px-3 py-1 bg-gradient-to-r from-teal-500 to-teal-600 rounded text-white text-[11px] font-bold uppercase tracking-wider poppins">
+              <span className="px-3 py-1 bg-gradient-to-r from-red-500 to-red-600 rounded text-white text-[11px] font-bold uppercase tracking-wider poppins">
                 {currentCourse.courseType || 'Recorded'}
               </span>
               <span className="px-3 py-1 bg-white/90 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded text-gray-600 dark:text-gray-300 text-[11px] font-bold uppercase tracking-wider poppins">
@@ -270,7 +270,7 @@ const SingleCourse = () => {
             >
               <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-md border border-gray-200">
                 <span className="text-gray-400 text-sm poppins">Instructor</span>
-                <span className="text-teal-600 font-semibold text-sm outfit underline underline-offset-4">{instructor?.name || 'Industry Expert'}</span>
+                <span className="text-red-600 font-semibold text-sm outfit underline underline-offset-4">{instructor?.name || 'Industry Expert'}</span>
                 <MdVerified className="text-blue-500" size={16} />
               </div>
 
@@ -307,7 +307,7 @@ const SingleCourse = () => {
                     <span className="text-2xl font-bold text-gray-900 outfit">৳{price.toLocaleString()}</span>
                     {discountPrice && <span className="text-gray-400 line-through text-sm">৳{(price + 2000).toLocaleString()}</span>}
                   </div>
-                  <button onClick={handleBuyNow} className="w-full py-3 bg-teal-500 text-white font-semibold rounded-md active:scale-[0.98] transition-transform poppins">
+                  <button onClick={handleBuyNow} className="w-full py-3 bg-red-500 text-white font-semibold rounded-md active:scale-[0.98] transition-transform poppins">
                     Purchase Now
                   </button>
                 </div>
@@ -328,7 +328,7 @@ const SingleCourse = () => {
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all border-b-2 -mb-[1px] poppins ${activeTab === tab.id
-                        ? "text-teal-600 border-teal-500 bg-white"
+                        ? "text-red-600 border-red-500 bg-white"
                         : "text-gray-500 border-transparent hover:text-gray-700"
                         }`}
                     >
@@ -353,7 +353,7 @@ const SingleCourse = () => {
                         {/* About */}
                         <div>
                           <h2 className="text-lg font-bold outfit text-gray-900 mb-4 flex items-center gap-2">
-                            <span className="w-1 h-5 bg-teal-500 rounded-full"></span>
+                            <span className="w-1 h-5 bg-red-500 rounded-full"></span>
                             Course Description
                           </h2>
                           <div className="text-gray-600 poppins text-[15px] leading-7 whitespace-pre-line">
@@ -372,7 +372,7 @@ const SingleCourse = () => {
                               {currentCourse.features.map((feature, idx) => (
                                 <span
                                   key={idx}
-                                  className="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded text-gray-700 font-medium text-sm hover:border-teal-300 hover:bg-teal-50 transition-colors cursor-default poppins"
+                                  className="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded text-gray-700 font-medium text-sm hover:border-teal-300 hover:bg-red-50 transition-colors cursor-default poppins"
                                 >
                                   {feature}
                                 </span>
@@ -393,7 +393,7 @@ const SingleCourse = () => {
                         className="space-y-6"
                       >
                         <h2 className="text-lg font-bold outfit text-gray-900 mb-5 flex items-center gap-2">
-                          <span className="w-1 h-5 bg-teal-500 rounded-full"></span>
+                          <span className="w-1 h-5 bg-red-500 rounded-full"></span>
                           Learning Modules
                         </h2>
                         <div className="space-y-4">
@@ -401,7 +401,7 @@ const SingleCourse = () => {
                             <div key={idx} className="bg-gray-50 border border-gray-100 rounded-md overflow-hidden">
                               <div className="flex items-center justify-between p-4 bg-white border-b border-gray-100">
                                 <div className="flex items-center gap-3">
-                                  <span className="w-8 h-8 rounded bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xs outfit">
+                                  <span className="w-8 h-8 rounded bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs outfit">
                                     {idx + 1}
                                   </span>
                                   <div>
@@ -414,9 +414,9 @@ const SingleCourse = () => {
                                 {module.lessons?.map((lesson, lIdx) => (
                                   <div key={lIdx} className="flex items-center justify-between p-4 pl-12 hover:bg-white transition-colors group">
                                     <div className="flex items-center gap-3">
-                                      <MdPlayCircleOutline className="text-teal-400" size={18} />
-                                      <span className="text-sm font-medium text-gray-600 poppins group-hover:text-teal-600">{lesson.title}</span>
-                                      {lesson.isFree && <span className="text-[10px] font-bold text-teal-500 bg-teal-50 px-2 py-0.5 rounded border border-teal-100">FREE</span>}
+                                      <MdPlayCircleOutline className="text-red-400" size={18} />
+                                      <span className="text-sm font-medium text-gray-600 poppins group-hover:text-red-600">{lesson.title}</span>
+                                      {lesson.isFree && <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded border border-red-100">FREE</span>}
                                     </div>
                                     <span className="text-[11px] font-medium text-gray-400 poppins">{lesson.videoDuration}s</span>
                                   </div>
@@ -438,7 +438,7 @@ const SingleCourse = () => {
                         transition={{ duration: 0.2 }}
                       >
                         <h2 className="text-lg font-bold outfit text-gray-900 mb-5 flex items-center gap-2">
-                          <span className="w-1 h-5 bg-teal-500 rounded-full"></span>
+                          <span className="w-1 h-5 bg-red-500 rounded-full"></span>
                           What You Will Learn
                         </h2>
 
@@ -447,10 +447,10 @@ const SingleCourse = () => {
                             {currentCourse.whatYouWillLearn.map((topic, idx) => (
                               <div
                                 key={idx}
-                                className="flex items-start gap-3 p-4 bg-gray-50 border border-gray-100 rounded-md hover:border-teal-200 hover:bg-teal-50/30 transition-colors"
+                                className="flex items-start gap-3 p-4 bg-gray-50 border border-gray-100 rounded-md hover:border-teal-200 hover:bg-red-50/30 transition-colors"
                               >
-                                <div className="w-8 h-8 rounded bg-teal-100 flex items-center justify-center flex-shrink-0">
-                                  <LuCheck className="text-teal-600" size={16} strokeWidth={3} />
+                                <div className="w-8 h-8 rounded bg-red-100 flex items-center justify-center flex-shrink-0">
+                                  <LuCheck className="text-red-600" size={16} strokeWidth={3} />
                                 </div>
                                 <span className="text-gray-700 font-medium text-sm leading-relaxed pt-1 poppins">{topic}</span>
                               </div>
@@ -475,14 +475,14 @@ const SingleCourse = () => {
                         className="space-y-8"
                       >
                         <h2 className="text-lg font-bold outfit text-gray-900 mb-6 flex items-center gap-2">
-                          <span className="w-1 h-5 bg-teal-500 rounded-full"></span>
+                          <span className="w-1 h-5 bg-red-500 rounded-full"></span>
                           Meet Your Instructor
                         </h2>
 
                         {instructor ? (
                           <div className="flex flex-col md:flex-row gap-8 items-start">
                             <div className="relative group">
-                              <div className="absolute -inset-1 bg-gradient-to-tr from-teal-500 to-amber-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                              <div className="absolute -inset-1 bg-gradient-to-tr from-red-500 to-amber-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
                               <div className="relative w-40 h-40 rounded-xl overflow-hidden border-2 border-white shadow-lg">
                                 <img src={instructor.image} alt={instructor.name} className="w-full h-full object-cover transform transition-transform group-hover:scale-105 duration-500" />
                               </div>
@@ -492,12 +492,12 @@ const SingleCourse = () => {
                                 <h3 className="text-2xl font-bold outfit text-gray-900">{instructor.name}</h3>
                                 <MdVerified className="text-blue-500 text-xl" />
                               </div>
-                              <p className="text-teal-600 font-semibold poppins text-base">{instructor.designation} • {instructor.subject}</p>
+                              <p className="text-red-600 font-semibold poppins text-base">{instructor.designation} • {instructor.subject}</p>
                               <p className="text-gray-600 poppins text-sm leading-relaxed">
                                 {instructor.details?.substring(0, 300)}...
                               </p>
                               <div className="flex gap-3 pt-2">
-                                <button className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-md hover:bg-teal-50 hover:border-teal-200 transition-colors text-gray-700 text-xs font-bold poppins">VIEW PROFILE</button>
+                                <button className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-md hover:bg-red-50 hover:border-teal-200 transition-colors text-gray-700 text-xs font-bold poppins">VIEW PROFILE</button>
                               </div>
                             </div>
                           </div>
@@ -553,26 +553,26 @@ const SingleCourse = () => {
                           <span className="text-gray-400 line-through text-sm">৳{(price + 2000).toLocaleString()}</span>
                         )}
                       </div>
-                      <p className="text-teal-600 text-xs font-semibold uppercase tracking-wide mt-1 poppins">Full Lifetime Access</p>
+                      <p className="text-red-600 text-xs font-semibold uppercase tracking-wide mt-1 poppins">Full Lifetime Access</p>
                     </div>
 
                     {/* Buttons */}
                     <div className="space-y-2.5">
                       <button
                         onClick={handleBuyNow}
-                        className="w-full py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-md transition-colors flex items-center justify-center gap-2 poppins"
+                        className="w-full py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md transition-colors flex items-center justify-center gap-2 poppins"
                       >
                         Buy Now <FaArrowRight size={12} />
                       </button>
                       <button
                         onClick={handleAddToCart}
-                        className="w-full py-2.5 bg-white border border-gray-200 text-gray-700 font-semibold rounded-md hover:border-teal-400 hover:text-teal-600 transition-colors poppins"
+                        className="w-full py-2.5 bg-white border border-gray-200 text-gray-700 font-semibold rounded-md hover:border-red-400 hover:text-red-600 transition-colors poppins"
                       >
                         Add to Cart
                       </button>
                       <Link
                         href={`/learn/${id}`}
-                        className="w-full py-2.5 bg-gray-50 border border-gray-200 text-gray-600 font-medium rounded-md hover:border-teal-400 hover:text-teal-600 transition-colors flex items-center justify-center gap-2 text-sm poppins"
+                        className="w-full py-2.5 bg-gray-50 border border-gray-200 text-gray-600 font-medium rounded-md hover:border-red-400 hover:text-red-600 transition-colors flex items-center justify-center gap-2 text-sm poppins"
                       >
                         <LuVideo size={14} /> Sample Lesson
                       </Link>
@@ -589,7 +589,7 @@ const SingleCourse = () => {
                           { icon: LuShieldCheck, text: 'Lifetime Updates' },
                         ].map((item, i) => (
                           <li key={i} className="flex items-center gap-2.5 text-gray-600 text-sm poppins">
-                            <item.icon className="text-teal-500" size={15} />
+                            <item.icon className="text-red-500" size={15} />
                             <span>{item.text}</span>
                           </li>
                         ))}
@@ -612,19 +612,19 @@ const SingleCourse = () => {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-semibold text-gray-900 group-hover:text-teal-600 transition-colors line-clamp-1 outfit">{item.title}</h4>
+                          <h4 className="text-sm font-semibold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-1 outfit">{item.title}</h4>
                           <div className="flex items-center gap-1 text-amber-400 mt-0.5">
                             <FaStar size={10} />
                             <span className="text-gray-600 text-xs font-medium poppins">{item.averageRating || '5.0'}</span>
                           </div>
-                          <span className="text-teal-600 font-bold text-xs poppins">৳{item.price?.toLocaleString()}</span>
+                          <span className="text-red-600 font-bold text-xs poppins">৳{item.price?.toLocaleString()}</span>
                         </div>
                       </Link>
                     ))}
                   </div>
                   <Link
                     href="/courses"
-                    className="flex items-center justify-center w-full py-2.5 mt-4 text-teal-600 font-semibold text-sm border border-dashed border-teal-200 rounded-md hover:bg-teal-50 transition-colors poppins"
+                    className="flex items-center justify-center w-full py-2.5 mt-4 text-red-600 font-semibold text-sm border border-dashed border-teal-200 rounded-md hover:bg-red-50 transition-colors poppins"
                   >
                     View All Courses
                   </Link>

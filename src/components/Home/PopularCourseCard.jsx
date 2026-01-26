@@ -100,7 +100,7 @@ const PopularCourseCard = () => {
             <button
               onClick={handlePrev}
               disabled={isAnimating}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white border border-gray-200 rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:bg-[#41bfb8] hover:text-white hover:border-[#41bfb8] hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white border border-gray-200 rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:bg-[#E62D26] hover:text-white hover:border-[#E62D26] hover:shadow-xl transition-all duration-300 disabled:opacity-50"
             >
               <LuChevronLeft size={20} />
             </button>
@@ -108,7 +108,7 @@ const PopularCourseCard = () => {
             <button
               onClick={handleNext}
               disabled={isAnimating}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white border border-gray-200 rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:bg-[#41bfb8] hover:text-white hover:border-[#41bfb8] hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white border border-gray-200 rounded-full shadow-lg flex items-center justify-center text-gray-500 hover:bg-[#E62D26] hover:text-white hover:border-[#E62D26] hover:shadow-xl transition-all duration-300 disabled:opacity-50"
             >
               <LuChevronRight size={20} />
             </button>
@@ -133,7 +133,7 @@ const PopularCourseCard = () => {
               </svg>
             </div>
             <p className={`text-gray-600 text-lg font-medium ${bengaliClass}`}>
-              {language === 'bn' ? 'কোর্স লোড করতে ব্যর্থ' : 'Failed to load courses'}
+              {language === 'bn' ? '????? ??? ???? ??????' : 'Failed to load courses'}
             </p>
             <p className="text-gray-400 text-sm mt-1">{error}</p>
           </div>
@@ -158,10 +158,10 @@ const PopularCourseCard = () => {
                   <LuSparkles className="w-10 h-10 text-gray-300" />
                 </div>
                 <p className={`text-gray-500 text-lg ${bengaliClass}`}>
-                  {language === 'bn' ? 'এই ক্যাটাগরিতে কোন কোর্স নেই' : 'No courses found in this category'}
+                  {language === 'bn' ? '?? ??????????? ??? ????? ???' : 'No courses found in this category'}
                 </p>
                 <p className={`text-gray-400 text-sm mt-1 ${bengaliClass}`}>
-                  {language === 'bn' ? 'অন্য ক্যাটাগরি নির্বাচন করুন' : 'Try selecting a different category'}
+                  {language === 'bn' ? '???? ????????? ???????? ????' : 'Try selecting a different category'}
                 </p>
               </div>
             )}
@@ -176,7 +176,7 @@ const PopularCourseCard = () => {
                 key={index}
                 onClick={() => setStartIndex(index * visibleItems)}
                 className={`transition-all duration-300 rounded-full ${Math.floor(startIndex / visibleItems) === index
-                  ? "w-8 h-2 bg-[#41bfb8]"
+                  ? "w-8 h-2 bg-[#E62D26]"
                   : "w-2 h-2 bg-gray-200 hover:bg-gray-300"
                   }`}
               />

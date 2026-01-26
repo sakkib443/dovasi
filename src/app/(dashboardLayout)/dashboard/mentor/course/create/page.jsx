@@ -13,9 +13,9 @@ export default function MentorCreateCoursePage() {
     const [activeTab, setActiveTab] = useState('course');
 
     const tabs = [
-        { id: 'course', label: 'Create Course', labelBn: 'কোর্স তৈরি', icon: FiBookOpen, color: 'indigo' },
-        { id: 'module', label: 'Create Module', labelBn: 'মডিউল তৈরি', icon: FiLayers, color: 'purple' },
-        { id: 'lesson', label: 'Create Lesson', labelBn: 'লেসন তৈরি', icon: FiPlay, color: 'rose' },
+        { id: 'course', label: 'Create Course', labelBn: '????? ????', icon: FiBookOpen, color: 'indigo' },
+        { id: 'module', label: 'Create Module', labelBn: '????? ????', icon: FiLayers, color: 'purple' },
+        { id: 'lesson', label: 'Create Lesson', labelBn: '???? ????', icon: FiPlay, color: 'rose' },
     ];
 
     return (
@@ -80,15 +80,15 @@ export default function MentorCreateCoursePage() {
                     <div className="px-6 py-3 bg-slate-50 border-b border-slate-100">
                         <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
                             <span className={`px-3 py-1 rounded-full font-semibold ${activeTab === 'course' ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-200 text-slate-500'}`}>
-                                ১. Course
+                                ?. Course
                             </span>
-                            <span className="text-slate-300">→</span>
+                            <span className="text-slate-300">?</span>
                             <span className={`px-3 py-1 rounded-full font-semibold ${activeTab === 'module' ? 'bg-purple-100 text-purple-700' : 'bg-slate-200 text-slate-500'}`}>
-                                ২. Module
+                                ?. Module
                             </span>
-                            <span className="text-slate-300">→</span>
+                            <span className="text-slate-300">?</span>
                             <span className={`px-3 py-1 rounded-full font-semibold ${activeTab === 'lesson' ? 'bg-rose-100 text-rose-700' : 'bg-slate-200 text-slate-500'}`}>
-                                ৩. Lesson
+                                ?. Lesson
                             </span>
                         </div>
                     </div>

@@ -26,7 +26,7 @@ export default function SettingsPage() {
         siteName: 'MotionBoss',
         siteEmail: 'admin@motionboss.com',
         currency: 'BDT',
-        currencySymbol: '৳',
+        currencySymbol: '?',
         emailNotifications: true,
         orderNotifications: true,
         maintenanceMode: false,
@@ -290,7 +290,7 @@ export default function SettingsPage() {
                                             required
                                             value={passwordData.currentPassword}
                                             onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                                            placeholder="••••••••"
+                                            placeholder="��������"
                                             className={`w-full px-4 py-3 rounded-xl border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-800 text-white focus:border-indigo-500' : 'bg-white border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
                                                 }`}
                                         />
@@ -302,7 +302,7 @@ export default function SettingsPage() {
                                             required
                                             value={passwordData.newPassword}
                                             onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                                            placeholder="••••••••"
+                                            placeholder="��������"
                                             className={`w-full px-4 py-3 rounded-xl border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-800 text-white focus:border-indigo-500' : 'bg-white border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
                                                 }`}
                                         />
@@ -314,7 +314,7 @@ export default function SettingsPage() {
                                             required
                                             value={passwordData.confirmNewPassword}
                                             onChange={(e) => setPasswordData(prev => ({ ...prev, confirmNewPassword: e.target.value }))}
-                                            placeholder="••••••••"
+                                            placeholder="��������"
                                             className={`w-full px-4 py-3 rounded-xl border outline-none transition-all ${isDark ? 'bg-slate-900 border-slate-800 text-white focus:border-indigo-500' : 'bg-white border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20'
                                                 }`}
                                         />
@@ -365,7 +365,7 @@ export default function SettingsPage() {
                                             <p className="text-xs text-emerald-600 font-semibold">Active</p>
                                         </div>
                                     </div>
-                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Configure →</button>
+                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Configure ?</button>
                                 </div>
                                 <div className={`p-4 rounded-xl border-2 border-dashed ${isDark ? 'bg-black/20 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
                                     <div className="flex items-center gap-3 mb-3">
@@ -375,7 +375,7 @@ export default function SettingsPage() {
                                             <p className="text-xs text-slate-400 font-semibold">Inactive</p>
                                         </div>
                                     </div>
-                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Setup →</button>
+                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Setup ?</button>
                                 </div>
                             </div>
                         </div>

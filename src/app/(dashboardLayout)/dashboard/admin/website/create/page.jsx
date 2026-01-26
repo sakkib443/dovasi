@@ -93,7 +93,7 @@ export default function CreateWebsitePage() {
             });
 
             if (response.ok) {
-                alert('Website asset added to marketplace! ✅');
+                alert('Website asset added to marketplace! ?');
                 router.push('/dashboard/admin/website');
             } else {
                 const err = await response.json();
@@ -115,7 +115,7 @@ export default function CreateWebsitePage() {
                     <Link href="/dashboard/admin/website" className="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-all">
                         <FiArrowLeft size={18} />
                     </Link>
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
                         <FiGlobe className="text-white text-lg" />
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export default function CreateWebsitePage() {
                 <button
                     onClick={handleSubmit(onSubmit)}
                     disabled={loading}
-                    className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-emerald-500/25 transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-red-500 hover:from-emerald-600 hover:to-red-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-emerald-500/25 transition-all disabled:opacity-50"
                 >
                     {loading ? 'Publishing...' : <><FiSave size={16} /> Publish Website</>}
                 </button>
@@ -256,17 +256,17 @@ export default function CreateWebsitePage() {
                         <h2 className="text-sm font-semibold text-white border-b border-slate-700 pb-3">Pricing</h2>
                         <div className="space-y-4">
                             <div>
-                                <label className="text-sm font-medium text-slate-300 block mb-2">Regular Price (৳)</label>
+                                <label className="text-sm font-medium text-slate-300 block mb-2">Regular Price (?)</label>
                                 <div className="relative">
-                                    <span className="absolute left-4 top-3 text-slate-400">৳</span>
+                                    <span className="absolute left-4 top-3 text-slate-400">?</span>
                                     <input type="number" {...register('price')} className="w-full bg-slate-700 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-white text-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="0" />
                                 </div>
                                 {errors.price && <p className="text-rose-400 text-xs mt-1">{errors.price.message}</p>}
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-slate-300 block mb-2">Offer Price (৳)</label>
+                                <label className="text-sm font-medium text-slate-300 block mb-2">Offer Price (?)</label>
                                 <div className="relative">
-                                    <span className="absolute left-4 top-3 text-slate-400">৳</span>
+                                    <span className="absolute left-4 top-3 text-slate-400">?</span>
                                     <input type="number" {...register('offerPrice')} className="w-full bg-slate-700 border border-slate-600 rounded-xl py-3 pl-10 pr-4 text-white text-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="0" />
                                 </div>
                             </div>

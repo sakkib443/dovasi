@@ -26,12 +26,12 @@ const CourseCard = ({ course }) => {
   const getLevelStyle = (level) => {
     switch (level?.toLowerCase()) {
       case 'beginner':
-        return { bg: 'bg-green-100', text: 'text-green-600', label: language === 'bn' ? 'বিগিনার' : 'Beginner' };
+        return { bg: 'bg-green-100', text: 'text-green-600', label: language === 'bn' ? '???????' : 'Beginner' };
       case 'intermediate':
-        return { bg: 'bg-blue-100', text: 'text-blue-600', label: language === 'bn' ? 'ইন্টারমিডিয়েট' : 'Intermediate' };
+        return { bg: 'bg-blue-100', text: 'text-blue-600', label: language === 'bn' ? '??????????????' : 'Intermediate' };
       case 'advanced':
       case 'expert':
-        return { bg: 'bg-red-100', text: 'text-red-600', label: language === 'bn' ? 'এক্সপার্ট' : 'Expert' };
+        return { bg: 'bg-red-100', text: 'text-red-600', label: language === 'bn' ? '?????????' : 'Expert' };
       default:
         return { bg: 'bg-gray-100', text: 'text-gray-600', label: level || 'All Levels' };
     }
@@ -92,7 +92,7 @@ const CourseCard = ({ course }) => {
           <div className="flex items-center gap-2">
             {isFree ? (
               <span className={`text-lg font-bold text-green-600 ${bengaliClass}`}>
-                {language === 'bn' ? 'ফ্রি' : 'Free'}
+                {language === 'bn' ? '????' : 'Free'}
               </span>
             ) : (
               <>
@@ -140,10 +140,10 @@ const PopularCourse = () => {
   const visibleItems = 5;
 
   const filters = [
-    { id: 'all', label: language === 'bn' ? 'সব' : 'All' },
-    { id: 'trending', label: language === 'bn' ? 'ট্রেন্ডিং' : 'Trending' },
-    { id: 'popularity', label: language === 'bn' ? 'জনপ্রিয়' : 'Popularity' },
-    { id: 'featured', label: language === 'bn' ? 'ফিচার্ড' : 'Featured' },
+    { id: 'all', label: language === 'bn' ? '??' : 'All' },
+    { id: 'trending', label: language === 'bn' ? '?????????' : 'Trending' },
+    { id: 'popularity', label: language === 'bn' ? '????????' : 'Popularity' },
+    { id: 'featured', label: language === 'bn' ? '???????' : 'Featured' },
     ...(categories.slice(0, 2).map(cat => ({
       id: cat._id,
       label: language === 'bn' ? cat.nameBn || cat.name : cat.name
@@ -198,7 +198,7 @@ const PopularCourse = () => {
             transition={{ duration: 0.5 }}
           >
             <h2 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white ${bengaliClass}`}>
-              {language === 'bn' ? 'শিক্ষার্থীরা দেখছেন' : 'Students are '}
+              {language === 'bn' ? '???????????? ??????' : 'Students are '}
               <span className="relative inline-block">
                 {language === 'bn' ? '' : 'Viewing'}
                 <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-400 rounded-full"></span>
@@ -268,7 +268,7 @@ const PopularCourse = () => {
               ) : (
                 <div className="col-span-full text-center py-12">
                   <p className={`text-gray-500 ${bengaliClass}`}>
-                    {language === 'bn' ? 'কোন কোর্স পাওয়া যায়নি' : 'No courses found'}
+                    {language === 'bn' ? '??? ????? ?????? ??????' : 'No courses found'}
                   </p>
                 </div>
               )}

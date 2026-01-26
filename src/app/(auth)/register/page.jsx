@@ -82,9 +82,9 @@ const Register = () => {
   };
 
   const features = [
-    { icon: FiBookOpen, text: language === "bn" ? "৫০+ প্রফেশনাল কোর্স" : "50+ Professional Courses" },
-    { icon: FiUsers, text: language === "bn" ? "৪,২০০+ সফল শিক্ষার্থী" : "4,200+ Successful Students" },
-    { icon: FiAward, text: language === "bn" ? "ইন্ডাস্ট্রি সার্টিফিকেট" : "Industry Certificates" },
+    { icon: FiBookOpen, text: language === "bn" ? "??+ ????????? ?????" : "50+ Professional Courses" },
+    { icon: FiUsers, text: language === "bn" ? "?,???+ ??? ??????????" : "4,200+ Successful Students" },
+    { icon: FiAward, text: language === "bn" ? "??????????? ???????????" : "Industry Certificates" },
   ];
 
   return (
@@ -94,7 +94,7 @@ const Register = () => {
           <div className="grid lg:grid-cols-5 gap-0 bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
 
             {/* Left Side - Info Section */}
-            <div className="lg:col-span-2 bg-gradient-to-br from-[#41bfb8] to-[#38a89d] p-8 lg:p-12 text-white relative overflow-hidden">
+            <div className="lg:col-span-2 bg-gradient-to-br from-[#E62D26] to-[#38a89d] p-8 lg:p-12 text-white relative overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-10 right-10 w-40 h-40 border-2 border-white rounded-full"></div>
@@ -106,11 +106,11 @@ const Register = () => {
                 {/* Welcome Message */}
                 <div className="mb-10">
                   <h2 className={`text-3xl font-bold mb-3 outfit ${bengaliClass}`}>
-                    {language === "bn" ? "আপনার ক্যারিয়ার শুরু করুন" : "Start Your Career Journey"}
+                    {language === "bn" ? "????? ?????????? ???? ????" : "Start Your Career Journey"}
                   </h2>
                   <p className={`text-white/80 text-sm leading-relaxed ${bengaliClass}`}>
                     {language === "bn"
-                      ? "একটি অ্যাকাউন্ট তৈরি করুন এবং প্রিমিয়াম কোর্স, লাইভ ক্লাস এবং ক্যারিয়ার সাপোর্ট অ্যাক্সেস করুন।"
+                      ? "???? ?????????? ???? ???? ??? ?????????? ?????, ???? ????? ??? ?????????? ??????? ????????? ?????"
                       : "Create an account and get access to premium courses, live classes, and career support."}
                   </p>
                 </div>
@@ -136,13 +136,13 @@ const Register = () => {
                     <div>
                       <p className="text-3xl font-bold outfit">92%</p>
                       <p className={`text-xs text-white/70 ${bengaliClass}`}>
-                        {language === "bn" ? "প্লেসমেন্ট রেট" : "Placement Rate"}
+                        {language === "bn" ? "?????????? ???" : "Placement Rate"}
                       </p>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold outfit">4.9★</p>
+                      <p className="text-3xl font-bold outfit">4.9?</p>
                       <p className={`text-xs text-white/70 ${bengaliClass}`}>
-                        {language === "bn" ? "শিক্ষার্থী রেটিং" : "Student Rating"}
+                        {language === "bn" ? "?????????? ?????" : "Student Rating"}
                       </p>
                     </div>
                   </div>
@@ -155,10 +155,10 @@ const Register = () => {
               <div className="max-w-md mx-auto">
                 <div className="mb-8">
                   <h3 className={`text-2xl font-bold text-gray-800 mb-2 outfit ${bengaliClass}`}>
-                    {language === "bn" ? "অ্যাকাউন্ট তৈরি করুন" : "Create Account"}
+                    {language === "bn" ? "?????????? ???? ????" : "Create Account"}
                   </h3>
                   <p className={`text-gray-500 text-sm ${bengaliClass}`}>
-                    {language === "bn" ? "শুধু এক মিনিট সময় লাগবে!" : "It only takes a minute!"}
+                    {language === "bn" ? "???? ?? ????? ???? ?????!" : "It only takes a minute!"}
                   </p>
                 </div>
 
@@ -169,22 +169,22 @@ const Register = () => {
                       <FiUser className="absolute left-4 top-3.5 text-gray-400" size={18} />
                       <input
                         name="firstName"
-                        placeholder={language === "bn" ? "প্রথম নাম" : "First name"}
+                        placeholder={language === "bn" ? "????? ???" : "First name"}
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                        className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                       />
                     </div>
                     <div className="relative">
                       <FiUser className="absolute left-4 top-3.5 text-gray-400" size={18} />
                       <input
                         name="lastName"
-                        placeholder={language === "bn" ? "শেষ নাম" : "Last name"}
+                        placeholder={language === "bn" ? "??? ???" : "Last name"}
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                        className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                       />
                     </div>
                   </div>
@@ -195,11 +195,11 @@ const Register = () => {
                     <input
                       name="email"
                       type="email"
-                      placeholder={language === "bn" ? "ইমেইল এড্রেস" : "Email address"}
+                      placeholder={language === "bn" ? "????? ??????" : "Email address"}
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                      className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                     />
                   </div>
 
@@ -208,10 +208,10 @@ const Register = () => {
                     <FiPhone className="absolute left-4 top-3.5 text-gray-400" size={18} />
                     <input
                       name="phoneNumber"
-                      placeholder={language === "bn" ? "ফোন নম্বর (ঐচ্ছিক)" : "Phone number (optional)"}
+                      placeholder={language === "bn" ? "??? ????? (??????)" : "Phone number (optional)"}
                       value={formData.phoneNumber}
                       onChange={handleChange}
-                      className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                      className={`w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                     />
                   </div>
 
@@ -223,16 +223,16 @@ const Register = () => {
                         <input
                           name="password"
                           type={showPassword ? "text" : "password"}
-                          placeholder={language === "bn" ? "পাসওয়ার্ড" : "Password"}
+                          placeholder={language === "bn" ? "??????????" : "Password"}
                           value={formData.password}
                           onChange={handleChange}
                           required
-                          className={`w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                          className={`w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                         />
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-3.5 text-gray-400 hover:text-[#41bfb8] transition"
+                          className="absolute right-3 top-3.5 text-gray-400 hover:text-[#E62D26] transition"
                         >
                           {showPassword ? <MdOutlineVisibilityOff size={18} /> : <MdOutlineRemoveRedEye size={18} />}
                         </button>
@@ -255,16 +255,16 @@ const Register = () => {
                       <input
                         name="confirmPassword"
                         type={showConfirmPassword ? "text" : "password"}
-                        placeholder={language === "bn" ? "পাসওয়ার্ড নিশ্চিত করুন" : "Confirm password"}
+                        placeholder={language === "bn" ? "?????????? ??????? ????" : "Confirm password"}
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
-                        className={`w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#41bfb8] focus:ring-2 focus:ring-[#41bfb8]/20 outline-none transition ${bengaliClass}`}
+                        className={`w-full pl-11 pr-10 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/20 outline-none transition ${bengaliClass}`}
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-3.5 text-gray-400 hover:text-[#41bfb8] transition"
+                        className="absolute right-3 top-3.5 text-gray-400 hover:text-[#E62D26] transition"
                       >
                         {showConfirmPassword ? <MdOutlineVisibilityOff size={18} /> : <MdOutlineRemoveRedEye size={18} />}
                       </button>
@@ -280,7 +280,7 @@ const Register = () => {
 
                   {/* Terms */}
                   <label className="flex items-start gap-3 cursor-pointer">
-                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition ${termsAccepted ? 'bg-[#41bfb8] border-[#41bfb8]' : 'border-gray-300'}`}>
+                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition ${termsAccepted ? 'bg-[#E62D26] border-[#E62D26]' : 'border-gray-300'}`}>
                       {termsAccepted && <FiCheck className="text-white" size={12} />}
                     </div>
                     <input
@@ -290,15 +290,15 @@ const Register = () => {
                       className="hidden"
                     />
                     <span className={`text-sm text-gray-600 ${bengaliClass}`}>
-                      {language === "bn" ? "আমি " : "I agree to the "}
-                      <Link href="/terms" className="text-[#41bfb8] font-medium hover:underline">
-                        {language === "bn" ? "শর্তাবলী" : "Terms & Conditions"}
+                      {language === "bn" ? "??? " : "I agree to the "}
+                      <Link href="/terms" className="text-[#E62D26] font-medium hover:underline">
+                        {language === "bn" ? "????????" : "Terms & Conditions"}
                       </Link>
-                      {language === "bn" ? " এবং " : " and "}
-                      <Link href="/privacy" className="text-[#41bfb8] font-medium hover:underline">
-                        {language === "bn" ? "গোপনীয়তা নীতি" : "Privacy Policy"}
+                      {language === "bn" ? " ??? " : " and "}
+                      <Link href="/privacy" className="text-[#E62D26] font-medium hover:underline">
+                        {language === "bn" ? "????????? ????" : "Privacy Policy"}
                       </Link>
-                      {language === "bn" ? " মেনে নিচ্ছি।" : "."}
+                      {language === "bn" ? " ???? ???????" : "."}
                     </span>
                   </label>
 
@@ -308,24 +308,24 @@ const Register = () => {
                     disabled={loading || !termsAccepted}
                     className={`w-full py-3.5 rounded-xl text-white font-semibold shadow-lg transition text-base ${loading || !termsAccepted
                       ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#41bfb8] to-[#38a89d] hover:shadow-xl hover:-translate-y-0.5"
+                      : "bg-gradient-to-r from-[#E62D26] to-[#38a89d] hover:shadow-xl hover:-translate-y-0.5"
                       } ${bengaliClass}`}
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
                         <span className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></span>
-                        {language === "bn" ? "তৈরি হচ্ছে..." : "Creating..."}
+                        {language === "bn" ? "???? ?????..." : "Creating..."}
                       </span>
                     ) : (
-                      language === "bn" ? "অ্যাকাউন্ট তৈরি করুন" : "Create Account"
+                      language === "bn" ? "?????????? ???? ????" : "Create Account"
                     )}
                   </button>
 
                   {/* Login Link */}
                   <p className={`text-sm text-gray-500 text-center ${bengaliClass}`}>
-                    {language === "bn" ? "আগে থেকেই অ্যাকাউন্ট আছে? " : "Already have an account? "}
-                    <Link href="/login" className="text-[#41bfb8] font-semibold hover:underline">
-                      {language === "bn" ? "লগইন করুন" : "Sign in"}
+                    {language === "bn" ? "??? ????? ?????????? ???? " : "Already have an account? "}
+                    <Link href="/login" className="text-[#E62D26] font-semibold hover:underline">
+                      {language === "bn" ? "???? ????" : "Sign in"}
                     </Link>
                   </p>
                 </form>

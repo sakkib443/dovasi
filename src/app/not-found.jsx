@@ -6,13 +6,13 @@ import { LuHouse, LuArrowLeft, LuSearch, LuTriangleAlert } from "react-icons/lu"
 
 const NotFound = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#050505] overflow-hidden relative selection:bg-teal-500/30">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#050505] overflow-hidden relative selection:bg-red-500/30">
 
             {/* Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-[120px]" />
+                <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[120px]" />
                 <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-teal-500/5 to-orange-500/5 rounded-full blur-[100px] opacity-50" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-red-500/5 to-orange-500/5 rounded-full blur-[100px] opacity-50" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 text-center">
@@ -24,7 +24,7 @@ const NotFound = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="relative mb-8"
                 >
-                    <h1 className="text-[150px] sm:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-teal-500/20 via-gray-200 dark:via-gray-800 to-orange-500/20 select-none">
+                    <h1 className="text-[150px] sm:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-500/20 via-gray-200 dark:via-gray-800 to-orange-500/20 select-none">
                         404
                     </h1>
                     <motion.div
@@ -33,7 +33,7 @@ const NotFound = () => {
                         transition={{ delay: 0.5, duration: 0.5 }}
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     >
-                        <div className="bg-white dark:bg-[#0d0d0d] p-6 rounded-3xl border border-gray-100 dark:border-white/10 shadow-2xl shadow-teal-500/10 backdrop-blur-xl">
+                        <div className="bg-white dark:bg-[#0d0d0d] p-6 rounded-3xl border border-gray-100 dark:border-white/10 shadow-2xl shadow-red-500/10 backdrop-blur-xl">
                             <LuTriangleAlert className="w-12 h-12 text-orange-500 mx-auto" />
                         </div>
                     </motion.div>
@@ -80,7 +80,7 @@ const NotFound = () => {
                     transition={{ delay: 0.8, duration: 0.6 }}
                     className="mt-16 text-sm text-gray-400 dark:text-gray-600 font-medium"
                 >
-                    Error Code: 404 • ejobsit System
+                    Error Code: 404 � ejobsit System
                 </motion.p>
 
             </div>

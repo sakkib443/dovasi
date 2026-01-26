@@ -20,28 +20,30 @@ const HomePage = () => {
   useEffect(() => {
     setMounted(true);
 
-    // Initialize Lenis Smooth Scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
+    // Initialize Lenis Smooth Scroll - Only on desktop
+    if (window.innerWidth > 768) {
+      const lenis = new Lenis({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 0.8,
+        smoothTouch: false,
+        touchMultiplier: 2,
+      });
 
-    function raf(time) {
-      lenis.raf(time);
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
+
+      return () => {
+        lenis.destroy();
+      };
     }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
   }, []);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const HomePage = () => {
   }, [dispatch, mounted]);
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black selection:bg-teal-500 selection:text-black font-poppins antialiased">
+    <div className="relative min-h-screen bg-white dark:bg-black selection:bg-red-500 selection:text-black font-poppins antialiased">
       <main className="relative">
         {/* Hero Section */}
         <section className="relative w-full overflow-hidden z-0 bg-white dark:bg-black">

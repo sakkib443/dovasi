@@ -106,7 +106,7 @@ const WriteReviewModal = ({ isOpen, onClose, productId, productType }) => {
                                         type="text"
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all placeholder-gray-400"
+                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all placeholder-gray-400"
                                         placeholder="Summarize your experience"
                                     />
                                 </div>
@@ -119,7 +119,7 @@ const WriteReviewModal = ({ isOpen, onClose, productId, productType }) => {
                                         onChange={(e) => setComment(e.target.value)}
                                         rows="4"
                                         required
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all placeholder-gray-400 resize-none"
+                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all placeholder-gray-400 resize-none"
                                         placeholder="What did you like or dislike?"
                                     ></textarea>
                                 </div>
@@ -135,7 +135,7 @@ const WriteReviewModal = ({ isOpen, onClose, productId, productType }) => {
                                 <button
                                     type="submit"
                                     disabled={submitLoading || !comment.trim()}
-                                    className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold rounded-lg hover:from-teal-600 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-teal-500/20"
+                                    className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-lg hover:from-red-600 hover:to-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-red-500/20"
                                 >
                                     {submitLoading ? (
                                         <>

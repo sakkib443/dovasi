@@ -84,14 +84,14 @@ const MentorCouponsPage = () => {
                     placeholder="Search coupons..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className={`w-full pl-11 pr-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} focus:ring-2 focus:ring-teal-500`}
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} focus:ring-2 focus:ring-red-500`}
                 />
             </div>
 
             {/* Coupons Grid */}
             {loading ? (
                 <div className="flex justify-center py-20">
-                    <div className="w-10 h-10 border-4 border-teal-500/30 border-t-teal-500 rounded-full animate-spin"></div>
+                    <div className="w-10 h-10 border-4 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
                 </div>
             ) : filteredCoupons.length === 0 ? (
                 <div className={`text-center py-20 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -118,7 +118,7 @@ const MentorCouponsPage = () => {
 
                             {/* Code */}
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white">
+                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-emerald-500 flex items-center justify-center text-white">
                                     {coupon.discountType === 'percentage' ? <LuPercent size={22} /> : <LuTag size={22} />}
                                 </div>
                                 <div>
@@ -126,7 +126,7 @@ const MentorCouponsPage = () => {
                                         <span className={`font-mono text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                             {coupon.code}
                                         </span>
-                                        <button onClick={() => copyCode(coupon.code)} className="text-gray-400 hover:text-teal-500">
+                                        <button onClick={() => copyCode(coupon.code)} className="text-gray-400 hover:text-red-500">
                                             <LuCopy size={14} />
                                         </button>
                                     </div>
@@ -135,17 +135,17 @@ const MentorCouponsPage = () => {
                             </div>
 
                             {/* Discount Value */}
-                            <div className={`text-2xl font-bold mb-3 ${isDark ? 'text-teal-400' : 'text-teal-600'}`}>
-                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `৳${coupon.discountValue} OFF`}
+                            <div className={`text-2xl font-bold mb-3 ${isDark ? 'text-red-400' : 'text-red-600'}`}>
+                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `?${coupon.discountValue} OFF`}
                             </div>
 
                             {/* Details */}
                             <div className={`space-y-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                 {coupon.minPurchase > 0 && (
-                                    <p>Min. Purchase: ৳{coupon.minPurchase}</p>
+                                    <p>Min. Purchase: ?{coupon.minPurchase}</p>
                                 )}
                                 {coupon.maxDiscount && (
-                                    <p>Max Discount: ৳{coupon.maxDiscount}</p>
+                                    <p>Max Discount: ?{coupon.maxDiscount}</p>
                                 )}
                                 <div className="flex items-center gap-2">
                                     <LuCalendar size={14} />

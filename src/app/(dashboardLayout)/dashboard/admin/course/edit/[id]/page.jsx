@@ -167,7 +167,7 @@ export default function EditCoursePage() {
           <Link href="/dashboard/admin/course" className={`p-2.5 rounded-xl transition-all ${isDark ? 'bg-slate-800 hover:bg-slate-700 text-slate-300' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}>
             <FiArrowLeft size={18} />
           </Link>
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-red-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
             <FiBookOpen className="text-white text-lg" />
           </div>
           <div>
@@ -178,7 +178,7 @@ export default function EditCoursePage() {
         <button
           onClick={handleSubmit(onSubmit)}
           disabled={loading}
-          className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-emerald-500/25 transition-all disabled:opacity-50"
+          className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-red-500 hover:from-emerald-600 hover:to-red-600 text-white px-6 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-emerald-500/25 transition-all disabled:opacity-50"
         >
           {loading ? <FiLoader className="animate-spin" /> : <FiSave size={16} />}
           {loading ? 'Updating...' : 'Update Course'}

@@ -194,7 +194,7 @@ export default function SingleBlogPage() {
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-16 h-16 border-4 border-teal-500/30 border-t-teal-500 rounded-full"
+                    className="w-16 h-16 border-4 border-red-500/30 border-t-red-500 rounded-full"
                 />
             </div>
         );
@@ -204,11 +204,11 @@ export default function SingleBlogPage() {
         return (
             <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
                 <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-                        <FiBookOpen className="text-teal-500" size={40} />
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-red-500/20 to-cyan-500/20 flex items-center justify-center">
+                        <FiBookOpen className="text-red-500" size={40} />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{text.blogNotFound}</h2>
-                    <Link href="/blog" className="text-teal-500 font-semibold hover:underline">{text.backToBlog}</Link>
+                    <Link href="/blog" className="text-red-500 font-semibold hover:underline">{text.backToBlog}</Link>
                 </div>
             </div>
         );
@@ -220,7 +220,7 @@ export default function SingleBlogPage() {
             <div className="fixed top-0 left-0 right-0 h-1 z-50">
                 <motion.div
                     style={{ width: `${readProgress}%` }}
-                    className="h-full bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500"
+                    className="h-full bg-gradient-to-r from-red-500 via-cyan-500 to-blue-500"
                 />
             </div>
 
@@ -233,7 +233,7 @@ export default function SingleBlogPage() {
                         {blog.thumbnail ? (
                             <Image src={blog.thumbnail} alt={blog.title} fill className="object-cover" priority />
                         ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-teal-600 via-cyan-600 to-blue-700" />
+                            <div className="w-full h-full bg-gradient-to-br from-red-600 via-cyan-600 to-blue-700" />
                         )}
                         {/* Much stronger dark overlay for perfect text visibility */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50" />
@@ -261,7 +261,7 @@ export default function SingleBlogPage() {
                             {/* Category & Reading Time */}
                             <div className="flex flex-wrap items-center gap-2 mb-4">
                                 {blog.category && (
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-500 text-white text-xs font-bold shadow-md">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500 text-white text-xs font-bold shadow-md">
                                         {blog.category.name}
                                     </span>
                                 )}
@@ -285,7 +285,7 @@ export default function SingleBlogPage() {
                                         {blog.author?.avatar && !blog.author.avatar.includes('example.com') ? (
                                             <Image src={blog.author.avatar} alt={blog.author.firstName} width={44} height={44} className="rounded-full border-2 border-white/40" />
                                         ) : (
-                                            <div className="w-11 h-11 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white text-lg font-bold border-2 border-white/40">
+                                            <div className="w-11 h-11 rounded-full bg-gradient-to-r from-red-400 to-cyan-400 flex items-center justify-center text-white text-lg font-bold border-2 border-white/40">
                                                 {blog.author?.firstName?.[0]}
                                             </div>
                                         )}
@@ -344,7 +344,7 @@ export default function SingleBlogPage() {
                                     <div className="relative">
                                         <button
                                             onClick={() => setShowShareMenu(!showShareMenu)}
-                                            className="w-12 h-12 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white flex items-center justify-center shadow-lg shadow-teal-500/30 hover:shadow-xl transition-all"
+                                            className="w-12 h-12 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white flex items-center justify-center shadow-lg shadow-red-500/30 hover:shadow-xl transition-all"
                                         >
                                             <FiShare2 size={20} />
                                         </button>
@@ -384,8 +384,8 @@ export default function SingleBlogPage() {
                                 className="lg:col-span-7"
                             >
                                 {/* Excerpt Box */}
-                                <div className="relative mb-12 p-8 rounded-3xl bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-slate-800 dark:to-slate-800/80 border border-teal-100 dark:border-slate-700">
-                                    <div className="absolute top-0 left-8 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm font-semibold rounded-full">
+                                <div className="relative mb-12 p-8 rounded-3xl bg-gradient-to-br from-red-50 to-cyan-50 dark:from-slate-800 dark:to-slate-800/80 border border-red-100 dark:border-slate-700">
+                                    <div className="absolute top-0 left-8 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-red-500 to-cyan-500 text-white text-sm font-semibold rounded-full">
                                         {text.summary}
                                     </div>
                                     <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed italic">
@@ -398,11 +398,11 @@ export default function SingleBlogPage() {
                                     className="prose prose-lg dark:prose-invert max-w-none 
                                     prose-headings:font-outfit prose-headings:text-slate-900 dark:prose-headings:text-white 
                                     prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:leading-relaxed
-                                    prose-a:text-teal-600 dark:prose-a:text-teal-400 prose-a:no-underline hover:prose-a:underline
+                                    prose-a:text-red-600 dark:prose-a:text-red-400 prose-a:no-underline hover:prose-a:underline
                                     prose-strong:text-slate-900 dark:prose-strong:text-white 
                                     prose-img:rounded-2xl prose-img:shadow-xl
                                     prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:rounded-2xl
-                                    prose-blockquote:border-teal-500 prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-800/50 prose-blockquote:rounded-r-2xl prose-blockquote:py-4
+                                    prose-blockquote:border-red-500 prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-800/50 prose-blockquote:rounded-r-2xl prose-blockquote:py-4
                                     prose-li:text-slate-600 dark:prose-li:text-slate-300"
                                     dangerouslySetInnerHTML={{ __html: blog.content }}
                                 />
@@ -431,7 +431,7 @@ export default function SingleBlogPage() {
                                                 <Link
                                                     key={idx}
                                                     href={`/blog?tag=${tag}`}
-                                                    className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-teal-500 hover:text-white transition-all"
+                                                    className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-red-500 hover:text-white transition-all"
                                                 >
                                                     #{tag}
                                                 </Link>
@@ -450,19 +450,19 @@ export default function SingleBlogPage() {
                                         <FiMessageCircle size={24} />
                                         <span className="text-xs font-bold">{comments.length}</span>
                                     </button>
-                                    <button onClick={() => setShowShareMenu(!showShareMenu)} className="flex flex-col items-center gap-1 text-teal-500">
+                                    <button onClick={() => setShowShareMenu(!showShareMenu)} className="flex flex-col items-center gap-1 text-red-500">
                                         <FiShare2 size={24} />
                                         <span className="text-xs font-bold">Share</span>
                                     </button>
                                 </div>
 
                                 {/* Author Card */}
-                                <div className="mt-12 p-8 bg-gradient-to-br from-slate-50 to-teal-50/50 dark:from-slate-800 dark:to-teal-900/20 rounded-3xl border border-slate-100 dark:border-slate-700">
+                                <div className="mt-12 p-8 bg-gradient-to-br from-slate-50 to-red-50/50 dark:from-slate-800 dark:to-teal-900/20 rounded-3xl border border-slate-100 dark:border-slate-700">
                                     <div className="flex items-start gap-6">
                                         {blog.author?.avatar && !blog.author.avatar.includes('example.com') ? (
                                             <Image src={blog.author.avatar} alt={blog.author.firstName} width={80} height={80} className="rounded-2xl" />
                                         ) : (
-                                            <div className="w-20 h-20 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center text-white text-3xl font-bold">
+                                            <div className="w-20 h-20 rounded-2xl bg-gradient-to-r from-red-500 to-cyan-500 flex items-center justify-center text-white text-3xl font-bold">
                                                 {blog.author?.firstName?.[0]}
                                             </div>
                                         )}
@@ -471,14 +471,14 @@ export default function SingleBlogPage() {
                                                 <h4 className="text-xl font-bold text-slate-900 dark:text-white">
                                                     {blog.author?.firstName} {blog.author?.lastName}
                                                 </h4>
-                                                <span className="px-3 py-1 text-xs font-semibold rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 capitalize">
+                                                <span className="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/10 text-red-600 dark:text-red-400 capitalize">
                                                     {blog.authorRole}
                                                 </span>
                                             </div>
                                             <p className="text-slate-500 dark:text-slate-400 mb-4">
                                                 {text.authorDesc}
                                             </p>
-                                            <Link href={`/blog?author=${blog.author?._id}`} className="inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 font-semibold hover:gap-3 transition-all">
+                                            <Link href={`/blog?author=${blog.author?._id}`} className="inline-flex items-center gap-2 text-red-600 dark:text-red-400 font-semibold hover:gap-3 transition-all">
                                                 {text.allArticles} <FiArrowRight />
                                             </Link>
                                         </div>
@@ -506,13 +506,13 @@ export default function SingleBlogPage() {
                                                 placeholder={user ? text.writeComment : text.loginToComment}
                                                 disabled={!user}
                                                 rows={4}
-                                                className="w-full px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 resize-none focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-slate-800 dark:text-white placeholder-slate-400 disabled:opacity-60"
+                                                className="w-full px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 resize-none focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-slate-800 dark:text-white placeholder-slate-400 disabled:opacity-60"
                                             />
                                             <div className="flex justify-end mt-4">
                                                 <button
                                                     type="submit"
                                                     disabled={!user || !commentText.trim() || submittingComment}
-                                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold disabled:opacity-50 hover:shadow-lg transition-all"
+                                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-semibold disabled:opacity-50 hover:shadow-lg transition-all"
                                                 >
                                                     <FiSend size={16} />
                                                     {submittingComment ? text.posting : text.submitComment}
@@ -583,7 +583,7 @@ export default function SingleBlogPage() {
                                                             )}
                                                         </div>
                                                         <div className="flex-1 min-w-0">
-                                                            <h4 className="font-medium text-slate-900 dark:text-white line-clamp-2 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors text-sm">
+                                                            <h4 className="font-medium text-slate-900 dark:text-white line-clamp-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors text-sm">
                                                                 {related.title}
                                                             </h4>
                                                             <span className="text-xs text-slate-400 flex items-center gap-1 mt-1">
@@ -598,7 +598,7 @@ export default function SingleBlogPage() {
 
                                     {/* CTA */}
                                     <div className="relative overflow-hidden rounded-3xl p-8">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-600" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-red-500 via-cyan-500 to-blue-600" />
                                         <motion.div
                                             animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
                                             transition={{ duration: 5, repeat: Infinity }}
@@ -608,7 +608,7 @@ export default function SingleBlogPage() {
                                             <div className="text-5xl mb-4">🚀</div>
                                             <h3 className="text-xl font-bold text-white mb-2">{text.learnMore}</h3>
                                             <p className="text-white/80 text-sm mb-6">{text.allBlogsHere}</p>
-                                            <Link href="/blog" className="inline-block py-3 px-8 bg-white text-teal-600 font-bold rounded-xl hover:shadow-xl transition-all">
+                                            <Link href="/blog" className="inline-block py-3 px-8 bg-white text-red-600 font-bold rounded-xl hover:shadow-xl transition-all">
                                                 {text.viewAllBlogs}
                                             </Link>
                                         </div>

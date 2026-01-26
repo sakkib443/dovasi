@@ -12,23 +12,23 @@ const FeaturesBar = () => {
     const features = [
         {
             icon: LuBrain,
-            title: language === 'bn' ? 'প্রয়োজনীয় দক্ষতা' : 'Learn The',
-            subtitle: language === 'bn' ? 'শিখুন' : 'Essential Skills',
+            title: language === 'bn' ? '??????????? ??????' : 'Learn The',
+            subtitle: language === 'bn' ? '?????' : 'Essential Skills',
         },
         {
             icon: LuAward,
-            title: language === 'bn' ? 'সার্টিফিকেট অর্জন করুন' : 'Earn Certificates',
-            subtitle: language === 'bn' ? 'এবং ডিগ্রি' : 'And Degrees',
+            title: language === 'bn' ? '??????????? ????? ????' : 'Earn Certificates',
+            subtitle: language === 'bn' ? '??? ??????' : 'And Degrees',
         },
         {
             icon: LuTarget,
-            title: language === 'bn' ? 'পরবর্তী ক্যারিয়ারের জন্য' : 'Get Ready for The',
-            subtitle: language === 'bn' ? 'প্রস্তুত হন' : 'Next Career',
+            title: language === 'bn' ? '??????? ???????????? ????' : 'Get Ready for The',
+            subtitle: language === 'bn' ? '???????? ??' : 'Next Career',
         },
         {
             icon: LuUsers,
-            title: language === 'bn' ? 'বিভিন্ন ক্ষেত্রে' : 'Master at',
-            subtitle: language === 'bn' ? 'দক্ষ হোন' : 'Different Areas',
+            title: language === 'bn' ? '??????? ????????' : 'Master at',
+            subtitle: language === 'bn' ? '???? ???' : 'Different Areas',
         },
     ];
 

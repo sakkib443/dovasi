@@ -101,12 +101,12 @@ export default function AdminBlogPage() {
                         Blog Management
                     </h1>
                     <p className={`mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                        Manage all blog posts • {totalBlogs} total blogs
+                        Manage all blog posts � {totalBlogs} total blogs
                     </p>
                 </div>
                 <Link
                     href="/dashboard/admin/blog/create"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg shadow-teal-500/30 hover:shadow-xl hover:scale-[1.02] transition-all"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-semibold shadow-lg shadow-red-500/30 hover:shadow-xl hover:scale-[1.02] transition-all"
                 >
                     <FiPlus size={18} />
                     Write New Blog
@@ -125,9 +125,9 @@ export default function AdminBlogPage() {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className={`w-full pl-10 pr-4 py-2.5 rounded-xl border transition-all ${isDark
-                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-teal-500'
-                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-teal-500'
-                                } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                                ? 'bg-slate-700/50 border-slate-600 text-white placeholder-slate-500 focus:border-red-500'
+                                : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-red-500'
+                                } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                         />
                     </div>
                     {/* Status Filter */}
@@ -137,7 +137,7 @@ export default function AdminBlogPage() {
                         className={`px-4 py-2.5 rounded-xl border transition-all ${isDark
                             ? 'bg-slate-700/50 border-slate-600 text-white'
                             : 'bg-slate-50 border-slate-200 text-slate-900'
-                            } focus:outline-none focus:ring-2 focus:ring-teal-500/20`}
+                            } focus:outline-none focus:ring-2 focus:ring-red-500/20`}
                     >
                         <option value="">All Status</option>
                         <option value="published">Published</option>
@@ -151,7 +151,7 @@ export default function AdminBlogPage() {
             <div className="space-y-4">
                 {loading ? (
                     <div className="flex items-center justify-center py-20">
-                        <div className="w-12 h-12 border-4 border-teal-500/30 border-t-teal-500 rounded-full animate-spin"></div>
+                        <div className="w-12 h-12 border-4 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
                     </div>
                 ) : blogs.length === 0 ? (
                     <div className={`text-center py-20 rounded-2xl border ${isDark ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white border-slate-200'}`}>
@@ -160,7 +160,7 @@ export default function AdminBlogPage() {
                         <p className={`mt-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Start writing your first blog post!</p>
                         <Link
                             href="/dashboard/admin/blog/create"
-                            className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold"
+                            className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-500 to-cyan-500 text-white font-semibold"
                         >
                             <FiPlus size={18} />
                             Write New Blog
@@ -171,8 +171,8 @@ export default function AdminBlogPage() {
                         <div
                             key={blog._id}
                             className={`p-4 md:p-6 rounded-2xl border transition-all hover:shadow-lg ${isDark
-                                ? 'bg-slate-800/50 border-slate-700/50 hover:border-teal-500/50'
-                                : 'bg-white border-slate-200 hover:border-teal-500/50'
+                                ? 'bg-slate-800/50 border-slate-700/50 hover:border-red-500/50'
+                                : 'bg-white border-slate-200 hover:border-red-500/50'
                                 }`}
                         >
                             <div className="flex flex-col md:flex-row gap-4">
@@ -239,8 +239,8 @@ export default function AdminBlogPage() {
                                                 <span
                                                     key={idx}
                                                     className={`px-2 py-0.5 text-xs rounded-full ${isDark
-                                                        ? 'bg-teal-500/10 text-teal-400'
-                                                        : 'bg-teal-50 text-teal-600'
+                                                        ? 'bg-red-500/10 text-red-400'
+                                                        : 'bg-red-50 text-red-600'
                                                         }`}
                                                 >
                                                     #{tag}

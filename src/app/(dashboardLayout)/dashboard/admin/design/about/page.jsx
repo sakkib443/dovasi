@@ -10,7 +10,7 @@ const sections = [
         description: 'Main banner with headline and description',
         href: '/dashboard/admin/design/about/hero',
         icon: FiImage,
-        gradient: 'from-teal-500 to-cyan-500'
+        gradient: 'from-red-500 to-cyan-500'
     },
     {
         title: 'Mission & Vision',
@@ -80,7 +80,7 @@ const AboutDesignPage = () => {
                             <div className="flex-1">
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{section.title}</h3>
                                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{section.description}</p>
-                                <div className="flex items-center gap-2 text-sm font-medium text-teal-500">
+                                <div className="flex items-center gap-2 text-sm font-medium text-red-500">
                                     <span>Edit Section</span>
                                     <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </div>

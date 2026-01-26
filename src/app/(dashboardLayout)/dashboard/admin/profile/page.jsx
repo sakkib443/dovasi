@@ -51,8 +51,8 @@ export default function AdminProfilePage() {
 
     const cardClass = `rounded-2xl border ${isDark ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white border-gray-200'}`;
     const inputClass = `w-full px-4 py-3 rounded-xl border outline-none transition-all ${isDark
-        ? 'bg-slate-700/50 border-slate-600 text-white focus:border-[#41bfb8]'
-        : 'bg-gray-50 border-gray-200 text-gray-800 focus:border-[#41bfb8]'
+        ? 'bg-slate-700/50 border-slate-600 text-white focus:border-[#E62D26]'
+        : 'bg-gray-50 border-gray-200 text-gray-800 focus:border-[#E62D26]'
         }`;
     const labelClass = `block text-sm font-medium mb-2 ${isDark ? 'text-slate-300' : 'text-gray-700'}`;
 
@@ -61,7 +61,7 @@ export default function AdminProfilePage() {
             {/* Header */}
             <div className={`${cardClass} p-6`}>
                 <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white shadow-lg">
                         <FiUser size={28} />
                     </div>
                     <div>
@@ -76,7 +76,7 @@ export default function AdminProfilePage() {
                 <div className={`${cardClass} p-6`}>
                     <div className="text-center">
                         <div className="relative inline-block">
-                            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-[#41bfb8] to-[#2dd4bf] flex items-center justify-center text-white text-5xl font-bold shadow-xl">
+                            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white text-5xl font-bold shadow-xl">
                                 {user?.firstName?.[0] || 'A'}
                             </div>
                             <button className="absolute bottom-2 right-2 w-10 h-10 rounded-xl bg-[#F79952] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
@@ -89,7 +89,7 @@ export default function AdminProfilePage() {
                         <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{user?.role || 'Super Admin'}</p>
 
                         <div className={`mt-4 p-3 rounded-xl ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
-                            <div className="flex items-center justify-center gap-2 text-[#41bfb8]">
+                            <div className="flex items-center justify-center gap-2 text-[#E62D26]">
                                 <FiShield size={16} />
                                 <span className="text-sm font-medium">Verified Account</span>
                             </div>
@@ -176,7 +176,7 @@ export default function AdminProfilePage() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#41bfb8] to-[#2dd4bf] text-white rounded-xl font-bold hover:shadow-lg hover:shadow-[#41bfb8]/30 transition-all disabled:opacity-50"
+                                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#E62D26] to-[#c41e18] text-white rounded-xl font-bold hover:shadow-lg hover:shadow-[#E62D26]/30 transition-all disabled:opacity-50"
                             >
                                 <FiSave size={18} />
                                 {loading ? 'Saving...' : 'Save Changes'}

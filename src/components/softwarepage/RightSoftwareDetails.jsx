@@ -96,9 +96,9 @@ const RightSoftwareDetails = ({ searchQuery, selectedType }) => {
             {/* Top Bar (Synced with Course style) */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-gray-200 rounded-md p-4 shadow-sm">
                 <div className="flex items-center gap-2">
-                    <HiOutlineSparkles className="text-[#41bfb8]" />
+                    <HiOutlineSparkles className="text-[#E62D26]" />
                     <span className="text-gray-800 font-semibold outfit">
-                        {sortedSoftware.length} <span className="text-gray-500 font-normal">{language === 'bn' ? 'টি পাওয়া গেছে' : 'products found'}</span>
+                        {sortedSoftware.length} <span className="text-gray-500 font-normal">{language === 'bn' ? '?? ????? ????' : 'products found'}</span>
                     </span>
                 </div>
 
@@ -108,12 +108,12 @@ const RightSoftwareDetails = ({ searchQuery, selectedType }) => {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            className="appearance-none w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-700 work focus:outline-none focus:border-[#41bfb8] cursor-pointer"
+                            className="appearance-none w-full pl-8 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-700 work focus:outline-none focus:border-[#E62D26] cursor-pointer"
                         >
-                            <option value="default">{language === 'bn' ? 'সর্ট করুন' : 'Sort By'}</option>
-                            <option value="rating">{language === 'bn' ? 'টপ রেটেড' : 'Top Rated'}</option>
-                            <option value="price-low">{language === 'bn' ? 'দাম: কম থেকে বেশি' : 'Price: Low to High'}</option>
-                            <option value="price-high">{language === 'bn' ? 'দাম: বেশি থেকে কম' : 'Price: High to Low'}</option>
+                            <option value="default">{language === 'bn' ? '???? ????' : 'Sort By'}</option>
+                            <option value="rating">{language === 'bn' ? '?? ?????' : 'Top Rated'}</option>
+                            <option value="price-low">{language === 'bn' ? '???: ?? ???? ????' : 'Price: Low to High'}</option>
+                            <option value="price-high">{language === 'bn' ? '???: ???? ???? ??' : 'Price: High to Low'}</option>
                         </select>
                         <LuArrowUpDown className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     </div>
@@ -122,13 +122,13 @@ const RightSoftwareDetails = ({ searchQuery, selectedType }) => {
                     <div className="hidden sm:flex items-center border border-gray-200 rounded-md overflow-hidden">
                         <button
                             onClick={() => setIsGridView(true)}
-                            className={`p-2 ${isGridView ? 'bg-[#41bfb8] text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
+                            className={`p-2 ${isGridView ? 'bg-[#E62D26] text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
                         >
                             <LuLayoutGrid className="text-lg" />
                         </button>
                         <button
                             onClick={() => setIsGridView(false)}
-                            className={`p-2 ${!isGridView ? 'bg-[#41bfb8] text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
+                            className={`p-2 ${!isGridView ? 'bg-[#E62D26] text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}
                         >
                             <LuList className="text-lg" />
                         </button>
@@ -155,10 +155,10 @@ const RightSoftwareDetails = ({ searchQuery, selectedType }) => {
                         <LuCpu className="w-10 h-10 text-gray-200" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-800 outfit mb-2">
-                        {language === 'bn' ? 'কোনো সফটওয়্যর পাওয়া যায়নি' : 'No products found'}
+                        {language === 'bn' ? '???? ???????? ????? ?????' : 'No products found'}
                     </h3>
                     <p className="text-gray-500 work text-sm">
-                        {language === 'bn' ? 'অনুগ্রহ করে অন্যভাবে সার্চ করুন' : 'Try adjusting your search or filter criteria'}
+                        {language === 'bn' ? '??????? ??? ???????? ????? ????' : 'Try adjusting your search or filter criteria'}
                     </p>
                 </div>
             )}

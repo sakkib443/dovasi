@@ -180,7 +180,7 @@ const CouponsPage = () => {
                     </button>
                     <button
                         onClick={() => setShowModal(true)}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-xl font-semibold shadow-lg shadow-teal-500/25 hover:shadow-xl transition-all"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-emerald-500 text-white rounded-xl font-semibold shadow-lg shadow-red-500/25 hover:shadow-xl transition-all"
                     >
                         <LuPlus size={18} />
                         Create Coupon
@@ -196,14 +196,14 @@ const CouponsPage = () => {
                     placeholder="Search coupons..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className={`w-full pl-11 pr-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} focus:ring-2 focus:ring-teal-500`}
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} focus:ring-2 focus:ring-red-500`}
                 />
             </div>
 
             {/* Coupons Grid */}
             {loading ? (
                 <div className="flex justify-center py-20">
-                    <div className="w-10 h-10 border-4 border-teal-500/30 border-t-teal-500 rounded-full animate-spin"></div>
+                    <div className="w-10 h-10 border-4 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
                 </div>
             ) : filteredCoupons.length === 0 ? (
                 <div className={`text-center py-20 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -230,7 +230,7 @@ const CouponsPage = () => {
 
                             {/* Code */}
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white">
+                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-emerald-500 flex items-center justify-center text-white">
                                     {coupon.discountType === 'percentage' ? <LuPercent size={22} /> : <LuTag size={22} />}
                                 </div>
                                 <div>
@@ -238,7 +238,7 @@ const CouponsPage = () => {
                                         <span className={`font-mono text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                             {coupon.code}
                                         </span>
-                                        <button onClick={() => copyCode(coupon.code)} className="text-gray-400 hover:text-teal-500">
+                                        <button onClick={() => copyCode(coupon.code)} className="text-gray-400 hover:text-red-500">
                                             <LuCopy size={14} />
                                         </button>
                                     </div>
@@ -247,17 +247,17 @@ const CouponsPage = () => {
                             </div>
 
                             {/* Discount Value */}
-                            <div className={`text-2xl font-bold mb-3 ${isDark ? 'text-teal-400' : 'text-teal-600'}`}>
-                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `৳${coupon.discountValue} OFF`}
+                            <div className={`text-2xl font-bold mb-3 ${isDark ? 'text-red-400' : 'text-red-600'}`}>
+                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `?${coupon.discountValue} OFF`}
                             </div>
 
                             {/* Details */}
                             <div className={`space-y-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                 {coupon.minPurchase > 0 && (
-                                    <p>Min. Purchase: ৳{coupon.minPurchase}</p>
+                                    <p>Min. Purchase: ?{coupon.minPurchase}</p>
                                 )}
                                 {coupon.maxDiscount && (
-                                    <p>Max Discount: ৳{coupon.maxDiscount}</p>
+                                    <p>Max Discount: ?{coupon.maxDiscount}</p>
                                 )}
                                 <div className="flex items-center gap-2">
                                     <LuCalendar size={14} />
@@ -317,7 +317,7 @@ const CouponsPage = () => {
                                     <button
                                         type="button"
                                         onClick={generateCode}
-                                        className="px-4 py-3 rounded-xl bg-teal-500 text-white font-medium hover:bg-teal-600"
+                                        className="px-4 py-3 rounded-xl bg-red-500 text-white font-medium hover:bg-red-600"
                                     >
                                         Generate
                                     </button>
@@ -351,7 +351,7 @@ const CouponsPage = () => {
                                         className={`w-full px-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-gray-50 border-gray-200'}`}
                                     >
                                         <option value="percentage">Percentage (%)</option>
-                                        <option value="fixed">Fixed Amount (৳)</option>
+                                        <option value="fixed">Fixed Amount (?)</option>
                                     </select>
                                 </div>
                                 <div>
@@ -373,7 +373,7 @@ const CouponsPage = () => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                        Min. Purchase (৳)
+                                        Min. Purchase (?)
                                     </label>
                                     <input
                                         type="number"
@@ -385,7 +385,7 @@ const CouponsPage = () => {
                                 </div>
                                 <div>
                                     <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                        Max Discount (৳)
+                                        Max Discount (?)
                                     </label>
                                     <input
                                         type="number"
@@ -477,7 +477,7 @@ const CouponsPage = () => {
                                 <button
                                     type="button"
                                     onClick={() => setFormData(prev => ({ ...prev, isActive: !prev.isActive }))}
-                                    className={`w-12 h-6 rounded-full transition-all ${formData.isActive ? 'bg-teal-500' : isDark ? 'bg-slate-700' : 'bg-gray-300'}`}
+                                    className={`w-12 h-6 rounded-full transition-all ${formData.isActive ? 'bg-red-500' : isDark ? 'bg-slate-700' : 'bg-gray-300'}`}
                                 >
                                     <div className={`w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${formData.isActive ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
                                 </button>
@@ -495,7 +495,7 @@ const CouponsPage = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 py-3 rounded-xl font-medium bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:shadow-lg"
+                                    className="flex-1 py-3 rounded-xl font-medium bg-gradient-to-r from-red-500 to-emerald-500 text-white hover:shadow-lg"
                                 >
                                     {editingCoupon ? 'Update Coupon' : 'Create Coupon'}
                                 </button>

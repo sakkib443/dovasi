@@ -34,19 +34,19 @@ export default function BlogPage() {
     // Translations
     const t = {
         bn: {
-            popular: 'জনপ্রিয়',
-            recent: 'সাম্প্রতিক',
-            editorsPick: 'সম্পাদকের পছন্দ',
-            trending: 'ট্রেন্ডিং',
-            aboutUs: 'আমাদের সম্পর্কে',
-            aboutDesc: 'আমরা প্রযুক্তি, ডিজাইন এবং ক্যারিয়ার সম্পর্কে মানসম্মত কন্টেন্ট তৈরি করি। আমাদের লক্ষ্য হলো আপনাদের সাথে সেরা জ্ঞান শেয়ার করা।',
-            popularPosts: 'জনপ্রিয় পোস্ট',
-            followUs: 'আমাদের ফলো করুন',
-            noBlogsFound: 'কোনো ব্লগ পাওয়া যায়নি',
-            comingSoon: 'শীঘ্রই নতুন কন্টেন্ট আসছে!',
-            min: 'মিনিট',
-            heroTitle: 'ব্লগ',
-            heroSubtitle: 'প্রযুক্তি, ডিজাইন এবং ক্যারিয়ার সম্পর্কে আমাদের সেরা আর্টিকেল পড়ুন',
+            popular: '????????',
+            recent: '??????????',
+            editorsPick: '????????? ?????',
+            trending: '?????????',
+            aboutUs: '?????? ????????',
+            aboutDesc: '???? ?????????, ?????? ??? ?????????? ???????? ???????? ???????? ???? ???? ?????? ?????? ??? ??????? ???? ???? ????? ?????? ????',
+            popularPosts: '???????? ?????',
+            followUs: '?????? ??? ????',
+            noBlogsFound: '???? ???? ?????? ??????',
+            comingSoon: '?????? ???? ???????? ????!',
+            min: '?????',
+            heroTitle: '????',
+            heroSubtitle: '?????????, ?????? ??? ?????????? ???????? ?????? ???? ???????? ?????',
         },
         en: {
             popular: 'Popular',
@@ -110,7 +110,7 @@ export default function BlogPage() {
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-12 h-12 border-4 border-[#41bfb8]/30 border-t-[#41bfb8] rounded-full"
+                    className="w-12 h-12 border-4 border-[#E62D26]/30 border-t-[#E62D26] rounded-full"
                 />
             </div>
         );
@@ -123,7 +123,7 @@ export default function BlogPage() {
             <section className="relative py-12 lg:py-16 overflow-hidden bg-white dark:bg-[#020202]">
                 {/* Subtle Background Effects */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 left-[15%] w-[400px] h-[400px] bg-gradient-to-br from-teal-500/15 to-cyan-500/5 rounded-full blur-3xl"></div>
+                    <div className="absolute top-0 left-[15%] w-[400px] h-[400px] bg-gradient-to-br from-red-500/15 to-cyan-500/5 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 right-[15%] w-[350px] h-[350px] bg-gradient-to-br from-[#F79952]/10 to-amber-500/5 rounded-full blur-3xl"></div>
                     {/* Subtle Grid Pattern */}
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.015)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
@@ -137,17 +137,17 @@ export default function BlogPage() {
                         className="text-center max-w-2xl mx-auto"
                     >
                         {/* Simple Badge */}
-                        <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20">
-                            <FiBookOpen className="text-teal-500" size={14} />
-                            <span className="text-xs font-semibold text-teal-600 dark:text-teal-400 uppercase tracking-wide">
-                                {language === 'bn' ? 'ব্লগ' : 'Blog'}
+                        <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
+                            <FiBookOpen className="text-red-500" size={14} />
+                            <span className="text-xs font-semibold text-red-600 dark:text-red-400 uppercase tracking-wide">
+                                {language === 'bn' ? '????' : 'Blog'}
                             </span>
                         </div>
 
                         {/* Title - Smaller */}
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-                            {language === 'bn' ? 'জ্ঞান ও ' : 'Knowledge & '}
-                            <span className="text-teal-500">{language === 'bn' ? 'অনুপ্রেরণা' : 'Inspiration'}</span>
+                            {language === 'bn' ? '????? ? ' : 'Knowledge & '}
+                            <span className="text-red-500">{language === 'bn' ? '??????????' : 'Inspiration'}</span>
                         </h1>
 
                         {/* Description - Compact */}
@@ -178,10 +178,10 @@ export default function BlogPage() {
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             />
                                         ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-teal-600 to-cyan-700" />
+                                            <div className="w-full h-full bg-gradient-to-br from-red-600 to-cyan-700" />
                                         )}
                                         {/* Category Badge on Image */}
-                                        <span className="absolute top-4 left-4 px-4 py-1.5 rounded-full bg-teal-500 text-white text-xs font-bold uppercase tracking-wide">
+                                        <span className="absolute top-4 left-4 px-4 py-1.5 rounded-full bg-red-500 text-white text-xs font-bold uppercase tracking-wide">
                                             {(featuredBlogs[0] || blogs[0]).category?.name || 'Featured'}
                                         </span>
                                     </div>
@@ -189,7 +189,7 @@ export default function BlogPage() {
                                     {/* Content Below Image */}
                                     <div className="p-6 flex-1 flex flex-col">
                                         {/* Title */}
-                                        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-teal-500 transition-colors line-clamp-2">
+                                        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-red-500 transition-colors line-clamp-2">
                                             {(featuredBlogs[0] || blogs[0]).title}
                                         </h2>
 
@@ -201,12 +201,12 @@ export default function BlogPage() {
                                         {/* Author & Date */}
                                         <div className="flex items-center gap-4 text-sm pt-4 border-t border-gray-100 dark:border-white/10">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 flex items-center justify-center text-white text-xs font-bold">
+                                                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-red-400 to-cyan-400 flex items-center justify-center text-white text-xs font-bold">
                                                     {(featuredBlogs[0] || blogs[0]).author?.firstName?.[0] || 'A'}
                                                 </div>
                                                 <span className="font-medium text-gray-700 dark:text-gray-300">{(featuredBlogs[0] || blogs[0]).author?.firstName}</span>
                                             </div>
-                                            <span className="text-gray-300 dark:text-gray-600">•</span>
+                                            <span className="text-gray-300 dark:text-gray-600">�</span>
                                             <span className="text-gray-500 dark:text-gray-400">{formatDate((featuredBlogs[0] || blogs[0]).publishedAt || (featuredBlogs[0] || blogs[0]).createdAt)}</span>
                                         </div>
                                     </div>
@@ -226,7 +226,7 @@ export default function BlogPage() {
                             <button
                                 onClick={() => setActiveTab('popular')}
                                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${activeTab === 'popular'
-                                    ? 'bg-teal-500 text-white shadow-md'
+                                    ? 'bg-red-500 text-white shadow-md'
                                     : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10'
                                     }`}
                             >
@@ -235,7 +235,7 @@ export default function BlogPage() {
                             <button
                                 onClick={() => setActiveTab('recent')}
                                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${activeTab === 'recent'
-                                    ? 'bg-teal-500 text-white shadow-md'
+                                    ? 'bg-red-500 text-white shadow-md'
                                     : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10'
                                     }`}
                             >
@@ -256,19 +256,19 @@ export default function BlogPage() {
                                                 className="object-cover group-hover:scale-110 transition-transform duration-300"
                                             />
                                         ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-slate-600 dark:to-slate-700 flex items-center justify-center">
-                                                <FiBookOpen className="text-teal-400 dark:text-slate-500" size={18} />
+                                            <div className="w-full h-full bg-gradient-to-br from-red-100 to-cyan-100 dark:from-slate-600 dark:to-slate-700 flex items-center justify-center">
+                                                <FiBookOpen className="text-red-400 dark:text-slate-500" size={18} />
                                             </div>
                                         )}
                                     </div>
                                     <div className="flex-1 min-w-0 py-1">
-                                        <h4 className="font-semibold text-gray-800 dark:text-white text-sm leading-snug line-clamp-1 group-hover:text-teal-500 transition-colors">
+                                        <h4 className="font-semibold text-gray-800 dark:text-white text-sm leading-snug line-clamp-1 group-hover:text-red-500 transition-colors">
                                             {blog.title}
                                         </h4>
                                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
                                             {blog.excerpt ? `${blog.excerpt.substring(0, 60)}...` : 'Read this article to learn more about this topic...'}
                                         </p>
-                                        <p className="text-xs text-teal-500 font-medium mt-1.5">
+                                        <p className="text-xs text-red-500 font-medium mt-1.5">
                                             {formatDate(blog.publishedAt || blog.createdAt)}
                                         </p>
                                     </div>
@@ -281,15 +281,15 @@ export default function BlogPage() {
                 {/* Blog Cards Section Header */}
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
-                        {language === 'bn' ? 'সকল আর্টিকেল' : 'All Articles'}
+                        {language === 'bn' ? '??? ????????' : 'All Articles'}
                     </h2>
                 </div>
 
                 {/* Blog Grid */}
                 {blogs.length === 0 ? (
                     <div className="text-center py-20 bg-white dark:bg-white/5 rounded-3xl border border-gray-100 dark:border-white/10">
-                        <div className="w-20 h-20 mx-auto mb-6 bg-teal-500/10 rounded-2xl flex items-center justify-center">
-                            <FiBookOpen className="text-teal-500" size={32} />
+                        <div className="w-20 h-20 mx-auto mb-6 bg-red-500/10 rounded-2xl flex items-center justify-center">
+                            <FiBookOpen className="text-red-500" size={32} />
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{text.noBlogsFound}</h3>
                         <p className="text-gray-500 dark:text-gray-400">{text.comingSoon}</p>
@@ -305,7 +305,7 @@ export default function BlogPage() {
                                 className="group"
                             >
                                 <Link href={`/blog/${blog.slug}`} className="block">
-                                    <div className="bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-gray-100 dark:border-white/10 hover:border-teal-500/30 dark:hover:border-teal-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-teal-500/10 hover:-translate-y-2">
+                                    <div className="bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-gray-100 dark:border-white/10 hover:border-red-500/30 dark:hover:border-red-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 hover:-translate-y-2">
                                         {/* Image Container */}
                                         <div className="relative h-52 overflow-hidden">
                                             {blog.thumbnail ? (
@@ -316,8 +316,8 @@ export default function BlogPage() {
                                                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                                                 />
                                             ) : (
-                                                <div className="w-full h-full bg-gradient-to-br from-teal-500/20 via-cyan-500/10 to-teal-500/5 dark:from-teal-500/10 dark:via-white/5 dark:to-cyan-500/5 flex items-center justify-center">
-                                                    <FiBookOpen className="text-teal-400 dark:text-teal-500/50" size={40} />
+                                                <div className="w-full h-full bg-gradient-to-br from-red-500/20 via-cyan-500/10 to-red-500/5 dark:from-red-500/10 dark:via-white/5 dark:to-cyan-500/5 flex items-center justify-center">
+                                                    <FiBookOpen className="text-red-400 dark:text-red-500/50" size={40} />
                                                 </div>
                                             )}
                                             {/* Gradient Overlay */}
@@ -326,13 +326,13 @@ export default function BlogPage() {
                                             {/* Category Badge */}
                                             <div className="absolute top-4 left-4">
                                                 <span className="px-3 py-1.5 rounded-lg bg-white/90 dark:bg-black/60 backdrop-blur-md text-xs font-bold text-gray-800 dark:text-white border border-white/20">
-                                                    {blog.category?.name || (language === 'bn' ? 'ব্লগ' : 'Blog')}
+                                                    {blog.category?.name || (language === 'bn' ? '????' : 'Blog')}
                                                 </span>
                                             </div>
 
                                             {/* Reading Time Badge */}
                                             <div className="absolute top-4 right-4">
-                                                <span className="px-3 py-1.5 rounded-lg bg-teal-500/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1.5">
+                                                <span className="px-3 py-1.5 rounded-lg bg-red-500/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1.5">
                                                     <FiClock size={12} />
                                                     5 {text.min}
                                                 </span>
@@ -343,7 +343,7 @@ export default function BlogPage() {
                                         <div className="p-6">
                                             {/* Meta Info */}
                                             <div className="flex items-center gap-3 mb-4">
-                                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-teal-500/30">
+                                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-cyan-500 flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-red-500/30">
                                                     {blog.author?.firstName?.[0] || 'A'}
                                                 </div>
                                                 <div>
@@ -357,7 +357,7 @@ export default function BlogPage() {
                                             </div>
 
                                             {/* Title */}
-                                            <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-teal-500 transition-colors duration-300 line-clamp-2 mb-3 leading-snug">
+                                            <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-red-500 transition-colors duration-300 line-clamp-2 mb-3 leading-snug">
                                                 {blog.title}
                                             </h3>
 
@@ -368,8 +368,8 @@ export default function BlogPage() {
 
                                             {/* Read More */}
                                             <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/10">
-                                                <span className="text-sm font-semibold text-teal-500 group-hover:text-teal-600 transition-colors flex items-center gap-2">
-                                                    {language === 'bn' ? 'আরো পড়ুন' : 'Read More'}
+                                                <span className="text-sm font-semibold text-red-500 group-hover:text-red-600 transition-colors flex items-center gap-2">
+                                                    {language === 'bn' ? '??? ?????' : 'Read More'}
                                                     <FiArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
                                                 </span>
                                                 <div className="flex items-center gap-1 text-gray-400">
@@ -391,7 +391,7 @@ export default function BlogPage() {
                         <button
                             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                             disabled={currentPage === 1}
-                            className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 disabled:opacity-40 hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all shadow-sm"
+                            className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 disabled:opacity-40 hover:bg-red-500 hover:border-red-500 hover:text-white transition-all shadow-sm"
                         >
                             <FiChevronLeft size={20} />
                         </button>
@@ -400,8 +400,8 @@ export default function BlogPage() {
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
                                 className={`w-12 h-12 rounded-xl font-bold text-sm transition-all ${currentPage === page
-                                    ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30'
-                                    : 'bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-teal-500 hover:border-teal-500 hover:text-white'
+                                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/30'
+                                    : 'bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white'
                                     }`}
                             >
                                 {page}
@@ -410,7 +410,7 @@ export default function BlogPage() {
                         <button
                             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                             disabled={currentPage === totalPages}
-                            className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 disabled:opacity-40 hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all shadow-sm"
+                            className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 disabled:opacity-40 hover:bg-red-500 hover:border-red-500 hover:text-white transition-all shadow-sm"
                         >
                             <FiChevronRight size={20} />
                         </button>

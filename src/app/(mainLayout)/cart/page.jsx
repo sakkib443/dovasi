@@ -17,17 +17,17 @@ const CartPage = () => {
         return (
             <div className="min-h-[70vh] flex flex-col items-center justify-center bg-gray-50 px-4">
                 <div className="w-24 h-24 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-8 animate-bounce">
-                    <LuShoppingBag className="text-[#41bfb8] text-4xl" />
+                    <LuShoppingBag className="text-[#E62D26] text-4xl" />
                 </div>
                 <h2 className={`text-3xl font-black text-gray-900 mb-4 tracking-tight ${bengaliClass}`}>
-                    {language === 'bn' ? 'আপনার কার্ট খালি' : 'Your cart is empty'}
+                    {language === 'bn' ? '????? ????? ????' : 'Your cart is empty'}
                 </h2>
                 <p className="text-gray-500 mb-10 text-center max-w-sm font-normal">
                     Looks like you haven't added anything to your cart yet. Explore our products and find something you love!
                 </p>
                 <Link
                     href="/software"
-                    className="px-10 py-4 bg-[#41bfb8] text-white rounded-md font-bold shadow-xl shadow-[#41bfb8]/30 hover:scale-105 transition-all active:scale-95"
+                    className="px-10 py-4 bg-[#E62D26] text-white rounded-md font-bold shadow-xl shadow-[#E62D26]/30 hover:scale-105 transition-all active:scale-95"
                 >
                     Start Shopping
                 </Link>
@@ -40,11 +40,11 @@ const CartPage = () => {
             <div className="container mx-auto px-4 lg:px-16">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-10">
-                    <Link href="/" className="p-3 bg-white rounded-md border border-gray-100/50 shadow-sm text-gray-400 hover:text-[#41bfb8] transition-all">
+                    <Link href="/" className="p-3 bg-white rounded-md border border-gray-100/50 shadow-sm text-gray-400 hover:text-[#E62D26] transition-all">
                         <LuArrowLeft size={20} />
                     </Link>
                     <h1 className={`text-3xl lg:text-4xl font-black text-gray-900 uppercase tracking-tighter ${bengaliClass}`}>
-                        Shopping <span className="text-[#41bfb8]">Cart</span>
+                        Shopping <span className="text-[#E62D26]">Cart</span>
                     </h1>
                 </div>
 
@@ -52,7 +52,7 @@ const CartPage = () => {
                     {/* Items List */}
                     <div className="lg:col-span-8 space-y-4">
                         {items.map((item) => (
-                            <div key={item.id} className="bg-white p-4 lg:p-6 rounded-md border border-gray-100/50 shadow-sm flex flex-col sm:flex-row items-center gap-6 group hover:shadow-md hover:border-[#41bfb8]/20 transition-all">
+                            <div key={item.id} className="bg-white p-4 lg:p-6 rounded-md border border-gray-100/50 shadow-sm flex flex-col sm:flex-row items-center gap-6 group hover:shadow-md hover:border-[#E62D26]/20 transition-all">
                                 <div className="w-full sm:w-32 aspect-square rounded-md overflow-hidden bg-gray-100 shrink-0">
                                     <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                                 </div>
@@ -62,13 +62,13 @@ const CartPage = () => {
                                             {item.type}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-black text-gray-900 group-hover:text-[#41bfb8] transition-colors line-clamp-1">
+                                    <h3 className="text-xl font-black text-gray-900 group-hover:text-[#E62D26] transition-colors line-clamp-1">
                                         {item.title}
                                     </h3>
                                     <p className="text-sm text-gray-400 font-normal">MotionBoss verified digital asset</p>
                                 </div>
                                 <div className="flex items-center gap-6">
-                                    <span className="text-2xl font-black text-[#41bfb8]">${item.price}</span>
+                                    <span className="text-2xl font-black text-[#E62D26]">${item.price}</span>
                                     <button
                                         onClick={() => dispatch(removeFromCart(item.id))}
                                         className="p-3 bg-red-50 text-red-400 hover:bg-red-500 hover:text-white rounded-md transition-all border border-gray-100/50"
@@ -102,24 +102,24 @@ const CartPage = () => {
                                 </div>
                                 <div className="flex justify-between items-center text-gray-500 font-normal">
                                     <span>Processing Fee</span>
-                                    <span className="text-[#41bfb8] font-bold">FREE</span>
+                                    <span className="text-[#E62D26] font-bold">FREE</span>
                                 </div>
                                 <div className="pt-6 border-t border-gray-50 flex justify-between items-center">
                                     <span className="text-gray-900 font-black uppercase tracking-tight">Total Amount</span>
-                                    <span className="text-3xl font-black text-[#41bfb8]">${totalAmount.toFixed(2)}</span>
+                                    <span className="text-3xl font-black text-[#E62D26]">${totalAmount.toFixed(2)}</span>
                                 </div>
                             </div>
 
                             <Link
                                 href="/checkout"
-                                className="w-full flex items-center justify-center gap-3 py-5 bg-[#41bfb8] hover:bg-[#38a89d] text-white rounded-md font-bold text-xl shadow-lg shadow-[#41bfb8]/20 transition-all active:scale-95 group"
+                                className="w-full flex items-center justify-center gap-3 py-5 bg-[#E62D26] hover:bg-[#38a89d] text-white rounded-md font-bold text-xl shadow-lg shadow-[#E62D26]/20 transition-all active:scale-95 group"
                             >
                                 Checkout Now
                                 <LuChevronRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
 
                             <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-md border border-gray-100/50">
-                                <LuShieldCheck className="text-[#41bfb8] text-xl" />
+                                <LuShieldCheck className="text-[#E62D26] text-xl" />
                                 <p className="text-[10px] text-gray-500 font-normal leading-tight">
                                     Secure Checkout powered by SSL encryption. 100% money-back guarantee.
                                 </p>

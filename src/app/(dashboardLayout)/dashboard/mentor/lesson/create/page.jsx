@@ -143,13 +143,13 @@ export default function CreateLessonPage() {
             const result = await res.json();
 
             if (res.ok) {
-                alert('Lesson Created Successfully! ✅');
+                alert('Lesson Created Successfully! ?');
                 router.push('/dashboard/mentor/lesson');
             } else {
                 const errorMsg = result.errorMessages
                     ? result.errorMessages.map(err => `${err.path.split('.').pop()}: ${err.message}`).join('\n')
                     : result.message;
-                alert(`Validation Error ❌\n\n${errorMsg}`);
+                alert(`Validation Error ?\n\n${errorMsg}`);
             }
         } catch (err) {
             console.error('Create error:', err);
@@ -218,13 +218,13 @@ export default function CreateLessonPage() {
                         />
                     </div>
                     <div>
-                        <label className={labelClass}>Lesson Title (বাংলা)</label>
+                        <label className={labelClass}>Lesson Title (?????)</label>
                         <input
                             type="text"
                             name="titleBn"
                             value={formData.titleBn}
                             onChange={handleChange}
-                            placeholder="যেমনঃ রিঅ্যাক্ট পরিচিতি"
+                            placeholder="????? ????????? ???????"
                             className={inputClass}
                         />
                     </div>
@@ -288,13 +288,13 @@ export default function CreateLessonPage() {
                         />
                     </div>
                     <div>
-                        <label className={labelClass}>Description (বাংলা)</label>
+                        <label className={labelClass}>Description (?????)</label>
                         <textarea
                             name="descriptionBn"
                             value={formData.descriptionBn}
                             onChange={handleChange}
                             rows={3}
-                            placeholder="লেসনের বর্ণনা লিখুন..."
+                            placeholder="?????? ?????? ?????..."
                             className={`${inputClass} resize-none`}
                         />
                     </div>
@@ -465,7 +465,7 @@ export default function CreateLessonPage() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Max Attempts (0=∞)</label>
+                                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Max Attempts (0=8)</label>
                                             <input
                                                 type="number"
                                                 value={formData.quizSettings.maxAttempts}

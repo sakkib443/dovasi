@@ -8,7 +8,7 @@ import {
 
 /**
  * Professional Document Manager Component
- * Documents/Attachments যোগ এবং manage করার জন্য
+ * Documents/Attachments ??? ??? manage ???? ????
  */
 export default function DocumentManager({ documents = [], onChange }) {
     const [showForm, setShowForm] = useState(false);
@@ -117,7 +117,7 @@ export default function DocumentManager({ documents = [], onChange }) {
                                         <p className="font-semibold text-slate-800 text-sm">{doc.title}</p>
                                         <div className="flex items-center gap-2 text-xs text-slate-500">
                                             <span className="uppercase font-bold">{doc.fileType}</span>
-                                            {doc.fileSize && <span>• {doc.fileSize}</span>}
+                                            {doc.fileSize && <span>� {doc.fileSize}</span>}
                                             {doc.downloadable && (
                                                 <span className="flex items-center gap-1 text-emerald-600">
                                                     <FiDownload size={12} /> Downloadable
@@ -158,7 +158,7 @@ export default function DocumentManager({ documents = [], onChange }) {
 
             {/* Add Document Form */}
             {showForm ? (
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-2xl border border-emerald-100 space-y-4">
+                <div className="bg-gradient-to-br from-emerald-50 to-red-50 p-5 rounded-2xl border border-emerald-100 space-y-4">
                     <div className="flex items-center justify-between">
                         <h4 className="font-bold text-slate-800 flex items-center gap-2">
                             <FiFile className="text-emerald-600" />
@@ -186,12 +186,12 @@ export default function DocumentManager({ documents = [], onChange }) {
                             />
                         </div>
                         <div>
-                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Title (বাংলা)</label>
+                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Title (?????)</label>
                             <input
                                 type="text"
                                 value={formData.titleBn}
                                 onChange={(e) => setFormData(prev => ({ ...prev, titleBn: e.target.value }))}
-                                placeholder="কোর্স পিডিএফ নোটস"
+                                placeholder="????? ?????? ????"
                                 className={inputClass}
                             />
                         </div>
@@ -266,12 +266,12 @@ export default function DocumentManager({ documents = [], onChange }) {
                             />
                         </div>
                         <div>
-                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Description (বাংলা)</label>
+                            <label className="text-xs font-semibold text-slate-600 mb-1 block">Description (?????)</label>
                             <input
                                 type="text"
                                 value={formData.descriptionBn}
                                 onChange={(e) => setFormData(prev => ({ ...prev, descriptionBn: e.target.value }))}
-                                placeholder="সংক্ষিপ্ত বর্ণনা..."
+                                placeholder="????????? ??????..."
                                 className={inputClass}
                             />
                         </div>
