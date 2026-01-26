@@ -11,6 +11,7 @@ import "./globals.css";
 import Navbar from "../components/sheard/Navbar";
 import Footer from "@/components/sheard/Footer";
 import TopHeader from "@/components/sheard/TopHeader";
+import Preloader from "@/components/sheard/Preloader";
 
 import ReduxProviderWrapper from "@/components/ReduxProvaiderWrapper";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="antialiased" suppressHydrationWarning>
+        <Preloader />
         <ReduxProviderWrapper>
           <LanguageProvider>
             <Toaster position="top-center" reverseOrder={false} />
