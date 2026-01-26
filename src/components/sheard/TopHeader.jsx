@@ -64,8 +64,8 @@ const TopHeader = () => {
             </span>
             <span className={`hidden sm:inline ${isDark ? 'text-white/70' : 'text-white/90'} ${bengaliClass}`}>
               {language === 'bn'
-                ? <>🔥 সকল কোর্সে ২০% ছাড় | কোড: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
-                : <>Get 20% OFF on all courses | Use code: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>EJOBS20</span></>
+                ? <>🔥 সকল কোর্সে ২০% ছাড় | কোড: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>HIICT20</span></>
+                : <>Get 20% OFF on all courses | Use code: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>HIICT20</span></>
               }
             </span>
           </div>
