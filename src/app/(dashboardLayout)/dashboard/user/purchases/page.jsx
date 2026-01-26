@@ -21,7 +21,7 @@ export default function UserPurchasesPage() {
 
     const fetchOrders = async () => {
         const token = localStorage.getItem('token');
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
         try {
             if (!isRefreshing) setLoading(true);

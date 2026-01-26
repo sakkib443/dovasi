@@ -56,7 +56,7 @@ export default function LessonCreateTab() {
     const [modules, setModules] = useState([]);
     const [fetchingModules, setFetchingModules] = useState(false);
 
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
 
     useEffect(() => {
         const fetchCourses = async () => {

@@ -25,7 +25,7 @@ const MentorSoftwarePage = () => {
     const router = useRouter();
 
     const fetchSoftware = async () => {
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
         try {
             setLoading(true);

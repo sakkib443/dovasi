@@ -112,7 +112,7 @@ export default function MentorDashboard() {
     });
 
     const fetchDashboardData = async () => {
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
 
         try {

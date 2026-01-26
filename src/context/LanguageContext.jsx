@@ -76,7 +76,7 @@ export const LanguageProvider = ({ children }) => {
         }
       }
 
-      return typeof result === "string" ? result : fallback || key;
+      return (typeof result === "string" || Array.isArray(result) || (result && typeof result === "object")) ? result : fallback || key;
     },
     [language]
   );

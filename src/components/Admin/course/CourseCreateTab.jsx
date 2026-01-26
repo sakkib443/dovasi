@@ -107,7 +107,7 @@ const CourseCreateTab = ({ onSuccess }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await fetch('https://motionboss-backend.vercel.app/api/categories');
+                const res = await fetch('https://hiictpark-backend.vercel.app/api/categories');
                 const data = await res.json();
                 setCategories(data.data || []);
             } catch (err) { console.error(err); }
@@ -125,7 +125,7 @@ const CourseCreateTab = ({ onSuccess }) => {
 
     const onSubmit = async (data) => {
         setLoading(true);
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
 
         try {

@@ -6,7 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutMission = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -19,10 +19,10 @@ const AboutMission = () => {
     const headingFont = "font-outfit";
 
     const cards = [
-        { icon: LuTarget, title: language === 'bn' ? '?????? ????' : 'Mission', desc: language === 'bn' ? '??????? ???????????? ?????????? ?????? ?????? ????' : 'Forging the definitive path for elite digital talent.', number: '01' },
-        { icon: LuEye, title: language === 'bn' ? '?????? ????' : 'Vision', desc: language === 'bn' ? '??? ??????? ????????? ???? ????' : 'Redefining the standard of modern IT education.', number: '02' },
-        { icon: LuHeart, title: language === 'bn' ? '????????' : 'Values', desc: language === 'bn' ? '???? ??? ???????? ?????? ???????' : 'Radical transparency and industrial-scale innovation.', number: '03' },
-        { icon: LuStar, title: language === 'bn' ? '????????' : 'USP', desc: language === 'bn' ? '??????????????? ???????? ??? ????? ????????' : 'Hyper-practical training with 24/7 dedicated support.', number: '04' },
+        { icon: LuTarget, title: language === 'bn' ? t("aboutPage.mission.cards.mission") : 'Mission', desc: language === 'bn' ? t("aboutPage.mission.cards.missionDesc") : 'Forging the definitive path for elite digital talent.', number: '01' },
+        { icon: LuEye, title: language === 'bn' ? t("aboutPage.mission.cards.vision") : 'Vision', desc: language === 'bn' ? t("aboutPage.mission.cards.visionDesc") : 'Redefining the standard of modern IT education.', number: '02' },
+        { icon: LuHeart, title: language === 'bn' ? t("aboutPage.mission.cards.values") : 'Values', desc: language === 'bn' ? t("aboutPage.mission.cards.valuesDesc") : 'Radical transparency and industrial-scale innovation.', number: '03' },
+        { icon: LuStar, title: language === 'bn' ? t("aboutPage.mission.cards.usp") : 'USP', desc: language === 'bn' ? t("aboutPage.mission.cards.uspDesc") : 'Hyper-practical training with 24/7 dedicated support.', number: '04' },
     ];
 
     return (
@@ -42,26 +42,26 @@ const AboutMission = () => {
                         >
                             <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded-full mb-8">
                                 <LuZap className="text-blue-500" size={14} />
-                                <span className={`text-[10px] font-black tracking-[0.3em] uppercase text-blue-600 dark:text-blue-400 ${headingFont}`}>Foundation</span>
+                                <span className={`text-[10px] font-black tracking-[0.3em] uppercase text-blue-600 dark:text-blue-400 ${headingFont}`}>{language === 'bn' ? t("aboutPage.mission.foundation") : 'Foundation'}</span>
                             </div>
 
                             <h2 className={`${headingFont} text-6xl lg:text-7xl font-black text-gray-900 dark:text-white leading-[0.9] mb-10 tracking-tight`}>
-                                THE <span className="text-red-500 italic font-serif">CORE</span> <br />
-                                PRINCIPLES <br />
-                                OF SUCCESS
+                                {language === 'bn' ? (t("aboutPage.mission.title").split(' ')[0]) : 'THE'} <span className="text-red-500 italic font-serif">{language === 'bn' ? (t("aboutPage.mission.title").split(' ')[1] || '') : 'CORE'}</span> <br />
+                                {language === 'bn' ? (t("aboutPage.mission.title").split(' ').slice(2).join(' ')) : 'PRINCIPLES'} <br />
+                                {language === 'bn' ? '' : 'OF SUCCESS'}
                             </h2>
 
                             <p className={`text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-12 max-w-lg ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? '???? ???? ?????? ??? ??, ???? ????? ????????? ???? ??????? ?????? ??? ???? ?????? ??????? ???????? ????? ???????? ?????'
-                                    : 'We are architecting a future where skill meets strategy. ejobs it is more than an academy; it\'s your partner in professional evolution.'
+                                    ? t("aboutPage.mission.desc")
+                                    : 'We are architecting a future where skill meets strategy. HiictPark is more than an academy; it\'s your partner in professional evolution.'
                                 }
                             </p>
 
                             <div className="relative p-10 rounded-[40px] bg-gray-900 dark:bg-white text-white dark:text-black shadow-2xl overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/20 rounded-full blur-[40px] group-hover:scale-150 transition-transform duration-1000" />
-                                <h4 className={`${headingFont} text-4xl font-black mb-4 relative z-10`}>5+ Years</h4>
-                                <p className={`text-sm font-bold opacity-60 uppercase tracking-widest relative z-10 ${headingFont}`}>Of Industrial Experience</p>
+                                <h4 className={`${headingFont} text-4xl font-black mb-4 relative z-10`}>{language === 'bn' ? t("aboutPage.mission.yearsExperience").split(' ')[0] : '5+ Years'}</h4>
+                                <p className={`text-sm font-bold opacity-60 uppercase tracking-widest relative z-10 ${headingFont}`}>{language === 'bn' ? t("aboutPage.mission.yearsExperience").split(' ').slice(1).join(' ') : 'Of Industrial Experience'}</p>
                             </div>
                         </motion.div>
                     </div>

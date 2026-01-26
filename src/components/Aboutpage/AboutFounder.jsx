@@ -6,7 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutFounder = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -68,7 +68,7 @@ const AboutFounder = () => {
                                     <div className="relative text-center">
                                         <span className={`${headingFont} text-3xl font-black text-red-500 block leading-none`}>15+</span>
                                         <span className={`text-[8px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] mt-1.5 block ${bengaliClass}`}>
-                                            {language === 'bn' ? '????? ????????' : 'Years Experience'}
+                                            {language === 'bn' ? t("aboutPage.founder.experience") : 'Years Experience'}
                                         </span>
                                     </div>
                                 </motion.div>
@@ -97,7 +97,7 @@ const AboutFounder = () => {
                                     className="inline-flex items-center gap-3 mb-6"
                                 >
                                     <div className="h-[2px] w-10 bg-red-500" />
-                                    <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>Founder's Perspective</span>
+                                    <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>{language === 'bn' ? t("aboutPage.founder.perspective") : "Founder's Perspective"}</span>
                                 </motion.div>
 
                                 <motion.h3
@@ -107,9 +107,9 @@ const AboutFounder = () => {
                                     transition={{ duration: 0.8, delay: 0.1 }}
                                     className={`${headingFont} text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-[1] mb-8 tracking-tight`}
                                 >
-                                    EMPOWERING <br />
-                                    THE <span className="text-red-500 italic font-serif">FUTURE</span> OF <br />
-                                    DIGITAL MASTERY
+                                    {language === 'bn' ? t("aboutPage.founder.title").split(' ')[0] : 'EMPOWERING'} <br />
+                                    {language === 'bn' ? '' : 'THE '} <span className="text-red-500 italic font-serif">{language === 'bn' ? t("aboutPage.founder.title").split(' ').slice(1).join(' ') : 'FUTURE'}</span> {language === 'bn' ? '' : 'OF'} <br />
+                                    {language === 'bn' ? '' : 'DIGITAL MASTERY'}
                                 </motion.h3>
 
                                 <div className="space-y-5 mb-10">
@@ -121,8 +121,8 @@ const AboutFounder = () => {
                                         className={`text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-normal ${bengaliClass}`}
                                     >
                                         {language === 'bn'
-                                            ? '"?????? ?????? ????? ?????? ??, ?????? ?????? ??? ?????? ???????? ???????? ???? ??? ?? ????? ?? ?????"'
-                                            : '"Our objective isn\'t just to teach code�it\'s to engineer a problem-solving mindset that dominates on a global scale."'
+                                            ? t("aboutPage.founder.quote1")
+                                            : '"Our objective isn\'t just to teach code—it\'s to engineer a problem-solving mindset that dominates on a global scale."'
                                         }
                                     </motion.p>
                                     <motion.p
@@ -133,7 +133,7 @@ const AboutFounder = () => {
                                         className={`text-sm lg:text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-lg font-normal ${bengaliClass}`}
                                     >
                                         {language === 'bn'
-                                            ? '???? ??????? ??? ??????? ?????? ????? ???? ???????? ?????? ???? ???? ???? ??? ???????? ???????? ?????? ?????? ??? ?????'
+                                            ? t("aboutPage.founder.quote2")
                                             : 'We believe that boundless potential lies within every individual. ejobs it exists to serve as the high-performance catalyst for that potential.'
                                         }
                                     </motion.p>
@@ -148,9 +148,9 @@ const AboutFounder = () => {
                                 >
                                     <div>
                                         <h4 className={`${headingFont} text-2xl font-black text-gray-900 dark:text-white`}>
-                                            AHSANULLAH SHAON
+                                            {language === 'bn' ? t("aboutPage.founder.name") : 'AHSANULLAH SHAON'}
                                         </h4>
-                                        <p className="text-red-500 font-bold uppercase tracking-widest text-[9px] mt-1">Founder & CEO, Ejobs IT Ltd</p>
+                                        <p className="text-red-500 font-bold uppercase tracking-widest text-[9px] mt-1">{language === 'bn' ? t("aboutPage.founder.designation") : 'Founder & CEO, Ejobs IT Ltd'}</p>
                                     </div>
                                     <div className="flex gap-4">
                                         {[LuLinkedin, LuTwitter, LuGlobe].map((Icon, i) => (

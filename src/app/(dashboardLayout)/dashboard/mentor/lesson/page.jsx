@@ -14,7 +14,7 @@ export default function LessonsPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
 
     const fetchLessons = async () => {
         try {

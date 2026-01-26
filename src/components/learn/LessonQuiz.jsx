@@ -20,7 +20,7 @@ export default function LessonQuiz({ lessonId, questions = [], quizSettings = {}
     const [loading, setLoading] = useState(false);
     const [timeRemaining, setTimeRemaining] = useState(null);
 
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
 
     // Timer for quiz
     useEffect(() => {

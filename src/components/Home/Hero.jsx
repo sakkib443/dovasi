@@ -8,10 +8,10 @@ import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 const Hero = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const [searchQuery, setSearchQuery] = useState("");
     const [heroData, setHeroData] = useState(null);
     const [courseCount, setCourseCount] = useState(5500);
@@ -78,7 +78,7 @@ const Hero = () => {
         if (heroData?.badge?.text) {
             return language === 'bn' ? heroData.badge.textBn : heroData.badge.text;
         }
-        return language === 'bn' ? '???????? ????' : 'START TO SUCCESS';
+        return language === 'bn' ? t("hero.badge") : 'START TO SUCCESS';
     };
 
     const getDescriptionText = () => {
@@ -86,7 +86,7 @@ const Hero = () => {
             return language === 'bn' ? heroData.description.textBn : heroData.description.text;
         }
         return language === 'bn'
-            ? '????? ????? ???????????? ??????? ????? ????? ????'
+            ? t("hero.description")
             : 'Take your learning organisation to the next level.';
     };
 
@@ -94,7 +94,7 @@ const Hero = () => {
         if (heroData?.searchPlaceholder?.text) {
             return language === 'bn' ? heroData.searchPlaceholder.textBn : heroData.searchPlaceholder.text;
         }
-        return language === 'bn' ? '???? ?? ????? ????' : 'What do you want to learn?';
+        return language === 'bn' ? t("hero.searchPlaceholder") : 'What do you want to learn?';
     };
 
     return (
@@ -157,7 +157,7 @@ const Hero = () => {
                         <div className="mb-6">
                             <h1 className={`font-bold leading-[1.2] ${language === 'bn' ? 'hind-siliguri text-3xl md:text-4xl lg:text-[42px]' : 'text-3xl md:text-4xl lg:text-[46px]'}`}>
                                 <span className="text-[#1a2e3a] dark:text-gray-200">
-                                    {language === 'bn' ? '????????? ??? ' : 'Access To '}
+                                    {language === 'bn' ? t("hero.accessTo") : 'Access To '}
                                 </span>
                                 <span className="relative inline-block text-[#2196F3]">
                                     {getCourseCount()}+
@@ -177,11 +177,11 @@ const Hero = () => {
                                     </svg>
                                 </span>
                                 <span className="text-[#1a2e3a] dark:text-gray-200">
-                                    {language === 'bn' ? ' ?????' : ' Courses'}
+                                    {language === 'bn' ? t("hero.coursesSuffix") : ' Courses'}
                                 </span>
                                 <br />
                                 <span className="text-[#1a2e3a] dark:text-gray-200">
-                                    {language === 'bn' ? '???? ' : 'from '}
+                                    {language === 'bn' ? t("hero.from") : 'from '}
                                 </span>
                                 <span className="relative inline-block text-[#2196F3]">
                                     {getInstructorCount()}
@@ -201,11 +201,11 @@ const Hero = () => {
                                     </svg>
                                 </span>
                                 <span className="text-[#1a2e3a] dark:text-gray-200">
-                                    {language === 'bn' ? ' ?? ???????????? ???' : ' Instructors &'}
+                                    {language === 'bn' ? t("hero.instructorsSuffix") : ' Instructors &'}
                                 </span>
                                 <br />
                                 <span className="text-[#1a2e3a] dark:text-gray-200">
-                                    {language === 'bn' ? '??????????' : 'Institutions'}
+                                    {language === 'bn' ? t("hero.institutions") : 'Institutions'}
                                 </span>
                             </h1>
                         </div>

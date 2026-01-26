@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 const CTASection = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
     return (
@@ -25,11 +25,11 @@ const CTASection = () => {
                         {/* Text Content */}
                         <div className="flex-1 z-10 text-center md:text-left">
                             <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4 ${bengaliClass}`}>
-                                {language === 'bn' ? '???????????? ???? ???' : 'Become An Instructor'}
+                                {language === 'bn' ? t("home_sections.becomeInstructor") : 'Become An Instructor'}
                             </h3>
                             <p className={`text-gray-600 dark:text-gray-400 text-sm lg:text-base mb-8 leading-relaxed ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? '??????? ????? ?????????????? HiictPark-? ???? ???? ????????????? ??????'
+                                    ? t("whatWeProvide.features.jobPlacementDesc")
                                     : 'Top instructors from around the world teach millions of students on HiictPark.'
                                 }
                             </p>
@@ -37,7 +37,7 @@ const CTASection = () => {
                                 href="/become-instructor"
                                 className={`inline-flex items-center px-8 py-4 bg-[#E62D26] hover:bg-[#c41e18] text-white font-bold rounded-xl transition-all shadow-lg shadow-red-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
                             >
-                                {language === 'bn' ? '??? ?????? ???? ????' : 'Start teaching today'}
+                                {language === 'bn' ? t("home_sections.startTeaching") : 'Start teaching today'}
                             </Link>
                         </div>
 
@@ -84,11 +84,11 @@ const CTASection = () => {
                         {/* Text Content */}
                         <div className="flex-1 z-10 text-center md:text-left">
                             <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4 ${bengaliClass}`}>
-                                {language === 'bn' ? '???????? ????????? ???????? ????' : 'Transform Access To Education'}
+                                {language === 'bn' ? t("home_sections.transformEducation") : 'Transform Access To Education'}
                             </h3>
                             <p className={`text-gray-600 dark:text-gray-400 text-sm lg:text-base mb-8 leading-relaxed ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? '?????? ?????????, ????? ??????? ??? ??????? ???? ???? ?????????? ???? ?????'
+                                    ? t("contactPage.socialDescription")
                                     : 'Create an account to receive our newsletter, course recommendations and promotions.'
                                 }
                             </p>
@@ -96,7 +96,7 @@ const CTASection = () => {
                                 href="/register"
                                 className={`inline-flex items-center px-8 py-4 bg-[#E62D26] hover:bg-[#c41e18] text-white font-bold rounded-xl transition-all shadow-lg shadow-red-200 dark:shadow-none hover:-translate-y-1 ${bengaliClass}`}
                             >
-                                {language === 'bn' ? '?????????? ????????? ????' : 'Register for free'}
+                                {language === 'bn' ? t("home_sections.registerFree") : 'Register for free'}
                             </Link>
                         </div>
 

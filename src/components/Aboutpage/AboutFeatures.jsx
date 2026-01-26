@@ -63,7 +63,7 @@ const FeaturePair = ({ pair, pairIdx, headingFont, bengaliClass, language }) => 
 };
 
 const AboutFeatures = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const sectionRef = useRef(null);
 
     const bengaliClass = language === "bn" ? "font-hind-siliguri" : "font-poppins";
@@ -72,37 +72,37 @@ const AboutFeatures = () => {
     const features = [
         {
             icon: LuGraduationCap,
-            title: language === 'bn' ? '??????? ??????' : 'Expert Mentorship',
-            description: 'Direct access to high-impact workflows and professional support systems.',
+            title: language === 'bn' ? t("aboutPage.vision.list.1") : 'Expert Mentorship',
+            description: language === 'bn' ? t("aboutPage.vision.desc") : 'Direct access to high-impact workflows and professional support systems.',
             color: 'teal'
         },
         {
             icon: LuRocket,
-            title: language === 'bn' ? '???????? ????' : 'Project Mastery',
-            description: 'Direct access to high-impact workflows and professional support systems.',
+            title: language === 'bn' ? t("aboutPage.history.items.2024.title") : 'Project Mastery',
+            description: language === 'bn' ? t("aboutPage.history.items.2024.desc") : 'Direct access to high-impact workflows and professional support systems.',
             color: 'blue'
         },
         {
             icon: LuShield,
-            title: language === 'bn' ? '???????????' : 'Elite Certification',
+            title: language === 'bn' ? t("aboutPage.vision.list.3") : 'Elite Certification',
             description: 'Direct access to high-impact workflows and professional support systems.',
             color: 'purple'
         },
         {
             icon: LuHeadphones,
-            title: language === 'bn' ? '??/? ???????' : 'Priority Support',
+            title: language === 'bn' ? t("aboutPage.vision.list.4") : 'Priority Support',
             description: 'Direct access to high-impact workflows and professional support systems.',
             color: 'orange'
         },
         {
             icon: LuInfinity,
-            title: language === 'bn' ? '????? ??????' : 'Edge Curriculum',
+            title: language === 'bn' ? t("aboutPage.vision.list.5") : 'Edge Curriculum',
             description: 'Direct access to high-impact workflows and professional support systems.',
             color: 'teal'
         },
         {
             icon: LuTrophy,
-            title: language === 'bn' ? '?? ??????????' : 'Career Engine',
+            title: language === 'bn' ? t("aboutPage.vision.list.6") : 'Career Engine',
             description: 'Direct access to high-impact workflows and professional support systems.',
             color: 'blue'
         },
@@ -128,7 +128,7 @@ const AboutFeatures = () => {
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-[1px] w-8 bg-red-500" />
                                 <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>
-                                    {language === 'bn' ? '??? ???? ????' : 'Why Choose Us'}
+                                    {language === 'bn' ? t("aboutPage.vision.badge") : 'Why Choose Us'}
                                 </span>
                             </div>
 
@@ -139,7 +139,7 @@ const AboutFeatures = () => {
                             </h2>
                             <p className={`text-base lg:text-lg text-gray-500 dark:text-gray-400 leading-relaxed font-normal ${bengaliClass} mb-10 max-w-xs`}>
                                 {language === 'bn'
-                                    ? '?????? ??????? ????? ????? ??????????? ??? ???? ????????????? ?????? ????'
+                                    ? t("aboutPage.vision.desc")
                                     : 'A performance-engineered curriculum designed to transform ambition into success.'
                                 }
                             </p>

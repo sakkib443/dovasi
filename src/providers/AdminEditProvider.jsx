@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 // Context for admin edit mode
 const AdminEditContext = createContext({

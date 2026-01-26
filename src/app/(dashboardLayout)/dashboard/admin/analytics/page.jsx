@@ -62,7 +62,7 @@ const StatsCard = ({ title, value, icon: Icon, trend, trendValue, color, loading
                         {loading ? (
                             <div className="h-8 w-24 bg-slate-200 animate-pulse rounded-lg" />
                         ) : (
-                            <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '?' : ''} />
+                            <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
                         )}
                     </h3>
                     {trendValue && (
@@ -96,7 +96,7 @@ export default function AnalyticsPage() {
         software: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     });
 
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
     const fetchAnalytics = async () => {
         try {
@@ -276,7 +276,7 @@ export default function AnalyticsPage() {
                                         axisLine={false}
                                         tickLine={false}
                                         tick={{ fill: '#94a3b8', fontSize: 11 }}
-                                        tickFormatter={(value) => `?${value >= 1000 ? (value / 1000).toFixed(0) + 'k' : value}`}
+                                        tickFormatter={(value) => `৳${value >= 1000 ? (value / 1000).toFixed(0) + 'k' : value}`}
                                     />
                                     <Tooltip
                                         contentStyle={{
@@ -288,7 +288,7 @@ export default function AnalyticsPage() {
                                             color: isDark ? '#fff' : '#000'
                                         }}
                                         itemStyle={{ fontSize: '11px', fontWeight: '600' }}
-                                        formatter={(value) => [`?${value.toLocaleString()}`, '']}
+                                        formatter={(value) => [`৳${value.toLocaleString()}`, '']}
                                     />
                                     <Area
                                         type="monotone"
@@ -322,20 +322,20 @@ export default function AnalyticsPage() {
                             <div className="flex items-center gap-6">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Courses</span>
-                                    <span className="text-sm font-bold text-indigo-600">?{(categoryRevenue.courses[categoryRevenue.courses.length - 1] || 0).toLocaleString()}</span>
+                                    <span className="text-sm font-bold text-indigo-600">৳{(categoryRevenue.courses[categoryRevenue.courses.length - 1] || 0).toLocaleString()}</span>
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Websites</span>
-                                    <span className="text-sm font-bold text-emerald-600">?{(categoryRevenue.websites[categoryRevenue.websites.length - 1] || 0).toLocaleString()}</span>
+                                    <span className="text-sm font-bold text-emerald-600">৳{(categoryRevenue.websites[categoryRevenue.websites.length - 1] || 0).toLocaleString()}</span>
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Software</span>
-                                    <span className="text-sm font-bold text-amber-600">?{(categoryRevenue.software[categoryRevenue.software.length - 1] || 0).toLocaleString()}</span>
+                                    <span className="text-sm font-bold text-amber-600">৳{(categoryRevenue.software[categoryRevenue.software.length - 1] || 0).toLocaleString()}</span>
                                 </div>
                             </div>
                             <div className="text-right">
                                 <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Revenue</p>
-                                <p className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{(data?.totalRevenue || 0).toLocaleString()}</p>
+                                <p className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{(data?.totalRevenue || 0).toLocaleString()}</p>
                             </div>
                         </div>
                     </div>
@@ -355,7 +355,7 @@ export default function AnalyticsPage() {
                     <div className="space-y-4 relative">
                         <div className={`p-4 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-50/50 border-slate-100'} border rounded-2xl hover:bg-indigo-50/10 transition-colors`}>
                             <p className="text-slate-400 text-xs font-poppins mb-1">Monthly Revenue</p>
-                            <h4 className={`text-2xl font-bold font-outfit ${isDark ? 'text-white' : 'text-slate-900'}`}>?{(data?.monthlyRevenue || 0).toLocaleString()}</h4>
+                            <h4 className={`text-2xl font-bold font-outfit ${isDark ? 'text-white' : 'text-slate-900'}`}>৳{(data?.monthlyRevenue || 0).toLocaleString()}</h4>
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
@@ -450,7 +450,7 @@ export default function AnalyticsPage() {
                                             <td className={`px-6 py-4 text-sm truncate max-w-[200px] ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                                                 {purchase.items?.[0]?.title || 'Product'}
                                             </td>
-                                            <td className={`px-6 py-4 font-bold text-sm ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>?{purchase.totalAmount?.toLocaleString()}</td>
+                                            <td className={`px-6 py-4 font-bold text-sm ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>৳{purchase.totalAmount?.toLocaleString()}</td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase ${purchase.paymentStatus === 'completed'
                                                     ? (isDark ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-100/50 text-emerald-600')
@@ -500,7 +500,7 @@ export default function AnalyticsPage() {
                                         <div className="flex items-center gap-2 mt-0.5">
                                             <span className="text-[10px] text-slate-400 font-medium">{product.salesCount || 0} sales</span>
                                             <span className="w-1 h-1 rounded-full bg-slate-200"></span>
-                                            <span className="text-[10px] text-emerald-600 font-bold">?{((product.salesCount || 0) * (product.price || 0)).toLocaleString()}</span>
+                                            <span className="text-[10px] text-emerald-600 font-bold">৳{((product.salesCount || 0) * (product.price || 0)).toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -6,29 +6,29 @@ import { LuBrain, LuAward, LuTarget, LuUsers } from "react-icons/lu";
 import { useLanguage } from "@/context/LanguageContext";
 
 const FeaturesBar = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
     const features = [
         {
             icon: LuBrain,
-            title: language === 'bn' ? '??????????? ??????' : 'Learn The',
-            subtitle: language === 'bn' ? '?????' : 'Essential Skills',
+            title: language === 'bn' ? t("home_sections.learnEssential") : 'Learn The',
+            subtitle: language === 'bn' ? t("home_sections.essentialSkills") : 'Essential Skills',
         },
         {
             icon: LuAward,
-            title: language === 'bn' ? '??????????? ????? ????' : 'Earn Certificates',
-            subtitle: language === 'bn' ? '??? ??????' : 'And Degrees',
+            title: language === 'bn' ? t("home_sections.earnCertificates") : 'Earn Certificates',
+            subtitle: language === 'bn' ? t("home_sections.andDegrees") : 'And Degrees',
         },
         {
             icon: LuTarget,
-            title: language === 'bn' ? '??????? ???????????? ????' : 'Get Ready for The',
-            subtitle: language === 'bn' ? '???????? ??' : 'Next Career',
+            title: language === 'bn' ? t("home_sections.getReadyCareer") : 'Get Ready for The',
+            subtitle: language === 'bn' ? t("home_sections.nextCareer") : 'Next Career',
         },
         {
             icon: LuUsers,
-            title: language === 'bn' ? '??????? ????????' : 'Master at',
-            subtitle: language === 'bn' ? '???? ???' : 'Different Areas',
+            title: language === 'bn' ? t("home_sections.masterAreas") : 'Master at',
+            subtitle: language === 'bn' ? t("home_sections.differentAreas") : 'Different Areas',
         },
     ];
 

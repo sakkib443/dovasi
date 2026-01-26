@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { FiSave, FiRefreshCw, FiEye } from 'react-icons/fi';
 import { useTheme } from '@/providers/ThemeProvider';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 const PopularCourseDesignPage = () => {
     const { isDark } = useTheme();

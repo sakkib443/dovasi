@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { LuPlus, LuPencil, LuTrash2, LuSearch, LuTag, LuPercent, LuCalendar, LuUsers, LuCheck, LuX, LuCopy, LuRefreshCw } from 'react-icons/lu';
 import { useTheme } from '@/providers/ThemeProvider';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 const CouponsPage = () => {
     const { isDark } = useTheme();
@@ -220,10 +220,10 @@ const CouponsPage = () => {
                         >
                             {/* Status Badge */}
                             <div className={`absolute top-4 right-4 px-2.5 py-1 rounded-full text-xs font-bold ${!coupon.isActive
-                                    ? 'bg-gray-100 text-gray-500'
-                                    : isExpired(coupon.endDate)
-                                        ? 'bg-red-100 text-red-600'
-                                        : 'bg-green-100 text-green-600'
+                                ? 'bg-gray-100 text-gray-500'
+                                : isExpired(coupon.endDate)
+                                    ? 'bg-red-100 text-red-600'
+                                    : 'bg-green-100 text-green-600'
                                 }`}>
                                 {!coupon.isActive ? 'Inactive' : isExpired(coupon.endDate) ? 'Expired' : 'Active'}
                             </div>
@@ -248,16 +248,16 @@ const CouponsPage = () => {
 
                             {/* Discount Value */}
                             <div className={`text-2xl font-bold mb-3 ${isDark ? 'text-red-400' : 'text-red-600'}`}>
-                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `?${coupon.discountValue} OFF`}
+                                {coupon.discountType === 'percentage' ? `${coupon.discountValue}% OFF` : `৳${coupon.discountValue} OFF`}
                             </div>
 
                             {/* Details */}
                             <div className={`space-y-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                 {coupon.minPurchase > 0 && (
-                                    <p>Min. Purchase: ?{coupon.minPurchase}</p>
+                                    <p>Min. Purchase: ৳{coupon.minPurchase}</p>
                                 )}
                                 {coupon.maxDiscount && (
-                                    <p>Max Discount: ?{coupon.maxDiscount}</p>
+                                    <p>Max Discount: ৳{coupon.maxDiscount}</p>
                                 )}
                                 <div className="flex items-center gap-2">
                                     <LuCalendar size={14} />
@@ -351,7 +351,7 @@ const CouponsPage = () => {
                                         className={`w-full px-4 py-3 rounded-xl border ${isDark ? 'bg-slate-800 border-slate-700 text-white' : 'bg-gray-50 border-gray-200'}`}
                                     >
                                         <option value="percentage">Percentage (%)</option>
-                                        <option value="fixed">Fixed Amount (?)</option>
+                                        <option value="fixed">Fixed Amount (৳)</option>
                                     </select>
                                 </div>
                                 <div>
@@ -373,7 +373,7 @@ const CouponsPage = () => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                        Min. Purchase (?)
+                                        Min. Purchase (৳)
                                     </label>
                                     <input
                                         type="number"
@@ -385,7 +385,7 @@ const CouponsPage = () => {
                                 </div>
                                 <div>
                                     <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                        Max Discount (?)
+                                        Max Discount (৳)
                                     </label>
                                     <input
                                         type="number"

@@ -17,70 +17,70 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 
 const TopCategories = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
     const categories = [
         {
             icon: LuBrain,
-            title: language === 'bn' ? '??? ??? ???????' : 'AI and Automation',
-            subtitle: language === 'bn' ? '??????? ?????' : 'Shape the Future',
+            title: language === 'bn' ? t("home_sections.aiAutomation") : 'AI and Automation',
+            subtitle: language === 'bn' ? t("home_sections.shapeFuture") : 'Shape the Future',
             slug: 'ai-automation',
             iconBg: 'bg-gradient-to-br from-red-400 to-cyan-500',
             borderColor: 'border-l-red-400',
         },
         {
             icon: LuPalette,
-            title: language === 'bn' ? '???? ??? ??????' : 'Art & Design',
-            subtitle: language === 'bn' ? '?????????? ???????????' : 'Platform for Creativity',
+            title: language === 'bn' ? t("home_sections.artDesign") : 'Art & Design',
+            subtitle: language === 'bn' ? t("home_sections.creativePlatform") : 'Platform for Creativity',
             slug: 'art-design',
             iconBg: 'bg-gradient-to-br from-orange-400 to-amber-500',
             borderColor: 'border-l-orange-400',
         },
         {
             icon: LuCode,
-            title: language === 'bn' ? '???????????' : 'Programming',
-            subtitle: language === 'bn' ? '????????????? ???? ??? ????' : 'Code with Confidence',
+            title: language === 'bn' ? t("home_sections.programming") : 'Programming',
+            subtitle: language === 'bn' ? t("home_sections.codeConfidence") : 'Code with Confidence',
             slug: 'programming',
             iconBg: 'bg-gradient-to-br from-cyan-400 to-blue-500',
             borderColor: 'border-l-cyan-400',
         },
         {
             icon: LuMegaphone,
-            title: language === 'bn' ? '??????? ?????????' : 'Digital Marketing',
-            subtitle: language === 'bn' ? '???????? ?????' : 'The Art of Influence',
+            title: language === 'bn' ? t("home_sections.digitalMarketing") : 'Digital Marketing',
+            subtitle: language === 'bn' ? t("home_sections.artInfluence") : 'The Art of Influence',
             slug: 'digital-marketing',
             iconBg: 'bg-gradient-to-br from-orange-400 to-red-500',
             borderColor: 'border-l-orange-400',
         },
         {
             icon: LuFilm,
-            title: language === 'bn' ? '??????? ??? ?????' : 'Media & Film',
-            subtitle: language === 'bn' ? '???? ???? ???' : 'Storytelling in Motion',
+            title: language === 'bn' ? t("home_sections.mediaFilm") : 'Media & Film',
+            subtitle: language === 'bn' ? t("home_sections.storyMotion") : 'Storytelling in Motion',
             slug: 'media-film',
             iconBg: 'bg-gradient-to-br from-red-400 to-emerald-500',
             borderColor: 'border-l-red-400',
         },
         {
             icon: LuServer,
-            title: language === 'bn' ? '???????????? ??? ???????' : 'Networking & Server',
-            subtitle: language === 'bn' ? '???? ???????????? ?????' : 'Protector of IT Industry',
+            title: language === 'bn' ? t("home_sections.networkingServer") : 'Networking & Server',
+            subtitle: language === 'bn' ? t("home_sections.protectorIT") : 'Protector of IT Industry',
             slug: 'networking-server',
             iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
             borderColor: 'border-l-amber-400',
         },
         {
             icon: LuUsers,
-            title: language === 'bn' ? '????????????' : 'Management',
-            subtitle: language === 'bn' ? '?????? ???? ???????' : 'Leading with Strategy',
+            title: language === 'bn' ? t("home_sections.management") : 'Management',
+            subtitle: language === 'bn' ? t("home_sections.leadStrategy") : 'Leading with Strategy',
             slug: 'management',
             iconBg: 'bg-gradient-to-br from-blue-400 to-indigo-500',
             borderColor: 'border-l-blue-400',
         },
         {
             icon: LuGraduationCap,
-            title: language === 'bn' ? '????????' : 'Diploma',
-            subtitle: language === 'bn' ? '???? ??, ????? ??' : 'Skill Up, Stand Out',
+            title: language === 'bn' ? t("home_sections.diploma") : 'Diploma',
+            subtitle: language === 'bn' ? t("home_sections.skillUpStandOut") : 'Skill Up, Stand Out',
             slug: 'diploma',
             iconBg: 'bg-gradient-to-br from-pink-400 to-purple-500',
             borderColor: 'border-l-pink-400',
@@ -132,13 +132,13 @@ const TopCategories = () => {
                                         href={`/courses?category=${category.slug}`}
                                         className={`text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors ${bengaliClass}`}
                                     >
-                                        {language === 'bn' ? '????? ?????' : 'Explore courses'}
+                                        {language === 'bn' ? t("home_sections.exploreCourses") : 'Explore courses'}
                                     </Link>
                                     <Link
                                         href={`/courses?category=${category.slug}`}
                                         className={`text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors ${bengaliClass}`}
                                     >
-                                        {language === 'bn' ? '?????? ?????' : 'View All'}
+                                        {language === 'bn' ? t("home_sections.viewAll") : 'View All'}
                                     </Link>
                                 </div>
                             </div>

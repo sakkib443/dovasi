@@ -4,12 +4,18 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart } from '@/redux/cartSlice';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { LuShieldCheck, LuPackage, LuCreditCard, LuChevronLeft, LuBadgeCheck, LuSmartphone, LuLoader, LuArrowRight, LuTag, LuCheck, LuX } from 'react-icons/lu';
+import Link from 'next/link';
+import {
+    LuShieldCheck, LuPackage, LuCreditCard, LuChevronLeft,
+    LuBadgeCheck, LuSmartphone, LuLoader, LuArrowRight,
+    LuTag, LuCheck, LuX, LuLock, LuUser, LuMail, LuPhone,
+    LuMapPin, LuShoppingBag
+} from 'react-icons/lu';
 import { useLanguage } from '@/context/LanguageContext';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 const CheckoutContent = () => {
     const { items: cartItems, totalAmount: cartTotal } = useSelector((state) => state.cart || { items: [], totalAmount: 0 });
@@ -23,7 +29,17 @@ const CheckoutContent = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [pageLoading, setPageLoading] = useState(!!courseId);
-    const [paymentMethod, setPaymentMethod] = useState('bkash');
+
+    // Payment States
+    const [paymentMethod, setPaymentMethod] = useState('manual');
+    const [manualMethod, setManualMethod] = useState('bkash');
+    const [paymentDetails, setPaymentDetails] = useState({
+        senderNumber: '',
+        transactionId: '',
+        time: '',
+        date: new Date().toISOString().split('T')[0]
+    });
+
     const [checkoutItems, setCheckoutItems] = useState([]);
     const [totalValue, setTotalValue] = useState(0);
 
@@ -48,7 +64,7 @@ const CheckoutContent = () => {
             setPageLoading(true);
             const fetchCourse = async () => {
                 try {
-                    const res = await fetch(`https://motionboss-backend.vercel.app/api/courses/${courseId}`);
+                    const res = await fetch(`${API_URL}/courses/${courseId}`);
                     const result = await res.json();
                     if (res.ok && result.data) {
                         const course = result.data;
@@ -103,6 +119,10 @@ const CheckoutContent = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handlePaymentDetailChange = (e) => {
+        setPaymentDetails({ ...paymentDetails, [e.target.name]: e.target.value });
+    };
+
     // Apply Coupon Handler
     const handleApplyCoupon = async () => {
         if (!couponCode.trim()) {
@@ -131,7 +151,7 @@ const CheckoutContent = () => {
                     discountValue: data.data.discountValue
                 });
                 setDiscountAmount(data.data.discount);
-                toast.success(`Coupon applied! You save ?${data.data.discount}`);
+                toast.success(`Coupon applied! You save ৳${data.data.discount}`);
             } else {
                 toast.error(data.message || 'Invalid coupon code');
             }
@@ -157,7 +177,7 @@ const CheckoutContent = () => {
         setLoading(true);
 
         const token = localStorage.getItem('token');
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = API_URL;
 
         try {
             // Step 1: Create Order
@@ -169,7 +189,7 @@ const CheckoutContent = () => {
                     price: item.price,
                     image: item.image
                 })),
-                paymentMethod: paymentMethod,
+                paymentMethod: paymentMethod === 'manual' ? 'manual' : 'direct',
                 paymentStatus: 'pending'
             };
 
@@ -190,45 +210,32 @@ const CheckoutContent = () => {
 
             const orderId = orderResult.data._id;
 
-            if (paymentMethod === 'bkash') {
-                // Handle bKash
-                const bkashRes = await fetch(`${BASE_URL}/bkash/create-payment`, {
-                    method: 'POST',
+            if (paymentMethod === 'manual') {
+                const manualPaymentData = {
+                    method: manualMethod,
+                    ...paymentDetails
+                };
+
+                const manualRes = await fetch(`${BASE_URL}/orders/${orderId}/manual-payment`, {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({
-                        orderId: orderId,
-                        amount: totalValue,
-                        payerReference: formData.phone
-                    })
+                    body: JSON.stringify(manualPaymentData)
                 });
 
-                const bkashResult = await bkashRes.json();
-                if (!bkashRes.ok) throw new Error(bkashResult.message || 'bKash initiation failed');
+                if (!manualRes.ok) {
+                    const errorData = await manualRes.json();
+                    throw new Error(errorData.message || 'Failed to submit manual payment details');
+                }
 
-                const paymentId = bkashResult.data.paymentID;
-
-                // Execute Payment (Mock for demo)
-                const executeRes = await fetch(`${BASE_URL}/bkash/execute-payment`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ paymentID: paymentId })
-                });
-
-                const executeResult = await executeRes.json();
-                if (!executeRes.ok) throw new Error(executeResult.message || 'Payment execution failed');
-
-                toast.success('Payment successful! ??');
+                toast.success('Payment submitted for verification! 🚀');
                 setIsSuccess(true);
                 if (!courseId) dispatch(clearCart());
 
                 setTimeout(() => {
-                    router.push('/dashboard/user/courses'); // Redirect to courses for courses
+                    router.push('/dashboard/user/courses');
                 }, 3000);
 
             } else {
@@ -251,10 +258,10 @@ const CheckoutContent = () => {
 
     if (pageLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0a]">
                 <div className="flex flex-col items-center gap-4">
                     <LuLoader className="animate-spin text-[#E62D26]" size={40} />
-                    <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Preparing Checkout...</p>
+                    <p className="text-slate-500 font-normal uppercase tracking-widest text-[10px]">Preparing Secure Checkout...</p>
                 </div>
             </div>
         );
@@ -262,23 +269,23 @@ const CheckoutContent = () => {
 
     if (isSuccess) {
         return (
-            <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
-                <motion.div
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mb-8"
-                >
-                    <LuBadgeCheck className="text-emerald-500 text-5xl" />
-                </motion.div>
-                <h1 className="text-4xl font-black text-slate-900 mb-4 outfit">Payment Successful!</h1>
-                <p className="text-slate-500 text-lg font-normal text-center max-w-md mb-8 work">
-                    Thank you for your purchase. You can now access your content in your dashboard.
+            <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex flex-col items-center justify-center px-4">
+                <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-500/10 rounded-md flex items-center justify-center mb-6 border border-emerald-100 dark:border-emerald-500/20">
+                    <LuBadgeCheck className="text-emerald-500 text-4xl" />
+                </div>
+                <h1 className={`text-2xl font-bold text-slate-800 dark:text-white mb-3 ${bengaliClass}`}>
+                    {language === 'bn' ? 'আদেশ সফল হয়েছে!' : 'Payment Successful!'}
+                </h1>
+                <p className={`text-slate-500 dark:text-slate-400 text-sm font-normal text-center max-w-sm mb-8 leading-relaxed ${bengaliClass}`}>
+                    {language === 'bn'
+                        ? 'আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। ভেরিফিকেশনের পর কোর্সটি সক্রিয় হবে।'
+                        : 'Your purchase is successful. Access will be granted shortly after verification.'}
                 </p>
                 <button
                     onClick={() => router.push('/dashboard/user/courses')}
-                    className="px-8 py-4 bg-slate-900 text-white rounded-md font-black text-sm uppercase tracking-widest hover:bg-[#E62D26] transition-all flex items-center gap-3"
+                    className={`px-8 py-3 bg-[#E62D26] text-white rounded-md font-normal text-sm uppercase tracking-widest hover:bg-[#c41e18] transition-all flex items-center gap-3 ${bengaliClass}`}
                 >
-                    Go to My Courses <LuArrowRight />
+                    {language === 'bn' ? 'আমার কোর্সগুলো দেখুন' : 'Go to My Courses'} <LuArrowRight />
                 </button>
             </div>
         );
@@ -286,13 +293,14 @@ const CheckoutContent = () => {
 
     if (checkoutItems.length === 0) {
         return (
-            <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mb-6">
-                    <LuPackage className="text-slate-400 text-3xl" />
+            <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-white/5 rounded-md flex items-center justify-center mb-6 border border-slate-100 dark:border-white/10">
+                    <LuPackage className="text-slate-400 text-2xl" />
                 </div>
-                <h2 className="text-2xl font-black text-slate-800 mb-4 outfit uppercase tracking-tight">Your cart is empty</h2>
-                <p className="text-slate-500 mb-8 max-w-sm">Looks like you haven't added any products to your cart yet.</p>
-                <button onClick={() => router.push('/courses')} className="px-8 py-4 bg-[#E62D26] text-white rounded-md font-black text-sm uppercase tracking-widest hover:shadow-xl transition-all">
+                <h2 className={`text-xl font-bold text-slate-800 dark:text-white mb-6 ${bengaliClass}`}>
+                    {language === 'bn' ? 'আপনার চেকআউট খালি' : 'No items to checkout'}
+                </h2>
+                <button onClick={() => router.push('/courses')} className={`px-8 py-3 bg-[#E62D26] text-white rounded-md font-normal text-sm uppercase tracking-widest hover:bg-[#c41e18] transition-all ${bengaliClass}`}>
                     Browse Courses
                 </button>
             </div>
@@ -300,225 +308,289 @@ const CheckoutContent = () => {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 py-12 lg:py-20">
-            <div className="container mx-auto px-4 lg:px-24">
-                <div className="flex flex-col lg:flex-row gap-12">
+        <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] py-12 lg:py-20">
+            <div className="container mx-auto px-4 lg:px-16">
 
-                    {/* Left: Billing Form */}
-                    <div className="flex-1 space-y-8">
-                        <div className="flex items-center gap-4">
-                            <button onClick={() => router.back()} className="w-12 h-12 flex items-center justify-center bg-white rounded-md shadow-sm border border-slate-100/50 text-slate-400 hover:text-[#E62D26] hover:shadow-md transition-all">
-                                <LuChevronLeft size={24} />
-                            </button>
-                            <div>
-                                <h1 className="text-3xl font-black text-slate-900 outfit uppercase tracking-tight">Secure Checkout</h1>
-                                <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">Complete your enrollment</p>
+                {/* Simplified Header Like Contact Page Info Title */}
+                <div className="flex items-center gap-4 mb-10">
+                    <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center bg-white dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/10 text-slate-400 hover:text-[#E62D26] transition-all">
+                        <LuChevronLeft size={20} />
+                    </button>
+                    <div>
+                        <h1 className={`text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
+                            {language === 'bn' ? 'চেকআউট' : 'Secure Checkout'}
+                        </h1>
+                        <p className={`text-[10px] text-slate-500 uppercase tracking-[0.2em] ${bengaliClass}`}>
+                            {language === 'bn' ? 'ভর্তি প্রক্রিয়া সম্পন্ন করুন' : 'Complete your enrollment'}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
+                    {/* Left: Form */}
+                    <div className="flex-1 w-full space-y-6">
+                        <div className="bg-white dark:bg-white/5 p-6 lg:p-8 rounded-md border border-slate-200 dark:border-white/10 shadow-sm">
+                            <div className="flex items-center gap-3 mb-8">
+                                <div className="w-10 h-10 bg-slate-50 dark:bg-white/10 rounded-md flex items-center justify-center text-[#E62D26] border border-slate-100 dark:border-white/10">
+                                    <LuUser size={20} />
+                                </div>
+                                <h2 className={`text-lg font-bold text-slate-800 dark:text-white ${bengaliClass}`}>
+                                    {language === 'bn' ? 'ব্যক্তিগত তথ্য' : 'Personal Details'}
+                                </h2>
                             </div>
-                        </div>
 
-                        {/* Billing Info */}
-                        <div className="bg-white p-8 lg:p-10 rounded-md border border-slate-100/50 shadow-sm space-y-8">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-[#E62D26]/10 rounded-md flex items-center justify-center text-[#E62D26] border border-[#E62D26]/20">
-                                    <LuCreditCard size={24} />
+                            <form onSubmit={handlePlaceOrder} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="md:col-span-2">
+                                        <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                            {language === 'bn' ? 'পুরো নাম' : 'Full Name'}
+                                        </label>
+                                        <div className="relative group">
+                                            <LuUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                            <input
+                                                type="text" required name="fullName" value={formData.fullName} onChange={handleInputChange}
+                                                className="w-full pl-12 pr-6 py-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] focus:bg-white dark:focus:bg-white/10 outline-none transition-all font-normal text-slate-700 dark:text-white"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                            {language === 'bn' ? 'ইমেইল এড্রেস' : 'Email Address'}
+                                        </label>
+                                        <div className="relative group">
+                                            <LuMail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                            <input
+                                                type="email" required name="email" value={formData.email} onChange={handleInputChange}
+                                                className="w-full pl-12 pr-6 py-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] focus:bg-white dark:focus:bg-white/10 outline-none transition-all font-normal text-slate-700 dark:text-white"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                            {language === 'bn' ? 'ফোন নম্বর' : 'Phone Number'}
+                                        </label>
+                                        <div className="relative group">
+                                            <LuPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                            <input
+                                                type="text" required name="phone" value={formData.phone} onChange={handleInputChange}
+                                                className="w-full pl-12 pr-6 py-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] focus:bg-white dark:focus:bg-white/10 outline-none transition-all font-normal text-slate-700 dark:text-white"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
-                                <h2 className="text-xl font-bold text-slate-800 outfit">Personal Details</h2>
-                            </div>
 
-                            <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="md:col-span-2">
-                                    <label className="text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest">Full Name</label>
-                                    <input
-                                        type="text" required name="fullName" value={formData.fullName} onChange={handleInputChange}
-                                        placeholder="Enter your full name"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest">Email Address</label>
-                                    <input
-                                        type="email" required name="email" value={formData.email} onChange={handleInputChange}
-                                        placeholder="your@email.com"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest">Phone Number</label>
-                                    <input
-                                        type="text" required name="phone" value={formData.phone} onChange={handleInputChange}
-                                        placeholder="+880 1XXX-XXXXXX"
-                                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100/50 rounded-md focus:border-[#E62D26] focus:bg-white focus:ring-4 focus:ring-[#E62D26]/10 outline-none transition-all font-bold text-slate-700"
-                                    />
-                                </div>
-
-                                <div className="md:col-span-2 pt-4 space-y-6">
-                                    <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest">Payment Method</h3>
+                                <div className="pt-4 space-y-6">
+                                    <h3 className={`text-sm font-bold text-slate-800 dark:text-white uppercase tracking-widest ${bengaliClass}`}>
+                                        {language === 'bn' ? 'পেমেন্ট মেথড' : 'Payment Method'}
+                                    </h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <button
                                             type="button"
-                                            onClick={() => setPaymentMethod('bkash')}
-                                            className={`p-6 rounded-md border flex items-center gap-4 transition-all ${paymentMethod === 'bkash'
-                                                ? 'border-pink-500 bg-pink-50 shadow-lg shadow-pink-100'
-                                                : 'border-slate-100/50 hover:border-slate-200 bg-white'
+                                            onClick={() => setPaymentMethod('manual')}
+                                            className={`p-5 rounded-md border-2 flex items-center gap-4 transition-all ${paymentMethod === 'manual'
+                                                ? 'border-[#E62D26] bg-[#E62D26]/5'
+                                                : 'border-slate-100 dark:border-white/10 bg-white dark:bg-white/5 hover:border-slate-200'
                                                 }`}
                                         >
-                                            <div className="w-12 h-12 bg-pink-500 rounded-md flex items-center justify-center shadow-lg shadow-pink-200">
-                                                <LuSmartphone className="text-white" size={24} />
+                                            <div className="w-10 h-10 bg-[#E62D26] rounded-md flex items-center justify-center text-white">
+                                                <LuSmartphone size={20} />
                                             </div>
                                             <div className="text-left">
-                                                <p className="font-bold text-slate-800 uppercase tracking-tight">bKash</p>
-                                                <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Instant Pay</p>
+                                                <p className={`font-bold text-slate-800 dark:text-white uppercase tracking-tight text-xs ${bengaliClass}`}>
+                                                    {language === 'bn' ? 'ম্যানুয়াল' : 'Manual'}
+                                                </p>
+                                                <p className="text-[9px] font-normal text-slate-400 uppercase tracking-widest">bKash/Rocket</p>
                                             </div>
                                         </button>
 
                                         <button
                                             type="button"
                                             onClick={() => setPaymentMethod('direct')}
-                                            className={`p-6 rounded-md border flex items-center gap-4 transition-all ${paymentMethod === 'direct'
-                                                ? 'border-slate-900 bg-slate-900 shadow-lg shadow-slate-200'
-                                                : 'border-slate-100/50 hover:border-slate-200 bg-white'
+                                            className={`p-5 rounded-md border-2 flex items-center gap-4 transition-all ${paymentMethod === 'direct'
+                                                ? 'border-slate-800 dark:border-white bg-slate-800 dark:bg-white/20'
+                                                : 'border-slate-100 dark:border-white/10 bg-white dark:bg-white/5 hover:border-slate-200'
                                                 }`}
                                         >
-                                            <div className={`w-12 h-12 rounded-md flex items-center justify-center shadow-lg ${paymentMethod === 'direct' ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}`}>
-                                                <LuPackage size={24} />
+                                            <div className={`w-10 h-10 rounded-md flex items-center justify-center ${paymentMethod === 'direct' ? 'bg-white text-slate-800' : 'bg-slate-800 text-white dark:bg-white/10'}`}>
+                                                <LuLock size={20} />
                                             </div>
                                             <div className="text-left">
-                                                <p className={`font-bold uppercase tracking-tight ${paymentMethod === 'direct' ? 'text-white' : 'text-slate-800'}`}>Demo</p>
-                                                <p className={`text-[10px] font-medium uppercase tracking-widest ${paymentMethod === 'direct' ? 'text-slate-400' : 'text-slate-400'}`}>No Real Bill</p>
+                                                <p className={`font-bold uppercase tracking-tight text-xs ${paymentMethod === 'direct' ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
+                                                    {language === 'bn' ? 'অনলাইন' : 'Online'}
+                                                </p>
+                                                <p className="text-[9px] font-normal text-slate-400 uppercase tracking-widest">Automatic</p>
                                             </div>
                                         </button>
                                     </div>
+
+                                    {paymentMethod === 'manual' && (
+                                        <div className="mt-6 p-6 lg:p-8 border-2 border-dashed border-slate-200 dark:border-white/10 rounded-md bg-slate-50 dark:bg-white/[0.02] space-y-8">
+                                            <div>
+                                                <h4 className={`text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4 ${bengaliClass}`}>
+                                                    {language === 'bn' ? 'পেমেন্ট গেটওয়ে' : 'Choose Gateway'}
+                                                </h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {[
+                                                        { id: 'bkash', label: 'bKash', color: 'bg-[#d12053]' },
+                                                        { id: 'rocket', label: 'Rocket', color: 'bg-[#8c3494]' },
+                                                        { id: 'nagad', label: 'Nagad', color: 'bg-[#f7941d]' }
+                                                    ].map((method) => (
+                                                        <button
+                                                            key={method.id}
+                                                            type="button"
+                                                            onClick={() => setManualMethod(method.id)}
+                                                            className={`px-4 py-2 rounded-md font-bold text-[10px] transition-all flex items-center gap-2 ${manualMethod === method.id
+                                                                ? `${method.color} text-white`
+                                                                : 'bg-white dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10'
+                                                                }`}
+                                                        >
+                                                            {method.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="p-5 bg-white dark:bg-white/5 rounded-md border border-slate-100 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`w-12 h-12 rounded-md flex items-center justify-center text-white text-xl font-bold ${manualMethod === 'bkash' ? 'bg-[#d12053]' :
+                                                        manualMethod === 'rocket' ? 'bg-[#8c3494]' : 'bg-[#f7941d]'
+                                                        }`}>
+                                                        {manualMethod[0].toUpperCase()}
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-xl font-bold text-slate-800 dark:text-white tracking-tight">01730481212</p>
+                                                        <p className={`text-[10px] font-normal text-slate-400 uppercase tracking-widest ${bengaliClass}`}>
+                                                            {language === 'bn' ? 'পার্সোনাল নম্বর' : 'Personal Number'}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                                <div>
+                                                    <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                                        {language === 'bn' ? 'সেন্ডার নম্বর' : 'Sender Number'}
+                                                    </label>
+                                                    <input
+                                                        type="text" required name="senderNumber" value={paymentDetails.senderNumber} onChange={handlePaymentDetailChange}
+                                                        className="w-full px-5 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] outline-none transition-all font-normal text-slate-700 dark:text-white text-sm"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                                        {language === 'bn' ? 'ট্রানজেকশন আইডি' : 'Transaction ID'}
+                                                    </label>
+                                                    <input
+                                                        type="text" required name="transactionId" value={paymentDetails.transactionId} onChange={handlePaymentDetailChange}
+                                                        className="w-full px-5 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] outline-none transition-all font-normal text-slate-700 dark:text-white text-sm"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                                        {language === 'bn' ? 'পেমেন্ট সময়' : 'Time'}
+                                                    </label>
+                                                    <input
+                                                        type="time" required name="time" value={paymentDetails.time} onChange={handlePaymentDetailChange}
+                                                        className="w-full px-5 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] outline-none transition-all font-normal text-slate-700 dark:text-white text-sm"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className={`text-[10px] font-bold text-slate-400 mb-2 block uppercase tracking-widest ${bengaliClass}`}>
+                                                        {language === 'bn' ? 'পেমেন্ট তারিখ' : 'Date'}
+                                                    </label>
+                                                    <input
+                                                        type="date" required name="date" value={paymentDetails.date} onChange={handlePaymentDetailChange}
+                                                        className="w-full px-5 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md focus:border-[#E62D26] outline-none transition-all font-normal text-slate-700 dark:text-white text-sm"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
-                                <div className="md:col-span-2 pt-6">
+                                <div className="pt-6">
                                     <button
-                                        type="submit"
-                                        disabled={loading}
-                                        className="w-full py-5 bg-[#E62D26] hover:bg-[#38a89d] disabled:bg-slate-300 text-white rounded-md font-black text-lg shadow-xl shadow-[#E62D26]/20 transition-all active:scale-[0.98] flex items-center justify-center gap-4 group"
+                                        type="submit" disabled={loading}
+                                        className={`w-full py-4 bg-[#E62D26] text-white rounded-md font-normal text-sm uppercase tracking-widest hover:bg-[#c41e18] transition-all flex items-center justify-center gap-3 ${bengaliClass}`}
                                     >
-                                        {loading ? (
-                                            <>
-                                                <LuLoader className="animate-spin" size={24} />
-                                                Processing...
-                                            </>
-                                        ) : (
-                                            <>
-                                                Authorize Payment
-                                                <LuArrowRight className="group-hover:translate-x-1 transition-transform" />
-                                            </>
-                                        )}
+                                        {loading ? <LuLoader className="animate-spin" size={18} /> : (language === 'bn' ? 'ভর্তি নিশ্চিত করুন' : 'Confirm Enrollment')}
+                                        {!loading && <LuArrowRight size={18} />}
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
 
-                    {/* Right: Order Summary */}
-                    <div className="w-full lg:w-[450px]">
-                        <div className="bg-white p-8 rounded-md border border-slate-100/50 shadow-sm space-y-8 lg:sticky lg:top-8">
-                            <h3 className="text-xl font-bold text-slate-800 outfit border-b border-slate-50 pb-6">Payment Review</h3>
+                    {/* Right: Summary */}
+                    <div className="w-full lg:w-[400px]">
+                        <div className="bg-white dark:bg-white/5 p-6 lg:p-8 rounded-md border border-slate-200 dark:border-white/10 shadow-sm space-y-8 lg:sticky lg:top-8">
+                            <h3 className={`text-lg font-bold text-slate-800 dark:text-white border-b border-slate-50 dark:border-white/5 pb-6 outfit ${bengaliClass}`}>
+                                {language === 'bn' ? 'অর্ডার রিভিউ' : 'Order Summary'}
+                            </h3>
 
-                            <div className="space-y-6 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                            <div className="space-y-6 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
                                 {checkoutItems.map((item) => (
                                     <div key={item.id} className="flex gap-4 items-center">
-                                        <div className="w-20 h-20 rounded-md overflow-hidden bg-slate-100 border border-slate-50/50 shrink-0">
+                                        <div className="w-14 h-14 rounded-md overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-white/5 shrink-0">
                                             <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-black text-slate-800 leading-tight mb-1">{item.title}</h4>
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{item.type}</span>
+                                            <h4 className={`text-xs font-normal text-slate-800 dark:text-white leading-tight mb-1 line-clamp-2 ${bengaliClass}`}>{item.title}</h4>
+                                            <span className="text-[8px] font-bold text-[#E62D26] bg-[#E62D26]/5 px-1.5 py-0.5 rounded-md uppercase tracking-widest">{item.type}</span>
                                         </div>
-                                        <div className="text-slate-900 font-black outfit text-lg">?{item.price?.toLocaleString()}</div>
+                                        <div className="text-slate-800 dark:text-white font-bold text-sm">৳{item.price?.toLocaleString()}</div>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="pt-6 space-y-4 border-t border-slate-50">
-                                <div className="flex justify-between items-center text-slate-400 font-bold uppercase tracking-widest text-[10px]">
-                                    <span>Subtotal</span>
-                                    <span className="text-slate-900 text-sm font-medium">?{totalValue.toLocaleString()}</span>
+                            <div className="pt-6 space-y-4 border-t border-slate-100 dark:border-white/5">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text" placeholder="Coupon Code" value={couponCode}
+                                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                                        className="flex-1 px-4 py-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md text-[10px] font-bold uppercase focus:border-[#E62D26] outline-none"
+                                    />
+                                    <button
+                                        onClick={handleApplyCoupon} disabled={couponApplying}
+                                        className="px-4 py-3 bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-bold text-[10px] rounded-md hover:bg-[#E62D26] dark:hover:bg-[#E62D26] dark:hover:text-white transition-all disabled:opacity-50"
+                                    >
+                                        Apply
+                                    </button>
                                 </div>
 
-                                {/* Coupon Section */}
-                                <div className="py-4 border-t border-b border-slate-50">
-                                    {appliedCoupon ? (
-                                        <div className="flex items-center justify-between bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                                                    <LuCheck className="text-white" size={16} />
-                                                </div>
-                                                <div>
-                                                    <p className="font-bold text-emerald-700 text-sm">{appliedCoupon.code}</p>
-                                                    <p className="text-[10px] text-emerald-600">
-                                                        {appliedCoupon.discountType === 'percentage'
-                                                            ? `${appliedCoupon.discountValue}% OFF`
-                                                            : `?${appliedCoupon.discountValue} OFF`
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <button
-                                                onClick={removeCoupon}
-                                                className="text-red-500 hover:text-red-700 p-1"
-                                            >
-                                                <LuX size={18} />
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div className="flex gap-2">
-                                            <div className="flex-1 relative">
-                                                <LuTag className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-                                                <input
-                                                    type="text"
-                                                    placeholder="Enter coupon code"
-                                                    value={couponCode}
-                                                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                                                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-lg text-sm font-bold uppercase focus:border-[#E62D26] focus:ring-2 focus:ring-[#E62D26]/10 outline-none"
-                                                />
-                                            </div>
-                                            <button
-                                                type="button"
-                                                onClick={handleApplyCoupon}
-                                                disabled={couponApplying}
-                                                className="px-5 py-3 bg-slate-900 text-white font-bold text-sm rounded-lg hover:bg-[#E62D26] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                            >
-                                                {couponApplying ? <LuLoader className="animate-spin" size={18} /> : 'Apply'}
-                                            </button>
-                                        </div>
-                                    )}
+                                <div className="flex justify-between items-center text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+                                    <span>Subtotal</span>
+                                    <span className="text-slate-900 dark:text-white">৳{totalValue.toLocaleString()}</span>
                                 </div>
 
                                 {discountAmount > 0 && (
-                                    <div className="flex justify-between items-center text-emerald-600 font-bold uppercase tracking-widest text-[10px]">
+                                    <div className="flex justify-between items-center text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
                                         <span>Discount</span>
-                                        <span className="text-emerald-600 text-sm">-?{discountAmount.toLocaleString()}</span>
+                                        <span>-৳{discountAmount.toLocaleString()}</span>
                                     </div>
                                 )}
 
-                                <div className="flex justify-between items-center text-slate-400 font-bold uppercase tracking-widest text-[10px]">
-                                    <span>Instant Access Fee</span>
-                                    <span className="text-[#E62D26] text-sm">FREE</span>
-                                </div>
-                                <div className="pt-4 flex justify-between items-center border-t-2 border-dashed border-slate-100">
-                                    <span className="text-slate-900 font-black text-lg">Total Amount</span>
-                                    <div className="text-right">
-                                        {discountAmount > 0 && (
-                                            <span className="text-sm text-slate-400 line-through mr-2">?{totalValue.toLocaleString()}</span>
-                                        )}
-                                        <span className="text-3xl font-black text-[#E62D26] outfit">?{finalAmount.toLocaleString()}</span>
+                                <div className="pt-6 border-t border-slate-100 dark:border-white/5">
+                                    <div className="flex justify-between items-center">
+                                        <span className={`text-slate-800 dark:text-white font-bold uppercase text-xs ${bengaliClass}`}>
+                                            {language === 'bn' ? 'মোট পেমেন্ট' : 'Total Amount'}
+                                        </span>
+                                        <span className="text-2xl font-black text-[#E62D26] outfit">৳{finalAmount.toLocaleString()}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-md border border-slate-100/50">
-                                <LuShieldCheck className="text-[#E62D26] text-2xl shrink-0" />
-                                <p className="text-[10px] font-normal text-slate-500 uppercase tracking-loose leading-relaxed">
-                                    Encrypted Transaction. Your payment data is handled securely via SSL protocol.
+                            <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-white/5 rounded-md border border-slate-100 dark:border-white/10">
+                                <LuShieldCheck className="text-[#10B981] text-2xl shrink-0" />
+                                <p className={`text-[9px] font-normal text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-wider ${bengaliClass}`}>
+                                    {language === 'bn'
+                                        ? '১০০% নিরাপদ পেমেন্ট সলিউশন।'
+                                        : 'Secure payment solution. Your data is protected.'
+                                    }
                                 </p>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -528,10 +600,10 @@ const CheckoutContent = () => {
 const CheckoutPage = () => {
     return (
         <Suspense fallback={
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0a]">
                 <div className="flex flex-col items-center gap-4">
                     <LuLoader className="animate-spin text-[#E62D26]" size={40} />
-                    <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Loading Checkout...</p>
+                    <p className="text-slate-500 font-normal text-[10px]">Loading...</p>
                 </div>
             </div>
         }>

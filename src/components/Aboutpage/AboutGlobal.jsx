@@ -6,7 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutGlobal = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -22,25 +22,25 @@ const AboutGlobal = () => {
         {
             icon: LuCheck,
             title: 'Elite Quality',
-            description: language === 'bn' ? '???? ????????? ???? ????????? ?????? ?????? ????' : 'Ensuring the highest industrial standards.',
+            description: language === 'bn' ? t("aboutPage.values.qualityContentDesc") : 'Ensuring the highest industrial standards.',
             color: 'teal'
         },
         {
             icon: LuUsers,
             title: '10K+ Community',
-            description: language === 'bn' ? '????? ??? ?????? ?????????? ?????????' : 'Vibrant and supportive learner network.',
+            description: language === 'bn' ? t("aboutPage.values.accessibilityDesc") : 'Vibrant and supportive learner network.',
             color: 'gray'
         },
         {
             icon: LuTrendingUp,
             title: 'Career Growth',
-            description: language === 'bn' ? '??? ????????? ???? ???? ?????????????' : 'Direct pathway to professional success.',
+            description: language === 'bn' ? t("aboutPage.values.studentFirstDesc") : 'Direct pathway to professional success.',
             color: 'gray'
         },
         {
             icon: LuNetwork,
             title: 'Modern Reach',
-            description: language === 'bn' ? '??????? ????? ???? ?????? ????????' : 'Scalable digital education architecture.',
+            description: language === 'bn' ? t("aboutPage.values.innovationDesc") : 'Scalable digital education architecture.',
             color: 'teal'
         }
     ];
@@ -74,7 +74,7 @@ const AboutGlobal = () => {
                                     <LuNetwork className="text-red-500" size={24} />
                                 </div>
                                 <span className={`text-sm font-black tracking-[0.3em] text-red-600 dark:text-red-400 uppercase ${headingFont}`}>
-                                    {language === 'bn' ? '?????? ?????????' : 'OUR ECOSYSTEM'}
+                                    {language === 'bn' ? t("aboutPage.values.badge") : 'OUR ECOSYSTEM'}
                                 </span>
                             </div>
 
@@ -86,7 +86,7 @@ const AboutGlobal = () => {
 
                             <p className={`text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal mb-12 max-w-xl ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? '???? ??? ???? ?????? ???? ????? ?????? ??????? ?????????? ????? ???? ???????? ????? ???? ?????? ??????�????? ??????? ???????'
+                                    ? t("aboutPage.vision.desc")
                                     : 'We have architected a professional ecosystem where students discover their peak potential. Our goal is to set the new standard for digital mastery.'
                                 }
                             </p>

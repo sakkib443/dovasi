@@ -5,29 +5,29 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion, useScroll } from 'framer-motion';
 
 const AboutStats = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const sectionRef = useRef(null);
 
     const stats = [
         {
             key: 'students',
-            target: '10,000+',
-            label: language === 'bn' ? '??????? ??????????' : 'Active Students',
+            target: language === 'bn' ? t("aboutPage.stats.studentsVal") : '10,000+',
+            label: language === 'bn' ? t("aboutPage.stats.students") : 'Active Students',
         },
         {
             key: 'courses',
-            target: '250+',
-            label: language === 'bn' ? '?????????? ?????' : 'Premium Courses',
+            target: language === 'bn' ? t("aboutPage.stats.coursesVal") : '250+',
+            label: language === 'bn' ? t("aboutPage.stats.courses") : 'Premium Courses',
         },
         {
             key: 'instructors',
-            target: '325+',
-            label: language === 'bn' ? '???????? ????????????' : 'Expert Instructors',
+            target: language === 'bn' ? t("aboutPage.stats.expertsVal") : '325+',
+            label: language === 'bn' ? t("aboutPage.stats.experts") : 'Expert Instructors',
         },
         {
             key: 'countries',
-            target: '415+',
-            label: language === 'bn' ? '??? ???? ??????????' : 'Worldwide Impact',
+            target: language === 'bn' ? t("aboutPage.stats.successRateVal") : '415+',
+            label: language === 'bn' ? t("aboutPage.stats.successRate") : 'Worldwide Impact',
         },
     ];
 
@@ -49,12 +49,12 @@ const AboutStats = () => {
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-[1px] w-8 bg-red-500" />
                             <span className={`text-[10px] font-black tracking-[0.4em] uppercase text-red-600 dark:text-red-400 ${headingFont}`}>
-                                {language === 'bn' ? '?????? ?????' : 'Impact Analytics'}
+                                {language === 'bn' ? t("aboutPage.stats.analyticsBadge") : 'Impact Analytics'}
                             </span>
                         </div>
                         <h2 className={`${headingFont} text-4xl lg:text-6xl font-black text-gray-900 dark:text-white leading-[0.95] tracking-tight`}>
-                            THE STORY <br />
-                            IN <span className="text-red-500 italic font-serif text-5xl lg:text-7xl">NUMBERS</span>
+                            {language === 'bn' ? t("aboutPage.stats.storyNumbers") : 'THE STORY'} <br />
+                            {language === 'bn' ? '' : <><span className="text-red-500 italic font-serif text-5xl lg:text-7xl">NUMBERS</span></>}
                         </h2>
                     </motion.div>
 
@@ -66,7 +66,7 @@ const AboutStats = () => {
                         className={`text-gray-500 dark:text-gray-400 leading-relaxed font-normal ${bengaliClass} max-w-sm`}
                     >
                         {language === 'bn'
-                            ? '???? ???? ???? ???? ?????? ??????????? ???? ???? ?????? ??? ?????? ?? ?????? ??????? ????'
+                            ? t("aboutPage.stats.statDesc")
                             : 'We reflect growth through consistent impact and professional excellence, establishing a global standard for digital education.'
                         }
                     </motion.p>

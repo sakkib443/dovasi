@@ -16,7 +16,7 @@ const MentorCategoryPage = () => {
     const [parentCategories, setParentCategories] = useState([]);
 
     const fetchCategories = async () => {
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
         try {
             setLoading(true);
@@ -48,7 +48,7 @@ const MentorCategoryPage = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
         try {
             const res = await fetch(`${BASE_URL}/categories/admin/${editData._id}`, {

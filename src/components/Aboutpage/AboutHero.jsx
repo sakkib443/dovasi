@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 
 const AboutHero = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const containerRef = useRef(null);
     const { scrollY } = useScroll();
 
@@ -48,7 +48,7 @@ const AboutHero = () => {
                     >
                         <LuZap className="text-red-500 animate-bounce" size={14} />
                         <span className={`text-[10px] font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400 ${bengaliClass}`}>
-                            {language === 'bn' ? '???? ???????????? ??????' : 'THE STANDARD OF EXCELLENCE'}
+                            {language === 'bn' ? t("aboutPage.badge") : 'THE STANDARD OF EXCELLENCE'}
                         </span>
                     </motion.div>
 
@@ -60,12 +60,12 @@ const AboutHero = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="text-5xl sm:text-7xl lg:text-[80px] font-black leading-[0.85] tracking-tight text-gray-900 dark:text-white"
                         >
-                            {language === 'bn' ? <span className="text-[#F79952]">???????</span> : <span className="text-[#F79952]">BEYOND</span>} <br />
+                            {language === 'bn' ? <span className="text-[#F79952]">{t("aboutPage.title1")}</span> : <span className="text-[#F79952]">BEYOND</span>} <br />
                             <span className="text-red-500 italic font-serif inline-flex items-center gap-4">
-                                {language === 'bn' ? '???????' : 'ORDINARY'}
+                                {language === 'bn' ? t("aboutPage.title2") : 'ORDINARY'}
                                 <span className="h-[3px] w-16 lg:w-32 bg-gray-900 dark:bg-white inline-block rounded-full" />
                             </span> <br />
-                            {language === 'bn' ? '???????' : 'EDUCATION'}
+                            {language === 'bn' ? 'EDUCATION' : 'EDUCATION'}
                         </motion.h1>
                     </div>
 
@@ -77,7 +77,7 @@ const AboutHero = () => {
                         >
                             <p className={`text-base lg:text-lg text-gray-500 dark:text-gray-500 leading-relaxed mb-8 font-normal ${bengaliClass}`}>
                                 {language === 'bn'
-                                    ? '???? ???? ?????? ????? ??, ???? ????? ??????????? ?????? ???? ???? ???? ????�?????? ?????? ?????????? ???'
+                                    ? t("aboutPage.description")
                                     : 'We don\'t just teach skills; we build the architectural foundation of your professional career. ejobs it: Where ambition meets elite training.'
                                 }
                             </p>
@@ -88,7 +88,7 @@ const AboutHero = () => {
                                     className="group relative px-10 py-5 bg-red-500 text-white rounded-2xl font-black text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-500/20"
                                 >
                                     <span className={`relative z-10 flex items-center gap-3 ${headingFont}`}>
-                                        {language === 'bn' ? '????????? ?????' : 'EXPLORE COURSES'}
+                                        {language === 'bn' ? t("aboutPage.exploreCourses") : 'EXPLORE COURSES'}
                                         <LuArrowRight className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </Link>
@@ -118,7 +118,9 @@ const AboutHero = () => {
                                 <div key={i} className="p-8 rounded-[40px] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 backdrop-blur-sm">
                                     <item.icon className={`${item.color} mb-6`} size={32} />
                                     <div className={`${headingFont} text-5xl font-black text-gray-900 dark:text-white mb-2`}>{item.value}</div>
-                                    <div className={`text-xs font-black tracking-[0.2em] uppercase text-gray-500 ${bengaliClass}`}>{item.label}</div>
+                                    <div className={`text-[10px] font-black tracking-[0.2em] uppercase text-gray-500 ${bengaliClass}`}>
+                                        {language === 'bn' ? (item.label === 'Happy Students' ? t("aboutPage.stats.students") : t("aboutPage.stats.courses")) : item.label}
+                                    </div>
                                 </div>
                             ))}
                         </motion.div>

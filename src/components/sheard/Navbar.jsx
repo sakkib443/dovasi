@@ -17,7 +17,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 // Category icons mapping
 const categoryIcons = {
@@ -31,7 +31,7 @@ const categoryIcons = {
 };
 
 // Category Mega Menu Component
-const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
+const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass, t }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeParent, setActiveParent] = useState(null);
@@ -96,7 +96,7 @@ const CategoryMegaMenu = ({ closeMobileMenu, language, bengaliClass }) => {
   if (categories.length === 0) {
     return (
       <div className="p-8 text-center text-gray-500">
-        <p className={bengaliClass}>{language === 'bn' ? '???? ????????? ?????? ??????' : 'No categories found'}</p>
+        <p className={bengaliClass}>{language === 'bn' ? t("navbar.noCategories") : 'No categories found'}</p>
       </div>
     );
   }
@@ -314,12 +314,17 @@ const Navbar = () => {
     router.push(`/courses?type=${courseType}`);
   };
 
+  // Design Template submenu items
+  const designTemplateSubmenu = [
+    { href: "/website", label: language === 'bn' ? "ওয়েবসাইট" : "Website", icon: LuGlobe },
+    { href: "/design-template", label: language === 'bn' ? "ডিজাইন টেমপ্লেট" : "Design Template", icon: LuPalette },
+  ];
+
   const menu = [
     { href: "/", label: t("navbar.home") },
     { href: "/courses", label: t("navbar.courses") },
-    { href: "/software", label: t("navbar.software") },
-    { href: "/website", label: t("navbar.website") },
-    { href: "/blog", label: language === 'bn' ? "????" : "Blog" },
+    { href: "#", label: language === 'bn' ? "ডিজাইন টেমপ্লেট" : "Design Template", hasSubmenu: true, submenu: designTemplateSubmenu },
+    { href: "/blog", label: language === 'bn' ? "ব্লগ" : "Blog" },
     { href: "/about", label: t("navbar.about") },
     { href: "/contact", label: t("navbar.contact") },
   ];
@@ -399,19 +404,44 @@ const Navbar = () => {
                 {/* Main Navigation */}
                 <nav className="space-y-1">
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 px-2">Main Menu</p>
-                  {menu.map(({ href, label }, index) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={closeMobileMenu}
-                      className={`group flex items-center justify-between px-4 py-3.5 rounded-xl transition-all ${pathname === href
-                        ? "bg-red-50 text-red-700 font-medium"
-                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                        }`}
-                    >
-                      <span className={`text-base ${bengaliClass}`}>{label}</span>
-                      <LuArrowRight className={`text-red-500 transition-all ${pathname === href ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"}`} />
-                    </Link>
+                  {menu.map(({ href, label, hasSubmenu, submenu }, index) => (
+                    hasSubmenu ? (
+                      <div key={label} className="space-y-1">
+                        <div className="flex items-center justify-between px-4 py-3.5 rounded-xl text-gray-600">
+                          <span className={`text-base font-medium ${bengaliClass}`}>{label}</span>
+                          <LuChevronDown size={16} className="text-gray-400" />
+                        </div>
+                        <div className="ml-4 space-y-1">
+                          {submenu.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeMobileMenu}
+                              className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${pathname === item.href
+                                ? "bg-red-50 text-red-700 font-medium"
+                                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                }`}
+                            >
+                              <item.icon size={18} />
+                              <span className={`text-sm ${bengaliClass}`}>{item.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={href}
+                        href={href}
+                        onClick={closeMobileMenu}
+                        className={`group flex items-center justify-between px-4 py-3.5 rounded-xl transition-all ${pathname === href
+                          ? "bg-red-50 text-red-700 font-medium"
+                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                          }`}
+                      >
+                        <span className={`text-base ${bengaliClass}`}>{label}</span>
+                        <LuArrowRight className={`text-red-500 transition-all ${pathname === href ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"}`} />
+                      </Link>
+                    )
                   ))}
                 </nav>
 
@@ -502,24 +532,50 @@ const Navbar = () => {
 
                 {/* Categories Mega Menu */}
                 <div className="absolute top-full left-0 mt-4 w-[600px] bg-white dark:bg-[#1E293B] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-100 dark:border-gray-600/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-4 transition-all duration-500 z-50 overflow-hidden">
-                  <CategoryMegaMenu closeMobileMenu={closeMobileMenu} language={language} bengaliClass={bengaliClass} />
+                  <CategoryMegaMenu closeMobileMenu={closeMobileMenu} language={language} bengaliClass={bengaliClass} t={t} />
                 </div>
               </div>
             </div>
 
             {/* Center: Navigation Links - Desktop */}
             <div className="hidden xl:flex items-center bg-gray-50/70 dark:bg-[#1E293B] p-1.5 rounded-full border border-gray-100 dark:border-gray-600/50">
-              {menu.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 ${pathname === href
-                    ? "bg-white dark:bg-[#334155] text-red-600 dark:text-white shadow-sm font-bold"
-                    : "text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold"
-                    } ${language === 'bn' ? 'hind-siliguri' : ''}`}
-                >
-                  {label}
-                </Link>
+              {menu.map(({ href, label, hasSubmenu, submenu }) => (
+                hasSubmenu ? (
+                  <div key={label} className="relative group">
+                    <button
+                      className={`flex items-center gap-1 px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold ${language === 'bn' ? 'hind-siliguri' : ''}`}
+                    >
+                      {label}
+                      <LuChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                    </button>
+                    {/* Dropdown */}
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#1E293B] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-600/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
+                      <div className="p-2">
+                        {submenu.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 transition-all ${pathname === item.href ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400' : ''} ${language === 'bn' ? 'hind-siliguri' : ''}`}
+                          >
+                            <item.icon size={18} />
+                            <span className="text-sm font-semibold">{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`px-5 py-2 rounded-full text-[14px] font-outfit transition-all duration-300 ${pathname === href
+                      ? "bg-white dark:bg-[#334155] text-red-600 dark:text-white shadow-sm font-bold"
+                      : "text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-white font-semibold"
+                      } ${language === 'bn' ? 'hind-siliguri' : ''}`}
+                  >
+                    {label}
+                  </Link>
+                )
               ))}
             </div>
 

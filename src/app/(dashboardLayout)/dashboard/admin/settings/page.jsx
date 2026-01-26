@@ -23,10 +23,10 @@ export default function SettingsPage() {
 
     const [saving, setSaving] = useState(false);
     const [settings, setSettings] = useState({
-        siteName: 'MotionBoss',
-        siteEmail: 'admin@motionboss.com',
+        siteName: 'HIICT Park',
+        siteEmail: 'admin@hiictpark.com',
         currency: 'BDT',
-        currencySymbol: '?',
+        currencySymbol: '৳',
         emailNotifications: true,
         orderNotifications: true,
         maintenanceMode: false,
@@ -40,7 +40,7 @@ export default function SettingsPage() {
     const [updatingPassword, setUpdatingPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
     const [passwordSuccess, setPasswordSuccess] = useState('');
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
     const handleChange = (key, value) => {
         setSettings(prev => ({ ...prev, [key]: value }));
@@ -365,7 +365,7 @@ export default function SettingsPage() {
                                             <p className="text-xs text-emerald-600 font-semibold">Active</p>
                                         </div>
                                     </div>
-                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Configure ?</button>
+                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Configure →</button>
                                 </div>
                                 <div className={`p-4 rounded-xl border-2 border-dashed ${isDark ? 'bg-black/20 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
                                     <div className="flex items-center gap-3 mb-3">
@@ -375,7 +375,7 @@ export default function SettingsPage() {
                                             <p className="text-xs text-slate-400 font-semibold">Inactive</p>
                                         </div>
                                     </div>
-                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Setup ?</button>
+                                    <button className={`text-sm font-medium ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>Setup →</button>
                                 </div>
                             </div>
                         </div>

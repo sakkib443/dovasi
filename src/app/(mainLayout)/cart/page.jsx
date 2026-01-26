@@ -1,127 +1,146 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, clearCart } from '@/redux/cartSlice';
 import Link from 'next/link';
-import { LuTrash2, LuShoppingBag, LuChevronRight, LuArrowLeft, LuShieldCheck } from 'react-icons/lu';
+import { motion } from 'framer-motion';
+import { LuTrash2, LuShoppingBag, LuChevronRight, LuArrowLeft, LuShieldCheck, LuShoppingCart, LuArrowRight, LuCheck } from 'react-icons/lu';
 import { useLanguage } from '@/context/LanguageContext';
+import { useRouter } from 'next/navigation';
 
 const CartPage = () => {
     const { items, totalAmount } = useSelector((state) => state.cart || { items: [], totalAmount: 0 });
     const dispatch = useDispatch();
-    const { language } = useLanguage();
+    const router = useRouter();
+    const { language, t } = useLanguage();
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
     if (items.length === 0) {
         return (
-            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-gray-50 px-4">
-                <div className="w-24 h-24 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-8 animate-bounce">
-                    <LuShoppingBag className="text-[#E62D26] text-4xl" />
+            <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex flex-col items-center justify-center px-4 py-20">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-white/5 rounded-md flex items-center justify-center mb-6 border border-slate-100 dark:border-white/10">
+                    <LuShoppingBag className="text-[#E62D26] text-3xl" />
                 </div>
-                <h2 className={`text-3xl font-black text-gray-900 mb-4 tracking-tight ${bengaliClass}`}>
-                    {language === 'bn' ? '????? ????? ????' : 'Your cart is empty'}
+                <h2 className={`text-xl font-bold text-slate-800 dark:text-white mb-2 ${bengaliClass}`}>
+                    {language === 'bn' ? 'আপনার কার্ট খালি' : 'Your cart is empty'}
                 </h2>
-                <p className="text-gray-500 mb-10 text-center max-w-sm font-normal">
-                    Looks like you haven't added anything to your cart yet. Explore our products and find something you love!
+                <p className={`text-slate-500 dark:text-slate-400 mb-8 text-center max-w-xs text-sm font-normal ${bengaliClass}`}>
+                    {language === 'bn' ? 'মনে হচ্ছে আপনি কার্টে কিছু যোগ করেননি।' : "Looks like you haven't added anything to your cart yet."}
                 </p>
                 <Link
-                    href="/software"
-                    className="px-10 py-4 bg-[#E62D26] text-white rounded-md font-bold shadow-xl shadow-[#E62D26]/30 hover:scale-105 transition-all active:scale-95"
+                    href="/courses"
+                    className={`px-8 py-3 bg-[#E62D26] text-white rounded-md font-normal text-sm uppercase tracking-widest hover:bg-[#c41e18] transition-all ${bengaliClass}`}
                 >
-                    Start Shopping
+                    {language === 'bn' ? 'কোর্সগুলো দেখুন' : 'Explore Courses'}
                 </Link>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 lg:py-20">
+        <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] py-12 lg:py-20">
             <div className="container mx-auto px-4 lg:px-16">
+
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-10">
-                    <Link href="/" className="p-3 bg-white rounded-md border border-gray-100/50 shadow-sm text-gray-400 hover:text-[#E62D26] transition-all">
+                    <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center bg-white dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/10 text-slate-400 hover:text-[#E62D26] transition-all">
                         <LuArrowLeft size={20} />
-                    </Link>
-                    <h1 className={`text-3xl lg:text-4xl font-black text-gray-900 uppercase tracking-tighter ${bengaliClass}`}>
-                        Shopping <span className="text-[#E62D26]">Cart</span>
-                    </h1>
+                    </button>
+                    <div>
+                        <h1 className={`text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
+                            {language === 'bn' ? 'শপিং কার্ট' : 'Shopping Cart'}
+                        </h1>
+                        <p className={`text-[10px] text-slate-500 uppercase tracking-[0.2em] ${bengaliClass}`}>
+                            {language === 'bn' ? `${items.length} টি আইটেম যোগ করা হয়েছে` : `${items.length} Items Added`}
+                        </p>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
                     {/* Items List */}
-                    <div className="lg:col-span-8 space-y-4">
-                        {items.map((item) => (
-                            <div key={item.id} className="bg-white p-4 lg:p-6 rounded-md border border-gray-100/50 shadow-sm flex flex-col sm:flex-row items-center gap-6 group hover:shadow-md hover:border-[#E62D26]/20 transition-all">
-                                <div className="w-full sm:w-32 aspect-square rounded-md overflow-hidden bg-gray-100 shrink-0">
-                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                </div>
-                                <div className="flex-1 space-y-2 text-center sm:text-left">
-                                    <div className="flex flex-wrap justify-center sm:justify-start gap-2 mb-1">
-                                        <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-bold uppercase text-gray-500 rounded">
-                                            {item.type}
-                                        </span>
+                    <div className="flex-1 w-full space-y-4">
+                        <div className="space-y-4">
+                            {items.map((item) => (
+                                <div key={item.id} className="group bg-white dark:bg-white/5 p-4 rounded-md border border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center gap-6 hover:border-[#E62D26]/20 transition-all duration-300">
+                                    <div className="w-20 h-20 rounded-md overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-100 dark:border-white/5">
+                                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                                     </div>
-                                    <h3 className="text-xl font-black text-gray-900 group-hover:text-[#E62D26] transition-colors line-clamp-1">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-400 font-normal">MotionBoss verified digital asset</p>
+                                    <div className="flex-1 space-y-1 text-center sm:text-left">
+                                        <div className="flex items-center justify-center sm:justify-start gap-2">
+                                            <span className="text-[8px] font-bold text-[#E62D26] bg-[#E62D26]/5 px-1.5 py-0.5 rounded-md uppercase tracking-widest">
+                                                {item.type}
+                                            </span>
+                                        </div>
+                                        <h3 className={`text-base font-normal text-slate-800 dark:text-white group-hover:text-[#E62D26] transition-colors line-clamp-1 ${bengaliClass}`}>
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-[10px] text-slate-400 font-normal uppercase tracking-wider">Lifetime Access</p>
+                                    </div>
+                                    <div className="flex items-center gap-6">
+                                        <span className="text-xl font-bold text-slate-800 dark:text-white">৳{item.price?.toLocaleString()}</span>
+                                        <button
+                                            onClick={() => dispatch(removeFromCart(item.id))}
+                                            className="w-10 h-10 bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-red-500 rounded-md transition-all border border-slate-100 dark:border-white/10 flex items-center justify-center"
+                                        >
+                                            <LuTrash2 size={18} />
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-6">
-                                    <span className="text-2xl font-black text-[#E62D26]">${item.price}</span>
-                                    <button
-                                        onClick={() => dispatch(removeFromCart(item.id))}
-                                        className="p-3 bg-red-50 text-red-400 hover:bg-red-500 hover:text-white rounded-md transition-all border border-gray-100/50"
-                                    >
-                                        <LuTrash2 size={20} />
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
 
                         <div className="pt-6">
                             <button
                                 onClick={() => dispatch(clearCart())}
-                                className="text-sm font-bold text-gray-400 hover:text-red-500 transition-colors uppercase tracking-widest flex items-center gap-2"
+                                className={`text-[10px] font-bold text-slate-400 hover:text-red-500 transition-colors uppercase tracking-widest flex items-center gap-2 ${bengaliClass}`}
                             >
-                                <LuTrash2 size={16} />
-                                Clear Entire Cart
+                                <LuTrash2 size={14} />
+                                {language === 'bn' ? 'কার্ট পরিষ্কার করুন' : 'Clear Entire Cart'}
                             </button>
                         </div>
                     </div>
 
                     {/* Summary */}
-                    <div className="lg:col-span-4 lg:sticky lg:top-28">
-                        <div className="bg-white p-8 rounded-md border border-gray-100/50 shadow-sm space-y-8">
-                            <h3 className="text-xl font-black text-gray-900 border-b border-gray-50 pb-6 uppercase tracking-wider">Order Summary</h3>
+                    <div className="w-full lg:w-[400px]">
+                        <div className="bg-white dark:bg-white/5 p-8 rounded-md border border-slate-200 dark:border-white/10 shadow-sm space-y-8 lg:sticky lg:top-8">
+                            <h3 className={`text-lg font-bold text-slate-800 dark:text-white border-b border-slate-50 dark:border-white/5 pb-6 outfit uppercase tracking-wider ${bengaliClass}`}>
+                                {language === 'bn' ? 'অর্ডার সামারি' : 'Order Summary'}
+                            </h3>
 
                             <div className="space-y-4">
-                                <div className="flex justify-between items-center text-gray-500 font-normal">
-                                    <span>Subtotal ({items.length} items)</span>
-                                    <span className="text-gray-900 font-semibold">${totalAmount.toFixed(2)}</span>
+                                <div className="flex justify-between items-center text-slate-500 dark:text-slate-400">
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${bengaliClass}`}>
+                                        {language === 'bn' ? 'মোট মূল্য' : 'Subtotal'}
+                                    </span>
+                                    <span className="text-slate-800 dark:text-white font-bold">৳{totalAmount.toLocaleString()}</span>
                                 </div>
-                                <div className="flex justify-between items-center text-gray-500 font-normal">
-                                    <span>Processing Fee</span>
-                                    <span className="text-[#E62D26] font-bold">FREE</span>
+                                <div className="flex justify-between items-center text-slate-500 dark:text-slate-400">
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${bengaliClass}`}>
+                                        {language === 'bn' ? 'প্রসেসিং ফি' : 'Tax / Fee'}
+                                    </span>
+                                    <span className="text-[#10B981] font-bold text-[10px]">FREE</span>
                                 </div>
-                                <div className="pt-6 border-t border-gray-50 flex justify-between items-center">
-                                    <span className="text-gray-900 font-black uppercase tracking-tight">Total Amount</span>
-                                    <span className="text-3xl font-black text-[#E62D26]">${totalAmount.toFixed(2)}</span>
+                                <div className="pt-6 border-t border-slate-100 dark:border-white/5 flex justify-between items-center">
+                                    <span className={`text-slate-800 dark:text-white font-bold uppercase tracking-tight text-sm ${bengaliClass}`}>
+                                        {language === 'bn' ? 'সর্বমোট' : 'Grand Total'}
+                                    </span>
+                                    <span className="text-3xl font-black text-[#E62D26] outfit">৳{totalAmount.toLocaleString()}</span>
                                 </div>
                             </div>
 
                             <Link
                                 href="/checkout"
-                                className="w-full flex items-center justify-center gap-3 py-5 bg-[#E62D26] hover:bg-[#38a89d] text-white rounded-md font-bold text-xl shadow-lg shadow-[#E62D26]/20 transition-all active:scale-95 group"
+                                className={`w-full flex items-center justify-center gap-3 py-4 bg-[#E62D26] hover:bg-[#c41e18] text-white rounded-md font-normal text-sm uppercase tracking-widest transition-all active:scale-[0.98] group ${bengaliClass}`}
                             >
-                                Checkout Now
-                                <LuChevronRight className="group-hover:translate-x-1 transition-transform" />
+                                {language === 'bn' ? 'চেকআউট' : 'Checkout Now'}
+                                <LuArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
 
-                            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-md border border-gray-100/50">
-                                <LuShieldCheck className="text-[#E62D26] text-xl" />
-                                <p className="text-[10px] text-gray-500 font-normal leading-tight">
-                                    Secure Checkout powered by SSL encryption. 100% money-back guarantee.
+                            <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-white/5 rounded-md border border-slate-100 dark:border-white/10">
+                                <LuShieldCheck className="text-[#10B981] text-xl shrink-0" />
+                                <p className={`text-[9px] text-slate-500 dark:text-slate-400 font-normal leading-relaxed uppercase tracking-wider ${bengaliClass}`}>
+                                    {language === 'bn' ? 'নিরাপদ চেকআউট গ্যারান্টি।' : 'Secure Checkout & Payment Guarantee.'}
                                 </p>
                             </div>
                         </div>

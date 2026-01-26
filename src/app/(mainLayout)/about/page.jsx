@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from "@/context/LanguageContext";
-import { 
-  LuTarget, 
-  LuUsers, 
-  LuBookOpen, 
+import {
+  LuTarget,
+  LuUsers,
+  LuBookOpen,
   LuHeart,
   LuRocket,
   LuSparkles,
@@ -54,7 +54,7 @@ const StatCard = ({ number, label, icon: Icon, delay = 0 }) => (
 );
 
 const AboutPage = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
   // Initialize Lenis Smooth Scroll
@@ -79,53 +79,53 @@ const AboutPage = () => {
   const teamMembers = [
     {
       name: "Shohel Rana",
-      role: "Founder & CEO",
+      role: language === 'bn' ? t("aboutPage.founder.designation") : "Founder & CEO",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
-      quote: "Education should be accessible to everyone."
+      quote: language === 'bn' ? t("aboutPage.founder.quote1") : "Education should be accessible to everyone."
     },
     {
-      name: "Fatima Ahmed",
-      role: "Head of Education",
+      name: language === 'bn' ? t("aboutPage.team.fatimaName") : "Fatima Ahmed",
+      role: language === 'bn' ? t("aboutPage.team.fatimaDesignation") : "Head of Education",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-      quote: "Learning never stops."
+      quote: language === 'bn' ? t("aboutPage.team.fatimaQuote") : "Learning never stops."
     },
     {
-      name: "Karim Hassan",
-      role: "Tech Lead",
+      name: language === 'bn' ? t("aboutPage.team.karimName") : "Karim Hassan",
+      role: language === 'bn' ? t("aboutPage.team.karimDesignation") : "Tech Lead",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      quote: "Technology empowers learning."
+      quote: language === 'bn' ? t("aboutPage.team.karimQuote") : "Technology empowers learning."
     },
   ];
 
   const values = [
     {
       icon: LuHeart,
-      title: language === 'bn' ? '??????? ?????????' : 'Student First',
-      description: language === 'bn' ? '??????? ?????? ??????? ????? ??? ???????? ????? ?????' : 'Every decision we make is centered around student success.'
+      title: language === 'bn' ? t("aboutPage.values.studentFirst") : 'Student First',
+      description: language === 'bn' ? t("aboutPage.values.studentFirstDesc") : 'Every decision we make is centered around student success.'
     },
     {
       icon: LuShield,
-      title: language === 'bn' ? '?????? ???????' : 'Quality Content',
-      description: language === 'bn' ? '????? ????? ??????? ??? ?????? ??????? ????' : 'We ensure all courses meet our high standards.'
+      title: language === 'bn' ? t("aboutPage.values.qualityContent") : 'Quality Content',
+      description: language === 'bn' ? t("aboutPage.values.qualityContentDesc") : 'We ensure all courses meet our high standards.'
     },
     {
       icon: LuGlobe,
-      title: language === 'bn' ? '??????????????' : 'Accessibility',
-      description: language === 'bn' ? '????? ???? ??? ?????? ????? ??????????????' : 'Making quality education accessible to everyone.'
+      title: language === 'bn' ? t("aboutPage.values.accessibility") : 'Accessibility',
+      description: language === 'bn' ? t("aboutPage.values.accessibilityDesc") : 'Making quality education accessible to everyone.'
     },
     {
       icon: LuRocket,
-      title: language === 'bn' ? '??????' : 'Innovation',
-      description: language === 'bn' ? '??????????? ??????????? ???? ???????????? ????' : 'Constantly evolving with cutting-edge technology.'
+      title: language === 'bn' ? t("aboutPage.values.innovation") : 'Innovation',
+      description: language === 'bn' ? t("aboutPage.values.innovationDesc") : 'Constantly evolving with cutting-edge technology.'
     },
   ];
 
   const milestones = [
-    { year: "2020", title: language === 'bn' ? 'HiictPark ?????' : 'HiictPark Founded', description: language === 'bn' ? '????? ??????????? ???? ????' : 'Started with a vision' },
-    { year: "2021", title: language === 'bn' ? '1000+ ????????' : '1000+ Students', description: language === 'bn' ? '????? ?????????? ??????' : 'Reached first milestone' },
-    { year: "2022", title: language === 'bn' ? '50+ ?????' : '50+ Courses', description: language === 'bn' ? '????? ??????? ???????' : 'Expanded catalog' },
-    { year: "2023", title: language === 'bn' ? '?????? ?????????? ????' : 'Global Reach', description: language === 'bn' ? '20+ ???? ???? ????????' : '20+ countries' },
-    { year: "2024", title: language === 'bn' ? '??????? ???????????' : 'Industry Partnership', description: language === 'bn' ? '??????? ??????????? ???' : 'Tech partnerships' },
+    { year: "2020", title: language === 'bn' ? t("aboutPage.history.items.2020.title") : 'HiictPark Founded', description: language === 'bn' ? t("aboutPage.history.items.2020.desc") : 'Started with a vision' },
+    { year: "2021", title: language === 'bn' ? t("aboutPage.history.items.2021.title") : '1000+ Students', description: language === 'bn' ? t("aboutPage.history.items.2021.desc") : 'Reached first milestone' },
+    { year: "2022", title: language === 'bn' ? t("aboutPage.history.items.2022.title") : '50+ Courses', description: language === 'bn' ? t("aboutPage.history.items.2022.desc") : 'Expanded catalog' },
+    { year: "2023", title: language === 'bn' ? t("aboutPage.history.items.2023.title") : 'Global Reach', description: language === 'bn' ? t("aboutPage.history.items.2023.desc") : '20+ countries' },
+    { year: "2024", title: language === 'bn' ? t("aboutPage.history.items.2024.title") : 'Industry Partnership', description: language === 'bn' ? t("aboutPage.history.items.2024.desc") : 'Tech partnerships' },
   ];
 
   return (
@@ -136,7 +136,7 @@ const AboutPage = () => {
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-gradient-to-br from-[#E62D26]/10 to-transparent rounded-full blur-3xl" />
           <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-gradient-to-br from-[#F79952]/10 to-transparent rounded-full blur-3xl" />
-          
+
           {/* Floating Elements */}
           <FloatingElement delay={0} className="absolute top-16 left-[10%] hidden lg:block">
             <div className="w-8 h-8 bg-white/80 dark:bg-white/10 backdrop-blur-sm rounded-lg shadow-lg flex items-center justify-center">
@@ -166,7 +166,7 @@ const AboutPage = () => {
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#E62D26]"></span>
               </span>
               <span className={`text-[10px] font-medium text-slate-700 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? '??????? ???? ?????' : 'About HiictPark'}
+                {language === 'bn' ? t("aboutPage.badge") : 'About HiictPark'}
               </span>
             </motion.div>
 
@@ -177,10 +177,10 @@ const AboutPage = () => {
               transition={{ delay: 0.1 }}
               className={`text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-white mb-3 outfit leading-tight ${bengaliClass}`}
             >
-              {language === 'bn' ? '??????? ???????? ????????' : 'Empowering Minds,'}
+              {language === 'bn' ? t("aboutPage.title1") : 'Empowering Minds,'}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E62D26] to-[#F79952]">
-                {language === 'bn' ? '????? ???????' : 'Shaping Futures'}
+                {language === 'bn' ? t("aboutPage.title2") : 'Shaping Futures'}
               </span>
             </motion.h1>
 
@@ -191,8 +191,8 @@ const AboutPage = () => {
               transition={{ delay: 0.2 }}
               className={`text-slate-500 dark:text-slate-400 text-xs lg:text-sm max-w-xl mx-auto mb-8 leading-relaxed ${bengaliClass}`}
             >
-              {language === 'bn' 
-                ? 'HiictPark ????? ?? ????? ??????????? ???????? ??? ??????? ????? ????????? ?????? ???? ?????? ????'
+              {language === 'bn'
+                ? t("aboutPage.subtitle")
                 : 'HiictPark is Bangladesh\'s leading e-learning platform dedicated to providing quality education accessible to everyone.'}
             </motion.p>
 
@@ -203,10 +203,10 @@ const AboutPage = () => {
               transition={{ delay: 0.3 }}
               className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 max-w-2xl mx-auto"
             >
-              <StatCard number="5000+" label={language === 'bn' ? '????????' : 'Students'} icon={LuUsers} delay={0.4} />
-              <StatCard number="50+" label={language === 'bn' ? '?????' : 'Courses'} icon={LuBookOpen} delay={0.5} />
-              <StatCard number="20+" label={language === 'bn' ? '????????????' : 'Instructors'} icon={LuGraduationCap} delay={0.6} />
-              <StatCard number="95%" label={language === 'bn' ? '??????? ???' : 'Success Rate'} icon={LuTrendingUp} delay={0.7} />
+              <StatCard number={language === 'bn' ? t("aboutPage.stats.studentsVal") : "5000+"} label={language === 'bn' ? t("aboutPage.stats.students") : 'Students'} icon={LuUsers} delay={0.4} />
+              <StatCard number={language === 'bn' ? t("aboutPage.stats.coursesVal") : "50+"} label={language === 'bn' ? t("aboutPage.stats.courses") : 'Courses'} icon={LuBookOpen} delay={0.5} />
+              <StatCard number={language === 'bn' ? t("aboutPage.stats.expertsVal") : "20+"} label={language === 'bn' ? t("aboutPage.stats.experts") : 'Instructors'} icon={LuGraduationCap} delay={0.6} />
+              <StatCard number={language === 'bn' ? t("aboutPage.stats.successRateVal") : "95%"} label={language === 'bn' ? t("aboutPage.stats.successRate") : 'Success Rate'} icon={LuTrendingUp} delay={0.7} />
             </motion.div>
           </div>
         </div>
@@ -231,7 +231,7 @@ const AboutPage = () => {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                
+
                 {/* Floating Card */}
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-xl p-3 shadow-lg">
                   <div className="flex items-center gap-2">
@@ -260,27 +260,32 @@ const AboutPage = () => {
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#E62D26]/10 rounded-md mb-3">
                 <LuTarget className="text-[#E62D26] text-xs" />
                 <span className={`text-[10px] font-medium text-[#E62D26] ${bengaliClass}`}>
-                  {language === 'bn' ? '??????? ???' : 'Our Mission'}
+                  {language === 'bn' ? t("aboutPage.mission.cards.mission") : 'Our Mission'}
                 </span>
               </div>
 
               <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white mb-3 outfit ${bengaliClass}`}>
-                {language === 'bn' ? '?????? ??? ?????? ???? ??????? ?????' : 'Making Quality Education Accessible'}
+                {language === 'bn' ? t("aboutPage.vision.title") : 'Making Quality Education Accessible'}
               </h2>
 
               <p className={`text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4 ${bengaliClass}`}>
                 {language === 'bn'
-                  ? '????? ?????????? ?????? ????????? ????? ??????? ??????????? ??????????, ???????????? ??? ??????????? ???????? ????? ???? ??????? ?? ?????? ???? ??????'
+                  ? t("aboutPage.vision.desc")
                   : 'We are committed to democratizing education by providing high-quality, affordable courses in technology, design, and business skills.'}
               </p>
 
               <div className="space-y-2 mb-6">
-                {[
-                  language === 'bn' ? '?????? ?????? ?????? ??? ?????? ????' : 'Industry-relevant curriculum',
-                  language === 'bn' ? '??????? ???????????? ???? ?????' : 'Expert instructors',
-                  language === 'bn' ? '?????? ???? ??????' : 'Hands-on projects',
-                  language === 'bn' ? '??????? ???????' : 'Career support',
-                ].map((item, index) => (
+                {(Array.isArray(language === 'bn' ? t("aboutPage.vision.list") : []) ? (language === 'bn' ? t("aboutPage.vision.list") : [
+                  'Industry-relevant curriculum',
+                  'Expert instructors',
+                  'Hands-on projects',
+                  'Career support',
+                ]) : [
+                  'Industry-relevant curriculum',
+                  'Expert instructors',
+                  'Hands-on projects',
+                  'Career support',
+                ]).map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <div className="w-4 h-4 bg-emerald-100 dark:bg-emerald-500/20 rounded-full flex items-center justify-center">
                       <LuCheck className="text-emerald-500 text-[10px]" />
@@ -294,7 +299,7 @@ const AboutPage = () => {
                 href="/courses"
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#E62D26] hover:from-[#c41e18] hover:to-[#d42520] text-white text-xs font-semibold rounded-lg shadow-md shadow-[#E62D26]/20 hover:shadow-lg transition-all"
               >
-                {language === 'bn' ? '????? ?????? ?????' : 'Explore Courses'}
+                {language === 'bn' ? t("aboutPage.cta.browse") : 'Explore Courses'}
                 <LuArrowRight className="text-sm" />
               </Link>
             </motion.div>
@@ -314,11 +319,11 @@ const AboutPage = () => {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md mb-3">
               <HiOutlineSparkles className="text-[#F79952] text-xs" />
               <span className={`text-[10px] font-medium text-slate-600 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? '??????? ??????????' : 'Our Values'}
+                {language === 'bn' ? t("aboutPage.values.badge") : 'Our Values'}
               </span>
             </div>
             <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
-              {language === 'bn' ? '?? ???? ????? ?????' : 'What We Stand For'}
+              {language === 'bn' ? t("aboutPage.values.title") : 'What We Stand For'}
             </h2>
           </motion.div>
 
@@ -359,15 +364,15 @@ const AboutPage = () => {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#E62D26]/10 rounded-md mb-3">
               <LuUsers className="text-[#E62D26] text-xs" />
               <span className={`text-[10px] font-medium text-[#E62D26] ${bengaliClass}`}>
-                {language === 'bn' ? '??????? ???' : 'Our Team'}
+                {language === 'bn' ? t("aboutPage.team.badge") : 'Our Team'}
               </span>
             </div>
             <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit mb-2 ${bengaliClass}`}>
-              {language === 'bn' ? '??????? ?????? ?????' : 'Meet the Team'}
+              {language === 'bn' ? t("aboutPage.team.title") : 'Meet the Team'}
             </h2>
             <p className={`text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto ${bengaliClass}`}>
               {language === 'bn'
-                ? '??????? ??????????? ??? ??? ??????? ??? ????? ?????????? ??????? ?????'
+                ? t("aboutPage.team.subtitle")
                 : 'Passionate educators and tech enthusiasts dedicated to transforming lives.'}
             </p>
           </motion.div>
@@ -414,11 +419,11 @@ const AboutPage = () => {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-md mb-3">
               <LuRocket className="text-[#E62D26] text-xs" />
               <span className={`text-[10px] font-medium text-slate-600 dark:text-slate-300 ${bengaliClass}`}>
-                {language === 'bn' ? '??????? ?????' : 'Our Journey'}
+                {language === 'bn' ? t("aboutPage.history.badge") : 'Our Journey'}
               </span>
             </div>
             <h2 className={`text-xl lg:text-2xl font-bold text-slate-800 dark:text-white outfit ${bengaliClass}`}>
-              {language === 'bn' ? '??? ???? ?? ?????' : 'Milestones Achieved'}
+              {language === 'bn' ? t("aboutPage.history.title") : 'Milestones Achieved'}
             </h2>
           </motion.div>
 
@@ -478,16 +483,16 @@ const AboutPage = () => {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-4">
               <LuStar className="text-white text-xs" />
               <span className={`text-[10px] font-medium text-white ${bengaliClass}`}>
-                {language === 'bn' ? '??? ???? ????' : 'Join Us Today'}
+                {language === 'bn' ? t("aboutPage.cta.badge") : 'Join Us Today'}
               </span>
             </div>
 
             <h2 className={`text-xl lg:text-2xl font-bold text-white mb-3 outfit ${bengaliClass}`}>
-              {language === 'bn' ? '??????? ?????? ???? ???? ????' : 'Ready to Start Your Learning Journey?'}
+              {language === 'bn' ? t("aboutPage.cta.title") : 'Ready to Start Your Learning Journey?'}
             </h2>
             <p className={`text-white/80 text-xs mb-6 ${bengaliClass}`}>
               {language === 'bn'
-                ? '??? HiictPark ???????? ??? ????? ??? ??????????? ???? ?????? ???'
+                ? t("aboutPage.cta.desc")
                 : 'Join thousands of learners who have transformed their careers with HiictPark.'}
             </p>
 
@@ -496,13 +501,13 @@ const AboutPage = () => {
                 href="/courses"
                 className="px-6 py-2.5 bg-white text-[#E62D26] text-xs font-bold rounded-lg hover:bg-white/90 transition-all shadow-md"
               >
-                {language === 'bn' ? '????? ?????? ?????' : 'Browse Courses'}
+                {language === 'bn' ? t("aboutPage.cta.browse") : 'Browse Courses'}
               </Link>
               <Link
                 href="/register"
                 className="px-6 py-2.5 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-lg border border-white/30 hover:bg-white/30 transition-all"
               >
-                {language === 'bn' ? '?????????? ????' : 'Sign Up Free'}
+                {language === 'bn' ? t("aboutPage.cta.signUp") : 'Sign Up Free'}
               </Link>
             </div>
           </motion.div>

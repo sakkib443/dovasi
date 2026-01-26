@@ -6,7 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { LuGraduationCap, LuCode, LuGlobe, LuWrench, LuArrowRight } from 'react-icons/lu';
 import { motion } from 'framer-motion';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 // Animation variants - Entry only, no scroll effects
 const staggerContainer = {
@@ -34,7 +34,7 @@ const cardVariants = {
 
 const HomeCategory = () => {
     const [stats, setStats] = useState(null);
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
     // Fetch real stats from database
@@ -75,36 +75,36 @@ const HomeCategory = () => {
         {
             id: 'courses',
             icon: LuGraduationCap,
-            title: language === 'bn' ? '????? ????' : 'Courses',
-            subtitle: language === 'bn' ? '????????? ????? ?????' : 'Professional Skills',
-            itemLabel: language === 'bn' ? '?????' : 'Courses',
+            title: language === 'bn' ? t("navbar.courses") : 'Courses',
+            subtitle: language === 'bn' ? t("home_sections.professionalSkills") : 'Professional Skills',
+            itemLabel: language === 'bn' ? t("hero_home.coursesSuffix") : 'Courses',
             color: 'teal',
             href: '/courses'
         },
         {
             id: 'software',
             icon: LuCode,
-            title: language === 'bn' ? '??????????' : 'Software',
-            subtitle: language === 'bn' ? '?????????? ?????????' : 'Premium Scripts',
-            itemLabel: language === 'bn' ? '?????' : 'Items',
+            title: language === 'bn' ? t("navbar.software") : 'Software',
+            subtitle: language === 'bn' ? t("home_sections.premiumScripts") : 'Premium Scripts',
+            itemLabel: language === 'bn' ? t("home_sections.readyItems") : 'Items',
             color: 'orange',
             href: '/software'
         },
         {
             id: 'websites',
             icon: LuGlobe,
-            title: language === 'bn' ? '?????????' : 'Websites',
-            subtitle: language === 'bn' ? '?????????? ????????' : 'Premium Templates',
-            itemLabel: language === 'bn' ? '????????' : 'Templates',
+            title: language === 'bn' ? t("navbar.website") : 'Websites',
+            subtitle: language === 'bn' ? t("homeCategory.categories.diplomaSub") : 'Premium Templates',
+            itemLabel: language === 'bn' ? t("home_sections.readyItems") : 'Templates',
             color: 'teal',
             href: '/website'
         },
         {
             id: 'tools',
             icon: LuWrench,
-            title: language === 'bn' ? '????' : 'Tools',
-            subtitle: language === 'bn' ? '?????????????? ????' : 'Productivity Tools',
-            itemLabel: language === 'bn' ? '????' : 'Tools',
+            title: language === 'bn' ? t("home_sections.categoryHighlight") : 'Tools',
+            subtitle: language === 'bn' ? t("homeCategory.exploreCourses") : 'Productivity Tools',
+            itemLabel: language === 'bn' ? t("home_sections.readyItems") : 'Tools',
             color: 'orange',
             href: '/tools'
         }
@@ -187,7 +187,7 @@ const HomeCategory = () => {
                             <span className="w-2.5 h-2.5 bg-red-500 rounded-full"></span>
                         </div>
                         <span className={`text-xs font-black text-red-600 dark:text-red-400 uppercase tracking-[0.2em] ${bengaliClass}`}>
-                            {language === 'bn' ? '?????? ?????????' : 'Our Products'}
+                            {language === 'bn' ? t("home_sections.ourProducts") : 'Our Products'}
                         </span>
                     </motion.div>
 
@@ -200,7 +200,7 @@ const HomeCategory = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {language === 'bn'
-                            ? <>????????? <span className="text-primary">????????</span> ??????</>
+                            ? <>{t("home_sections.browseByCategory")} <span className="text-primary">{t("home_sections.categoryHighlight")}</span> {t("home_sections.accordingTo")}</>
                             : <>Browse by <span className="text-primary">Category</span></>}
                     </motion.h2>
 
@@ -212,7 +212,7 @@ const HomeCategory = () => {
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         {language === 'bn'
-                            ? '?????? ??????? ????????? ???? ????? ??????????? ????????? ????? ???? ?????, ??????????, ????????? ???????? ??? ?????????????? ???? - ??? ?? ?????????'
+                            ? t("home_sections.homeCategoryDesc")
                             : 'Explore our diverse categories to find exactly what you need. Courses, software, website templates, and productivity tools - all in one place.'}
                     </motion.p>
                 </motion.div>

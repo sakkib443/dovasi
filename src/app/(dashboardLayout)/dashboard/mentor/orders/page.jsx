@@ -18,7 +18,7 @@ export default function MentorOrdersPage() {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [statusFilter, setStatusFilter] = useState('all');
 
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
 
     const fetchOrders = async () => {
         try {

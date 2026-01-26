@@ -59,7 +59,7 @@ const StatsCard = ({ title, value, change, changeType, icon: Icon, gradient, loa
               {loading ? (
                 <span className={`inline-block w-24 h-9 animate-pulse rounded-lg ${isDark ? 'bg-slate-700' : 'bg-gradient-to-r from-slate-200 to-slate-100'}`} />
               ) : (
-                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '?' : ''} />
+                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
               )}
             </p>
             {subtitle && <p className="text-xs text-slate-400 mb-2">{subtitle}</p>}
@@ -326,7 +326,7 @@ export default function AdminDashboard() {
   ];
 
   const fetchDashboardData = async () => {
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
     const token = localStorage.getItem('token');
 
     try {
@@ -582,16 +582,16 @@ export default function AdminDashboard() {
               <div className="flex items-center gap-6">
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Revenue</span>
-                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.totalRevenue.toLocaleString()}</span>
+                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.totalRevenue.toLocaleString()}</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">This Month</span>
-                  <span className="text-sm font-bold text-emerald-600">?{dashboardData.monthlyRevenue.toLocaleString()}</span>
+                  <span className="text-sm font-bold text-emerald-600">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Today</p>
-                <p className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>?{dashboardData.todayRevenue.toLocaleString()}</p>
+                <p className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.todayRevenue.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -735,7 +735,7 @@ export default function AdminDashboard() {
                     <h3 className="text-sm font-semibold text-slate-800 truncate group-hover:text-indigo-600 transition-colors">{course.title}</h3>
                     <p className="text-xs text-slate-500">{course.salesCount || 0} sales</p>
                   </div>
-                  <span className="text-sm font-bold text-emerald-600">?{course.price || 0}</span>
+                  <span className="text-sm font-bold text-emerald-600">৳{course.price || 0}</span>
                 </div>
               ))
             )}
@@ -757,11 +757,11 @@ export default function AdminDashboard() {
           <div className="space-y-3">
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">Today's Revenue</span>
-              <span className="text-lg font-bold text-slate-800">?{dashboardData.todayRevenue.toLocaleString()}</span>
+              <span className="text-lg font-bold text-slate-800">৳{dashboardData.todayRevenue.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">This Month</span>
-              <span className="text-lg font-bold text-slate-800">?{dashboardData.monthlyRevenue.toLocaleString()}</span>
+              <span className="text-lg font-bold text-slate-800">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
               <span className="text-sm text-slate-500">New Users</span>

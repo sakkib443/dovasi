@@ -35,13 +35,13 @@ const ProductCardSkeleton = () => (
     </div>
 );
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://motionboss-backend.vercel.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
 
 const DigitalProducts = () => {
     const dispatch = useDispatch();
     const { softwareList = [], loading: softwareLoading } = useSelector((state) => state.software || {});
     const { websiteList = [], loading: websiteLoading } = useSelector((state) => state.websites || {});
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const [activeType, setActiveType] = useState('software');
     const [content, setContent] = useState(null);
     const bengaliClass = language === "bn" ? "hind-siliguri" : "";
@@ -67,9 +67,9 @@ const DigitalProducts = () => {
     // Get dynamic text functions
     const getBadge = () => {
         if (content?.badge) {
-            return language === 'bn' ? (content.badge.textBn || '??????? ????') : (content.badge.text || 'Digital Products');
+            return language === 'bn' ? (content.badge.textBn || t("concerns.digitalProducts")) : (content.badge.text || 'Digital Products');
         }
-        return language === 'bn' ? '??????? ????' : 'Digital Products';
+        return language === 'bn' ? t("concerns.digitalProducts") : 'Digital Products';
     };
 
     const getHeading = () => {
@@ -79,31 +79,31 @@ const DigitalProducts = () => {
             return { text1: text1 || '', highlight: highlight || '' };
         }
         return language === 'bn'
-            ? { text1: '?????? ', highlight: '?????????? ??????? ????' }
+            ? { text1: t("concerns.premium"), highlight: t("concerns.digitalProductsHighlight") }
             : { text1: 'Premium ', highlight: 'Digital Products' };
     };
 
     const getDescription = () => {
         if (content?.description) {
             return language === 'bn'
-                ? (content.description.textBn || '?????? ?????????? ?????????? ??? ??????? ????????? ??????? ????? ?????? ??????? ??????? ?????')
+                ? (content.description.textBn || t("concerns.digitalProductsDesc"))
                 : (content.description.text || 'Explore our collection of premium software and ready-made websites designed to scale your business.');
         }
-        return language === 'bn' ? '?????? ?????????? ?????????? ??? ??????? ????????? ??????? ????? ?????? ??????? ??????? ?????' : 'Explore our collection of premium software and ready-made websites designed to scale your business.';
+        return language === 'bn' ? t("concerns.digitalProductsDesc") : 'Explore our collection of premium software and ready-made websites designed to scale your business.';
     };
 
     const getSoftwareTab = () => {
         if (content?.tabs) {
-            return language === 'bn' ? (content.tabs.softwareBn || '??????????') : (content.tabs.software || 'Software');
+            return language === 'bn' ? (content.tabs.softwareBn || t("navbar.software")) : (content.tabs.software || 'Software');
         }
-        return language === 'bn' ? '??????????' : 'Software';
+        return language === 'bn' ? t("navbar.software") : 'Software';
     };
 
     const getWebsiteTab = () => {
         if (content?.tabs) {
-            return language === 'bn' ? (content.tabs.websiteBn || '?????????') : (content.tabs.website || 'Websites');
+            return language === 'bn' ? (content.tabs.websiteBn || t("navbar.website")) : (content.tabs.website || 'Websites');
         }
-        return language === 'bn' ? '?????????' : 'Websites';
+        return language === 'bn' ? t("navbar.website") : 'Websites';
     };
 
     const heading = getHeading();
@@ -237,8 +237,8 @@ const DigitalProducts = () => {
                             ) : (
                                 <span>
                                     {displayList.length}+ {activeType === 'software'
-                                        ? (language === 'bn' ? '???? ?????????' : 'Ready Scripts')
-                                        : (language === 'bn' ? '?????????? ????????' : 'Premium Templates')}
+                                        ? (language === 'bn' ? t("concerns.readyScripts") : 'Ready Scripts')
+                                        : (language === 'bn' ? t("concerns.premiumTemplates") : 'Premium Templates')}
                                 </span>
                             )}
                         </span>
@@ -276,7 +276,7 @@ const DigitalProducts = () => {
                         <div className="col-span-full py-20 text-center bg-white dark:bg-[#0d0d0d] rounded-[2rem] border border-dashed border-gray-200 dark:border-white/10">
                             <LuSparkles className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
                             <p className={`text-gray-400 font-medium ${bengaliClass}`}>
-                                {language === 'bn' ? '?? ??????????? ???? ???? ????????? ????' : 'No products found in this category yet.'}
+                                {language === 'bn' ? t("concerns.noProducts") : 'No products found in this category yet.'}
                             </p>
                         </div>
                     )}
@@ -297,10 +297,10 @@ const DigitalProducts = () => {
                     <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div className="text-center sm:text-left">
                             <h3 className={`text-xl lg:text-2xl font-black text-gray-900 dark:text-white mb-2 ${bengaliClass}`}>
-                                {language === 'bn' ? '????? ?????? ???? ???? ???' : 'Ready to Launch Your Business?'}
+                                {language === 'bn' ? t("concerns.readyToLaunch") : 'Ready to Launch Your Business?'}
                             </h3>
                             <p className={`text-gray-500 dark:text-gray-400 font-medium ${bengaliClass}`}>
-                                {language === 'bn' ? '?????? ?? ??????? ????????? ????????? ????' : 'Discover all our digital assets in one place'}
+                                {language === 'bn' ? t("concerns.allAssetsDesc") : 'Discover all our digital assets in one place'}
                             </p>
                         </div>
 
@@ -310,7 +310,7 @@ const DigitalProducts = () => {
                         >
                             <span className="font-bold text-gray-900 dark:text-white">
                                 {language === 'bn'
-                                    ? `?? ${activeType === 'software' ? '??????????' : '?????????'} ?????`
+                                    ? t("concerns.exploreAll")
                                     : `Explore All ${activeType === 'software' ? 'Software' : 'Websites'}`}
                             </span>
                             <div className="w-10 h-10 rounded-xl bg-[#F79952]/10 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#F79952] group-hover:to-[#fb923c]">
