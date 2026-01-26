@@ -41,18 +41,18 @@ const TopHeader = () => {
         <div className="flex justify-between items-center">
           {/* Left - Contact Info */}
           <div className={`hidden md:flex items-center gap-4 ${isDark ? 'text-white/60' : 'text-white/80'}`}>
-            <a href="mailto:info@ejobsit.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
+            <a href="mailto:info@hiictpark.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
-              info@ejobsit.com
+              info@hiictpark.com
             </a>
             <span className="w-px h-3 bg-white/30"></span>
-            <a href="tel:+8801730481212" className="flex items-center gap-1.5 hover:text-white transition-colors">
+            <a href="tel:+8801829818616" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
               </svg>
-              +880 1730-481212
+              +880 1829-818616
             </a>
           </div>
 
@@ -72,13 +72,13 @@ const TopHeader = () => {
 
           {/* Right - Social Links */}
           <div className={`flex items-center gap-3 ${isDark ? 'text-white/60' : 'text-white/80'}`}>
-            <a href="https://www.facebook.com/ejobsit" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Facebook">
+            <a href="https://www.facebook.com/hiictpark" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Facebook">
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
             </a>
-            <a href="https://twitter.com/ejobsit" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Twitter">
+            <a href="https://twitter.com/hiictpark" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Twitter">
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
             </a>
-            <a href="https://www.instagram.com/ejobsit/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Instagram">
+            <a href="https://www.instagram.com/hiictpark/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Instagram">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
             </a>
             <span className="w-px h-3 bg-white/30 hidden sm:block"></span>

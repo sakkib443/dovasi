@@ -71,19 +71,19 @@ const AboutCTA = () => {
                             {[
                                 {
                                     icon: LuMail,
-                                    text: 'hello@motionboss.net',
+                                    text: 'info@hiictpark.com',
                                     label: 'SUPPORT EMAIL',
-                                    action: 'mailto:hello@motionboss.net'
+                                    action: 'mailto:info@hiictpark.com'
                                 },
                                 {
                                     icon: LuPhone,
-                                    text: '+880 1730-481212',
+                                    text: '+880 1829-818616',
                                     label: 'HELPLINE',
-                                    action: 'tel:+8801730481212'
+                                    action: 'tel:+8801829818616'
                                 },
                                 {
                                     icon: LuMapPin,
-                                    text: 'Dhaka, Bangladesh',
+                                    text: 'Narail, Dhaka, Bangladesh',
                                     label: 'HEADQUARTERS',
                                     action: '#'
                                 }

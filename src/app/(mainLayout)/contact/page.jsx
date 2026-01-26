@@ -47,9 +47,9 @@ const ContactPage = () => {
     },
     contactInfo: {
       email: 'info@hiictpark.com',
-      phone: '+88 01730481212',
-      address: 'Daisy Garden, House 14 (Level-5), Block A, Banasree, Dhaka',
-      addressBn: 'ডেইজি গার্ডেন, বাড়ি ১৪ (লেভেল-৫), ব্লক এ, বনশ্রী, ঢাকা',
+      phone: '+880 1829-818616',
+      address: 'Narail, Dhaka, Bangladesh',
+      addressBn: 'নড়াইল, ঢাকা, বাংলাদেশ',
       officeHours: 'Sat - Thu: 10:00 AM - 6:00 PM',
       officeHoursBn: 'শনি - বৃহঃ: সকাল ১০টা - সন্ধ্যা ৬টা'
     },
@@ -57,7 +57,7 @@ const ContactPage = () => {
       facebook: 'https://www.facebook.com/hiictpark',
       youtube: 'https://www.youtube.com/@hiictpark',
       linkedin: 'https://www.linkedin.com/company/hiictpark',
-      whatsapp: 'https://wa.me/8801730481212',
+      whatsapp: 'https://wa.me/8801829818616',
       instagram: 'https://www.instagram.com/hiictpark/'
     },
     whatsappSection: {

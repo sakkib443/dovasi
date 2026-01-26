@@ -58,12 +58,9 @@ const ScrollToTop = () => {
 
                     {/* Button */}
                     <div className="relative">
-                        {/* Pulse Animation */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-cyan-500 rounded-full animate-ping opacity-30"></div>
-
                         {/* Main Button */}
-                        <div className="relative w-14 h-14 bg-gradient-to-r from-red-500 to-cyan-500 hover:from-red-600 hover:to-cyan-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-red-500/30 hover:scale-110 transition-all duration-300">
-                            <FaArrowUp className="text-white text-xl" />
+                        <div className="relative w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 hover:bg-red-700">
+                            <FaArrowUp className="text-white text-lg" />
                         </div>
                     </div>
                 </motion.button>

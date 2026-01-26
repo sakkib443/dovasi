@@ -206,7 +206,7 @@ const AdminSidebar = () => {
         {/* Logo */}
         <div className={`relative px-6 py-5 border-b ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
           <Link href="/" className="block w-32 h-10 group">
-            <img src="/images/ejobsitlogo.png" alt="eJobsIT" className="w-full h-full object-contain group-hover:opacity-80 transition-opacity" />
+            <img src="/images/ejobsitlogo.png" alt="Hi Ict Park" className="w-full h-full object-contain group-hover:opacity-80 transition-opacity" />
           </Link>
         </div>
 

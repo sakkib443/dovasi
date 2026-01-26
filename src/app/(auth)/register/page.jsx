@@ -73,7 +73,54 @@ const Register = () => {
         throw new Error(data.message || "Registration failed");
       }
 
-      router.push("/login");
+      // Attempt Auto-Login
+      let token = data?.data?.token || data?.data?.tokens?.accessToken;
+      let user = data?.data?.user;
+
+      // If registration didn't return a token, try explicit login
+      if (!token || !user) {
+        try {
+          const loginRes = await fetch(`${BASE_URL}/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: formData.email,
+              password: formData.password
+            }),
+          });
+
+          if (loginRes.ok) {
+            const loginData = await loginRes.json();
+            token = loginData?.data?.token || loginData?.data?.tokens?.accessToken;
+            user = loginData?.data?.user;
+          }
+        } catch (loginErr) {
+          console.error("Auto-login failed:", loginErr);
+          // Continue to redirect to login if auto-login fails
+        }
+      }
+
+      if (token && user) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        // Redirect based on role
+        const userRole = user.role || "student";
+        switch (userRole) {
+          case "admin":
+            router.push("/dashboard/admin");
+            break;
+          case "mentor":
+            router.push("/dashboard/mentor");
+            break;
+          default:
+            router.push("/");
+        }
+      } else {
+        // Fallback to login page if auto-login logic didn't result in a session
+        router.push("/login");
+      }
+
     } catch (err) {
       setError(err.message);
     } finally {

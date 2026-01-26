@@ -33,10 +33,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: FaFacebook, href: "https://www.facebook.com/ejobsit", color: "#1877F2", label: "Facebook" },
-    { icon: FaLinkedin, href: "https://www.linkedin.com/company/ejobsit/", color: "#0A66C2", label: "LinkedIn" },
-    { icon: FaYoutube, href: "https://www.youtube.com/@ejobsit", color: "#FF0000", label: "YouTube" },
-    { icon: FaInstagram, href: "https://www.instagram.com/ejobsit/", color: "#E4405F", label: "Instagram" },
+    { icon: FaFacebook, href: "https://www.facebook.com/hiictpark", color: "#1877F2", label: "Facebook" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/hiictpark/", color: "#0A66C2", label: "LinkedIn" },
+    { icon: FaYoutube, href: "https://www.youtube.com/@hiictpark", color: "#FF0000", label: "YouTube" },
+    { icon: FaInstagram, href: "https://www.instagram.com/hiictpark/", color: "#E4405F", label: "Instagram" },
   ];
 
   return (
@@ -174,24 +174,24 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+8801730481212" className="group flex items-start gap-3">
+                <a href="tel:+8801829818616" className="group flex items-start gap-3">
                   <div className="w-9 h-9 rounded-md bg-[#E62D26]/10 dark:bg-[#E62D26]/20 flex items-center justify-center shrink-0 group-hover:bg-[#E62D26]/20 dark:group-hover:bg-[#E62D26]/30 transition-colors">
                     <IoCallOutline className="text-[#E62D26]" />
                   </div>
                   <div>
                     <p className={`text-xs text-gray-400 dark:text-gray-500 work ${bengaliClass}`}>{t("footer.phone")}</p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#E62D26] transition-colors">+880 1730-481212</p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#E62D26] transition-colors">+880 1829-818616</p>
                   </div>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@ejobsit.com" className="group flex items-start gap-3">
+                <a href="mailto:info@hiictpark.com" className="group flex items-start gap-3">
                   <div className="w-9 h-9 rounded-md bg-[#F79952]/10 dark:bg-[#F79952]/20 flex items-center justify-center shrink-0 group-hover:bg-[#F79952]/20 dark:group-hover:bg-[#F79952]/30 transition-colors">
                     <IoMailOutline className="text-[#F79952]" />
                   </div>
                   <div>
                     <p className={`text-xs text-gray-400 dark:text-gray-500 work ${bengaliClass}`}>{t("footer.email")}</p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#F79952] transition-colors break-all">info@ejobsit.com</p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm work group-hover:text-[#F79952] transition-colors break-all">info@hiictpark.com</p>
                   </div>
                 </a>
               </li>
@@ -224,6 +224,9 @@ const Footer = () => {
               </span>
               <span className={`text-gray-500 dark:text-gray-400 text-sm work flex items-center gap-1 ${bengaliClass}`}>
                 {t("footer.madeWith")} <LuHeart className="text-red-500 text-xs" /> {t("footer.inBangladesh")}
+              </span>
+              <span className={`text-gray-500 dark:text-gray-400 text-sm work flex items-center gap-1 ${bengaliClass}`}>
+                Developed by <a href="https://extrainweb.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-[#E62D26] transition-colors">Extrain Web</a>
               </span>
             </div>
           </div>

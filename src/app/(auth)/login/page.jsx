@@ -59,7 +59,7 @@ const Login = () => {
           case "student":
           case "user":
           default:
-            router.push("/dashboard/user");
+            router.push("/");
         }
       } else {
         throw new Error("Invalid response from server");

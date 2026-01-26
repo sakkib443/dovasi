@@ -57,8 +57,8 @@ const hindSiliguri = Hind_Siliguri({
 
 export const metadata = {
   title: {
-    template: "ejobs it | %s",
-    default: "ejobs it | Home",
+    template: "Hi Ict Park | %s",
+    default: "Hi Ict Park | Home",
   },
   description:
     "ejobs it � a leading IT training institute and digital solutions provider. We specialize in professional courses, ready-made software, and premium website templates to help you grow your skills and business.",

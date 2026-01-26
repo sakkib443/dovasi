@@ -26,7 +26,7 @@ const AboutHero = () => {
                     style={{ y: y1 }}
                     className={`absolute -top-[5%] -left-[5%] text-[25vw] font-black text-gray-950/[0.03] dark:text-white/[0.01] select-none leading-none whitespace-nowrap ${headingFont}`}
                 >
-                    EJOBSIT
+                    HIICTPARK
                 </motion.div>
 
                 {/* Clean Geometric Accents */}
@@ -78,7 +78,7 @@ const AboutHero = () => {
                             <p className={`text-base lg:text-lg text-gray-500 dark:text-gray-500 leading-relaxed mb-8 font-normal ${bengaliClass}`}>
                                 {language === 'bn'
                                     ? t("aboutPage.description")
-                                    : 'We don\'t just teach skills; we build the architectural foundation of your professional career. ejobs it: Where ambition meets elite training.'
+                                    : 'We don\'t just teach skills; we build the architectural foundation of your professional career. Hi Ict Park: Where ambition meets elite training.'
                                 }
                             </p>
 
@@ -135,7 +135,7 @@ const AboutHero = () => {
                         {[1, 2, 3, 4].map((i) => (
                             <div key={i} className="flex items-center gap-16 px-8">
                                 {[
-                                    { text: 'EJOBSIT', icon: LuZap, iconColor: 'text-[#F79952]' },
+                                    { text: 'HIICTPARK', icon: LuZap, iconColor: 'text-[#F79952]' },
                                     { text: 'Innovation', icon: LuTrophy, iconColor: 'text-red-500' },
                                     { text: 'Excellence', icon: LuSmile, iconColor: 'text-red-500' },
                                     { text: 'Elite Training', icon: LuZap, iconColor: 'text-[#F79952]' }

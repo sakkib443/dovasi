@@ -340,7 +340,7 @@ const Navbar = () => {
               {/* Mobile Menu Header */}
               <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800">
                 <Link href="/" onClick={closeMobileMenu}>
-                  <img className="w-32" src="/images/ejobsitlogo.png" alt="eJobsIT" />
+                  <img className="w-32" src="/images/ejobsitlogo.png" alt="Hi Ict Park" />
                 </Link>
                 <button
                   onClick={closeMobileMenu}
@@ -457,7 +457,7 @@ const Navbar = () => {
                 <img
                   className={`transition-all duration-300 ${isSticky ? "w-32 lg:w-36" : "w-36 lg:w-40"}`}
                   src="/images/ejobsitlogo.png"
-                  alt="eJobsIT"
+                  alt="Hi Ict Park"
                 />
               </Link>
 
