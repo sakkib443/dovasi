@@ -48,8 +48,8 @@ const ContactPage = () => {
     contactInfo: {
       email: 'info@hiictpark.com',
       phone: '+880 1829-818616',
-      address: 'Narail, Dhaka, Bangladesh',
-      addressBn: 'নড়াইল, ঢাকা, বাংলাদেশ',
+      address: 'Dhaka, Bangladesh',
+      addressBn: 'ঢাকা, বাংলাদেশ',
       officeHours: 'Sat - Thu: 10:00 AM - 6:00 PM',
       officeHoursBn: 'শনি - বৃহঃ: সকাল ১০টা - সন্ধ্যা ৬টা'
     },

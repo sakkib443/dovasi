@@ -83,7 +83,7 @@ const AboutCTA = () => {
                                 },
                                 {
                                     icon: LuMapPin,
-                                    text: 'Narail, Dhaka, Bangladesh',
+                                    text: 'Dhaka, Bangladesh',
                                     label: 'HEADQUARTERS',
                                     action: '#'
                                 }
