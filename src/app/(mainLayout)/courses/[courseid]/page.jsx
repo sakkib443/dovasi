@@ -74,10 +74,15 @@ const SingleCourse = () => {
   const fetchBatches = async () => {
     try {
       setLoadingBatches(true);
-      const res = await fetch(`${API_URL}/batches?course=${id}&isActive=true`);
+      // Fetch batches for this course (without isActive filter to get all)
+      const res = await fetch(`${API_URL}/batches?course=${id}`);
       const data = await res.json();
+      console.log('Batches API response:', data);
       if (data.success) {
-        setBatches(data.data || []);
+        // Filter only active batches on frontend
+        const activeBatches = (data.data || []).filter(b => b.isActive !== false);
+        setBatches(activeBatches);
+        console.log('Active batches:', activeBatches);
       }
     } catch (error) {
       console.error('Error fetching batches:', error);
@@ -622,8 +627,8 @@ const SingleCourse = () => {
                   </div>
                 </div>
 
-                {/* Batch Information Section - Only for Online Courses */}
-                {currentCourse.courseType === 'online' && batches.length > 0 && (
+                {/* Batch Information Section - Shows if batches exist for this course */}
+                {batches.length > 0 && (
                   <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-md border border-indigo-100 shadow-sm overflow-hidden">
                     <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-3">
                       <h3 className="text-white font-bold outfit flex items-center gap-2">
