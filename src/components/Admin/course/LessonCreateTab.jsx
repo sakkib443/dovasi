@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL } from '@/config/api';
 import {
     FiPlay, FiClock, FiBook, FiLayers,
     FiFileText, FiHelpCircle, FiFile, FiType, FiSettings, FiCheck, FiPlus, FiArrowRight,
@@ -56,7 +57,7 @@ export default function LessonCreateTab() {
     const [modules, setModules] = useState([]);
     const [fetchingModules, setFetchingModules] = useState(false);
 
-    const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
+    const BASE_URL = API_BASE_URL;
 
     useEffect(() => {
         const fetchCourses = async () => {

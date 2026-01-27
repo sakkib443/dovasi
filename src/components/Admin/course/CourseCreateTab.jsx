@@ -5,6 +5,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL } from '@/config/api';
 import {
     FiPlus, FiTrash2, FiSave, FiImage, FiVideo,
     FiBookOpen, FiDollarSign, FiGlobe, FiLayers, FiCheck,
@@ -107,7 +108,7 @@ const CourseCreateTab = ({ onSuccess }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await fetch('https://hiictpark-backend.vercel.app/api/categories');
+                const res = await fetch(`${API_BASE_URL}/categories`);
                 const data = await res.json();
                 setCategories(data.data || []);
             } catch (err) { console.error(err); }
@@ -125,7 +126,7 @@ const CourseCreateTab = ({ onSuccess }) => {
 
     const onSubmit = async (data) => {
         setLoading(true);
-        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
+        const BASE_URL = API_BASE_URL;
         const token = localStorage.getItem('token');
 
         try {

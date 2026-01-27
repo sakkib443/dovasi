@@ -2,7 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
+import { API_BASE_URL } from '@/config/api';
+
+const BASE_URL = API_BASE_URL;
 
 // Context for admin edit mode
 const AdminEditContext = createContext({

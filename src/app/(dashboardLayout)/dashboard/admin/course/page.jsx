@@ -18,7 +18,9 @@ import {
   FiClock,
 } from 'react-icons/fi';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
+import { API_BASE_URL } from '@/config/api';
+
+const API_URL = API_BASE_URL;
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);

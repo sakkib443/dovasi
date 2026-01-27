@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fi';
 import Link from 'next/link';
 import { useTheme } from '@/providers/ThemeProvider';
+import { API_BASE_URL } from '@/config/api';
 
 const courseValidationSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
@@ -77,7 +78,7 @@ export default function EditCoursePage() {
   const tagsFields = useFieldArray({ control, name: 'tags' });
 
   const fetchData = useCallback(async () => {
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = API_BASE_URL;
     const token = localStorage.getItem('token');
     try {
       setFetching(true);
@@ -119,7 +120,7 @@ export default function EditCoursePage() {
 
   const onSubmit = async (values) => {
     setLoading(true);
-    const BASE_URL = 'https://motionboss-backend.vercel.app/api';
+    const BASE_URL = API_BASE_URL;
     const token = localStorage.getItem('token');
 
     try {
@@ -129,7 +130,10 @@ export default function EditCoursePage() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          category: values.category?._id || values.category
+        }),
       });
 
       if (response.ok) {
