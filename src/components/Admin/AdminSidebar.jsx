@@ -104,8 +104,8 @@ const AdminSidebar = () => {
       submenu: [
         { title: 'All Websites', href: '/dashboard/admin/website', icon: FiGlobe },
         { title: 'Create Website', href: '/dashboard/admin/website/create', icon: FiFileText },
-        { title: 'All Software', href: '/dashboard/admin/software', icon: FiCode },
-        { title: 'Create Software', href: '/dashboard/admin/software/create', icon: FiFileText },
+        { title: 'All Design Templates', href: '/dashboard/admin/design-template', icon: FiLayers },
+        { title: 'Create Design Template', href: '/dashboard/admin/design-template/create', icon: FiFileText },
       ],
     },
     {
