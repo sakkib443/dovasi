@@ -3,27 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
-  FiEdit2,
-  FiTrash2,
-  FiPlus,
-  FiSearch,
-  FiBook,
-  FiStar,
-  FiGrid,
-  FiList,
-  FiUsers,
-  FiLayers,
-  FiRefreshCw,
-  FiCheckCircle,
-  FiClock,
-  FiTrendingUp,
-  FiMonitor,
-  FiAward
+  FiEdit2, FiTrash2, FiPlus, FiSearch, FiBook, FiStar,
+  FiGrid, FiList, FiUsers, FiLayers, FiRefreshCw, FiCheckCircle, FiClock
 } from 'react-icons/fi';
-
+import { useTheme } from '@/providers/ThemeProvider';
 import { API_BASE_URL } from '@/config/api';
 
 export default function CoursesPage() {
+  const { isDark } = useTheme();
   const [courses, setCourses] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -79,259 +66,238 @@ export default function CoursesPage() {
     totalEnrollments: courses.reduce((sum, c) => sum + (c.totalEnrollments || 0), 0),
   };
 
-  const CourseSkeleton = () => (
-    <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 overflow-hidden animate-pulse">
-      <div className="h-44 bg-slate-100 dark:bg-slate-800"></div>
-      <div className="p-6 space-y-4">
-        <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full w-3/4"></div>
-        <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded-full w-1/2"></div>
-        <div className="flex gap-2 pt-4">
-          <div className="h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex-1"></div>
-          <div className="h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex-1"></div>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
-    <div className="p-4 md:p-8 space-y-8 bg-slate-50 dark:bg-slate-950 min-h-screen">
-
-      {/* Dynamic Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div className="flex items-center gap-5">
-          <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-3xl flex items-center justify-center shadow-xl shadow-orange-500/20 transform hover:rotate-6 transition-transform">
-            <FiBook className="text-white" size={28} />
+    <div className="space-y-5 pb-8">
+      {/* Header */}
+      <div className={`flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-md bg-amber-500 flex items-center justify-center">
+            <FiBook className="text-white" size={18} />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">Academic Assets</h1>
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mt-1 flex items-center gap-2">
-              <span className="w-8 h-px bg-slate-200"></span> Governance of educational content
-            </p>
+            <h1 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Courses</h1>
+            <p className={`text-sm font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Manage all courses</p>
           </div>
         </div>
-
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={loadCourses}
             disabled={loading}
-            className="p-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all shadow-sm active:scale-95"
-            title="Reload Data"
+            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-normal border transition-all ${isDark
+              ? 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
+              : 'bg-white border-gray-200 hover:bg-gray-50 text-gray-600'
+              }`}
           >
-            <FiRefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+            <FiRefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+            Refresh
           </button>
           <Link href="/dashboard/admin/course/create">
-            <button className="flex items-center gap-3 px-8 py-4 bg-slate-900 dark:bg-amber-500 hover:bg-slate-800 dark:hover:bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-amber-500/10 active:scale-95">
-              <FiPlus size={20} />
-              Publish Course
+            <button className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-sm font-normal transition-all">
+              <FiPlus size={14} />
+              Add Course
             </button>
           </Link>
         </div>
       </div>
 
-      {/* KPI Dashboard */}
+      {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="group bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-amber-500/30 transition-all duration-500">
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 bg-amber-50 dark:bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-              <FiBook size={20} />
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="w-9 h-9 bg-amber-500 rounded-md flex items-center justify-center">
+              <FiBook className="text-white" size={16} />
             </div>
-            <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">Total Inventory</span>
+            <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>{stats.total}</span>
           </div>
-          <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">{stats.total}</p>
-          <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            <FiLayers className="text-amber-500" /> Catalog items
-          </div>
+          <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Total Courses</p>
         </div>
-
-        <div className="group bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-emerald-500/30 transition-all duration-500">
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
-              <FiCheckCircle size={20} />
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="w-9 h-9 bg-emerald-600 rounded-md flex items-center justify-center">
+              <FiCheckCircle className="text-white" size={16} />
             </div>
-            <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">Live Status</span>
+            <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>{stats.published}</span>
           </div>
-          <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">{stats.published}</p>
-          <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            <FiMonitor className="text-emerald-500" /> Publicly visible
-          </div>
+          <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Published</p>
         </div>
-
-        <div className="group bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-blue-500/30 transition-all duration-500">
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 bg-blue-50 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
-              <FiUsers size={20} />
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="w-9 h-9 bg-blue-600 rounded-md flex items-center justify-center">
+              <FiUsers className="text-white" size={16} />
             </div>
-            <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">Student Reach</span>
+            <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>{stats.totalEnrollments.toLocaleString()}</span>
           </div>
-          <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">{stats.totalEnrollments.toLocaleString()}</p>
-          <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            <FiTrendingUp className="text-blue-500" /> Active learners
-          </div>
+          <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Enrollments</p>
         </div>
-
-        <div className="group bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-slate-900/10 transition-all duration-500">
-          <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform">
-              <FiClock size={20} />
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center justify-between mb-2">
+            <div className="w-9 h-9 bg-gray-500 rounded-md flex items-center justify-center">
+              <FiClock className="text-white" size={16} />
             </div>
-            <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">Staged Drafts</span>
+            <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>{stats.draft}</span>
           </div>
-          <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">{stats.draft}</p>
-          <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            <FiAward className="text-slate-400" /> In development
-          </div>
+          <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Drafts</p>
         </div>
       </div>
 
-      {/* Control Bar */}
-      <div className="flex flex-col md:flex-row md:items-center gap-4 bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+      {/* Search & View Toggle */}
+      <div className={`flex flex-col md:flex-row md:items-center gap-3 p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
         <div className="relative flex-1">
-          <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+          <FiSearch className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-slate-500' : 'text-gray-400'}`} size={16} />
           <input
-            placeholder="Search by course title or instructor..."
+            placeholder="Search courses..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-14 pr-7 py-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/10 outline-none text-sm font-bold tracking-tight transition-all placeholder:text-slate-300 dark:placeholder:text-slate-700"
+            className={`w-full pl-9 pr-4 py-2 rounded-md border text-sm font-normal ${isDark
+              ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-500'
+              : 'bg-white border-gray-200 text-gray-800 placeholder-gray-400'
+              } focus:outline-none focus:border-amber-500`}
           />
         </div>
-        <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 dark:bg-slate-800 rounded-2xl">
+        <div className={`flex items-center gap-1 p-1 rounded-md ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
           <button
             onClick={() => setViewMode('grid')}
-            className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-lg text-slate-900 dark:text-white transform scale-105' : 'text-slate-400 hover:text-slate-600'}`}
+            className={`p-2 rounded-md transition-all ${viewMode === 'grid'
+              ? (isDark ? 'bg-slate-600 text-white' : 'bg-white text-gray-800 shadow-sm')
+              : (isDark ? 'text-slate-400' : 'text-gray-500')
+              }`}
           >
-            <FiGrid size={20} />
+            <FiGrid size={16} />
           </button>
           <button
             onClick={() => setViewMode('list')}
-            className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 shadow-lg text-slate-900 dark:text-white transform scale-105' : 'text-slate-400 hover:text-slate-600'}`}
+            className={`p-2 rounded-md transition-all ${viewMode === 'list'
+              ? (isDark ? 'bg-slate-600 text-white' : 'bg-white text-gray-800 shadow-sm')
+              : (isDark ? 'text-slate-400' : 'text-gray-500')
+              }`}
           >
-            <FiList size={20} />
+            <FiList size={16} />
           </button>
         </div>
       </div>
 
-      {/* Main Feed */}
+      {/* Course List */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => <CourseSkeleton key={i} />)}
+        <div className={`flex items-center justify-center py-16 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="w-8 h-8 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-32 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-dashed border-slate-100 dark:border-slate-800 px-6">
-          <div className="w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-            <FiBook className="text-4xl text-slate-200 dark:text-slate-700" />
-          </div>
-          <h3 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight">Academic Silence</h3>
-          <p className="text-sm text-slate-400 mt-2 max-w-xs mx-auto font-medium uppercase tracking-widest text-[9px]">No courses matched your query or catalog is empty</p>
+        <div className={`text-center py-16 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <FiBook className={`mx-auto mb-3 ${isDark ? 'text-slate-600' : 'text-gray-300'}`} size={40} />
+          <h3 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>No courses found</h3>
+          <p className={`mt-1 text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Create your first course</p>
           <Link href="/dashboard/admin/course/create">
-            <button className="mt-10 flex items-center gap-3 px-10 py-5 bg-amber-500 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl mx-auto shadow-2xl shadow-amber-500/20 active:scale-95 transition-all">
-              <FiPlus size={20} /> Initiate New Series
+            <button className="mt-4 flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-md text-sm font-normal mx-auto">
+              <FiPlus size={14} /> Add Course
             </button>
           </Link>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filtered.map((course, idx) => (
-            <div key={course._id} className="group bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 overflow-hidden hover:shadow-2xl hover:border-amber-500/20 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: `${idx * 50}ms` }}>
-              <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filtered.map((course) => (
+            <div key={course._id} className={`rounded-md border overflow-hidden transition-all ${isDark ? 'bg-slate-800 border-slate-700 hover:border-slate-600' : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm'}`}>
+              <div className="relative h-40 overflow-hidden bg-gray-100">
                 {course.thumbnail ? (
-                  <img src={course.thumbnail} alt={course.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={course.thumbnail} alt={course.title} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-200 grayscale dark:opacity-10">
-                    <FiBook size={64} />
+                  <div className={`w-full h-full flex items-center justify-center ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
+                    <FiBook className={isDark ? 'text-slate-500' : 'text-gray-300'} size={40} />
                   </div>
                 )}
-                <div className="absolute top-4 left-4 flex flex-col gap-2">
-                  <span className="px-3 py-1 bg-white/95 dark:bg-slate-900 shadow-xl text-slate-900 dark:text-white text-[9px] font-black uppercase tracking-widest rounded-lg">
+                <div className="absolute top-2 left-2 flex flex-col gap-1">
+                  <span className={`px-2 py-0.5 text-xs font-medium rounded ${isDark ? 'bg-slate-900/80 text-white' : 'bg-white/90 text-gray-800'}`}>
                     {course.courseType}
                   </span>
-                  <span className={`px-3 py-1 text-white text-[9px] font-black uppercase tracking-widest rounded-lg shadow-xl ${course.status === 'published' ? 'bg-emerald-500' : 'bg-slate-400'}`}>
+                  <span className={`px-2 py-0.5 text-xs font-medium rounded ${course.status === 'published' ? 'bg-emerald-500 text-white' : 'bg-gray-400 text-white'}`}>
                     {course.status}
                   </span>
                 </div>
-                <div className="absolute bottom-4 right-4 px-4 py-2 bg-slate-900/80 backdrop-blur-md text-amber-500 text-sm font-black rounded-2xl border border-white/10 shadow-xl">
+                <div className="absolute bottom-2 right-2 px-2 py-1 bg-gray-900/80 text-amber-400 text-sm font-medium rounded">
                   ৳{(course.discountPrice || course.price || 0).toLocaleString()}
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-base font-black text-slate-800 dark:text-white line-clamp-2 mb-4 min-h-[48px] tracking-tight group-hover:text-amber-500 transition-colors uppercase leading-[1.2]">{course.title}</h3>
+              <div className="p-4">
+                <h3 className={`text-sm font-semibold line-clamp-2 mb-3 min-h-[40px] ${isDark ? 'text-white' : 'text-gray-800'}`}>{course.title}</h3>
 
-                <div className="flex items-center gap-2 mb-6">
-                  <span className="px-2.5 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[9px] font-black uppercase tracking-widest rounded-md border border-amber-500/10">{course.level}</span>
-                  <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-md">{course.language}</span>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`px-2 py-0.5 text-xs rounded ${isDark ? 'bg-amber-500/20 text-amber-400' : 'bg-amber-100 text-amber-700'}`}>{course.level}</span>
+                  <span className={`px-2 py-0.5 text-xs rounded ${isDark ? 'bg-slate-700 text-slate-300' : 'bg-gray-100 text-gray-600'}`}>{course.language}</span>
                 </div>
 
-                <div className="flex items-center justify-between py-4 border-t border-slate-50 dark:border-slate-800/50">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                    <FiUsers className="text-blue-500" size={14} /> {course.totalEnrollments || 0} Learners
+                <div className={`flex items-center justify-between py-3 border-t ${isDark ? 'border-slate-700' : 'border-gray-200'}`}>
+                  <div className={`flex items-center gap-1 text-xs ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+                    <FiUsers size={12} /> {course.totalEnrollments || 0}
                   </div>
-                  <div className="flex items-center gap-1.5 text-amber-500 font-black text-xs">
-                    <FiStar size={14} fill="currentColor" /> {course.averageRating || 5.0}
+                  <div className="flex items-center gap-1 text-amber-500 text-xs font-medium">
+                    <FiStar size={12} fill="currentColor" /> {course.averageRating || '5.0'}
                   </div>
                 </div>
               </div>
 
-              <div className="flex p-2 bg-slate-50/50 dark:bg-slate-800/30 gap-1.5">
+              <div className={`flex p-2 gap-2 ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
                 <Link
                   href={`/dashboard/admin/course/modules/${course._id}`}
-                  className="flex-1 h-12 flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700/50 text-indigo-500 rounded-2xl hover:bg-slate-900 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white text-[9px] font-black uppercase tracking-widest transition-all shadow-sm active:scale-95"
+                  className={`flex-1 py-2 text-center rounded-md text-xs font-medium transition-all ${isDark ? 'bg-slate-600 text-indigo-400 hover:bg-indigo-600 hover:text-white' : 'bg-white border border-gray-200 text-indigo-600 hover:bg-indigo-600 hover:text-white'}`}
                 >
-                  Curriculum
+                  Modules
                 </Link>
                 <Link
                   href={`/dashboard/admin/course/edit/${course._id}`}
-                  className="flex-1 h-12 flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700/50 text-slate-500 rounded-2xl hover:bg-slate-900 hover:text-white text-[9px] font-black uppercase tracking-widest transition-all shadow-sm active:scale-95"
+                  className={`flex-1 py-2 text-center rounded-md text-xs font-medium transition-all ${isDark ? 'bg-slate-600 text-slate-300 hover:bg-slate-500' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-100'}`}
                 >
-                  Modify
+                  Edit
                 </Link>
                 <button
                   onClick={() => handleDelete(course._id)}
-                  className="w-12 h-12 flex items-center justify-center bg-rose-500/10 text-rose-500 rounded-2xl hover:bg-rose-500 hover:text-white transition-all shadow-sm active:scale-95"
+                  className="px-3 py-2 bg-red-500/10 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-all"
                 >
-                  <FiTrash2 size={18} />
+                  <FiTrash2 size={14} />
                 </button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 overflow-hidden divide-y divide-slate-50 dark:divide-slate-800 shadow-sm">
-          {filtered.map((course) => (
-            <div key={course._id} className="flex flex-col md:flex-row md:items-center gap-6 p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-              <div className="w-32 h-20 rounded-2xl bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 shadow-lg border-2 border-white dark:border-slate-700">
-                {course.thumbnail ? (
-                  <img src={course.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-200 grayscale opacity-20">
-                    <FiBook size={32} />
+        <div className={`rounded-md border overflow-hidden ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className={`divide-y ${isDark ? 'divide-slate-700' : 'divide-gray-200'}`}>
+            {filtered.map((course) => (
+              <div key={course._id} className={`flex flex-col md:flex-row md:items-center gap-4 p-4 transition-colors ${isDark ? 'hover:bg-slate-700/50' : 'hover:bg-gray-50'}`}>
+                <div className={`w-28 h-20 rounded-md overflow-hidden flex-shrink-0 ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
+                  {course.thumbnail ? (
+                    <img src={course.thumbnail} className="w-full h-full object-cover" alt="" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <FiBook className={isDark ? 'text-slate-500' : 'text-gray-300'} size={24} />
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className={`text-sm font-semibold truncate ${isDark ? 'text-white' : 'text-gray-800'}`}>{course.title}</h3>
+                  <div className={`text-xs mt-1 flex flex-wrap items-center gap-3 ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+                    <span className={`px-2 py-0.5 rounded ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>{course.level}</span>
+                    <span className={`px-2 py-0.5 rounded ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>{course.courseType}</span>
+                    <span className="flex items-center gap-1"><FiUsers size={12} /> {course.totalEnrollments || 0}</span>
                   </div>
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-black text-slate-800 dark:text-white truncate tracking-tight uppercase group-hover:text-amber-500 transition-colors">{course.title}</h3>
-                <div className="text-[10px] text-slate-400 mt-2 flex flex-wrap items-center gap-4 font-black uppercase tracking-widest">
-                  <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md">ID: {course._id.slice(-6)}</span>
-                  <span className="flex items-center gap-1.5"><FiAward className="text-amber-500" /> {course.level}</span>
-                  <span className="flex items-center gap-1.5"><FiLayers className="text-indigo-500" /> {course.courseType}</span>
+                </div>
+                <div className="text-right flex-shrink-0">
+                  <p className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>৳{(course.price || 0).toLocaleString()}</p>
+                  <span className={`text-xs px-2 py-0.5 rounded ${course.status === 'published' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>{course.status}</span>
+                </div>
+                <div className="flex gap-2">
+                  <Link href={`/dashboard/admin/course/modules/${course._id}`} className={`p-2 rounded-md transition-all ${isDark ? 'bg-slate-700 text-indigo-400 hover:bg-indigo-600 hover:text-white' : 'bg-gray-100 text-indigo-600 hover:bg-indigo-600 hover:text-white'}`}>
+                    <FiLayers size={16} />
+                  </Link>
+                  <Link href={`/dashboard/admin/course/edit/${course._id}`} className={`p-2 rounded-md transition-all ${isDark ? 'bg-slate-700 text-slate-300 hover:bg-slate-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                    <FiEdit2 size={16} />
+                  </Link>
+                  <button onClick={() => handleDelete(course._id)} className="p-2 bg-red-500/10 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-all">
+                    <FiTrash2 size={16} />
+                  </button>
                 </div>
               </div>
-              <div className="text-left md:text-right shrink-0 px-6 md:border-l border-slate-100 dark:border-slate-800">
-                <p className="text-lg font-black text-slate-900 dark:text-white tracking-tighter leading-none">৳{(course.price || 0).toLocaleString()}</p>
-                <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mt-2">{course.totalEnrollments || 0} ENROLLED</p>
-              </div>
-              <div className="flex gap-2">
-                <Link href={`/dashboard/admin/course/modules/${course._id}`} className="p-3.5 bg-white dark:bg-slate-800 text-indigo-500 hover:bg-indigo-600 hover:text-white rounded-xl border border-slate-100 dark:border-slate-700 transition-all shadow-sm active:scale-95" title="Content Structure">
-                  <FiLayers size={18} />
-                </Link>
-                <Link href={`/dashboard/admin/course/edit/${course._id}`} className="p-3.5 bg-white dark:bg-slate-800 text-slate-400 hover:bg-slate-900 hover:text-white rounded-xl border border-slate-100 dark:border-slate-700 transition-all shadow-sm active:scale-95" title="Modify Series">
-                  <FiEdit2 size={18} />
-                </Link>
-                <button onClick={() => handleDelete(course._id)} className="p-3.5 bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white rounded-xl transition-all shadow-sm active:scale-95">
-                  <FiTrash2 size={18} />
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

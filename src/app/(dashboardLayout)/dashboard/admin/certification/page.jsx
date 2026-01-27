@@ -1,21 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  FiSearch,
-  FiPlus,
-  FiEdit2,
-  FiTrash2,
-  FiEye,
-  FiFilter,
-  FiChevronDown,
-  FiDownload,
-} from 'react-icons/fi';
+import { FiSearch, FiPlus, FiEdit2, FiTrash2, FiEye, FiDownload, FiAward } from 'react-icons/fi';
+import { useTheme } from '@/providers/ThemeProvider';
 
 export default function CertificationsPage() {
+  const { isDark } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Sample data - replace with real data from your API
   const certifications = [
     {
       id: 1,
@@ -74,150 +66,166 @@ export default function CertificationsPage() {
     },
   ];
 
-  const getStatusColor = (status) => {
+  const filteredCertifications = certifications.filter(cert =>
+    cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cert.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cert.course.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const getStatusStyle = (status) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-50 text-green-700 border border-green-200';
+        return 'bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400';
       case 'Expiring Soon':
-        return 'bg-yellow-50 text-yellow-700 border border-yellow-200';
+        return 'bg-yellow-50 text-yellow-600 dark:bg-yellow-500/10 dark:text-yellow-400';
       case 'Expired':
-        return 'bg-red-50 text-red-700 border border-red-200';
+        return 'bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400';
       default:
-        return 'bg-blue-50 text-blue-700 border border-blue-200';
+        return 'bg-gray-50 text-gray-600 dark:bg-gray-500/10 dark:text-gray-400';
     }
   };
 
+  const stats = {
+    total: certifications.length,
+    active: certifications.filter(c => c.status === 'Active').length,
+    expiringSoon: certifications.filter(c => c.status === 'Expiring Soon').length,
+    expired: certifications.filter(c => c.status === 'Expired').length,
+  };
+
   return (
-    <div className="p-6 lg:p-8">
+    <div className="p-5">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Certifications</h1>
-        <p className="text-slate-600 mt-2">Manage certification programs and credentials</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className={`p-2 rounded-md ${isDark ? 'bg-orange-500/10' : 'bg-orange-50'}`}>
+            <FiAward className="text-orange-500" size={20} />
+          </div>
+          <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Certifications
+          </h1>
+        </div>
+        <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+          Manage certification programs and credentials
+        </p>
       </div>
 
-      {/* Top Bar */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-        {/* Search */}
-        <div className="flex-1 relative">
-          <FiSearch className="absolute left-3 top-3.5 text-slate-400" size={20} />
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Total</p>
+          <p className={`text-2xl font-semibold mt-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{stats.total}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Active</p>
+          <p className="text-2xl font-semibold mt-1 text-green-500">{stats.active}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Expiring Soon</p>
+          <p className="text-2xl font-semibold mt-1 text-yellow-500">{stats.expiringSoon}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Expired</p>
+          <p className="text-2xl font-semibold mt-1 text-red-500">{stats.expired}</p>
+        </div>
+      </div>
+
+      {/* Search & Actions */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="relative flex-1">
+          <FiSearch className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-slate-400' : 'text-gray-400'}`} size={16} />
           <input
             type="text"
             placeholder="Search certifications..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition"
+            className={`w-full pl-9 pr-4 py-2 text-sm rounded-md border focus:outline-none focus:ring-1 focus:ring-orange-500 ${
+              isDark ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500' : 'bg-white border-gray-200 text-gray-900'
+            }`}
           />
         </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 transition">
-            <FiDownload size={18} />
+        <div className="flex gap-2">
+          <button className={`flex items-center gap-2 px-4 py-2 text-sm rounded-md border ${
+            isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-700' : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+          }`}>
+            <FiDownload size={16} />
             <span>Export</span>
           </button>
-
-          <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg btn-gradient text-white font-medium hover:shadow-lg transition">
-            <FiPlus size={20} />
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-md">
+            <FiPlus size={16} />
             <span>New Certificate</span>
           </button>
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Total Certifications</p>
-          <p className="text-2xl font-bold text-slate-900 mt-1">5</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Active</p>
-          <p className="text-2xl font-bold text-green-600 mt-1">3</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Expiring Soon</p>
-          <p className="text-2xl font-bold text-yellow-600 mt-1">1</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Expired</p>
-          <p className="text-2xl font-bold text-red-600 mt-1">1</p>
-        </div>
-      </div>
-
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-        {/* Table Header */}
+      <div className={`rounded-md border overflow-hidden ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full text-sm">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+              <tr className={isDark ? 'bg-slate-700/50' : 'bg-gray-50'}>
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Certificate Title
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Code
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                  Associated Course
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                  Course
                 </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-center text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Issued
                 </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-center text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Expires
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Status
                 </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-center text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {certifications.map((cert) => (
-                <tr
-                  key={cert.id}
-                  className="border-b border-slate-200 hover:bg-slate-50 transition"
-                >
-                  <td className="px-6 py-4">
+            <tbody className={`divide-y ${isDark ? 'divide-slate-700' : 'divide-gray-100'}`}>
+              {filteredCertifications.map((cert) => (
+                <tr key={cert.id} className={isDark ? 'hover:bg-slate-700/30' : 'hover:bg-gray-50'}>
+                  <td className="px-4 py-3">
                     <div>
-                      <p className="font-medium text-slate-900">{cert.title}</p>
-                      <p className="text-xs text-slate-500 mt-1">
+                      <p className={`font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{cert.title}</p>
+                      <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
                         {cert.students} students issued
                       </p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <code className="bg-slate-100 px-2 py-1 rounded text-sm text-slate-700">
+                  <td className="px-4 py-3">
+                    <code className={`px-2 py-1 rounded text-xs ${isDark ? 'bg-slate-700 text-slate-300' : 'bg-gray-100 text-gray-700'}`}>
                       {cert.code}
                     </code>
                   </td>
-                  <td className="px-6 py-4 text-slate-600">{cert.course}</td>
-                  <td className="px-6 py-4 text-center text-slate-600">
+                  <td className={`px-4 py-3 ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                    {cert.course}
+                  </td>
+                  <td className={`px-4 py-3 text-center ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                     {cert.issueDate}
                   </td>
-                  <td className="px-6 py-4 text-center text-slate-600">
+                  <td className={`px-4 py-3 text-center ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                     {cert.expiryDate}
                   </td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                        cert.status
-                      )}`}
-                    >
+                  <td className="px-4 py-3">
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${getStatusStyle(cert.status)}`}>
                       {cert.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-center gap-2">
-                      <button className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 transition">
-                        <FiEye size={18} />
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-center gap-1">
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-blue-400' : 'hover:bg-gray-100 text-gray-400 hover:text-blue-500'}`}>
+                        <FiEye size={16} />
                       </button>
-                      <button className="p-2 rounded-lg text-orange-600 hover:bg-orange-50 transition">
-                        <FiEdit2 size={18} />
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-orange-400' : 'hover:bg-gray-100 text-gray-400 hover:text-orange-500'}`}>
+                        <FiEdit2 size={16} />
                       </button>
-                      <button className="p-2 rounded-lg text-red-600 hover:bg-red-50 transition">
-                        <FiTrash2 size={18} />
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-red-400' : 'hover:bg-gray-100 text-gray-400 hover:text-red-500'}`}>
+                        <FiTrash2 size={16} />
                       </button>
                     </div>
                   </td>
@@ -228,11 +236,12 @@ export default function CertificationsPage() {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
-          <p className="text-sm text-slate-600">Showing 1 to 5 of 5 results</p>
+        <div className={`px-4 py-3 border-t ${isDark ? 'border-slate-700 bg-slate-700/30' : 'border-gray-100 bg-gray-50'}`}>
+          <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+            Showing {filteredCertifications.length} of {certifications.length} certifications
+          </p>
         </div>
       </div>
     </div>
   );
 }
-

@@ -1,23 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  FiSearch,
-  FiPlus,
-  FiEdit2,
-  FiTrash2,
-  FiEye,
-  FiFilter,
-  FiChevronDown,
-  FiDownload,
-  FiImage,
-} from 'react-icons/fi';
+import { FiSearch, FiPlus, FiTrash2, FiEye, FiDownload, FiImage, FiFilter, FiChevronDown } from 'react-icons/fi';
+import { useTheme } from '@/providers/ThemeProvider';
 
 export default function ImagesPage() {
+  const { isDark } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterCategory, setFilterCategory] = useState('all');
 
-  // Sample data - replace with real data from your API
   const images = [
     {
       id: 1,
@@ -28,7 +18,7 @@ export default function ImagesPage() {
       uploadDate: 'Dec 10, 2024',
       usedIn: 'Web Development Course',
       status: 'Active',
-      thumbnail: '#FF6B6B',
+      color: '#FF6B6B',
     },
     {
       id: 2,
@@ -39,7 +29,7 @@ export default function ImagesPage() {
       uploadDate: 'Dec 08, 2024',
       usedIn: 'John Doe Profile',
       status: 'Active',
-      thumbnail: '#4ECDC4',
+      color: '#4ECDC4',
     },
     {
       id: 3,
@@ -50,7 +40,7 @@ export default function ImagesPage() {
       uploadDate: 'Dec 05, 2024',
       usedIn: 'About Page Gallery',
       status: 'Active',
-      thumbnail: '#45B7D1',
+      color: '#45B7D1',
     },
     {
       id: 4,
@@ -61,7 +51,7 @@ export default function ImagesPage() {
       uploadDate: 'Nov 30, 2024',
       usedIn: 'Partners Section',
       status: 'Active',
-      thumbnail: '#FFA07A',
+      color: '#FFA07A',
     },
     {
       id: 5,
@@ -72,184 +62,186 @@ export default function ImagesPage() {
       uploadDate: 'Nov 25, 2024',
       usedIn: 'Success Stories Page',
       status: 'Inactive',
-      thumbnail: '#98D8C8',
+      color: '#98D8C8',
     },
   ];
 
-  const getStatusColor = (status) => {
+  const filteredImages = images.filter(img =>
+    img.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    img.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    img.fileName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const getStatusStyle = (status) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-50 text-green-700 border border-green-200';
+        return 'bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400';
       case 'Inactive':
-        return 'bg-gray-50 text-gray-700 border border-gray-200';
-      case 'Archived':
-        return 'bg-yellow-50 text-yellow-700 border border-yellow-200';
+        return 'bg-gray-50 text-gray-600 dark:bg-gray-500/10 dark:text-gray-400';
       default:
-        return 'bg-blue-50 text-blue-700 border border-blue-200';
+        return 'bg-gray-50 text-gray-600 dark:bg-gray-500/10 dark:text-gray-400';
     }
   };
 
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Course Banner': 'bg-blue-100 text-blue-700',
-      'Mentor Profile': 'bg-purple-100 text-purple-700',
-      'Gallery': 'bg-orange-100 text-orange-700',
-      'Logo': 'bg-pink-100 text-pink-700',
-      'Success Story': 'bg-green-100 text-green-700',
+  const getCategoryStyle = (category) => {
+    const styles = {
+      'Course Banner': 'bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400',
+      'Mentor Profile': 'bg-purple-50 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400',
+      'Gallery': 'bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400',
+      'Logo': 'bg-pink-50 text-pink-600 dark:bg-pink-500/10 dark:text-pink-400',
+      'Success Story': 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
     };
-    return colors[category] || 'bg-gray-100 text-gray-700';
+    return styles[category] || 'bg-gray-50 text-gray-600 dark:bg-gray-500/10 dark:text-gray-400';
   };
 
-  const formatFileSize = (size) => {
-    return size;
+  const stats = {
+    total: images.length,
+    storage: '128 MB',
+    active: images.filter(img => img.status === 'Active').length,
+    unused: images.filter(img => img.status === 'Inactive').length,
   };
 
   return (
-    <div className="p-6 lg:p-8">
+    <div className="p-5">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Images</h1>
-        <p className="text-slate-600 mt-2">Manage and organize course and content images</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className={`p-2 rounded-md ${isDark ? 'bg-blue-500/10' : 'bg-blue-50'}`}>
+            <FiImage className="text-blue-500" size={20} />
+          </div>
+          <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Images
+          </h1>
+        </div>
+        <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+          Manage and organize course and content images
+        </p>
       </div>
 
-      {/* Top Bar */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-        {/* Search */}
-        <div className="flex-1 relative">
-          <FiSearch className="absolute left-3 top-3.5 text-slate-400" size={20} />
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Total Images</p>
+          <p className={`text-2xl font-semibold mt-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{stats.total}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Storage Used</p>
+          <p className="text-2xl font-semibold mt-1 text-orange-500">{stats.storage}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Active</p>
+          <p className="text-2xl font-semibold mt-1 text-green-500">{stats.active}</p>
+        </div>
+        <div className={`p-4 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Unused</p>
+          <p className="text-2xl font-semibold mt-1 text-red-500">{stats.unused}</p>
+        </div>
+      </div>
+
+      {/* Search & Actions */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="relative flex-1">
+          <FiSearch className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-slate-400' : 'text-gray-400'}`} size={16} />
           <input
             type="text"
             placeholder="Search images..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition"
+            className={`w-full pl-9 pr-4 py-2 text-sm rounded-md border focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+              isDark ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500' : 'bg-white border-gray-200 text-gray-900'
+            }`}
           />
         </div>
-
-        {/* Filter & Add Button */}
-        <div className="flex gap-3">
-          <div className="relative">
-            <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 transition">
-              <FiFilter size={18} />
-              <span>Category</span>
-              <FiChevronDown size={16} />
-            </button>
-          </div>
-
-          <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg btn-gradient text-white font-medium hover:shadow-lg transition">
-            <FiPlus size={20} />
+        <div className="flex gap-2">
+          <button className={`flex items-center gap-2 px-4 py-2 text-sm rounded-md border ${
+            isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-700' : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+          }`}>
+            <FiFilter size={16} />
+            <span>Category</span>
+            <FiChevronDown size={14} />
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
+            <FiPlus size={16} />
             <span>Upload Image</span>
           </button>
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Total Images</p>
-          <p className="text-2xl font-bold text-slate-900 mt-1">45</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Storage Used</p>
-          <p className="text-2xl font-bold text-orange-600 mt-1">128 MB</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Active</p>
-          <p className="text-2xl font-bold text-green-600 mt-1">42</p>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-4">
-          <p className="text-slate-600 text-sm">Unused</p>
-          <p className="text-2xl font-bold text-red-600 mt-1">3</p>
-        </div>
-      </div>
-
       {/* Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-        {/* Table Header */}
+      <div className={`rounded-md border overflow-hidden ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full text-sm">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+              <tr className={isDark ? 'bg-slate-700/50' : 'bg-gray-50'}>
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Image
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   File Info
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Category
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Used In
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Uploaded
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-left text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Status
                 </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">
+                <th className={`px-4 py-3 text-center text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {images.map((image) => (
-                <tr
-                  key={image.id}
-                  className="border-b border-slate-200 hover:bg-slate-50 transition"
-                >
-                  <td className="px-6 py-4">
+            <tbody className={`divide-y ${isDark ? 'divide-slate-700' : 'divide-gray-100'}`}>
+              {filteredImages.map((image) => (
+                <tr key={image.id} className={isDark ? 'hover:bg-slate-700/30' : 'hover:bg-gray-50'}>
+                  <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center text-white"
-                        style={{ backgroundColor: image.thumbnail }}
+                        className="w-10 h-10 rounded-md flex items-center justify-center text-white"
+                        style={{ backgroundColor: image.color }}
                       >
-                        <FiImage size={20} />
+                        <FiImage size={16} />
                       </div>
-                      <p className="font-medium text-slate-900">{image.name}</p>
+                      <p className={`font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{image.name}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-4 py-3">
                     <div>
-                      <p className="text-sm text-slate-900">{image.fileName}</p>
-                      <p className="text-xs text-slate-500 mt-1">{image.size}</p>
+                      <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-gray-900'}`}>{image.fileName}</p>
+                      <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{image.size}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-                        image.category
-                      )}`}
-                    >
+                  <td className="px-4 py-3">
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${getCategoryStyle(image.category)}`}>
                       {image.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-slate-600 text-sm">
+                  <td className={`px-4 py-3 text-sm ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                     {image.usedIn}
                   </td>
-                  <td className="px-6 py-4 text-slate-600">
+                  <td className={`px-4 py-3 text-sm ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
                     {image.uploadDate}
                   </td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                        image.status
-                      )}`}
-                    >
+                  <td className="px-4 py-3">
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${getStatusStyle(image.status)}`}>
                       {image.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-center gap-2">
-                      <button className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 transition">
-                        <FiEye size={18} />
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-center gap-1">
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-blue-400' : 'hover:bg-gray-100 text-gray-400 hover:text-blue-500'}`}>
+                        <FiEye size={16} />
                       </button>
-                      <button className="p-2 rounded-lg text-orange-600 hover:bg-orange-50 transition">
-                        <FiDownload size={18} />
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-orange-400' : 'hover:bg-gray-100 text-gray-400 hover:text-orange-500'}`}>
+                        <FiDownload size={16} />
                       </button>
-                      <button className="p-2 rounded-lg text-red-600 hover:bg-red-50 transition">
-                        <FiTrash2 size={18} />
+                      <button className={`p-1.5 rounded-md ${isDark ? 'hover:bg-slate-700 text-slate-400 hover:text-red-400' : 'hover:bg-gray-100 text-gray-400 hover:text-red-500'}`}>
+                        <FiTrash2 size={16} />
                       </button>
                     </div>
                   </td>
@@ -260,11 +252,12 @@ export default function ImagesPage() {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
-          <p className="text-sm text-slate-600">Showing 1 to 5 of 45 results</p>
+        <div className={`px-4 py-3 border-t ${isDark ? 'border-slate-700 bg-slate-700/30' : 'border-gray-100 bg-gray-50'}`}>
+          <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+            Showing {filteredImages.length} of {images.length} images
+          </p>
         </div>
       </div>
     </div>
   );
 }
-

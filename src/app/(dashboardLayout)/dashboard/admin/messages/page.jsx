@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FiMail, FiSearch, FiStar, FiTrash2, FiArchive, FiSend, FiInbox, FiEdit } from 'react-icons/fi';
-import { useTheme } from '@/providers/ThemeProvider';
+import { FiMail, FiStar, FiTrash2, FiArchive, FiSend, FiInbox, FiEdit } from 'react-icons/fi';
 
 const mockMessages = [
     { id: 1, from: 'John Doe', email: 'john@example.com', subject: 'Course Inquiry', preview: 'Hi, I wanted to ask about the Web Development course...', time: '2h ago', unread: true, starred: true },
@@ -12,12 +11,9 @@ const mockMessages = [
 ];
 
 export default function AdminMessagesPage() {
-    const { isDark } = useTheme();
     const [messages, setMessages] = useState(mockMessages);
     const [selectedMessage, setSelectedMessage] = useState(null);
     const [filter, setFilter] = useState('all');
-
-    const cardClass = `rounded-2xl border ${isDark ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white border-gray-200'}`;
 
     const filteredMessages = messages.filter(msg => {
         if (filter === 'unread') return msg.unread;
@@ -30,33 +26,26 @@ export default function AdminMessagesPage() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="p-4 md:p-6 space-y-6">
             {/* Header */}
-            <div className={`${cardClass} p-6`}>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E62D26] to-[#c41e18] flex items-center justify-center text-white shadow-lg">
-                            <FiMail size={28} />
-                        </div>
-                        <div>
-                            <h1 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>Messages</h1>
-                            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
-                                {messages.filter(m => m.unread).length} unread messages
-                            </p>
-                        </div>
-                    </div>
-                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#c41e18] text-white rounded-xl font-bold hover:shadow-lg transition-all">
-                        <FiEdit size={16} />
-                        Compose
-                    </button>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Messages</h1>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {messages.filter(m => m.unread).length} unread messages
+                    </p>
                 </div>
+                <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm font-medium transition-colors">
+                    <FiEdit size={16} />
+                    Compose
+                </button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Message List */}
-                <div className={`lg:col-span-1 ${cardClass} overflow-hidden`}>
+                <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-md border border-gray-200 dark:border-slate-700 overflow-hidden">
                     {/* Filters */}
-                    <div className={`p-4 border-b ${isDark ? 'border-slate-700' : 'border-gray-100'}`}>
+                    <div className="p-3 border-b border-gray-200 dark:border-slate-700">
                         <div className="flex gap-2">
                             {[
                                 { id: 'all', label: 'All', icon: FiInbox },
@@ -66,9 +55,9 @@ export default function AdminMessagesPage() {
                                 <button
                                     key={f.id}
                                     onClick={() => setFilter(f.id)}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filter === f.id
-                                        ? 'bg-[#E62D26] text-white'
-                                        : isDark ? 'bg-slate-700 text-slate-400 hover:bg-slate-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${filter === f.id
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-600'
                                         }`}
                                 >
                                     <f.icon size={12} />
@@ -78,37 +67,37 @@ export default function AdminMessagesPage() {
                         </div>
                     </div>
 
-                    {/* Messages */}
+                    {/* Messages List */}
                     <div className="divide-y divide-gray-100 dark:divide-slate-700 max-h-[500px] overflow-y-auto">
                         {filteredMessages.map(msg => (
                             <div
                                 key={msg.id}
                                 onClick={() => setSelectedMessage(msg)}
-                                className={`p-4 cursor-pointer transition-all ${selectedMessage?.id === msg.id
-                                    ? isDark ? 'bg-[#E62D26]/10' : 'bg-[#E62D26]/5'
-                                    : isDark ? 'hover:bg-slate-700/50' : 'hover:bg-gray-50'
-                                    } ${msg.unread ? 'font-semibold' : ''}`}
+                                className={`p-4 cursor-pointer transition-colors ${selectedMessage?.id === msg.id
+                                    ? 'bg-indigo-50 dark:bg-indigo-500/10'
+                                    : 'hover:bg-gray-50 dark:hover:bg-slate-700/50'
+                                    } ${msg.unread ? 'font-medium' : ''}`}
                             >
                                 <div className="flex items-start gap-3">
-                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white text-sm font-bold ${msg.unread
-                                        ? 'bg-gradient-to-br from-[#E62D26] to-[#c41e18]'
-                                        : isDark ? 'bg-slate-600' : 'bg-gray-300'
+                                    <div className={`w-9 h-9 rounded-md flex items-center justify-center text-white text-sm font-medium ${msg.unread
+                                        ? 'bg-indigo-600'
+                                        : 'bg-gray-300 dark:bg-slate-600'
                                         }`}>
                                         {msg.from[0]}
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center justify-between">
-                                            <p className={`text-sm truncate ${isDark ? 'text-white' : 'text-gray-800'}`}>{msg.from}</p>
-                                            <span className={`text-xs ${isDark ? 'text-slate-500' : 'text-gray-400'}`}>{msg.time}</span>
+                                            <p className="text-sm text-gray-900 dark:text-white truncate">{msg.from}</p>
+                                            <span className="text-xs text-gray-400">{msg.time}</span>
                                         </div>
-                                        <p className={`text-xs truncate ${isDark ? 'text-slate-400' : 'text-gray-600'}`}>{msg.subject}</p>
-                                        <p className={`text-xs truncate mt-1 ${isDark ? 'text-slate-500' : 'text-gray-400'}`}>{msg.preview}</p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400 truncate">{msg.subject}</p>
+                                        <p className="text-xs text-gray-400 truncate mt-1">{msg.preview}</p>
                                     </div>
                                     <button
                                         onClick={(e) => { e.stopPropagation(); toggleStar(msg.id); }}
-                                        className={msg.starred ? 'text-[#F79952]' : isDark ? 'text-slate-600' : 'text-gray-300'}
+                                        className={msg.starred ? 'text-amber-500' : 'text-gray-300 dark:text-slate-600'}
                                     >
-                                        <FiStar size={16} fill={msg.starred ? 'currentColor' : 'none'} />
+                                        <FiStar size={14} fill={msg.starred ? 'currentColor' : 'none'} />
                                     </button>
                                 </div>
                             </div>
@@ -117,28 +106,28 @@ export default function AdminMessagesPage() {
                 </div>
 
                 {/* Message Detail */}
-                <div className={`lg:col-span-2 ${cardClass} p-6`}>
+                <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-md border border-gray-200 dark:border-slate-700 p-5">
                     {selectedMessage ? (
                         <div>
-                            <div className="flex items-start justify-between mb-6">
+                            <div className="flex items-start justify-between mb-5">
                                 <div>
-                                    <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>{selectedMessage.subject}</h2>
-                                    <p className={`text-sm mt-1 ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+                                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{selectedMessage.subject}</h2>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                                         From: {selectedMessage.from} &lt;{selectedMessage.email}&gt;
                                     </p>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button className={`p-2 rounded-lg ${isDark ? 'bg-slate-700 text-slate-400 hover:text-white' : 'bg-gray-100 text-gray-500 hover:text-gray-800'}`}>
+                                    <button className="p-2 rounded-md bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
                                         <FiArchive size={16} />
                                     </button>
-                                    <button className={`p-2 rounded-lg ${isDark ? 'bg-slate-700 text-red-400 hover:bg-red-500/20' : 'bg-gray-100 text-red-500 hover:bg-red-50'}`}>
+                                    <button className="p-2 rounded-md bg-gray-100 dark:bg-slate-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
                                         <FiTrash2 size={16} />
                                     </button>
                                 </div>
                             </div>
 
-                            <div className={`p-5 rounded-xl mb-6 ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
-                                <p className={`leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                            <div className="p-4 rounded-md bg-gray-50 dark:bg-slate-700/50 mb-5">
+                                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {selectedMessage.preview}
                                     <br /><br />
                                     This is a sample message content. In a real application, this would show the full message body fetched from the backend API.
@@ -153,13 +142,10 @@ export default function AdminMessagesPage() {
                                 <textarea
                                     placeholder="Write your reply..."
                                     rows={4}
-                                    className={`w-full p-4 rounded-xl border resize-none ${isDark
-                                        ? 'bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500'
-                                        : 'bg-gray-50 border-gray-200 text-gray-800'
-                                        } focus:border-[#E62D26] outline-none`}
+                                    className="w-full p-4 rounded-md border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 resize-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none"
                                 />
                                 <div className="flex justify-end mt-3">
-                                    <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#E62D26] to-[#c41e18] text-white rounded-xl font-bold hover:shadow-lg transition-all">
+                                    <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm font-medium transition-colors">
                                         <FiSend size={16} />
                                         Send Reply
                                     </button>
@@ -169,10 +155,10 @@ export default function AdminMessagesPage() {
                     ) : (
                         <div className="h-full flex items-center justify-center py-20">
                             <div className="text-center">
-                                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
-                                    <FiMail size={32} className={isDark ? 'text-slate-500' : 'text-gray-400'} />
+                                <div className="w-16 h-16 rounded-md bg-gray-100 dark:bg-slate-700 flex items-center justify-center mx-auto mb-4">
+                                    <FiMail size={28} className="text-gray-400" />
                                 </div>
-                                <p className={`font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Select a message to read</p>
+                                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Select a message to read</p>
                             </div>
                         </div>
                     )}

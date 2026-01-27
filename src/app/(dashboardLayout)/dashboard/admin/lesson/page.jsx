@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
     FiPlay, FiPlus, FiSearch, FiEdit2, FiTrash2,
-    FiEye, FiClock, FiBook, FiFilter, FiMoreVertical,
-    FiVideo, FiRefreshCw, FiChevronLeft, FiChevronRight,
-    FiLayers, FiTrendingUp, FiCheckCircle, FiMonitor
+    FiClock, FiBook, FiRefreshCw, FiChevronLeft, FiChevronRight,
+    FiLayers, FiCheckCircle, FiX
 } from 'react-icons/fi';
-import { API_BASE_URL } from '@/config/api';
+import { API_URL } from '@/config/api';
 
 export default function LessonsPage() {
     const [lessons, setLessons] = useState([]);
@@ -21,7 +20,7 @@ export default function LessonsPage() {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const res = await fetch(`${API_BASE_URL}/lessons`, {
+            const res = await fetch(`${API_URL}/lessons`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -40,7 +39,7 @@ export default function LessonsPage() {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem('token');
-            await fetch(`${API_BASE_URL}/lessons/${deleteModal.id}`, {
+            await fetch(`${API_URL}/lessons/${deleteModal.id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -55,7 +54,7 @@ export default function LessonsPage() {
         lesson.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const itemsPerPage = 8;
+    const itemsPerPage = 10;
     const totalPages = Math.ceil(filteredLessons.length / itemsPerPage);
     const paginatedLessons = filteredLessons.slice(
         (currentPage - 1) * itemsPerPage,
@@ -72,274 +71,255 @@ export default function LessonsPage() {
     const formatDuration = (seconds) => {
         const hrs = Math.floor(seconds / 3600);
         const mins = Math.floor((seconds % 3600) / 60);
-        return hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m ${seconds % 60}s`;
+        const secs = seconds % 60;
+        return hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m ${secs}s`;
     };
 
     return (
-        <div className="p-4 md:p-8 space-y-10 min-h-screen bg-slate-50 dark:bg-slate-950">
-
-            {/* Dynamic Header */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 animate-in fade-in slide-in-from-top-4 duration-500">
-                <div className="flex items-center gap-5">
-                    <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-[1.5rem] flex items-center justify-center shadow-xl shadow-indigo-500/20 transform hover:rotate-6 transition-transform">
-                        <FiPlay className="text-white ml-1" size={32} fill="currentColor" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">Lesson Master</h1>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mt-1 flex items-center gap-2 italic">
-                            <span className="w-8 h-px bg-slate-200"></span> Orchestrating atomic content delivery
-                        </p>
-                    </div>
+        <div className="p-4 md:p-6 space-y-6">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Lessons</h1>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage all course lessons</p>
                 </div>
-
                 <div className="flex items-center gap-3">
                     <button
                         onClick={fetchLessons}
                         disabled={loading}
-                        className="p-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all shadow-sm active:scale-95"
+                        className="p-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                     >
-                        <FiRefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+                        <FiRefreshCw size={18} className={`text-gray-500 ${loading ? 'animate-spin' : ''}`} />
                     </button>
                     <Link href="/dashboard/admin/lesson/create">
-                        <button className="flex items-center gap-4 px-10 py-5 bg-slate-900 dark:bg-indigo-600 hover:scale-[1.02] text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-2xl shadow-indigo-500/10 active:scale-95 group">
-                            <FiPlus size={22} className="group-hover:rotate-90 transition-transform" />
-                            Deploy Content
+                        <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm font-medium transition-colors">
+                            <FiPlus size={18} />
+                            Add Lesson
                         </button>
                     </Link>
                 </div>
             </div>
 
-            {/* KPI Dashboard */}
+            {/* Stats Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-indigo-500/30 transition-all group">
-                    <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl flex items-center justify-center text-indigo-500 group-hover:scale-110 transition-transform">
-                            <FiPlay size={20} />
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-md border border-gray-200 dark:border-slate-700">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-indigo-50 dark:bg-indigo-500/10 rounded-md flex items-center justify-center">
+                            <FiPlay className="text-indigo-600 dark:text-indigo-400" size={18} />
                         </div>
-                        <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest leading-none">Total Units</span>
-                    </div>
-                    <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{stats.total}</p>
-                    <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                        <FiLayers className="text-indigo-400" /> Lesson nodes
+                        <div>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Total Lessons</p>
+                            <p className="text-lg font-semibold text-gray-900 dark:text-white">{stats.total}</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-emerald-500/30 transition-all group">
-                    <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
-                            <FiCheckCircle size={20} />
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-md border border-gray-200 dark:border-slate-700">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-500/10 rounded-md flex items-center justify-center">
+                            <FiCheckCircle className="text-emerald-600 dark:text-emerald-400" size={18} />
                         </div>
-                        <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest leading-none">Public Assets</span>
-                    </div>
-                    <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{stats.published}</p>
-                    <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                        <FiMonitor className="text-emerald-400" /> Active stream
+                        <div>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Published</p>
+                            <p className="text-lg font-semibold text-gray-900 dark:text-white">{stats.published}</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:border-amber-500/30 transition-all group">
-                    <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-amber-50 dark:bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                            <FiClock size={20} />
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-md border border-gray-200 dark:border-slate-700">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-amber-50 dark:bg-amber-500/10 rounded-md flex items-center justify-center">
+                            <FiClock className="text-amber-600 dark:text-amber-400" size={18} />
                         </div>
-                        <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest leading-none">Playback Time</span>
-                    </div>
-                    <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{formatDuration(stats.totalDuration)}</p>
-                    <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                        <FiTrendingUp className="text-amber-400" /> Cumulative time
+                        <div>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Total Duration</p>
+                            <p className="text-lg font-semibold text-gray-900 dark:text-white">{formatDuration(stats.totalDuration)}</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm transition-all">
-                    <div className="flex justify-between items-start mb-4">
-                        <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-slate-400">
-                            <FiFilter size={20} />
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-md border border-gray-200 dark:border-slate-700">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gray-50 dark:bg-slate-700 rounded-md flex items-center justify-center">
+                            <FiLayers className="text-gray-600 dark:text-gray-400" size={18} />
                         </div>
-                        <span className="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest leading-none">Staged</span>
-                    </div>
-                    <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{stats.draft}</p>
-                    <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter italic">
-                        Pending review
+                        <div>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Drafts</p>
+                            <p className="text-lg font-semibold text-gray-900 dark:text-white">{stats.draft}</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Central Control Space */}
-            <div className="space-y-6">
-                <div className="flex flex-col md:flex-row md:items-center gap-4 bg-white dark:bg-slate-900 p-5 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm">
-                    <div className="relative flex-1">
-                        <FiSearch className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                        <input
-                            type="text"
-                            placeholder="Filter content by title, module or course identifier..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-16 pr-8 py-5 rounded-3xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/10 outline-none transition-all placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm font-bold tracking-tight text-slate-900 dark:text-white"
-                        />
-                    </div>
+            {/* Search */}
+            <div className="bg-white dark:bg-slate-800 p-4 rounded-md border border-gray-200 dark:border-slate-700">
+                <div className="relative">
+                    <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <input
+                        type="text"
+                        placeholder="Search lessons..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-colors"
+                    />
                 </div>
+            </div>
 
-                {/* Table Visualization */}
-                <div className="bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-100 dark:border-slate-800 overflow-hidden shadow-2xl shadow-indigo-500/5 animate-in fade-in slide-in-from-bottom-6 duration-700">
-                    <div className="overflow-x-auto overflow-y-hidden">
-                        <table className="w-full border-collapse">
-                            <thead>
-                                <tr className="bg-slate-50/50 dark:bg-slate-900/50">
-                                    <th className="text-left px-10 py-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Operational Unit</th>
-                                    <th className="text-left px-8 py-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Architecture Path</th>
-                                    <th className="text-left px-8 py-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Metrics</th>
-                                    <th className="text-left px-8 py-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Integrity</th>
-                                    <th className="text-right px-10 py-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Command Center</th>
+            {/* Table */}
+            <div className="bg-white dark:bg-slate-800 rounded-md border border-gray-200 dark:border-slate-700 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-gray-50 dark:bg-slate-700/50 border-b border-gray-200 dark:border-slate-700">
+                            <tr>
+                                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Lesson</th>
+                                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Course / Module</th>
+                                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Duration</th>
+                                <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
+                                <th className="text-right px-4 py-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
+                            {loading ? (
+                                <tr>
+                                    <td colSpan={5} className="px-4 py-12 text-center">
+                                        <FiRefreshCw className="animate-spin mx-auto mb-2 text-indigo-500" size={24} />
+                                        <p className="text-sm text-gray-500">Loading lessons...</p>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
-                                {loading ? (
-                                    <tr>
-                                        <td colSpan={5} className="px-10 py-24 text-center">
-                                            <div className="flex flex-col items-center gap-4">
-                                                <FiRefreshCw className="animate-spin text-indigo-500" size={32} />
-                                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Compiling content nodes...</p>
+                            ) : paginatedLessons.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} className="px-4 py-12 text-center text-gray-500">
+                                        <FiPlay className="mx-auto mb-2 text-gray-300" size={32} />
+                                        <p className="text-sm">No lessons found</p>
+                                    </td>
+                                </tr>
+                            ) : (
+                                paginatedLessons.map((lesson) => (
+                                    <tr key={lesson._id} className="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-md bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center">
+                                                    <FiPlay size={16} className={lesson.isPublished ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-400'} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-sm font-medium text-gray-900 dark:text-white">{lesson.title}</h3>
+                                                    <p className="text-xs text-gray-500 truncate max-w-[200px]">{lesson.description?.slice(0, 50) || 'No description'}...</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="space-y-1">
+                                                <div className="flex items-center gap-2">
+                                                    <FiBook className="text-indigo-500" size={12} />
+                                                    <span className="text-sm text-gray-700 dark:text-gray-300">{lesson.course?.title || 'No course'}</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <FiLayers className="text-gray-400" size={12} />
+                                                    <span className="text-xs text-gray-500">{lesson.module?.title || 'No module'}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                                <FiClock size={14} />
+                                                <span className="text-sm">{lesson.videoDuration ? formatDuration(lesson.videoDuration) : '0m 0s'}</span>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ${lesson.isPublished
+                                                ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                                                : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400'
+                                                }`}>
+                                                <span className={`w-1.5 h-1.5 rounded-full ${lesson.isPublished ? 'bg-emerald-500' : 'bg-gray-400'}`}></span>
+                                                {lesson.isPublished ? 'Published' : 'Draft'}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <Link
+                                                    href={`/dashboard/admin/lesson/edit/${lesson._id}`}
+                                                    className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-500 hover:text-indigo-600 transition-colors"
+                                                >
+                                                    <FiEdit2 size={16} />
+                                                </Link>
+                                                <button
+                                                    onClick={() => setDeleteModal({ show: true, id: lesson._id, title: lesson.title })}
+                                                    className="p-2 rounded-md hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-500 hover:text-red-600 transition-colors"
+                                                >
+                                                    <FiTrash2 size={16} />
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
-                                ) : paginatedLessons.length === 0 ? (
-                                    <tr>
-                                        <td colSpan={5} className="px-10 py-32 text-center text-slate-300">
-                                            <div className="flex flex-col items-center gap-4 grayscale opacity-40">
-                                                <FiPlay size={48} />
-                                                <p className="text-sm font-black uppercase tracking-widest">No matching assets in the current buffer</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ) : (
-                                    paginatedLessons.map((lesson, idx) => (
-                                        <tr key={lesson._id} className="group hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-all duration-300">
-                                            <td className="px-10 py-8">
-                                                <div className="flex items-center gap-6">
-                                                    <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border-2 border-slate-50 dark:border-slate-800 flex items-center justify-center text-slate-900 dark:text-white shadow-xl transition-all group-hover:scale-110 group-hover:rotate-3 group-hover:border-indigo-500/20">
-                                                        <FiPlay size={24} fill={lesson.isPublished ? 'currentColor' : 'none'} className={lesson.isPublished ? 'text-indigo-500 ml-1' : 'text-slate-300'} />
-                                                    </div>
-                                                    <div className="space-y-1.5">
-                                                        <h3 className="text-sm font-black text-slate-800 dark:text-white tracking-tight uppercase group-hover:text-indigo-500 transition-colors">{lesson.title}</h3>
-                                                        <p className="text-[10px] font-bold text-slate-400 truncate max-w-[200px] leading-relaxed uppercase tracking-widest italic">{lesson.description?.slice(0, 40) || 'NO_CONTEXT_PROVIDED'}...</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-8">
-                                                <div className="space-y-1.5 min-w-[150px]">
-                                                    <div className="flex items-center gap-2">
-                                                        <FiBook className="text-indigo-400 shrink-0" size={12} />
-                                                        <span className="text-[11px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight line-clamp-1">{lesson.course?.title || 'ORPHANED_CORE'}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 opacity-60">
-                                                        <FiLayers size={10} className="shrink-0" />
-                                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest line-clamp-1">{lesson.module?.title || 'UNMAPPED_NODE'}</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-8">
-                                                <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-xl text-slate-500 dark:text-slate-400 group-hover:text-amber-500 transition-colors">
-                                                    <FiClock size={14} />
-                                                    <span className="text-[11px] font-black uppercase tracking-tight">{lesson.videoDuration ? formatDuration(lesson.videoDuration) : '00:00:00'}</span>
-                                                </div>
-                                            </td>
-                                            <td className="px-8 py-8">
-                                                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-[0.2em] shadow-sm ${lesson.isPublished
-                                                    ? 'bg-emerald-500/10 text-emerald-500 dark:bg-emerald-500/20'
-                                                    : 'bg-slate-100 text-slate-400 dark:bg-slate-800'
-                                                    }`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${lesson.isPublished ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`}></span>
-                                                    {lesson.isPublished ? 'Verified' : 'Review'}
-                                                </span>
-                                            </td>
-                                            <td className="px-10 py-8 text-right">
-                                                <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0">
-                                                    <Link
-                                                        href={`/dashboard/admin/lesson/edit/${lesson._id}`}
-                                                        className="w-12 h-12 bg-white dark:bg-slate-800 hover:bg-slate-900 hover:text-white dark:hover:bg-indigo-600 border border-slate-100 dark:border-slate-800 rounded-xl flex items-center justify-center text-slate-400 transition-all shadow-sm active:scale-95"
-                                                    >
-                                                        <FiEdit2 size={18} />
-                                                    </Link>
-                                                    <button
-                                                        onClick={() => setDeleteModal({ show: true, id: lesson._id, title: lesson.title })}
-                                                        className="w-12 h-12 bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white border border-rose-500/20 rounded-xl flex items-center justify-center transition-all shadow-sm active:scale-95"
-                                                    >
-                                                        <FiTrash2 size={18} />
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {/* Pagination */}
-                    {totalPages > 1 && (
-                        <div className="flex flex-col sm:flex-row items-center justify-between px-10 py-10 border-t border-slate-50 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 gap-6">
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-                                Showing <span className="text-slate-900 dark:text-white">{(currentPage - 1) * itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredLessons.length)}</span> of {filteredLessons.length} units
-                            </p>
-                            <div className="flex items-center gap-3">
-                                <button
-                                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                                    disabled={currentPage === 1}
-                                    className="w-12 h-12 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 disabled:opacity-30 transition-all shadow-sm active:scale-90"
-                                >
-                                    <FiChevronLeft size={18} />
-                                </button>
-                                <div className="flex gap-2">
-                                    {[...Array(totalPages)].map((_, i) => (
-                                        <button
-                                            key={i}
-                                            onClick={() => setCurrentPage(i + 1)}
-                                            className={`w-12 h-12 rounded-2xl text-[10px] font-black transition-all ${currentPage === i + 1
-                                                ? 'bg-slate-900 dark:bg-indigo-600 text-white shadow-xl shadow-indigo-500/20'
-                                                : 'bg-white dark:bg-slate-800 text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-100 dark:border-slate-800'
-                                                }`}
-                                        >
-                                            {i + 1 < 10 ? `0${i + 1}` : i + 1}
-                                        </button>
-                                    ))}
-                                </div>
-                                <button
-                                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                                    disabled={currentPage === totalPages}
-                                    className="w-12 h-12 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-white dark:hover:bg-slate-800 disabled:opacity-30 transition-all shadow-sm active:scale-90"
-                                >
-                                    <FiChevronRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-                    )}
+                                ))
+                            )}
+                        </tbody>
+                    </table>
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-slate-700">
+                        <p className="text-sm text-gray-500">
+                            Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredLessons.length)} of {filteredLessons.length}
+                        </p>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                disabled={currentPage === 1}
+                                className="p-2 rounded-md border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors"
+                            >
+                                <FiChevronLeft size={16} />
+                            </button>
+                            {[...Array(Math.min(totalPages, 5))].map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setCurrentPage(i + 1)}
+                                    className={`w-8 h-8 rounded-md text-sm font-medium transition-colors ${currentPage === i + 1
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-600 dark:text-gray-400'
+                                        }`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                            <button
+                                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                disabled={currentPage === totalPages}
+                                className="p-2 rounded-md border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors"
+                            >
+                                <FiChevronRight size={16} />
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
-            {/* Terminal Delete Confirmation */}
+            {/* Delete Modal */}
             {deleteModal.show && (
-                <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-xl flex items-center justify-center z-[100] p-6 animate-in fade-in duration-300">
-                    <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 w-full max-w-lg shadow-[0_0_100px_rgba(0,0,0,0.4)] border border-white/10 animate-in zoom-in-95 duration-500">
-                        <div className="w-20 h-20 bg-rose-500/10 text-rose-500 rounded-3xl flex items-center justify-center mb-8 shadow-inner">
-                            <FiTrash2 size={40} />
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white dark:bg-slate-800 rounded-md p-6 w-full max-w-md border border-gray-200 dark:border-slate-700 shadow-lg">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 bg-red-50 dark:bg-red-500/10 rounded-md flex items-center justify-center">
+                                <FiTrash2 className="text-red-600" size={20} />
+                            </div>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Delete Lesson</h3>
                         </div>
-                        <h3 className="text-2xl font-black text-slate-800 dark:text-white tracking-tighter mb-4 uppercase">Irreversible Wipe?</h3>
-                        <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tight">
-                            Confirm destruction of identifying node <span className="text-rose-500 font-black italic">"{deleteModal.title}"</span>.
-                            All associated stream pointers will be dissolved.
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                            Are you sure you want to delete <span className="font-medium text-gray-900 dark:text-white">"{deleteModal.title}"</span>? This action cannot be undone.
                         </p>
-                        <div className="flex items-center gap-4 mt-10">
+                        <div className="flex items-center gap-3">
                             <button
                                 onClick={() => setDeleteModal({ show: false, id: null, title: '' })}
-                                className="flex-1 py-5 rounded-2xl border border-slate-100 dark:border-slate-800 font-black text-[10px] uppercase tracking-widest text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                                className="flex-1 px-4 py-2 border border-gray-200 dark:border-slate-700 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                             >
-                                Discard
+                                Cancel
                             </button>
                             <button
                                 onClick={handleDelete}
-                                className="flex-1 py-5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-black text-[10px] uppercase tracking-widest shadow-2xl shadow-rose-500/30 transition-all active:scale-95"
+                                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium transition-colors"
                             >
-                                Execute Purge
+                                Delete
                             </button>
                         </div>
                     </div>

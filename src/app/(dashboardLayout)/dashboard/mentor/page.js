@@ -14,6 +14,7 @@ import {
     FiLayers, FiCreditCard
 } from 'react-icons/fi';
 import { useTheme } from '@/providers/ThemeProvider';
+import { API_URL } from '@/config/api';
 
 // ==================== ANIMATED COUNTER ====================
 const AnimatedCounter = ({ value, duration = 2000, prefix = '', suffix = '' }) => {
@@ -112,13 +113,12 @@ export default function MentorDashboard() {
     });
 
     const fetchDashboardData = async () => {
-        const BASE_URL = 'https://hiictpark-backend.vercel.app/api';
         const token = localStorage.getItem('token');
 
         try {
             setRefreshing(true);
 
-            const summaryRes = await fetch(`${BASE_URL}/analytics/dashboard`, {
+            const summaryRes = await fetch(`${API_URL}/analytics/dashboard`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

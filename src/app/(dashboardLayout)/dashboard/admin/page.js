@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   FiUsers, FiBook, FiDollarSign, FiShoppingCart,
@@ -14,6 +14,7 @@ import {
   FiLayers, FiCreditCard
 } from 'react-icons/fi';
 import { useTheme } from '@/providers/ThemeProvider';
+import { API_URL } from '@/config/api';
 
 // ==================== ANIMATED COUNTER ====================
 const AnimatedCounter = ({ value, duration = 2000, prefix = '', suffix = '' }) => {
@@ -40,241 +41,71 @@ const AnimatedCounter = ({ value, duration = 2000, prefix = '', suffix = '' }) =
   return <span>{prefix}{count.toLocaleString()}{suffix}</span>;
 };
 
-// ==================== PREMIUM STATS CARD ====================
-const StatsCard = ({ title, value, change, changeType, icon: Icon, gradient, loading, subtitle }) => {
+// ==================== CLEAN STATS CARD ====================
+const StatsCard = ({ title, value, change, changeType, icon: Icon, color, loading, subtitle }) => {
   const { isDark } = useTheme();
   return (
-    <div className="relative group">
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className={`relative rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border ${isDark
-        ? 'bg-slate-800 border-slate-700 shadow-none'
-        : 'bg-white/80 backdrop-blur-sm border-gray-100/50 shadow-lg shadow-gray-200/50'
-        }`}>
-        <div className={`absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br ${gradient} opacity-10 rounded-full blur-2xl`} />
-
-        <div className="relative flex items-start justify-between">
-          <div className="flex-1">
-            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">{title}</p>
-            <p className={`text-3xl font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              {loading ? (
-                <span className={`inline-block w-24 h-9 animate-pulse rounded-lg ${isDark ? 'bg-slate-700' : 'bg-gradient-to-r from-slate-200 to-slate-100'}`} />
-              ) : (
-                <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
-              )}
-            </p>
-            {subtitle && <p className="text-xs text-slate-400 mb-2">{subtitle}</p>}
-            {change && (
-              <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${changeType === 'up'
-                ? (isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-50 text-emerald-600')
-                : (isDark ? 'bg-red-500/20 text-red-400' : 'bg-red-50 text-red-500')
-                }`}>
-                {changeType === 'up' ? <FiTrendingUp size={12} /> : <FiTrendingDown size={12} />}
-                <span>{change}</span>
-              </div>
+    <div className={`rounded-md p-5 transition-all duration-300 border ${isDark
+      ? 'bg-slate-800 border-slate-700 hover:border-slate-600'
+      : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm'
+      }`}>
+      <div className="flex items-start justify-between">
+        <div className="flex-1">
+          <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{title}</p>
+          <p className={`text-2xl font-semibold mt-2 ${isDark ? 'text-white' : 'text-gray-800'}`}>
+            {loading ? (
+              <span className={`inline-block w-20 h-7 animate-pulse rounded ${isDark ? 'bg-slate-700' : 'bg-gray-200'}`} />
+            ) : (
+              <AnimatedCounter value={value} prefix={title.includes('Revenue') ? '৳' : ''} />
             )}
-          </div>
-          <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-            <Icon className="text-2xl text-white" />
-          </div>
+          </p>
+          {subtitle && <p className={`text-xs mt-1 ${isDark ? 'text-slate-500' : 'text-gray-400'}`}>{subtitle}</p>}
+          {change && (
+            <div className={`inline-flex items-center gap-1 mt-2 text-xs font-normal ${changeType === 'up' ? 'text-emerald-600' : 'text-red-500'}`}>
+              {changeType === 'up' ? <FiTrendingUp size={12} /> : <FiTrendingDown size={12} />}
+              <span>{change}</span>
+            </div>
+          )}
         </div>
-      </div>
-    </div>
-  );
-};
-
-
-// ==================== PROFESSIONAL AREA CHART ====================
-const AreaChart = ({ data, height = 250 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const maxValue = Math.max(...data.map(d => d.value), 1);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Calculate points for the curve
-  const getPoints = () => {
-    return data.map((d, i) => ({
-      x: (i / (data.length - 1)) * 100,
-      y: 100 - (d.value / maxValue) * 85
-    }));
-  };
-
-  // Generate smooth curve using cubic bezier
-  const generateCurvePath = () => {
-    const points = getPoints();
-    if (points.length < 2) return '';
-
-    let path = `M ${points[0].x} ${points[0].y}`;
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const current = points[i];
-      const next = points[i + 1];
-      const tension = 0.4;
-      const cp1x = current.x + (next.x - current.x) * tension;
-      const cp1y = current.y;
-      const cp2x = next.x - (next.x - current.x) * tension;
-      const cp2y = next.y;
-      path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${next.x} ${next.y}`;
-    }
-
-    return path;
-  };
-
-  // Area path (closed)
-  const generateAreaPath = () => {
-    const curvePath = generateCurvePath();
-    const points = getPoints();
-    return `${curvePath} L ${points[points.length - 1].x} 100 L ${points[0].x} 100 Z`;
-  };
-
-  return (
-    <div style={{ height }} className="w-full">
-      {/* Chart Container */}
-      <div className="relative h-full">
-        {/* Y-axis labels */}
-        <div className="absolute left-0 top-0 bottom-8 w-10 flex flex-col justify-between text-right pr-2">
-          {[10000, 7500, 5000, 2500, 0].map((val, i) => (
-            <span key={i} className="text-[11px] text-slate-400 font-medium leading-none">{val >= 1000 ? `${val / 1000}k` : val}</span>
-          ))}
+        <div className={`w-10 h-10 rounded-md ${color} flex items-center justify-center text-white`}>
+          <Icon size={18} />
         </div>
-
-        {/* Chart Area */}
-        <div className="absolute left-10 right-0 top-0 bottom-8">
-          {/* Grid Lines - subtle dashed */}
-          <div className="absolute inset-0 flex flex-col justify-between">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div key={i} className="border-b border-slate-100/80 border-dashed" style={{ height: 1 }} />
-            ))}
-          </div>
-
-          {/* SVG Chart */}
-          <svg
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full overflow-visible"
-          >
-            <defs>
-              <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="5%" stopColor="#6366F1" stopOpacity="0.2" />
-                <stop offset="95%" stopColor="#6366F1" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-
-            {/* Area Fill */}
-            <path
-              d={generateAreaPath()}
-              fill="url(#chartGradient)"
-              className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-            />
-
-            {/* Curve Line - thin and smooth */}
-            <path
-              d={generateCurvePath()}
-              fill="none"
-              stroke="#6366F1"
-              strokeWidth="0.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-            />
-          </svg>
-        </div>
-
-        {/* X-axis labels */}
-        <div className="absolute left-10 right-0 bottom-0 h-8 flex justify-between items-start pt-3">
-          {data.map((d, i) => (
-            <span key={i} className="text-[11px] text-slate-400 font-medium">{d.label}</span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-// ==================== DONUT CHART COMPONENT ====================
-const DonutChart = ({ data, size = 160 }) => {
-  const [animated, setAnimated] = useState(false);
-  const total = data.reduce((sum, d) => sum + d.value, 0);
-  const strokeWidth = 24;
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-
-  useEffect(() => {
-    setTimeout(() => setAnimated(true), 100);
-  }, []);
-
-  let currentOffset = 0;
-
-  return (
-    <div className="relative" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="transform -rotate-90">
-        {/* Background circle */}
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke="#f1f5f9"
-          strokeWidth={strokeWidth}
-        />
-
-        {/* Data segments */}
-        {data.map((segment, i) => {
-          const percentage = segment.value / total;
-          const segmentLength = percentage * circumference;
-          const offset = currentOffset;
-          currentOffset += segmentLength;
-
-          return (
-            <circle
-              key={i}
-              cx={size / 2}
-              cy={size / 2}
-              r={radius}
-              fill="none"
-              stroke={segment.color}
-              strokeWidth={strokeWidth}
-              strokeDasharray={`${animated ? segmentLength : 0} ${circumference}`}
-              strokeDashoffset={-offset}
-              strokeLinecap="round"
-              className="transition-all duration-1000 ease-out"
-              style={{ transitionDelay: `${i * 150}ms` }}
-            />
-          );
-        })}
-      </svg>
-
-      {/* Center text */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold text-slate-800">{total}</span>
-        <span className="text-xs text-slate-500">Total</span>
       </div>
     </div>
   );
 };
 
 // ==================== ACTIVITY ITEM ====================
-const ActivityItem = ({ icon: Icon, title, description, time, color, isNew }) => (
-  <div className={`flex items-start gap-4 p-4 rounded-xl transition-all duration-200 ${isNew ? 'bg-indigo-50/50' : 'hover:bg-slate-50'}`}>
-    <div
-      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-      style={{ background: `linear-gradient(135deg, ${color}20, ${color}10)` }}
-    >
-      <Icon className="text-lg" style={{ color }} />
-    </div>
-    <div className="flex-1 min-w-0">
-      <div className="flex items-center gap-2">
-        <p className="text-sm font-semibold text-slate-800">{title}</p>
-        {isNew && <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" />}
+const ActivityItem = ({ icon: Icon, title, description, time, color, isNew }) => {
+  const { isDark } = useTheme();
+  return (
+    <div className={`flex items-start gap-3 p-3 transition-all ${isNew ? (isDark ? 'bg-indigo-500/10' : 'bg-indigo-50') : ''}`}>
+      <div
+        className="w-9 h-9 rounded-md flex items-center justify-center shrink-0"
+        style={{ background: `${color}15` }}
+      >
+        <Icon className="text-sm" style={{ color }} />
       </div>
-      <p className="text-xs text-slate-500 truncate mt-0.5">{description}</p>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2">
+          <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-800'}`}>{title}</p>
+          {isNew && <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />}
+        </div>
+        <p className={`text-xs truncate mt-0.5 ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{description}</p>
+      </div>
+      <span className={`text-xs shrink-0 ${isDark ? 'text-slate-500' : 'text-gray-400'}`}>{time}</span>
     </div>
-    <span className="text-[10px] text-slate-400 shrink-0 font-medium">{time}</span>
-  </div>
-);
+  );
+};
+
+// ==================== HELPER FUNCTIONS ====================
+const getTimeAgo = (date) => {
+  const seconds = Math.floor((new Date() - date) / 1000);
+  if (seconds < 60) return 'Just now';
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+  return `${Math.floor(seconds / 86400)}d ago`;
+};
 
 // ==================== MAIN DASHBOARD ====================
 export default function AdminDashboard() {
@@ -306,43 +137,23 @@ export default function AdminDashboard() {
   });
   const [recentOrders, setRecentOrders] = useState([]);
   const [topCourses, setTopCourses] = useState([]);
-  const [revenueHistory, setRevenueHistory] = useState([]);
   const [recentActivities, setRecentActivities] = useState([]);
 
-  // Mock revenue data for area chart
-  const defaultRevenueData = [
-    { label: 'Jan', value: 32000 },
-    { label: 'Feb', value: 45000 },
-    { label: 'Mar', value: 38000 },
-    { label: 'Apr', value: 52000 },
-    { label: 'May', value: 48000 },
-    { label: 'Jun', value: 61000 },
-    { label: 'Jul', value: 55000 },
-    { label: 'Aug', value: 67000 },
-    { label: 'Sep', value: 58000 },
-    { label: 'Oct', value: 72000 },
-    { label: 'Nov', value: 68000 },
-    { label: 'Dec', value: 85000 },
-  ];
-
   const fetchDashboardData = async () => {
-    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://hiictpark-backend.vercel.app/api';
     const token = localStorage.getItem('token');
 
     try {
       setRefreshing(true);
 
-      const [summaryRes, topProductsRes, recentPurchasesRes, revenueRes] = await Promise.all([
-        fetch(`${BASE_URL}/analytics/dashboard`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch(`${BASE_URL}/analytics/top-products?limit=5`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch(`${BASE_URL}/analytics/recent-purchases?limit=5`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch(`${BASE_URL}/analytics/revenue`, { headers: { 'Authorization': `Bearer ${token}` } })
+      const [summaryRes, topProductsRes, recentPurchasesRes] = await Promise.all([
+        fetch(`${API_URL}/analytics/dashboard`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_URL}/analytics/top-products?limit=5`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_URL}/analytics/recent-purchases?limit=5`, { headers: { 'Authorization': `Bearer ${token}` } }),
       ]);
 
       const { data: summary } = await summaryRes.json();
       const { data: topProducts } = await topProductsRes.json();
       const { data: recentPurchases } = await recentPurchasesRes.json();
-      const { data: revData } = await revenueRes.json();
 
       setDashboardData({
         totalRevenue: summary?.totalRevenue || 0,
@@ -366,13 +177,6 @@ export default function AdminDashboard() {
         newUsersThisMonth: summary?.newUsersThisMonth || 0,
         totalLikes: summary?.totalLikes || 0,
       });
-
-      if (revData && revData.length > 0) {
-        setRevenueHistory(revData.map(d => ({
-          label: new Date(d.date).toLocaleDateString([], { month: 'short' }),
-          value: d.revenue
-        })));
-      }
 
       setTopCourses(topProducts || []);
 
@@ -417,13 +221,6 @@ export default function AdminDashboard() {
     fetchDashboardData();
   }, []);
 
-  // Platform distribution for donut chart
-  const platformData = [
-    { name: 'Courses', value: dashboardData.totalCourses || 3, color: '#6366F1' },
-    { name: 'Websites', value: dashboardData.totalWebsites || 5, color: '#10B981' },
-    { name: 'Software', value: dashboardData.totalSoftware || 4, color: '#F59E0B' },
-  ];
-
   // Stats cards data
   const mainStats = [
     {
@@ -433,7 +230,7 @@ export default function AdminDashboard() {
       change: '+15.2%',
       changeType: 'up',
       icon: FiHeart,
-      gradient: 'from-rose-500 to-pink-500',
+      color: 'bg-rose-500',
     },
     {
       title: 'Today Revenue',
@@ -442,16 +239,16 @@ export default function AdminDashboard() {
       change: '+8.5%',
       changeType: 'up',
       icon: FiDollarSign,
-      gradient: 'from-emerald-500 to-red-500',
+      color: 'bg-emerald-600',
     },
     {
-      title: 'This Month Revenue',
+      title: 'Monthly Revenue',
       value: dashboardData.monthlyRevenue,
-      subtitle: 'Monthly earnings',
+      subtitle: 'This month',
       change: '+18.2%',
       changeType: 'up',
       icon: FiTrendingUp,
-      gradient: 'from-amber-500 to-orange-500',
+      color: 'bg-amber-500',
     },
     {
       title: 'Total Orders',
@@ -460,60 +257,49 @@ export default function AdminDashboard() {
       change: '+24.5%',
       changeType: 'up',
       icon: FiPackage,
-      gradient: 'from-violet-500 to-purple-500',
+      color: 'bg-indigo-600',
     },
   ];
 
   // Product stats for cards
   const productStats = [
-    { title: 'All Courses', value: dashboardData.totalCourses, icon: FiBook, gradient: 'from-indigo-500 to-purple-500', href: '/dashboard/admin/course' },
-    { title: 'All Softwares', value: dashboardData.totalSoftware, icon: FiCode, gradient: 'from-cyan-500 to-red-500', href: '/dashboard/admin/software' },
-    { title: 'All Websites', value: dashboardData.totalWebsites, icon: FiGlobe, gradient: 'from-pink-500 to-rose-500', href: '/dashboard/admin/website' },
-    { title: 'All Categories', value: dashboardData.categories, icon: FiLayers, gradient: 'from-amber-500 to-orange-500', href: '/dashboard/admin/category' },
+    { title: 'Courses', value: dashboardData.totalCourses, icon: FiBook, color: 'bg-indigo-600', href: '/dashboard/admin/course' },
+    { title: 'Software', value: dashboardData.totalSoftware, icon: FiCode, color: 'bg-cyan-600', href: '/dashboard/admin/software' },
+    { title: 'Websites', value: dashboardData.totalWebsites, icon: FiGlobe, color: 'bg-rose-500', href: '/dashboard/admin/website' },
+    { title: 'Categories', value: dashboardData.categories, icon: FiLayers, color: 'bg-amber-500', href: '/dashboard/admin/category' },
   ];
 
   const quickActions = [
-    { title: 'Add Course', href: '/dashboard/admin/course/create', icon: FiBook, gradient: 'from-amber-500 to-orange-500' },
-    { title: 'Add Website', href: '/dashboard/admin/website/create', icon: FiGlobe, gradient: 'from-pink-500 to-rose-500' },
-    { title: 'Add Software', href: '/dashboard/admin/software/create', icon: FiCode, gradient: 'from-cyan-500 to-red-500' },
-    { title: 'Add Category', href: '/dashboard/admin/category/create', icon: FiLayers, gradient: 'from-violet-500 to-purple-500' },
+    { title: 'Add Course', href: '/dashboard/admin/course/create', icon: FiBook, color: 'bg-amber-500' },
+    { title: 'Add Website', href: '/dashboard/admin/website/create', icon: FiGlobe, color: 'bg-rose-500' },
+    { title: 'Add Software', href: '/dashboard/admin/software/create', icon: FiCode, color: 'bg-cyan-600' },
+    { title: 'Add Category', href: '/dashboard/admin/category/create', icon: FiLayers, color: 'bg-indigo-600' },
   ];
-
-  // Helper function for time ago
-  const getTimeAgo = (date) => {
-    const seconds = Math.floor((new Date() - date) / 1000);
-    if (seconds < 60) return 'Just now';
-    if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`;
-    if (seconds < 86400) return `${Math.floor(seconds / 3600)} hour${Math.floor(seconds / 3600) > 1 ? 's' : ''} ago`;
-    return `${Math.floor(seconds / 86400)} day${Math.floor(seconds / 86400) > 1 ? 's' : ''} ago`;
-  };
 
   const getStatusStyle = (status) => {
     switch (status) {
-      case 'completed': return 'bg-gradient-to-r from-emerald-500 to-red-500 text-white';
-      case 'pending': return 'bg-gradient-to-r from-amber-500 to-orange-500 text-white';
-      case 'processing': return 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white';
-      default: return 'bg-slate-100 text-slate-700';
+      case 'completed': return 'bg-emerald-100 text-emerald-700';
+      case 'pending': return 'bg-amber-100 text-amber-700';
+      case 'processing': return 'bg-blue-100 text-blue-700';
+      default: return 'bg-gray-100 text-gray-600';
     }
   };
 
-  const chartData = revenueHistory.length > 0 ? revenueHistory : defaultRevenueData;
-
   return (
-    <div className="space-y-6">
-      {/* ==================== COMPACT HEADER BAR ==================== */}
-      <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border p-5 ${isDark
-        ? 'bg-slate-800 border-slate-700 shadow-none'
-        : 'bg-white border-slate-200/60 shadow-sm'
+    <div className="space-y-6 pb-8">
+      {/* ==================== HEADER ==================== */}
+      <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-md border p-4 ${isDark
+        ? 'bg-slate-800 border-slate-700'
+        : 'bg-white border-gray-200'
         }`}>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-            <FiGrid className="text-white text-xl" />
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-md bg-indigo-600 flex items-center justify-center">
+            <FiGrid className="text-white" size={18} />
           </div>
           <div>
-            <h1 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>Dashboard Overview</h1>
-            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              {hasMounted ? new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Loading date...'}
+            <h1 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Dashboard Overview</h1>
+            <p className={`text-sm font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+              {hasMounted ? new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : 'Loading...'}
             </p>
           </div>
         </div>
@@ -521,123 +307,26 @@ export default function AdminDashboard() {
           <button
             onClick={fetchDashboardData}
             disabled={refreshing}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all disabled:opacity-50 ${isDark
-              ? 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'
-              : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-normal transition-all disabled:opacity-50 border ${isDark
+              ? 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
+              : 'bg-white border-gray-200 hover:bg-gray-50 text-gray-600'
               }`}
           >
-            <FiRefreshCw size={16} className={refreshing ? 'animate-spin' : ''} />
-            {refreshing ? 'Syncing...' : 'Reload'}
+            <FiRefreshCw size={14} className={refreshing ? 'animate-spin' : ''} />
+            Refresh
           </button>
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-500/25 transition-all">
-            <FiDownload size={16} />
+          <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm font-normal transition-all">
+            <FiDownload size={14} />
             Export
           </button>
         </div>
       </div>
 
       {/* ==================== MAIN STATS ==================== */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {mainStats.map((stat) => (
           <StatsCard key={stat.title} {...stat} loading={loading} />
         ))}
-      </div>
-
-      {/* ==================== CHARTS SECTION ==================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Area Chart - Revenue Overview */}
-        <div className={`lg:col-span-2 rounded-2xl border overflow-hidden ${isDark
-          ? 'bg-slate-800 border-slate-700'
-          : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-          {/* Header */}
-          <div className={`flex items-center justify-between p-6 border-b ${isDark ? 'border-slate-700' : 'border-slate-100'}`}>
-            <div>
-              <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>Revenue Overview</h3>
-              <p className="text-sm text-slate-500">Monthly revenue and sales</p>
-            </div>
-            <div className="flex items-center gap-4 text-xs">
-              <div className="flex items-center gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-                <span className="text-slate-500">Revenue</span>
-              </div>
-              <div className="px-2 py-1 bg-emerald-500/10 text-emerald-600 rounded-full text-[10px] font-bold flex items-center gap-1">
-                <FiTrendingUp size={10} />
-                +18.2%
-              </div>
-            </div>
-          </div>
-
-          {/* Chart Area */}
-          <div className="p-6">
-            <div className="h-[280px] w-full">
-              <AreaChart
-                data={chartData}
-                height={280}
-              />
-            </div>
-
-            {/* Footer Stats */}
-            <div className={`flex items-center justify-between mt-6 pt-4 border-t ${isDark ? 'border-slate-700' : 'border-slate-100'}`}>
-              <div className="flex items-center gap-6">
-                <div className="flex flex-col">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Revenue</span>
-                  <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.totalRevenue.toLocaleString()}</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">This Month</span>
-                  <span className="text-sm font-bold text-emerald-600">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Today</p>
-                <p className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>৳{dashboardData.todayRevenue.toLocaleString()}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Donut Chart - Platform Distribution */}
-        <div className={`rounded-2xl border overflow-hidden ${isDark
-          ? 'bg-slate-800 border-slate-700'
-          : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-          {/* Header */}
-          <div className={`flex items-center gap-3 p-6 border-b ${isDark ? 'border-slate-700' : 'border-slate-100'}`}>
-            <div className={`p-2 ${isDark ? 'bg-slate-700' : 'bg-purple-50'} rounded-lg`}>
-              <FiLayers className="text-purple-500" size={18} />
-            </div>
-            <div>
-              <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>Platform Distribution</h3>
-              <p className="text-sm text-slate-500">Content by category</p>
-            </div>
-          </div>
-
-          {/* Chart Content */}
-          <div className="p-6">
-            <div className="flex flex-col items-center">
-              <DonutChart data={platformData} size={180} />
-
-              {/* Legend */}
-              <div className="mt-6 w-full space-y-3">
-                {platformData.map((item, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{item.name}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>{item.value}</span>
-                      <span className="text-xs text-slate-400">
-                        {Math.round((item.value / platformData.reduce((a, b) => a + b.value, 0)) * 100)}%
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* ==================== PRODUCT STATS ==================== */}
@@ -648,18 +337,20 @@ export default function AdminDashboard() {
             <Link
               key={stat.title}
               href={stat.href}
-              className="group bg-white rounded-2xl border border-slate-200/60 p-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden relative"
+              className={`rounded-md border p-4 transition-all ${isDark
+                ? 'bg-slate-800 border-slate-700 hover:border-slate-600'
+                : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                }`}
             >
-              <div className={`absolute -right-4 -top-4 w-20 h-20 bg-gradient-to-br ${stat.gradient} opacity-10 rounded-full blur-xl`} />
-              <div className="relative flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                  <Icon className="text-xl text-white" />
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-md ${stat.color} flex items-center justify-center`}>
+                  <Icon className="text-white" size={18} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-800">
+                  <p className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>
                     {loading ? '...' : stat.value.toLocaleString()}
                   </p>
-                  <p className="text-xs text-slate-500 font-medium">{stat.title}</p>
+                  <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{stat.title}</p>
                 </div>
               </div>
             </Link>
@@ -668,16 +359,16 @@ export default function AdminDashboard() {
       </div>
 
       {/* ==================== MIDDLE SECTION ==================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Quick Actions */}
-        <div className="p-6 rounded-2xl border transition-all hover:shadow-lg bg-white border-slate-200 shadow-sm">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 bg-amber-500/10 text-amber-600 rounded-2xl flex items-center justify-center">
-              <FiZap size={28} />
+        <div className={`p-5 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 bg-amber-100 text-amber-600 rounded-md flex items-center justify-center">
+              <FiZap size={18} />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-800">Quick Actions</h2>
-              <p className="text-sm text-slate-500">Manage your platform</p>
+              <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Quick Actions</h2>
+              <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Manage your platform</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -687,13 +378,15 @@ export default function AdminDashboard() {
                 <Link
                   key={action.title}
                   href={action.href}
-                  className="group relative flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-transparent hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className={`flex flex-col items-center gap-2 p-3 rounded-md border transition-all ${isDark
+                    ? 'border-slate-700 hover:border-slate-600 hover:bg-slate-700/50'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-0 group-hover:opacity-5 transition-opacity`} />
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${action.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all`}>
-                    <Icon className="text-xl text-white" />
+                  <div className={`w-9 h-9 rounded-md ${action.color} flex items-center justify-center`}>
+                    <Icon className="text-white" size={16} />
                   </div>
-                  <span className="text-xs font-semibold text-slate-700 text-center">{action.title}</span>
+                  <span className={`text-xs font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>{action.title}</span>
                 </Link>
               );
             })}
@@ -701,41 +394,40 @@ export default function AdminDashboard() {
         </div>
 
         {/* Top Content */}
-        <div className="p-6 rounded-2xl border transition-all hover:shadow-lg bg-white border-slate-200 shadow-sm">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center">
-                <FiAward size={28} />
+        <div className={`p-5 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 bg-emerald-100 text-emerald-600 rounded-md flex items-center justify-center">
+                <FiAward size={18} />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-slate-800">Top Content</h2>
-                <p className="text-sm text-slate-500">Best selling courses</p>
+                <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Top Content</h2>
+                <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Best selling</p>
               </div>
             </div>
-            <Link href="/dashboard/admin/course" className="px-3 py-1 bg-indigo-500/10 text-indigo-600 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-              View All <FiArrowRight size={10} />
+            <Link href="/dashboard/admin/course" className="text-xs font-normal text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+              View All <FiArrowRight size={12} />
             </Link>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {loading ? (
-              <div className="text-center py-8 text-slate-400">
-                <FiRefreshCw className="animate-spin mx-auto mb-2" size={24} />
-                Loading...
+              <div className={`text-center py-6 ${isDark ? 'text-slate-400' : 'text-gray-400'}`}>
+                <FiRefreshCw className="animate-spin mx-auto mb-2" size={20} />
+                <p className="text-sm">Loading...</p>
               </div>
             ) : topCourses.length === 0 ? (
-              <div className="text-center py-8 text-slate-400">No content found</div>
+              <div className={`text-center py-6 text-sm ${isDark ? 'text-slate-400' : 'text-gray-400'}`}>No content found</div>
             ) : (
               topCourses.slice(0, 4).map((course, idx) => (
-                <div key={course._id || idx} className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${['from-indigo-500 to-purple-500', 'from-amber-500 to-orange-500', 'from-emerald-500 to-red-500', 'from-pink-500 to-rose-500'][idx % 4]
-                    } flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
+                <div key={course._id || idx} className={`flex items-center gap-3 p-2 rounded-md transition-colors ${isDark ? 'hover:bg-slate-700/50' : 'hover:bg-gray-50'}`}>
+                  <div className={`w-8 h-8 rounded-md flex items-center justify-center text-white font-medium text-sm ${['bg-indigo-600', 'bg-amber-500', 'bg-emerald-600', 'bg-rose-500'][idx % 4]}`}>
                     {idx + 1}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-slate-800 truncate group-hover:text-indigo-600 transition-colors">{course.title}</h3>
-                    <p className="text-xs text-slate-500">{course.salesCount || 0} sales</p>
+                    <h3 className={`text-sm font-medium truncate ${isDark ? 'text-white' : 'text-gray-800'}`}>{course.title}</h3>
+                    <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>{course.salesCount || 0} sales</p>
                   </div>
-                  <span className="text-sm font-bold text-emerald-600">৳{course.price || 0}</span>
+                  <span className="text-sm font-medium text-emerald-600">৳{course.price || 0}</span>
                 </div>
               ))
             )}
@@ -743,82 +435,82 @@ export default function AdminDashboard() {
         </div>
 
         {/* Live Stats */}
-        <div className="p-6 rounded-2xl border transition-all hover:shadow-lg bg-white border-slate-200 shadow-sm">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 bg-red-500/10 text-red-600 rounded-2xl flex items-center justify-center">
-              <FiActivity size={28} />
+        <div className={`p-5 rounded-md border ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 bg-rose-100 text-rose-600 rounded-md flex items-center justify-center">
+              <FiActivity size={18} />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-800">Live Statistics</h2>
-              <p className="text-sm text-slate-500">Real-time platform data</p>
+              <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Live Statistics</h2>
+              <p className={`text-xs font-normal ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Real-time data</p>
             </div>
           </div>
 
-          <div className="space-y-3">
-            <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-sm text-slate-500">Today's Revenue</span>
-              <span className="text-lg font-bold text-slate-800">৳{dashboardData.todayRevenue.toLocaleString()}</span>
+          <div className="space-y-2">
+            <div className={`flex justify-between items-center p-3 rounded-md ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
+              <span className={`text-sm font-normal ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>Today's Revenue</span>
+              <span className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>৳{dashboardData.todayRevenue.toLocaleString()}</span>
             </div>
-            <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-sm text-slate-500">This Month</span>
-              <span className="text-lg font-bold text-slate-800">৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
+            <div className={`flex justify-between items-center p-3 rounded-md ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
+              <span className={`text-sm font-normal ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>This Month</span>
+              <span className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>৳{dashboardData.monthlyRevenue.toLocaleString()}</span>
             </div>
-            <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-sm text-slate-500">New Users</span>
-              <span className="text-lg font-bold text-emerald-600">+{dashboardData.newUsersThisMonth}</span>
+            <div className={`flex justify-between items-center p-3 rounded-md ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
+              <span className={`text-sm font-normal ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>New Users</span>
+              <span className="text-base font-semibold text-emerald-600">+{dashboardData.newUsersThisMonth}</span>
             </div>
-            <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-sm text-slate-500">Active Enrollments</span>
-              <span className="text-lg font-bold text-indigo-600">{dashboardData.activeEnrollments}</span>
+            <div className={`flex justify-between items-center p-3 rounded-md ${isDark ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
+              <span className={`text-sm font-normal ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>Active Enrollments</span>
+              <span className="text-base font-semibold text-indigo-600">{dashboardData.activeEnrollments}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* ==================== BOTTOM SECTION ==================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Recent Orders */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/60 overflow-hidden shadow-sm">
-          <div className="flex items-center justify-between p-6 border-b border-slate-100">
-            <h2 className="text-lg font-bold text-slate-800">Recent Orders</h2>
-            <Link href="/dashboard/admin/orders" className="text-sm text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1">
+        <div className={`lg:col-span-2 rounded-md border overflow-hidden ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className={`flex items-center justify-between p-4 border-b ${isDark ? 'border-slate-700' : 'border-gray-200'}`}>
+            <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Recent Orders</h2>
+            <Link href="/dashboard/admin/orders" className="text-sm font-normal text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
               View All <FiArrowRight size={14} />
             </Link>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50/80 text-xs text-slate-500 uppercase tracking-wider">
+              <thead className={`text-xs font-medium ${isDark ? 'bg-slate-700/50 text-slate-400' : 'bg-gray-50 text-gray-500'}`}>
                 <tr>
-                  <th className="text-left p-4 font-semibold">Order ID</th>
-                  <th className="text-left p-4 font-semibold">Customer</th>
-                  <th className="text-left p-4 font-semibold">Product</th>
-                  <th className="text-left p-4 font-semibold">Amount</th>
-                  <th className="text-left p-4 font-semibold">Status</th>
+                  <th className="text-left p-3">Order ID</th>
+                  <th className="text-left p-3">Customer</th>
+                  <th className="text-left p-3">Product</th>
+                  <th className="text-left p-3">Amount</th>
+                  <th className="text-left p-3">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className={`divide-y ${isDark ? 'divide-slate-700' : 'divide-gray-200'}`}>
                 {recentOrders.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="p-8 text-center text-slate-400">No orders found</td>
+                    <td colSpan={5} className={`p-6 text-center text-sm ${isDark ? 'text-slate-400' : 'text-gray-400'}`}>No orders found</td>
                   </tr>
                 ) : (
                   recentOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4">
-                        <span className="text-sm font-semibold text-slate-800">#{order.id}</span>
+                    <tr key={order.id} className={`transition-colors ${isDark ? 'hover:bg-slate-700/30' : 'hover:bg-gray-50'}`}>
+                      <td className="p-3">
+                        <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-800'}`}>#{order.id}</span>
                       </td>
-                      <td className="p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
+                      <td className="p-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 rounded-md bg-indigo-600 flex items-center justify-center text-white text-xs font-medium">
                             {order.customer?.charAt(0) || 'U'}
                           </div>
-                          <span className="text-sm text-slate-600">{order.customer}</span>
+                          <span className={`text-sm ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>{order.customer}</span>
                         </div>
                       </td>
-                      <td className="p-4 text-sm text-slate-600 max-w-[200px] truncate">{order.product}</td>
-                      <td className="p-4 text-sm font-bold text-emerald-600">?{order.amount?.toLocaleString()}</td>
-                      <td className="p-4">
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusStyle(order.status)}`}>
+                      <td className={`p-3 text-sm max-w-[150px] truncate ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>{order.product}</td>
+                      <td className="p-3 text-sm font-medium text-emerald-600">৳{order.amount?.toLocaleString()}</td>
+                      <td className="p-3">
+                        <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${getStatusStyle(order.status)}`}>
                           {order.status}
                         </span>
                       </td>
@@ -831,17 +523,17 @@ export default function AdminDashboard() {
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-white rounded-2xl border border-slate-200/60 overflow-hidden shadow-sm">
-          <div className="flex items-center justify-between p-6 border-b border-slate-100">
-            <h2 className="text-lg font-bold text-slate-800">Recent Activity</h2>
-            <Link href="/dashboard/admin/notifications" className="text-sm text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1">
+        <div className={`rounded-md border overflow-hidden ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+          <div className={`flex items-center justify-between p-4 border-b ${isDark ? 'border-slate-700' : 'border-gray-200'}`}>
+            <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Recent Activity</h2>
+            <Link href="/dashboard/admin/notifications" className="text-sm font-normal text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
               View All <FiArrowRight size={14} />
             </Link>
           </div>
-          <div className="divide-y divide-slate-100 max-h-[400px] overflow-y-auto">
+          <div className={`divide-y max-h-[350px] overflow-y-auto ${isDark ? 'divide-slate-700' : 'divide-gray-100'}`}>
             {recentActivities.length === 0 ? (
-              <div className="p-8 text-center text-slate-400">
-                <FiActivity className="mx-auto mb-2" size={24} />
+              <div className={`p-6 text-center ${isDark ? 'text-slate-400' : 'text-gray-400'}`}>
+                <FiActivity className="mx-auto mb-2" size={20} />
                 <p className="text-sm">No recent activities</p>
               </div>
             ) : (
@@ -852,6 +544,6 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
