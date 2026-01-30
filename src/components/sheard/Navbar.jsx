@@ -11,6 +11,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const pathname = usePathname();
   const { t, language, setLanguage } = useLanguage();
 
@@ -75,16 +76,20 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               {/* Language Switcher Dropdown */}
               <div className="relative group/lang">
-                <button className="flex items-center gap-3 px-4 py-2 rounded-xl border border-white/10 text-white hover:text-white hover:border-primary/50 transition-all bg-white/5 shadow-inner group">
+                <button
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  onBlur={() => setTimeout(() => setIsLangOpen(false), 200)}
+                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl border border-white/10 text-white hover:text-white hover:border-primary/50 transition-all bg-white/5 shadow-inner group"
+                >
                   <FiGlobe className="text-primary group-hover:rotate-180 transition-transform duration-700" size={18} />
-                  <span className="text-[13px] font-bold tracking-wide min-w-[60px] text-left">
-                    {language === 'en' ? 'English' : language === 'bn' ? 'বাংলা' : '中文'}
+                  <span className="text-[12px] sm:text-[13px] font-bold tracking-wide min-w-[30px] sm:min-w-[60px] text-left uppercase">
+                    {language}
                   </span>
-                  <FiChevronDown className="text-white/20 group-hover:text-primary transition-colors" size={14} />
+                  <FiChevronDown className={`text-white/20 group-hover:text-primary transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} size={14} />
                 </button>
 
                 {/* Dropdown Menu */}
-                <div className="absolute top-full right-0 mt-2 py-2 w-40 bg-[#1a0505] border border-white/10 rounded-xl opacity-0 invisible translate-y-2 group-hover/lang:opacity-100 group-hover/lang:visible group-hover/lang:translate-y-0 transition-all duration-300 shadow-2xl backdrop-blur-xl z-[60]">
+                <div className={`absolute top-full right-0 mt-2 py-2 w-40 bg-[#1a0505] border border-white/10 rounded-xl transition-all duration-300 shadow-2xl backdrop-blur-xl z-[60] ${isLangOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2 lg:group-hover/lang:opacity-100 lg:group-hover/lang:visible lg:group-hover/lang:translate-y-0'}`}>
                   {[
                     { code: 'en', label: 'English' },
                     { code: 'bn', label: 'বাংলা (Bengali)' },
@@ -92,7 +97,10 @@ const Navbar = () => {
                   ].map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => setLanguage(lang.code)}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsLangOpen(false);
+                      }}
                       className={`w-full px-4 py-2.5 text-left text-[13px] font-bold transition-colors flex items-center justify-between ${language === lang.code ? 'text-primary bg-white/5' : 'text-white/60 hover:text-white hover:bg-white/5'}`}
                     >
                       {lang.label}
