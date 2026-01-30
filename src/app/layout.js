@@ -8,14 +8,9 @@ import {
   Hind_Siliguri,
 } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/sheard/Navbar";
-import Footer from "@/components/sheard/Footer";
-import TopHeader from "@/components/sheard/TopHeader";
 import Preloader from "@/components/sheard/Preloader";
-
 import ReduxProviderWrapper from "@/components/ReduxProvaiderWrapper";
 import { LanguageProvider } from "@/context/LanguageContext";
-
 import { Toaster } from "react-hot-toast";
 
 // Google Fonts
@@ -58,11 +53,20 @@ const hindSiliguri = Hind_Siliguri({
 
 export const metadata = {
   title: {
-    template: "Hi Ict Park | %s",
-    default: "Hi Ict Park | Home",
+    template: "Dovasi | %s",
+    default: "Dovasi | Chinese Interpreter & Sourcing Partner in Bangladesh",
   },
   description:
-    "ejobs it � a leading IT training institute and digital solutions provider. We specialize in professional courses, ready-made software, and premium website templates to help you grow your skills and business.",
+    "Dovasi Co-Operation is your trusted partner for professional Chinese, Japanese, and Korean interpretation in Bangladesh. We provide onsite machinery installation support, industrial sourcing, and business visa assistance in Dhaka.",
+  keywords: [
+    "Chinese interpreter in Bangladesh",
+    "industrial interpreter Dhaka",
+    "product sourcing agent Bangladesh",
+    "machinery installation support",
+    "Chinese translation service Dhaka",
+    "Dovasi Co-Operation",
+    "E. Shahadat interpreter"
+  ],
   icons: {
     icon: "/images/ejobsitlogo.png",
     shortcut: "/images/ejobsitlogo.png",
@@ -82,7 +86,6 @@ export default function RootLayout({ children }) {
         <ReduxProviderWrapper>
           <LanguageProvider>
             <Toaster position="top-center" reverseOrder={false} />
-
             {children}
           </LanguageProvider>
         </ReduxProviderWrapper>

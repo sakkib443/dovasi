@@ -1,7 +1,7 @@
 const https = require('https');
 const { performance } = require('perf_hooks');
 
-const url = 'https://hiictpark-server.vercel.app/api/courses';
+const url = 'https://dovasi-server.vercel.app/api/courses';
 
 console.log(`Checking speed for ${url}...`);
 

@@ -1,89 +1,72 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { FiMail, FiPhone, FiClock, FiFacebook, FiLinkedin, FiInstagram } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
 const TopHeader = () => {
-  const [isDark, setIsDark] = useState(false);
   const { language } = useLanguage();
-
-  // Apply Bengali font class when language is Bengali
   const bengaliClass = language === "bn" ? "hind-siliguri" : "";
 
-  // Check for dark mode on mount
-  useEffect(() => {
-    const checkDarkMode = () => {
-      try {
-        if (typeof window !== 'undefined') {
-          const savedTheme = localStorage.getItem("theme");
-          setIsDark(savedTheme === "dark" || document.documentElement.classList.contains("dark"));
-        }
-      } catch (error) {
-        setIsDark(document.documentElement.classList.contains("dark"));
-      }
-    };
-
-    checkDarkMode();
-
-    // Listen for theme changes
-    const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className={`w-full py-2.5 text-sm font-medium font-outfit transition-all duration-300 ${isDark
-      ? 'bg-gray-700 border-b border-red-500/20'
-      : 'bg-red-600 text-white'
-      }`}>
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Left - Contact Info */}
-          <div className={`hidden md:flex items-center gap-4 ${isDark ? 'text-white/60' : 'text-white/80'}`}>
-            <a href="mailto:info@hiictpark.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              info@hiictpark.com
-            </a>
-            <span className="w-px h-3 bg-white/30"></span>
-            <a href="tel:+8801829818616" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-              </svg>
-              +880 1829-818616
-            </a>
+    <div className="w-full py-1.5 sm:py-2.5 bg-[#0f0303] text-white/60 border-b border-white/[0.03] relative z-[60] overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-20">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
+
+          {/* Left - Brand Message / Specialized Tag */}
+          <div className="flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10">
+              <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+              <span className={`text-[12px] font-normal uppercase tracking-[0.2em] text-primary ${bengaliClass}`}>
+                {language === 'bn' ? 'চীন-বাংলাদেশ ইন্ডাস্ট্রিয়াল ব্রিজ' : 'Industrial Bridge: China & Bangladesh'}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-5">
+              <a
+                href="mailto:eshahadat@gmail.com"
+                className="flex items-center gap-2 hover:text-white transition-colors text-[12px] font-normal tracking-tight"
+              >
+                <FiMail className="text-primary" size={12} />
+                <span>eshahadat@gmail.com</span>
+              </a>
+              <div className="w-px h-3 bg-white/10 hidden sm:block"></div>
+              <a
+                href="tel:+8801700630200"
+                className="flex items-center gap-2 hover:text-white transition-colors text-[12px] font-normal tracking-tight"
+              >
+                <FiPhone className="text-primary" size={12} />
+                <span>+88 01700 630200</span>
+              </a>
+            </div>
           </div>
 
-          {/* Center - Offer/Announcement */}
-          <div className="flex items-center gap-2">
-            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${isDark ? 'bg-red-500/30 text-red-400' : 'bg-white/20 text-white'
-              }`}>
-              🔥 Hot
-            </span>
-            <span className={`hidden sm:inline ${isDark ? 'text-white/70' : 'text-white/90'} ${bengaliClass}`}>
-              {language === 'bn'
-                ? <>🔥 সকল কোর্সে ২০% ছাড় | কোড: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>HIICT20</span></>
-                : <>Get 20% OFF on all courses | Use code: <span className={`font-bold ${isDark ? 'text-red-400' : 'text-yellow-300'}`}>HIICT20</span></>
-              }
-            </span>
+          {/* Right - Timing & Socials (Hidden on mobile if empty) */}
+          <div className="hidden sm:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-white/30">
+              <FiClock className="text-primary/40" size={12} />
+              <span>Mon - Sat: 09:00 - 20:00</span>
+            </div>
+
+            <div className="w-px h-3 bg-white/10 hidden md:block"></div>
+
+            <div className="flex items-center gap-4">
+              <a href="#" className="hover:text-primary transition-all duration-300 transform hover:scale-110">
+                <FiFacebook size={14} />
+              </a>
+              <a href="#" className="hover:text-primary transition-all duration-300 transform hover:scale-110">
+                <FiLinkedin size={14} />
+              </a>
+              <a href="#" className="hover:text-primary transition-all duration-300 transform hover:scale-110">
+                <FiInstagram size={14} />
+              </a>
+              <a href="#" className="hover:text-[#25D366] transition-all duration-300 transform hover:scale-110">
+                <FaWhatsapp size={15} />
+              </a>
+            </div>
           </div>
 
-          {/* Right - Social Links */}
-          <div className={`flex items-center gap-3 ${isDark ? 'text-white/60' : 'text-white/80'}`}>
-            <a href="https://www.facebook.com/hiictpark" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Facebook">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
-            </a>
-            <a href="https://twitter.com/hiictpark" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Twitter">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
-            </a>
-            <a href="https://www.instagram.com/hiictpark/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Instagram">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
-            </a>
-            <span className="w-px h-3 bg-white/30 hidden sm:block"></span>
-            <span className={`hidden sm:inline ${isDark ? 'text-white/40' : 'text-white/70'}`}>🇧🇩 Bangladesh</span>
-          </div>
         </div>
       </div>
     </div>

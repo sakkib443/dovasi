@@ -20,14 +20,13 @@ const Preloader = () => {
                 }
                 return prev + 1;
             });
-        }, 20); // Controls loading speed
+        }, 15);
 
         return () => clearInterval(timer);
     }, []);
 
     useEffect(() => {
         if (!isLoading) {
-            // Unlock scroll after animations complete
             setTimeout(() => {
                 document.body.style.overflow = "auto";
             }, 1000);
@@ -42,12 +41,11 @@ const Preloader = () => {
         }
     };
 
-    // Letter animation for "HIICTPARK"
     const container = {
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
-            transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+            transition: { staggerChildren: 0.1, delayChildren: 0.05 * i },
         }),
     };
 
@@ -55,20 +53,12 @@ const Preloader = () => {
         visible: {
             opacity: 1,
             y: 0,
-            transition: {
-                type: "spring",
-                damping: 12,
-                stiffness: 100,
-            },
+            transition: { type: "spring", damping: 12, stiffness: 100 },
         },
         hidden: {
             opacity: 0,
             y: 20,
-            transition: {
-                type: "spring",
-                damping: 12,
-                stiffness: 100,
-            },
+            transition: { type: "spring", damping: 12, stiffness: 100 },
         },
     };
 
@@ -80,57 +70,42 @@ const Preloader = () => {
                     variants={slideUp}
                     initial="initial"
                     exit="exit"
-                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-primary"
-                    style={{ backgroundColor: '#E62D26' }}
+                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-maroon"
                 >
                     <div className="flex flex-col items-center justify-center z-10 w-full px-4 text-white">
 
-                        {/* HIICTPARK Title - Animated Letter by Letter */}
+                        {/* Title - DOVASI */}
                         <motion.div
                             style={{ overflow: "hidden", display: "flex" }}
                             variants={container}
                             initial="hidden"
                             animate="visible"
-                            className="text-4xl md:text-7xl font-extrabold font-heading mb-8 tracking-[1rem] drop-shadow-xl"
+                            className="text-5xl md:text-8xl font-black mb-6 tracking-[1.5rem] md:tracking-[2.5rem] text-primary"
                         >
-                            {Array.from("HIICTPARK").map((letter, index) => (
+                            {Array.from("DOVASI").map((letter, index) => (
                                 <motion.span key={index} variants={child} className="inline-block relative">
                                     {letter}
-                                    {/* Subtle Glow Effect behind letters */}
-                                    <span className="absolute inset-0 blur-lg opacity-40 text-white animate-pulse">
-                                        {letter}
-                                    </span>
                                 </motion.span>
                             ))}
                         </motion.div>
 
                         {/* Counter Section */}
-                        <div className="flex items-baseline space-x-2 relative mt-2">
-                            <h2 className="text-6xl md:text-8xl font-bold font-mono tracking-tighter">
-                                {percent}
+                        <div className="flex items-center gap-3 relative mt-4">
+                            <span className="text-sm font-bold tracking-[0.4em] uppercase opacity-50">Translation Excellence</span>
+                            <div className="w-px h-8 bg-white/20 mx-4"></div>
+                            <h2 className="text-3xl md:text-5xl font-bold font-mono text-primary">
+                                {percent}%
                             </h2>
-                            <span className="text-3xl md:text-4xl font-bold text-white/90 absolute -right-8 md:-right-10 top-2 md:top-4">%</span>
                         </div>
 
-                        {/* Progress Bar with Glow */}
-                        <div className="w-64 md:w-96 h-2 bg-black/20 rounded-full mt-8 overflow-hidden backdrop-blur-sm border border-white/10">
+                        {/* Progress Bar */}
+                        <div className="w-48 md:w-80 h-[2px] bg-white/10 rounded-full mt-12 overflow-hidden">
                             <motion.div
-                                className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+                                className="h-full bg-primary"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${percent}%` }}
                             />
                         </div>
-
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="mt-6 text-white/90 font-semibold tracking-[0.4em] text-sm uppercase flex items-center gap-2"
-                        >
-                            <span className="w-2 h-2 bg-white rounded-full animate-ping"></span>
-                            Loading Experience
-                            <span className="w-2 h-2 bg-white rounded-full animate-ping"></span>
-                        </motion.div>
                     </div>
                 </motion.div>
             )}

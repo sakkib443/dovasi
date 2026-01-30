@@ -5,8 +5,9 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 // Import translations
 import en from "@/locales/en.json";
 import bn from "@/locales/bn.json";
+import zh from "@/locales/zh.json";
 
-const translations = { en, bn };
+const translations = { en, bn, zh };
 
 const LanguageContext = createContext();
 
@@ -20,12 +21,9 @@ export const LanguageProvider = ({ children }) => {
     try {
       if (typeof window !== 'undefined') {
         const savedLanguage = localStorage.getItem("language");
-        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "bn")) {
+        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "bn" || savedLanguage === "zh")) {
           setLanguageState(savedLanguage);
-          // Apply Bengali font on initial load if Bengali was saved
-          if (savedLanguage === "bn") {
-            document.body.classList.add("font-bengali");
-          }
+          // Apply font logic if needed
         }
       }
     } catch (error) {
@@ -40,8 +38,9 @@ export const LanguageProvider = ({ children }) => {
       if (typeof window !== 'undefined') {
         localStorage.setItem("language", lang);
         // Update document language attribute
-        document.documentElement.lang = lang === "bn" ? "bn" : "en";
-        // Apply Bengali font globally when Bengali is selected
+        document.documentElement.lang = lang === "zh" ? "zh" : (lang === "bn" ? "bn" : "en");
+
+        // Apply appropriate fonts
         if (lang === "bn") {
           document.body.classList.add("font-bengali");
         } else {
@@ -81,9 +80,9 @@ export const LanguageProvider = ({ children }) => {
     [language]
   );
 
-  // Toggle between languages
+  // Toggle between languages (English and Chinese as requested)
   const toggleLanguage = useCallback(() => {
-    setLanguage(language === "en" ? "bn" : "en");
+    setLanguage(language === "en" ? "zh" : "en");
   }, [language, setLanguage]);
 
   const value = {
@@ -93,6 +92,7 @@ export const LanguageProvider = ({ children }) => {
     toggleLanguage,
     isLoaded,
     isBengali: language === "bn",
+    isChinese: language === "zh",
   };
 
   return (

@@ -4,94 +4,105 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-    LuBrain,
-    LuPalette,
-    LuCode,
-    LuMegaphone,
-    LuFilm,
-    LuServer,
-    LuUsers,
-    LuGraduationCap,
-    LuChevronRight
+    LuLanguages,
+    LuFileText,
+    LuCpu,
+    LuShip,
+    LuLandmark,
+    LuBriefcase,
+    LuSearch,
+    LuMic,
+    LuChevronRight,
+    LuSettings,
+    LuUsers
 } from "react-icons/lu";
 import { useLanguage } from "@/context/LanguageContext";
 
 const TopCategories = () => {
-    const { language, t } = useLanguage();
-    const bengaliClass = language === "bn" ? "hind-siliguri" : "";
+    const { t } = useLanguage();
 
     const categories = [
         {
-            icon: LuBrain,
-            title: language === 'bn' ? t("home_sections.aiAutomation") : 'AI and Automation',
-            subtitle: language === 'bn' ? t("home_sections.shapeFuture") : 'Shape the Future',
-            slug: 'ai-automation',
-            iconBg: 'bg-gradient-to-br from-red-400 to-cyan-500',
-            borderColor: 'border-l-red-400',
+            icon: LuLanguages,
+            titleKey: 'chinese',
+            slug: 'chinese-interpreter',
+            iconBg: 'bg-gradient-to-br from-red-500 to-red-700',
+            borderColor: 'border-l-primary',
         },
         {
-            icon: LuPalette,
-            title: language === 'bn' ? t("home_sections.artDesign") : 'Art & Design',
-            subtitle: language === 'bn' ? t("home_sections.creativePlatform") : 'Platform for Creativity',
-            slug: 'art-design',
-            iconBg: 'bg-gradient-to-br from-orange-400 to-amber-500',
-            borderColor: 'border-l-orange-400',
-        },
-        {
-            icon: LuCode,
-            title: language === 'bn' ? t("home_sections.programming") : 'Programming',
-            subtitle: language === 'bn' ? t("home_sections.codeConfidence") : 'Code with Confidence',
-            slug: 'programming',
-            iconBg: 'bg-gradient-to-br from-cyan-400 to-blue-500',
-            borderColor: 'border-l-cyan-400',
-        },
-        {
-            icon: LuMegaphone,
-            title: language === 'bn' ? t("home_sections.digitalMarketing") : 'Digital Marketing',
-            subtitle: language === 'bn' ? t("home_sections.artInfluence") : 'The Art of Influence',
-            slug: 'digital-marketing',
-            iconBg: 'bg-gradient-to-br from-orange-400 to-red-500',
-            borderColor: 'border-l-orange-400',
-        },
-        {
-            icon: LuFilm,
-            title: language === 'bn' ? t("home_sections.mediaFilm") : 'Media & Film',
-            subtitle: language === 'bn' ? t("home_sections.storyMotion") : 'Storytelling in Motion',
-            slug: 'media-film',
-            iconBg: 'bg-gradient-to-br from-red-400 to-emerald-500',
-            borderColor: 'border-l-red-400',
-        },
-        {
-            icon: LuServer,
-            title: language === 'bn' ? t("home_sections.networkingServer") : 'Networking & Server',
-            subtitle: language === 'bn' ? t("home_sections.protectorIT") : 'Protector of IT Industry',
-            slug: 'networking-server',
-            iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
-            borderColor: 'border-l-amber-400',
-        },
-        {
-            icon: LuUsers,
-            title: language === 'bn' ? t("home_sections.management") : 'Management',
-            subtitle: language === 'bn' ? t("home_sections.leadStrategy") : 'Leading with Strategy',
-            slug: 'management',
-            iconBg: 'bg-gradient-to-br from-blue-400 to-indigo-500',
+            icon: LuMic,
+            titleKey: 'korean',
+            slug: 'korean-interpreter',
+            iconBg: 'bg-gradient-to-br from-blue-600 to-blue-800',
             borderColor: 'border-l-blue-400',
         },
         {
-            icon: LuGraduationCap,
-            title: language === 'bn' ? t("home_sections.diploma") : 'Diploma',
-            subtitle: language === 'bn' ? t("home_sections.skillUpStandOut") : 'Skill Up, Stand Out',
-            slug: 'diploma',
-            iconBg: 'bg-gradient-to-br from-pink-400 to-purple-500',
-            borderColor: 'border-l-pink-400',
+            icon: LuUsers,
+            titleKey: 'japanese',
+            slug: 'japanese-interpreter',
+            iconBg: 'bg-gradient-to-br from-red-600 to-red-800',
+            borderColor: 'border-l-red-400',
+        },
+        {
+            icon: LuShip,
+            titleKey: 'sourcing',
+            slug: 'sourcing-agent',
+            iconBg: 'bg-gradient-to-br from-amber-500 to-primary',
+            borderColor: 'border-l-amber-500',
+        },
+        {
+            icon: LuLandmark,
+            titleKey: 'setup',
+            slug: 'business-setup',
+            iconBg: 'bg-gradient-to-br from-emerald-600 to-emerald-800',
+            borderColor: 'border-l-emerald-500',
+        },
+        {
+            icon: LuFileText,
+            titleKey: 'visa',
+            slug: 'business-visa',
+            iconBg: 'bg-gradient-to-br from-indigo-500 to-indigo-700',
+            borderColor: 'border-l-indigo-400',
+        },
+        {
+            icon: LuSearch,
+            titleKey: 'audit',
+            slug: 'supplier-audit',
+            iconBg: 'bg-gradient-to-br from-gray-600 to-gray-800',
+            borderColor: 'border-l-gray-400',
+        },
+        {
+            icon: LuSettings,
+            titleKey: 'translation',
+            slug: 'technical-translation',
+            iconBg: 'bg-gradient-to-br from-orange-500 to-orange-700',
+            borderColor: 'border-l-orange-400',
         },
     ];
 
     return (
-        <section className="py-12 lg:py-16 bg-[#f8f9fa] dark:bg-[#0a0a0a]">
-            <div className="container mx-auto px-4 lg:px-16">
+        <section className="py-24 bg-maroon-dark">
+            <div className="container mx-auto px-4 lg:px-20">
+                {/* Section Header */}
+                <div className="mb-20 text-center">
+                    <motion.span
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="text-primary font-bold tracking-[0.3em] uppercase text-xs"
+                    >
+                        {t("top_categories.badge", "Our Expertise")}
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-2xl md:text-5xl font-extrabold text-white mt-4"
+                    >
+                        {t("top_categories.title1", "Linguistic & ")} <span className="text-primary italic">{t("top_categories.title2", "Industrial Solutions")}</span>
+                    </motion.h2>
+                </div>
+
                 {/* Categories Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {categories.map((category, index) => (
                         <motion.div
                             key={category.slug}
@@ -100,45 +111,29 @@ const TopCategories = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
                         >
-                            <div className={`bg-white dark:bg-gray-900 rounded-xl p-5 border-l-4 ${category.borderColor} shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col`}>
-                                {/* Top Section */}
-                                <div className="flex items-start justify-between mb-4">
-                                    <div className="flex items-center gap-4">
-                                        {/* Icon */}
-                                        <div className={`w-12 h-12 rounded-xl ${category.iconBg} flex items-center justify-center shadow-lg`}>
-                                            <category.icon className="w-6 h-6 text-white" />
-                                        </div>
-
-                                        {/* Text */}
-                                        <div>
-                                            <h3 className={`font-semibold text-gray-800 dark:text-white text-base ${bengaliClass}`}>
-                                                {category.title}
-                                            </h3>
-                                            <p className={`text-sm text-gray-500 dark:text-gray-400 ${bengaliClass}`}>
-                                                {category.subtitle}
-                                            </p>
-                                        </div>
+                            <div className={`group bg-maroon p-8 rounded-3xl border-l-4 ${category.borderColor} shadow-2xl hover:shadow-primary/10 border border-white/5 hover:border-white/10 transition-all duration-300 h-full flex flex-col`}>
+                                <div className="flex items-start justify-between mb-8">
+                                    <div className={`w-16 h-16 rounded-2xl ${category.iconBg} flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform`}>
+                                        <category.icon className="w-8 h-8 text-white" />
                                     </div>
-
-                                    {/* Arrow */}
-                                    <div className="text-gray-300 dark:text-gray-600">
-                                        <LuChevronRight className="w-5 h-5" />
+                                    <div className="text-white/20 group-hover:text-primary transition-colors">
+                                        <LuChevronRight className="w-8 h-8 transform group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
 
-                                {/* Bottom Links */}
-                                <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
+                                <h3 className="text-lg font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">
+                                    {t(`top_categories.items.${category.titleKey}.title`)}
+                                </h3>
+                                <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                                    {t(`top_categories.items.${category.titleKey}.subtitle`)}
+                                </p>
+
+                                <div className="pt-6 border-t border-white/5">
                                     <Link
-                                        href={`/courses?category=${category.slug}`}
-                                        className={`text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors ${bengaliClass}`}
+                                        href={`/services/${category.slug}`}
+                                        className="text-[10px] font-black text-primary uppercase tracking-[0.2em] group-hover:tracking-[0.3em] transition-all"
                                     >
-                                        {language === 'bn' ? t("home_sections.exploreCourses") : 'Explore courses'}
-                                    </Link>
-                                    <Link
-                                        href={`/courses?category=${category.slug}`}
-                                        className={`text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors ${bengaliClass}`}
-                                    >
-                                        {language === 'bn' ? t("home_sections.viewAll") : 'View All'}
+                                        {t("top_categories.learnMore", "Learn More Details")}
                                     </Link>
                                 </div>
                             </div>

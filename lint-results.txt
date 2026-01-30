@@ -1,0 +1,208 @@
+﻿
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\about\page.jsx
+  105:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\blogs\[slug]\page.jsx
+  281:41  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  281:56  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\clients\page.jsx
+  131:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\page.jsx
+  24:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  22 |
+  23 |   useEffect(() => {
+> 24 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  25 |
+  26 |     // Initialize Lenis Smooth Scroll - Only on desktop
+  27 |     if (window.innerWidth > 768) {  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\services\[slug]\page.jsx
+  36:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  34 |         const foundService = SERVICES_DATA.find(s => s.slug === slug);
+  35 |         if (foundService) {
+> 36 |             setService(foundService);
+     |             ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  37 |         } else {
+  38 |             // Uncomment to redirect if service not found
+  39 |             // router.push('/');  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\app\(mainLayout)\testimonials\page.jsx
+   80:123  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                 react/no-unescaped-entities
+  115:37   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                 react/no-unescaped-entities
+  115:58   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                 react/no-unescaped-entities
+  171:32   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                 react/no-unescaped-entities
+  177:29   error  Do not use an `<a>` element to navigate to `/services/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\Home\AboutTeamSection.jsx
+  74:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\Home\CaseStudySection.jsx
+  69:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\Home\Testimonials.jsx
+  72:33  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  72:54  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\HydrationGuard.jsx
+  8:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   6 |
+   7 |     useEffect(() => {
+>  8 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+   9 |     }, []);
+  10 |
+  11 |     if (!mounted) {  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\sheard\FloatingSeminarButton.jsx
+  17:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  15 |
+  16 |   useEffect(() => {
+> 17 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  18 |     const handleResize = () => {
+  19 |       // Treating devices < 1024px as requiring the mobile toggle behavior
+  20 |       setIsMobile(window.innerWidth < 1024);  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\sheard\Footer.jsx
+  40:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\sheard\Navbar.jsx
+   48:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  134:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\ui\BlizzardBackground.jsx
+  42:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  40 |         }));
+  41 |
+> 42 |         setSnowflakes([...farFlakes, ...midFlakes, ...nearFlakes]);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  43 |     }, []);
+  44 |
+  45 |     return (  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\ui\MouseCursorEffect.jsx
+  14:9  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  12 |
+  13 |     useEffect(() => {
+> 14 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  15 |         const checkMobile = () => {
+  16 |             if (typeof window !== 'undefined') {
+  17 |                 setIsMobile(window.innerWidth < 1024);  react-hooks/set-state-in-effect
+  54:8  warning  React Hook useEffect has a missing dependency: 'colors'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              react-hooks/exhaustive-deps
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\ui\SnowfallBackground.jsx
+  18:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  16 |             size: `${Math.random() * 4 + 2}px`,
+  17 |         }));
+> 18 |         setSnowflakes(flakes);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |     }, []);
+  20 |
+  21 |     return (  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\components\ui\WinterLandscape.jsx
+  20:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  18 |             sway: Math.random() * 20 - 10, // Random horizontal drift variation
+  19 |         }));
+> 20 |         setSnowflakes(flakes);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |     }, []);
+  22 |
+  23 |     return (  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\context\LanguageContext.jsx
+  20:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  18 |   // Load language preference from localStorage on mount
+  19 |   useEffect(() => {
+> 20 |     setIsLoaded(true);
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |     try {
+  22 |       if (typeof window !== 'undefined') {
+  23 |         const savedLanguage = localStorage.getItem("language");  react-hooks/set-state-in-effect
+
+F:\SAKIB\Web Development\Importent\dovasi\dovasi-frontend\src\providers\ThemeProvider.jsx
+  19:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  17 |     // Load theme from localStorage on mount
+  18 |     useEffect(() => {
+> 19 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  20 |         try {
+  21 |             if (typeof window !== 'undefined') {
+  22 |                 const savedTheme = localStorage.getItem('dashboard-theme') || 'light';  react-hooks/set-state-in-effect
+
+Ô£û 27 problems (19 errors, 8 warnings)
+

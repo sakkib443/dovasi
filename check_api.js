@@ -1,6 +1,6 @@
 const https = require('https');
 
-const url = 'https://hiictpark-backend.vercel.app/api/health';
+const url = 'https://dovasi-backend.vercel.app/api/health';
 
 console.log(`Checking ${url}...`);
 

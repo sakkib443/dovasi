@@ -3,14 +3,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { fetchCategories } from "@/redux/categorySlice";
 import Hero from "@/components/Home/Hero";
-import FeaturesBar from "@/components/Home/FeaturesBar";
 import TopCategories from "@/components/Home/TopCategories";
 import PopularCourse from "@/components/Home/PopularCourse";
+import CaseStudySection from "@/components/Home/CaseStudySection";
+import AboutTeamSection from "@/components/Home/AboutTeamSection";
 import Testimonials from "@/components/Home/Testimonials";
+import ContactSection from "@/components/Home/ContactSection";
+import QRCodeSection from "@/components/Home/QRCodeSection";
 import CTASection from "@/components/Home/CTASection";
 import { fetchCoursesData } from "@/redux/CourseSlice";
+import { fetchCategories } from "@/redux/categorySlice";
 import Lenis from 'lenis';
 
 const HomePage = () => {
@@ -23,14 +26,11 @@ const HomePage = () => {
     // Initialize Lenis Smooth Scroll - Only on desktop
     if (window.innerWidth > 768) {
       const lenis = new Lenis({
-        duration: 1.0,
+        duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         direction: 'vertical',
         gestureDirection: 'vertical',
         smooth: true,
-        mouseMultiplier: 0.8,
-        smoothTouch: false,
-        touchMultiplier: 2,
       });
 
       function raf(time) {
@@ -54,24 +54,41 @@ const HomePage = () => {
   }, [dispatch, mounted]);
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black selection:bg-red-500 selection:text-black font-poppins antialiased">
+    <div className="relative min-h-screen bg-maroon selection:bg-primary selection:text-maroon font-poppins antialiased overflow-x-hidden">
       <main className="relative">
-        {/* Hero Section */}
-        <section className="relative w-full overflow-hidden z-0 bg-white dark:bg-black">
-          <Hero />
-        </section>
+        <Hero />
 
+        {/* Expertise / Services */}
+        <div id="services">
+          <TopCategories />
+        </div>
 
+        {/* Founder & Team */}
+        <div id="about">
+          <AboutTeamSection />
+        </div>
 
-        {/* Top Categories */}
-        <TopCategories />
+        {/* Industrial Focus */}
+        <PopularCourse />
 
-        {/* Other Sections */}
-        <section className="relative z-10 bg-white dark:bg-[#020202]">
-          <PopularCourse />
+        {/* Portfolio / Recent Work */}
+        <div id="clients">
+          <CaseStudySection />
+        </div>
+
+        {/* Trust Factors */}
+        <div id="testimonials">
           <Testimonials />
-          <CTASection />
-        </section>
+        </div>
+
+        {/* Instant Connections / QR */}
+        <QRCodeSection />
+
+        {/* Lead Capture */}
+        <ContactSection />
+
+        {/* Final CTA Closer */}
+        <CTASection />
       </main>
     </div>
   );

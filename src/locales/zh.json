@@ -1,0 +1,271 @@
+{
+    "navbar": {
+        "home": "首页",
+        "about": "关于我",
+        "services": "业务范围",
+        "clients": "合作伙伴",
+        "testimonials": "客户评价",
+        "blog": "博客动态",
+        "contact": "联系我们",
+        "solutions": "解决方案",
+        "about_profile": "个人简介",
+        "about_stories": "成功案例",
+        "about_cert": "资质认证",
+        "services_interpreter": "翻译服务",
+        "services_sourcing": "采购代理",
+        "services_machinery": "机械安装",
+        "solutions_software": "软件开发",
+        "solutions_website": "网站建设",
+        "solutions_templates": "设计模板"
+    },
+    "hero": {
+        "badge": "孟加拉国值得信赖的合作伙伴",
+        "headline": "孟加拉国值得信赖的中文翻译及采购合作伙伴",
+        "subheadline": "现场翻译 | 工厂安装 | 产品采购 | 贸易支持",
+        "callNow": "立即致电",
+        "bookInterpreter": "预约翻译",
+        "whatsappChat": "WhatsApp 聊天",
+        "wechatMessenger": "微信联系",
+        "facebookMessenger": "Facebook 联系"
+    },
+    "aboutTeam": {
+        "badge": "专家推介",
+        "title1": "深耕专业语言服务",
+        "title2": "赋能商业增长",
+        "intro1": "我是 E. Shahadat，一名专业的中文翻译和采购专家。在孟加拉国工业领域拥有超过10年的经验，致力于消除语言障碍。",
+        "intro2": "凭借对中国文化的热爱和专业的培训，我带领一支资深翻译团队，为您的业务成功保驾护航。",
+        "cert1": "北京语言大学校友",
+        "cert1Desc": "认证翻译官",
+        "cert2": "三语专家",
+        "cert2Desc": "精通中、英、孟三语",
+        "downloadResume": "下载简历",
+        "linkedin": "领英主页",
+        "founderTitle": "创始人 & 首席翻译",
+        "teamTitle": "多语言团队",
+        "teamDesc": "提供日语、韩语和越南语专业口译服务。",
+        "viewPortfolio": "查看团队案例"
+    },
+    "services": {
+        "title": "我们的服务",
+        "subtitle": "为全球业务提供专业解决方案",
+        "onsite": "现场口译",
+        "onsiteDesc": "为商务会议和访问提供面对面的协助。",
+        "machinery": "机械安装支持",
+        "machineryDesc": "机械安装和技术培训协调。",
+        "sourcing": "产品采购",
+        "sourcingDesc": "直接从中国和孟加拉国制造商采购。",
+        "visa": "商务签证",
+        "visaDesc": "签证文件和流程的全面协助。",
+        "translation": "文件翻译",
+        "translationDesc": "合同、手册和法律文件的专业翻译。",
+        "industries": {
+            "title": "服务领域",
+            "subtitle": "各技术领域的专业知识",
+            "badge": "我们的工业布局",
+            "garments": "服装与纺织",
+            "garmentsDesc": "面料采购和服装机械安装的专业翻译。",
+            "construction": "建筑与基础设施",
+            "constructionDesc": "重型设备安装和桥梁建设项目现场支持。",
+            "electronics": "电子与技术",
+            "electronicsDesc": "移动和科技产品的技术手册翻译及软件本地化。",
+            "machinery": "机械与工程",
+            "machineryDesc": "工业数控机床和发电厂维护的专业翻译。",
+            "logistics": "物流与供应链",
+            "logisticsDesc": "弥合航运、仓储和海关文件中的语言鸿沟。",
+            "health": "医疗健康",
+            "healthDesc": "医疗设备培训及医疗咨询翻译服务。"
+        }
+    },
+    "portfolio": {
+        "badge": "项目案例",
+        "title": "近期项目实录",
+        "viewDetails": "查看详情",
+        "butterfly": "Butterfly 制造有限公司",
+        "butterflyDesc": "现场机械安装及技术车间翻译。",
+        "textile": "大型纺织中心",
+        "textileDesc": "工业机械采购及物流协调。",
+        "bridge": "桥梁建设",
+        "bridgeDesc": "高级别双边会议翻译。"
+    },
+    "testimonials": {
+        "title": "来自全球客户的",
+        "subtitle": "成功故事",
+        "desc": "深受中孟两国数百家企业的信赖，提供无缝沟通服务。",
+        "trustedBy": "全球 200 多家企业的共同选择",
+        "items": {
+            "1": {
+                "review": "Dovasi 在我们访问达卡期间为我们提供了流畅的沟通。他们的专业中文翻译完美地弥合了沟通鸿沟。",
+                "name": "李伟",
+                "designation": "首席执行官，上海工业贸易"
+            },
+            "2": {
+                "review": "Dovasi 提供的现场口译非常出色。它为我们与孟加拉合作伙伴的谈判节省了数月时间。",
+                "name": "Kazi Ariful",
+                "designation": "董事总经理，Global BD Textiles"
+            },
+            "3": {
+                "review": "为我们的合资合同提供了准确的文件翻译。他们既懂语言，又懂技术商业术语。",
+                "name": "陈浩",
+                "designation": "出口经理，Tech-Link China"
+            }
+        }
+    },
+    "qrcodes": {
+        "badge": "保持联系",
+        "title1": "通过即时通讯和",
+        "title2": "二维码即时访问",
+        "desc": "需要 24/7 的即时响应？扫描我们的二维码，直接与 Dovasi 沟通。我们提供微信和 WhatsApp 服务，满足您所有紧急的口译和采购需求。",
+        "wechatId": "微信 ID: dovasi_bd",
+        "wechatDesc": "为中国客户提供即时支持。",
+        "whatsappPhone": "WhatsApp: +880 1700-630200",
+        "whatsappDesc": "国际及本地项目咨询。",
+        "scanWechat": "扫描微信",
+        "scanWhatsapp": "扫描 WHATSAPP",
+        "scanNow": "立即扫描",
+        "scanQuote": "获取即时报价"
+    },
+    "cta": {
+        "hireTitle1": "准备好扩大您的",
+        "hireTitle2": "全球业务了吗？",
+        "hireDesc": "为您的下一次商务访问、工厂考察或技术培训预约我们的专业翻译。",
+        "hireBtn": "预约翻译",
+        "consultTitle1": "中国市场进入",
+        "consultTitle2": "咨询服务",
+        "consultDesc": "获取有关孟加拉国贸易政策、工厂审验及合规文件的专业指导。",
+        "consultBtn": "探索所有服务"
+    },
+    "footer": {
+        "aboutDesc": "Dovasi Co-Operation 在中孟之间的专业语言解决方案和工业咨询领域处于领先地位。",
+        "navigation": "导航",
+        "services": "业务范围",
+        "getUpdates": "获取更新",
+        "emailPlaceholder": "输入电子邮箱地址",
+        "directLine": "直拨电话",
+        "businessInquiry": "业务咨询",
+        "copyright": "© 2026 Dovasi Co-Operation。版权所有。",
+        "terms": "服务条款",
+        "privacy": "隐私政策"
+    },
+    "top_categories": {
+        "badge": "我们的专业领域",
+        "title1": "语言和 ",
+        "title2": "工业解决方案",
+        "learnMore": "了解详细信息",
+        "items": {
+            "chinese": {
+                "title": "中文口译员",
+                "subtitle": "现场机器安装、工厂访问和技术支持。"
+            },
+            "korean": {
+                "title": "韩语口译员",
+                "subtitle": "为韩国商业代表团提供专业口译服务。"
+            },
+            "japanese": {
+                "title": "日语口译员",
+                "subtitle": "为日本工业和贸易项目提供专业支持。"
+            },
+            "sourcing": {
+                "title": "采购代理",
+                "subtitle": "直接从中国采购制造商（服装和机械）。"
+            },
+            "setup": {
+                "title": "业务设立支持",
+                "subtitle": "法律咨询、工厂设立和贸易展览代表。"
+            },
+            "visa": {
+                "title": "商务签证支持",
+                "subtitle": "为中国和全球签证提供全面的文件准备。"
+            },
+            "audit": {
+                "title": "供应商审核",
+                "subtitle": "核实孟加拉国全境的工厂能力和合规性。"
+            },
+            "translation": {
+                "title": "技术翻译",
+                "subtitle": "手册、法律合同和工业文件。"
+            }
+        }
+    },
+    "home_sections": {
+        "learnEssential": "学习",
+        "essentialSkills": "核心技能",
+        "earnCertificates": "获得认证",
+        "andDegrees": "工业经验",
+        "getReadyCareer": "助力",
+        "nextCareer": "业务增长",
+        "masterAreas": "精通",
+        "differentAreas": "全球桥梁"
+    },
+    "whatWeProvide": {
+        "badge": "我们的服务",
+        "title1": "助力您的",
+        "title2": "成功",
+        "subtitle": "我们提供的不仅仅是翻译；我们为您提供全方位的业务增长生态系统。",
+        "features": {
+            "lifetimeSupport": "终身支持",
+            "lifetimeSupportDesc": "为您的业务项目和口译需求提供持续的支持。",
+            "jobPlacement": "行业连接",
+            "jobPlacementDesc": "我们架起优秀人才与主要跨国公司之间的桥梁。",
+            "getCertification": "质量保证",
+            "getCertificationDesc": "我们的服务符合行业标准，确保准确性和可靠性。"
+        },
+        "learnMore": "了解更多",
+        "learnMoreAboutUs": "关于我们"
+    },
+    "courses": {
+        "failedToLoad": "加载服务失败",
+        "noCoursesFound": "此类别下未找到服务",
+        "tryDifferentCategory": "尝试选择其他类别"
+    },
+    "contact": {
+        "badge": "联系我们",
+        "title1": "准备好开始",
+        "title2": "新项目了吗？",
+        "desc": "填写表格索取免费报价或预约翻译。您的提交将立即通过 WhatsApp 通知我们的团队，以便快速响应。",
+        "instantMessage": "即时消息",
+        "namePlaceholder": "您的姓名",
+        "emailPlaceholder": "电子邮箱地址",
+        "phonePlaceholder": "电话号码",
+        "selectService": "选择服务类型",
+        "serviceOptions": {
+            "interpretation": "中文翻译",
+            "sourcing": "产品采购",
+            "technical": "机械安装",
+            "visa": "商务签证支持",
+            "other": "其他查询"
+        },
+        "messagePlaceholder": "您的留言",
+        "sendBtn": "发送消息（通过 WhatsApp）"
+    },
+    "blog": {
+        "badge": "多瓦西博客",
+        "title1": "解锁",
+        "title2": "全球",
+        "title3": "连接",
+        "desc": "掌握国际贸易和工业协调的精髓。获取行业专家关于中孟业务的独家洞察。",
+        "searchPlaceholder": "探索文章...",
+        "searchBtn": "搜索",
+        "latestFeed": "最新发布",
+        "readFullPost": "阅读全文",
+        "noArticles": "未找到匹配的文章",
+        "newsletterTitle1": "千万不要错过专家",
+        "newsletterTitle2": "洞察",
+        "newsletterDesc": "订阅我们每周精选的最佳商业文章、技术教程和市场资讯。",
+        "subscribe": "订阅",
+        "backToInsights": "返回洞察",
+        "minRead": "分钟阅读",
+        "officialContributor": "官方撰稿人",
+        "authorDesc": "多瓦西团队的专家内容创作者。",
+        "followInsights": "关注洞察",
+        "comments": "评论",
+        "total": "总计",
+        "writeComment": "写下您的评论...",
+        "loginToComment": "请登录后参与讨论",
+        "posting": "发布中...",
+        "submit": "提交",
+        "curatedForYou": "为您精选",
+        "wantMore": "想要了解更多？",
+        "innerCircle": "加入我们的圈子，获取每周工业洞察和业务策略。",
+        "letsConnect": "联系我们"
+    }
+}

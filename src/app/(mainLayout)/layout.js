@@ -3,24 +3,21 @@
 import Footer from '@/components/sheard/Footer';
 import Navbar from '@/components/sheard/Navbar';
 import TopHeader from '@/components/sheard/TopHeader';
-import ScrollToTop from '@/components/sheard/ScrollToTop';
-import FloatingSeminarButton from '@/components/sheard/FloatingSeminarButton';
-import FloatingLanguageButton from '@/components/sheard/FloatingLanguageButton';
-import FloatingWhatsAppButton from '@/components/sheard/FloatingWhatsAppButton';
+import FloatingCTA from '@/components/sheard/FloatingCTA';
 import { AdminEditProvider } from '@/providers/AdminEditProvider';
 import React from 'react';
 
 const MainLayout = ({ children }) => {
     return (
         <AdminEditProvider>
-            <div>
+            <div className="flex flex-col min-h-screen">
                 <TopHeader />
                 <Navbar />
-                {children}
+                <main className="flex-grow">
+                    {children}
+                </main>
                 <Footer />
-                <ScrollToTop />
-                <FloatingSeminarButton />
-                <FloatingWhatsAppButton />
+                <FloatingCTA />
             </div>
         </AdminEditProvider>
     );
