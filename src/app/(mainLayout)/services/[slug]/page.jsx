@@ -191,7 +191,7 @@ export default function ServiceDetailPage() {
                                 {/* Right Column: Key Features & CTA */}
                                 <div className="lg:col-span-5 space-y-8">
                                     {/* Features Card */}
-                                    <section className="bg-maroon-dark rounded-[2.5rem] p-10 border border-white/5 shadow-2xl relative overflow-hidden group">
+                                    <section className="bg-card rounded-[2.5rem] p-10 border border-white/5 shadow-2xl relative overflow-hidden group">
                                         <div className="absolute top-0 right-0 p-8 text-primary opacity-10 group-hover:scale-125 transition-transform duration-700">
                                             <FiZap size={120} />
                                         </div>

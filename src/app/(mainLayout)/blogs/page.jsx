@@ -267,7 +267,7 @@ export default function BlogPage() {
                                     transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
                                     className="group"
                                 >
-                                    <Link href={`/blogs/${blog.slug}`} className="flex flex-col h-full bg-maroon-dark rounded-md border border-white/5 hover:border-primary/20 transition-all duration-500 overflow-hidden relative">
+                                    <Link href={`/blogs/${blog.slug}`} className="flex flex-col h-full bg-card rounded-md border border-white/5 hover:border-primary/20 transition-all duration-500 overflow-hidden relative">
                                         {/* Image Container */}
                                         <div className="relative h-60 overflow-hidden">
                                             <Image
@@ -366,7 +366,7 @@ export default function BlogPage() {
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-maroon-dark rounded-[2.5rem] p-10 lg:p-20 relative overflow-hidden border border-white/5"
+                        className="bg-card rounded-[2.5rem] p-10 lg:p-20 relative overflow-hidden border border-white/5"
                     >
                         {/* Abstract Background */}
                         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />

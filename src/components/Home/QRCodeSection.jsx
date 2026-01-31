@@ -28,7 +28,7 @@ const QRCodeSection = () => {
                         </p>
 
                         <div className="flex flex-col gap-6">
-                            <div className="flex items-center gap-5 p-6 bg-maroon-dark rounded-2xl border border-white/5">
+                            <div className="flex items-center gap-5 p-6 bg-card rounded-2xl border border-white/5">
                                 <div className="w-12 h-12 bg-[#07C160] rounded-xl flex items-center justify-center text-white shrink-0">
                                     <FaWeixin size={28} />
                                 </div>
@@ -37,7 +37,7 @@ const QRCodeSection = () => {
                                     <p className="text-gray-500 text-sm">{t("qrcodes.wechatDesc")}</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-5 p-6 bg-maroon-dark rounded-2xl border border-white/5">
+                            <div className="flex items-center gap-5 p-6 bg-card rounded-2xl border border-white/5">
                                 <div className="w-12 h-12 bg-[#25D366] rounded-xl flex items-center justify-center text-white shrink-0">
                                     <FaWhatsapp size={28} />
                                 </div>

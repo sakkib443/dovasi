@@ -309,9 +309,9 @@ export default function SingleBlogPage() {
                             </motion.div>
 
                             {/* Author Card */}
-                            <div className="mt-12 bg-maroon-dark rounded-[2rem] p-8 border border-white/5 flex flex-col md:flex-row items-center gap-8 group">
+                            <div className="mt-12 bg-card rounded-[2rem] p-8 border border-white/5 flex flex-col md:flex-row items-center gap-8 group">
                                 <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-primary to-orange-500 p-1 group-hover:rotate-12 transition-transform duration-500">
-                                    <div className="w-full h-full rounded-[1.8rem] bg-maroon-dark flex items-center justify-center text-white text-3xl font-black">
+                                    <div className="w-full h-full rounded-[1.8rem] bg-card-dark flex items-center justify-center text-white text-3xl font-black">
                                         {blog.author?.firstName?.[0]}
                                     </div>
                                 </div>
@@ -390,7 +390,7 @@ export default function SingleBlogPage() {
 
                                 {/* Related Posts Widget */}
                                 {relatedBlogs.length > 0 && (
-                                    <div className="bg-maroon-dark rounded-[2.5rem] p-8 border border-white/5">
+                                    <div className="bg-card rounded-[2.5rem] p-8 border border-white/5">
                                         <h3 className="text-lg font-black text-white mb-8 border-b border-white/5 pb-4 uppercase tracking-[0.2em]">
                                             {translate('blog.curatedForYou')}
                                         </h3>

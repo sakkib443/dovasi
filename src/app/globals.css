@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
 @theme {
+  /* Dark Maroon Background + Chinese Gold Accent */
   --color-maroon: #4a0404;
+  /* Original Dark Maroon - Background */
   --color-maroon-dark: #300202;
+  /* Darker Maroon */
   --color-maroon-light: #610000;
-  --color-primary: #FFD700;
-  --color-primary-dark: #ccac00;
-  --color-secondary: #E62D26;
+  /* Lighter Maroon */
+  --color-primary: #CC9900;
+  /* Chinese Gold - Accent */
+  --color-primary-dark: #B8860B;
+  /* Dark Gold */
+  --color-secondary: #FFD700;
+  /* Bright Gold */
   --color-white: #ffffff;
+  /* Chinese Red for Cards/Content */
+  --color-card: #EE1C25;
+  /* Chinese Red - Card Background */
+  --color-card-dark: #C41820;
+  /* Darker Chinese Red */
+  --color-card-light: #FF3B42;
+  /* Lighter Chinese Red */
 }
 
 /* =====================================================
@@ -21,28 +35,33 @@
    CSS VARIABLES - Global Theme
    ===================================================== */
 :root {
-  /* Chinese Theme Colors */
-  --color-primary: #FFD700;
-  /* Gold */
-  --color-primary-dark: #ccac00;
-  --color-primary-light: #ffeb3b;
-  --color-primary-10: rgba(255, 215, 0, 0.1);
-  --color-primary-20: rgba(255, 215, 0, 0.2);
+  /* ===== CHINESE GOLD + DARK MAROON THEME ===== */
 
-  /* Chinese Maroon Backgrounds */
+  /* Chinese Gold - Primary Accent Color */
+  --color-primary: #e5ac00;
+  --color-primary-dark: #B8860B;
+  --color-primary-light: #FFD700;
+  --color-primary-10: rgba(204, 153, 0, 0.1);
+  --color-primary-20: rgba(204, 153, 0, 0.2);
+
+  /* Dark Maroon - Background Colors (Original) */
   --color-maroon: #4a0404;
   --color-maroon-dark: #300202;
   --color-maroon-light: #610000;
 
-  /* Secondary Colors */
-  --color-secondary: #E62D26;
-  /* Chinese Red */
-  --color-secondary-dark: #b22222;
-  --color-secondary-light: #ff4d47;
-  --color-secondary-10: rgba(230, 45, 38, 0.1);
-  --color-secondary-20: rgba(230, 45, 38, 0.2);
+  /* Chinese Red - Card/Content Background */
+  --color-card: #EE1C25;
+  --color-card-dark: #C41820;
+  --color-card-light: #FF3B42;
 
-  /* Neutral Colors - Adjusted for Dark Background */
+  /* Secondary Colors - Bright Gold */
+  --color-secondary: #FFD700;
+  --color-secondary-dark: #CC9900;
+  --color-secondary-light: #FFEB3B;
+  --color-secondary-10: rgba(255, 215, 0, 0.1);
+  --color-secondary-20: rgba(255, 215, 0, 0.2);
+
+  /* Neutral Colors */
   --color-dark: #1a0101;
   --color-gray-900: #1a0101;
   --color-gray-800: #300202;

@@ -100,7 +100,7 @@ const ClientsPage = () => {
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                className="flex items-center justify-center gap-6 p-8 bg-maroon-dark rounded-2xl border border-white/5"
+                                className="flex items-center justify-center gap-6 p-8 bg-card rounded-2xl border border-white/5"
                             >
                                 <stat.icon size={32} className="text-primary" />
                                 <div>
@@ -124,7 +124,7 @@ const ClientsPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="group relative overflow-hidden rounded-md bg-maroon-dark border border-white/5 shadow-2xl"
+                                className="group relative overflow-hidden rounded-md bg-card border border-white/5 shadow-2xl"
                             >
                                 {/* Image Container */}
                                 <div className="aspect-[4/3] overflow-hidden relative">

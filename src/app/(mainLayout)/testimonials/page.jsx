@@ -100,7 +100,7 @@ const TestimonialsPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-maroon-dark p-10 rounded-md border border-white/5 relative group hover:border-primary/20 transition-all flex flex-col"
+                                className="bg-card p-10 rounded-md border border-white/5 relative group hover:border-primary/20 transition-all flex flex-col"
                             >
                                 <div className="absolute top-0 right-10 transform -translate-y-1/2 w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-maroon shadow-xl group-hover:rotate-6 transition-transform">
                                     <FaQuoteLeft size={20} />

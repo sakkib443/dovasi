@@ -19,7 +19,7 @@ const CTASection = () => {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="bg-maroon-dark p-10 lg:p-14 rounded-[3rem] border border-white/5 relative overflow-hidden group"
+                        className="bg-card p-10 lg:p-14 rounded-[3rem] border border-white/5 relative overflow-hidden group"
                     >
                         <div className="relative z-10 flex flex-col h-full">
                             <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8">
@@ -47,7 +47,7 @@ const CTASection = () => {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-br from-red-900 to-maroon-dark p-10 lg:p-14 rounded-[3rem] border border-white/10 relative overflow-hidden"
+                        className="bg-gradient-to-br from-card to-card-dark p-10 lg:p-14 rounded-[3rem] border border-white/10 relative overflow-hidden"
                     >
                         <div className="relative z-10 flex flex-col h-full">
                             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-white mb-8">

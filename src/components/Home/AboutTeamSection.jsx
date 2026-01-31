@@ -34,14 +34,14 @@ const AboutTeamSection = () => {
 
                         {/* Credentials Grid */}
                         <div className="grid sm:grid-cols-2 gap-6 mt-12">
-                            <div className="p-6 bg-maroon-dark rounded-2xl border border-white/5 flex gap-4">
+                            <div className="p-6 bg-card rounded-2xl border border-white/5 flex gap-4">
                                 <FaGraduationCap className="text-primary text-3xl shrink-0" />
                                 <div>
                                     <h4 className="text-white font-bold">{t("aboutTeam.cert1Desc")}</h4>
                                     <p className="text-gray-500 text-sm">{t("aboutTeam.cert1")}</p>
                                 </div>
                             </div>
-                            <div className="p-6 bg-maroon-dark rounded-2xl border border-white/5 flex gap-4">
+                            <div className="p-6 bg-card rounded-2xl border border-white/5 flex gap-4">
                                 <FaLanguage className="text-primary text-3xl shrink-0" />
                                 <div>
                                     <h4 className="text-white font-bold">{t("aboutTeam.cert2")}</h4>
@@ -70,7 +70,7 @@ const AboutTeamSection = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             className="relative"
                         >
-                            <div className="aspect-[3/4] rounded-[3rem] overflow-hidden border-8 border-white/5 bg-maroon-dark shadow-2xl relative z-10">
+                            <div className="aspect-[3/4] rounded-[3rem] overflow-hidden border-8 border-white/5 bg-card shadow-2xl relative z-10">
                                 <img
                                     src="/images/image.png"
                                     alt="E. Shahadat"
@@ -82,7 +82,7 @@ const AboutTeamSection = () => {
                             <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary rounded-3xl z-0" />
 
                             <div className="absolute bottom-10 right-0 left-0 px-6 z-20">
-                                <div className="bg-maroon-dark/90 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-2xl">
+                                <div className="bg-card/90 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-2xl">
                                     <h3 className="text-lg font-bold text-white">E. Shahadat</h3>
                                     <p className="text-primary text-xs font-bold uppercase tracking-widest mt-1">{t("aboutTeam.founderTitle")}</p>
                                 </div>

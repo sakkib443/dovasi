@@ -62,7 +62,7 @@ const CaseStudySection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative overflow-hidden rounded-[2rem] bg-maroon border border-white/5 shadow-2xl"
+                            className="group relative overflow-hidden rounded-[2rem] bg-card border border-white/5 shadow-2xl"
                         >
                             {/* Image Container */}
                             <div className="aspect-[4/3] overflow-hidden">

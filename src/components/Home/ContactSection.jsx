@@ -56,7 +56,7 @@ const ContactSection = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="bg-maroon p-10 lg:p-12 rounded-[3rem] border border-white/5 shadow-2xl relative overflow-hidden"
+                        className="bg-card p-10 lg:p-12 rounded-[3rem] border border-white/5 shadow-2xl relative overflow-hidden"
                     >
                         <form onSubmit={handleWhatsAppSubmit} className="space-y-6 relative z-10">
                             {/* Name Input */}
@@ -66,7 +66,7 @@ const ContactSection = () => {
                                     type="text"
                                     placeholder={t("contact.namePlaceholder")}
                                     required
-                                    className="w-full bg-maroon-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
+                                    className="w-full bg-card-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 />
                             </div>
@@ -78,7 +78,7 @@ const ContactSection = () => {
                                     <input
                                         type="email"
                                         placeholder={t("contact.emailPlaceholder")}
-                                        className="w-full bg-maroon-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
+                                        className="w-full bg-card-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     />
                                 </div>
@@ -88,7 +88,7 @@ const ContactSection = () => {
                                         type="tel"
                                         placeholder={t("contact.phonePlaceholder")}
                                         required
-                                        className="w-full bg-maroon-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
+                                        className="w-full bg-card-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     />
                                 </div>
@@ -98,7 +98,7 @@ const ContactSection = () => {
                             <div className="relative">
                                 <FaBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-primary/40" />
                                 <select
-                                    className="w-full bg-maroon-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:border-primary outline-none transition-all appearance-none"
+                                    className="w-full bg-card-dark/50 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:border-primary outline-none transition-all appearance-none"
                                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                                 >
                                     <option value="" disabled selected>{t("contact.selectService")}</option>
@@ -115,7 +115,7 @@ const ContactSection = () => {
                                 <textarea
                                     placeholder={t("contact.messagePlaceholder")}
                                     rows="4"
-                                    className="w-full bg-maroon-dark/50 border border-white/10 rounded-xl py-4 px-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
+                                    className="w-full bg-card-dark/50 border border-white/10 rounded-xl py-4 px-4 text-white placeholder:text-white/20 focus:border-primary outline-none transition-all"
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 ></textarea>
                             </div>

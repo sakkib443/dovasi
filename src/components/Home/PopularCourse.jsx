@@ -82,7 +82,7 @@ const PopularCourse = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-maroon-dark/50 backdrop-blur-sm p-8 rounded-3xl border border-white/5 hover:border-primary/20 transition-all group"
+              className="bg-card/80 backdrop-blur-sm p-8 rounded-3xl border border-white/5 hover:border-primary/20 transition-all group"
             >
               <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
                 <item.icon className="w-8 h-8 text-primary group-hover:text-maroon transition-colors" />

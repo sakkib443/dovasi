@@ -8,6 +8,9 @@
         "blog": "博客动态",
         "contact": "联系我们",
         "solutions": "解决方案",
+        "gifts": "礼品店",
+        "sightseeing": "观光旅游",
+        "factoryShed": "厂房租赁",
         "about_profile": "个人简介",
         "about_stories": "成功案例",
         "about_cert": "资质认证",
@@ -183,6 +186,10 @@
             "translation": {
                 "title": "技术翻译",
                 "subtitle": "手册、法律合同和工业文件。"
+            },
+            "factoryShed": {
+                "title": "厂房租赁",
+                "subtitle": "为在孟加拉国EPZ和私人区域的中国制造商提供工业厂房。"
             }
         }
     },
@@ -267,5 +274,122 @@
         "wantMore": "想要了解更多？",
         "innerCircle": "加入我们的圈子，获取每周工业洞察和业务策略。",
         "letsConnect": "联系我们"
+    },
+    "giftShop": {
+        "badge": "礼品店",
+        "title1": "传统",
+        "title2": "孟加拉礼品",
+        "subtitle": "适合中国宾客和商业伙伴的正宗手工礼品",
+        "categories": {
+            "all": "所有礼品",
+            "handicraft": "手工艺品",
+            "textile": "纺织品",
+            "souvenir": "纪念品",
+            "food": "食品"
+        },
+        "items": {
+            "jamdani": {
+                "name": "贾姆达尼纱丽",
+                "desc": "达卡世界著名的手工细棉布织品"
+            },
+            "nakshikantha": {
+                "name": "刺绣被",
+                "desc": "带有精致图案的传统刺绣被子"
+            },
+            "brass": {
+                "name": "黄铜手工艺品",
+                "desc": "达姆赖手工制作的黄铜制品"
+            },
+            "pottery": {
+                "name": "陶器",
+                "desc": "来自孟加拉农村的精美陶土制品"
+            },
+            "panjabi": {
+                "name": "旁遮比套装",
+                "desc": "传统男装 - 送给中国客人的完美礼物"
+            },
+            "hilsa": {
+                "name": "干鲥鱼",
+                "desc": "孟加拉国的国鱼 - 优质品质"
+            }
+        },
+        "viewDetails": "查看详情",
+        "addToCart": "加入购物车",
+        "orderNow": "立即订购"
+    },
+    "sightseeing": {
+        "badge": "达卡观光",
+        "title1": "探索",
+        "title2": "美丽孟加拉",
+        "subtitle": "为您的中国客人发现达卡的历史和文化地标",
+        "packages": {
+            "halfDay": "半日游",
+            "fullDay": "全日游",
+            "custom": "定制游"
+        },
+        "spots": {
+            "lalbagh": {
+                "name": "拉尔巴格堡",
+                "desc": "17世纪莫卧儿堡垒建筑群，拥有美丽的花园",
+                "duration": "1-2小时"
+            },
+            "ahsan": {
+                "name": "阿赫桑曼齐勒",
+                "desc": "粉红宫殿 - 标志性地标和博物馆",
+                "duration": "1-2小时"
+            },
+            "hatirjheel": {
+                "name": "哈提尔吉尔",
+                "desc": "现代化湖滨开发区，夜景迷人",
+                "duration": "1-2小时"
+            },
+            "parliament": {
+                "name": "国民议会大厦",
+                "desc": "路易斯·康的建筑杰作",
+                "duration": "30分钟"
+            },
+            "sadarghat": {
+                "name": "萨达尔加特河港",
+                "desc": "世界上最繁忙的河港之一",
+                "duration": "1小时"
+            },
+            "sonargaon": {
+                "name": "索纳尔冈",
+                "desc": "拥有民间艺术博物馆的古都",
+                "duration": "半天"
+            }
+        },
+        "bookTour": "立即预订",
+        "includesGuide": "包含中文导游",
+        "transport": "包含空调交通"
+    },
+    "factoryShed": {
+        "badge": "厂房租赁",
+        "title1": "工业",
+        "title2": "厂房空间",
+        "subtitle": "为在孟加拉国EPZ和私人区域的中国制造商提供优质厂房",
+        "sizes": {
+            "small": "小型 (5,000-10,000 平方英尺)",
+            "medium": "中型 (10,000-25,000 平方英尺)",
+            "large": "大型 (25,000-50,000 平方英尺)",
+            "xlarge": "超大型 (50,000+ 平方英尺)"
+        },
+        "features": {
+            "electricity": "大容量电力供应",
+            "water": "工业用水连接",
+            "gas": "天然气管道可用",
+            "security": "24/7 安保服务",
+            "parking": "装卸区",
+            "office": "配套办公空间"
+        },
+        "zones": {
+            "dhaka": "达卡出口加工区",
+            "chittagong": "吉大港出口加工区",
+            "gazipur": "加济布尔工业区",
+            "narayanganj": "纳拉扬甘杰"
+        },
+        "inquireNow": "立即咨询",
+        "scheduleVisit": "预约厂房参观",
+        "priceOnRequest": "价格面议"
     }
 }

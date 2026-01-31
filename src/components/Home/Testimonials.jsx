@@ -56,7 +56,7 @@ const Testimonials = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="bg-maroon p-10 rounded-3xl border border-white/5 relative group"
+                            className="bg-card p-10 rounded-3xl border border-white/5 relative group"
                         >
                             <div className="absolute top-0 right-10 transform -translate-y-1/2 w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-maroon shadow-xl group-hover:rotate-6 transition-transform">
                                 <FaQuoteLeft size={24} />

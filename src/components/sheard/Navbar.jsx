@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { BiMenu, BiX } from "react-icons/bi";
 import { FiGlobe, FiChevronDown } from "react-icons/fi";
+import { FaDragon } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -27,9 +28,9 @@ const Navbar = () => {
     { href: "/", label: t("navbar.home") },
     { href: "/about", label: t("navbar.about") },
     { href: "/services", label: t("navbar.services") },
-    { href: "/clients", label: t("navbar.clients") },
-    { href: "/testimonials", label: t("navbar.testimonials") },
-    { href: "/blogs", label: t("navbar.blog") },
+    { href: "/gifts", label: t("navbar.gifts") },
+    { href: "/sightseeing", label: t("navbar.sightseeing") },
+    { href: "/factory-shed", label: t("navbar.factoryShed") },
     { href: "/contact", label: t("navbar.contact") },
   ];
 
@@ -37,20 +38,17 @@ const Navbar = () => {
     <>
       <nav
         className={`sticky top-0 z-50 transition-all duration-500 ${isSticky
-          ? "bg-[#1a0505]/95 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl"
-          : "bg-maroon border-transparent py-5"
+          ? "bg-card/95 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl"
+          : "bg-card border-transparent py-5"
           }`}
       >
         <div className="container mx-auto px-4 lg:px-20">
           <div className="flex items-center justify-between gap-6">
             {/* Left: Logo */}
             <div className="flex items-center">
-              <Link href="/">
-                <img
-                  className={`transition-all duration-300 ${isSticky ? "w-12 sm:w-16" : "w-16 sm:w-24"}`}
-                  src="/images/ejobsitlogo.png"
-                  alt="Dovasi Logo"
-                />
+              <Link href="/" className="flex items-center gap-2">
+                <FaDragon className={`text-primary transition-all duration-300 ${isSticky ? "text-2xl" : "text-3xl"}`} />
+                <span className={`font-black text-white uppercase tracking-wider transition-all duration-300 ${isSticky ? "text-lg" : "text-xl"}`}>DOVASI</span>
               </Link>
             </div>
 
@@ -63,7 +61,7 @@ const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className={`text-[14px] font-bold uppercase tracking-[0.1em] transition-all flex items-center gap-1.5 py-2 ${pathname === item.href ? "text-primary" : "text-white/70 hover:text-white"}`}
+                    className={`text-[14px] font-medium uppercase tracking-[0.1em] transition-all flex items-center gap-1.5 py-2 ${pathname === item.href ? "text-primary" : "text-white/70 hover:text-white"}`}
                   >
                     {item.label}
                   </Link>
@@ -79,13 +77,13 @@ const Navbar = () => {
                 <button
                   onClick={() => setIsLangOpen(!isLangOpen)}
                   onBlur={() => setTimeout(() => setIsLangOpen(false), 200)}
-                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl border border-white/10 text-white hover:text-white hover:border-primary/50 transition-all bg-white/5 shadow-inner group"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-white/10 text-white hover:text-white hover:border-primary/50 transition-all bg-white/5 shadow-inner group"
                 >
-                  <FiGlobe className="text-primary group-hover:rotate-180 transition-transform duration-700" size={18} />
-                  <span className="text-[12px] sm:text-[13px] font-bold tracking-wide min-w-[30px] sm:min-w-[60px] text-left uppercase">
+                  <FiGlobe className="text-primary group-hover:rotate-180 transition-transform duration-700" size={14} />
+                  <span className="text-[11px] font-medium tracking-wide uppercase">
                     {language}
                   </span>
-                  <FiChevronDown className={`text-white/20 group-hover:text-primary transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} size={14} />
+                  <FiChevronDown className={`text-white/20 group-hover:text-primary transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} size={12} />
                 </button>
 
                 {/* Dropdown Menu */}
@@ -112,7 +110,7 @@ const Navbar = () => {
 
               <Link
                 href="#contact"
-                className={`hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-maroon hover:bg-white text-[11px] font-black uppercase tracking-widest transition-all shadow-lg shadow-primary/20 ${isSticky ? "scale-95" : "scale-100"}`}
+                className={`hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-md bg-primary text-maroon hover:bg-white text-[11px] font-bold uppercase tracking-widest transition-all shadow-lg shadow-primary/20 ${isSticky ? "scale-95" : "scale-100"}`}
               >
                 {t("navbar.getInTouch", "Get in Touch")}
               </Link>
@@ -136,10 +134,13 @@ const Navbar = () => {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 bg-[#1a0505] z-[100] flex flex-col p-8 lg:hidden overflow-y-auto"
+            className="fixed inset-0 bg-card z-[100] flex flex-col p-8 lg:hidden overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-10">
-              <img src="/images/ejobsitlogo.png" className="w-28" alt="Logo" />
+              <div className="flex items-center gap-2">
+                <FaDragon className="text-primary text-3xl" />
+                <span className="font-black text-white uppercase tracking-wider text-xl">DOVASI</span>
+              </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
@@ -171,7 +172,7 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-base font-normal text-white/70 hover:text-primary transition-colors flex items-center justify-between group uppercase tracking-widest"
+                    className="text-base font-medium text-white/70 hover:text-primary transition-colors flex items-center justify-between group uppercase tracking-widest"
                   >
                     <span>{item.label}</span>
                   </Link>

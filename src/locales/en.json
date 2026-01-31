@@ -8,6 +8,9 @@
         "blog": "Blogs",
         "contact": "Contact",
         "solutions": "Solutions",
+        "gifts": "Gift Shop",
+        "sightseeing": "Sightseeing",
+        "factoryShed": "Factory Shed",
         "about_profile": "Professional Profile",
         "about_stories": "Success Stories",
         "about_cert": "Certifications",
@@ -183,6 +186,10 @@
             "translation": {
                 "title": "Technical Translation",
                 "subtitle": "Manuals, legal contracts, and industrial documentation."
+            },
+            "factoryShed": {
+                "title": "Factory Shed Rental",
+                "subtitle": "Industrial sheds for Chinese companies in Bangladesh EPZ & private zones."
             }
         }
     },
@@ -267,5 +274,122 @@
         "wantMore": "Want More?",
         "innerCircle": "Join our inner circle for weekly industrial insights and business strategies.",
         "letsConnect": "Let's Connect"
+    },
+    "giftShop": {
+        "badge": "Gift Shop",
+        "title1": "Traditional",
+        "title2": "Bangladeshi Gifts",
+        "subtitle": "Authentic handmade gifts perfect for Chinese guests and business partners",
+        "categories": {
+            "all": "All Gifts",
+            "handicraft": "Handicrafts",
+            "textile": "Textiles",
+            "souvenir": "Souvenirs",
+            "food": "Food Items"
+        },
+        "items": {
+            "jamdani": {
+                "name": "Jamdani Saree",
+                "desc": "World-famous handwoven muslin fabric from Dhaka"
+            },
+            "nakshikantha": {
+                "name": "Nakshi Kantha",
+                "desc": "Traditional embroidered quilt with intricate patterns"
+            },
+            "brass": {
+                "name": "Brass Handicraft",
+                "desc": "Handcrafted brass items from Dhamrai"
+            },
+            "pottery": {
+                "name": "Clay Pottery",
+                "desc": "Beautiful terracotta items from rural Bangladesh"
+            },
+            "panjabi": {
+                "name": "Panjabi Set",
+                "desc": "Traditional men's wear - perfect gift for Chinese guests"
+            },
+            "hilsa": {
+                "name": "Dried Hilsha Fish",
+                "desc": "National fish of Bangladesh - premium quality"
+            }
+        },
+        "viewDetails": "View Details",
+        "addToCart": "Add to Cart",
+        "orderNow": "Order Now"
+    },
+    "sightseeing": {
+        "badge": "Dhaka Sightseeing",
+        "title1": "Explore",
+        "title2": "Beautiful Bangladesh",
+        "subtitle": "Discover the historic and cultural landmarks of Dhaka for your Chinese guests",
+        "packages": {
+            "halfDay": "Half Day Tour",
+            "fullDay": "Full Day Tour",
+            "custom": "Custom Tour"
+        },
+        "spots": {
+            "lalbagh": {
+                "name": "Lalbagh Fort",
+                "desc": "17th century Mughal fort complex with beautiful gardens",
+                "duration": "1-2 hours"
+            },
+            "ahsan": {
+                "name": "Ahsan Manzil",
+                "desc": "The Pink Palace - iconic landmark and museum",
+                "duration": "1-2 hours"
+            },
+            "hatirjheel": {
+                "name": "Hatirjheel",
+                "desc": "Modern lakefront development with beautiful night views",
+                "duration": "1-2 hours"
+            },
+            "parliament": {
+                "name": "National Parliament",
+                "desc": "Architectural masterpiece by Louis Kahn",
+                "duration": "30 mins"
+            },
+            "sadarghat": {
+                "name": "Sadarghat River Port",
+                "desc": "One of the busiest river ports in the world",
+                "duration": "1 hour"
+            },
+            "sonargaon": {
+                "name": "Sonargaon",
+                "desc": "Ancient capital with Folk Art Museum",
+                "duration": "Half day"
+            }
+        },
+        "bookTour": "Book Tour Now",
+        "includesGuide": "Includes Chinese-speaking guide",
+        "transport": "Air-conditioned transport included"
+    },
+    "factoryShed": {
+        "badge": "Factory Shed Rental",
+        "title1": "Industrial",
+        "title2": "Factory Spaces",
+        "subtitle": "Premium factory sheds for Chinese manufacturers in Bangladesh EPZ and private zones",
+        "sizes": {
+            "small": "Small (5,000-10,000 sqft)",
+            "medium": "Medium (10,000-25,000 sqft)",
+            "large": "Large (25,000-50,000 sqft)",
+            "xlarge": "Extra Large (50,000+ sqft)"
+        },
+        "features": {
+            "electricity": "High-capacity power supply",
+            "water": "Industrial water connection",
+            "gas": "Natural gas line available",
+            "security": "24/7 security service",
+            "parking": "Loading/unloading area",
+            "office": "Attached office space"
+        },
+        "zones": {
+            "dhaka": "Dhaka EPZ",
+            "chittagong": "Chittagong EPZ",
+            "gazipur": "Gazipur Industrial Area",
+            "narayanganj": "Narayanganj"
+        },
+        "inquireNow": "Inquire Now",
+        "scheduleVisit": "Schedule Factory Visit",
+        "priceOnRequest": "Price on Request"
     }
 }

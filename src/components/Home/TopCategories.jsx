@@ -14,7 +14,8 @@ import {
     LuMic,
     LuChevronRight,
     LuSettings,
-    LuUsers
+    LuUsers,
+    LuBuilding2
 } from "react-icons/lu";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -78,6 +79,13 @@ const TopCategories = () => {
             iconBg: 'bg-gradient-to-br from-orange-500 to-orange-700',
             borderColor: 'border-l-orange-400',
         },
+        {
+            icon: LuBuilding2,
+            titleKey: 'factoryShed',
+            slug: 'factory-shed',
+            iconBg: 'bg-gradient-to-br from-teal-500 to-teal-700',
+            borderColor: 'border-l-teal-400',
+        },
     ];
 
     return (
@@ -111,7 +119,7 @@ const TopCategories = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
                         >
-                            <div className={`group bg-maroon p-8 rounded-3xl border-l-4 ${category.borderColor} shadow-2xl hover:shadow-primary/10 border border-white/5 hover:border-white/10 transition-all duration-300 h-full flex flex-col`}>
+                            <div className={`group bg-card p-8 rounded-3xl border-l-4 ${category.borderColor} shadow-2xl hover:shadow-primary/10 border border-white/5 hover:border-white/10 transition-all duration-300 h-full flex flex-col`}>
                                 <div className="flex items-start justify-between mb-8">
                                     <div className={`w-16 h-16 rounded-2xl ${category.iconBg} flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform`}>
                                         <category.icon className="w-8 h-8 text-white" />
